@@ -114,6 +114,20 @@
 \newcommand{\ejwt}{e^{j\omega t}}
 \newcommand{\emjwt}{e^{-j\omega t}}
 \newcommand{\dt}{\Delta T}
+\newcommand{\vp}{\varphi}
+\newcommand{\fN}{\frac{1}{N}}
+\newcommand{\sumt}{\sum_{t=1}^N}
+\newcommand{\sumk}{\sum_{k=0}^N}
+\newcommand{\ruhat}{\hat{R}_u^N(\tau)}
+\newcommand{\ryuhat}{\hat{R}_{yu}^N(\tau)}
+\newcommand{\varphiuhat}{\hat{\varphi}_u^N(\omega)}
+\newcommand{\varphiyuhat}{\hat{\varphi}_{yu}^N(\omega)}
+\newcommand{\varphiyuhh}{\hat{\hat{\varphi}}_{yu}^N(\omega)}
+\newcommand{\varphiuhh}{\hat{\hat{\varphi}}_u^N(\omega)}
+\newcommand{\varphiyhh}{\hat{\hat{\varphi}}_y^N(\omega)}
+\newcommand{\ghh}{\hat{\hat{G}}(e^{j\omega})}
+\newcommand{\thn}{\hat{\theta}_{LS}^N}
+\newcommand{\thiv}{\hat{\theta}_{IV}^N}
 
 
 %%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%
@@ -134,7 +148,164 @@
 \setcounter{lecture}{9}
 \setcounter{chapter}{9}
 
-\lecture{??}
+\lecture{Instrumental Variable Methods}
+
+\section{Least Squares Review}
+We start with
+\begin{align}
+\label{eq:sys}
+\mathcal{S}: y(t) = \vp^T(t)\theta_0+e(t) \\
+\label{eq:model}
+\mathcal{M}: y(t) = \vp^T(t)\theta+\epsilon(t\theta)
+\end{align}
+Then the least squares estimate is found as
+\begin{align*}
+\thn = \arg\min_\theta \fN \sumt \epsilon^2(t,\theta) = \arg\min_\theta \fN E^T(\theta)E(\theta)
+\end{align*}
+where
+\begin{align*}
+E(\theta) = \left[\begin{array}{c} \epsilon(1,\theta) \\ \epsilon(2,\theta) \\ \vdots \\ \epsilon(N,\theta) \end{array}\right]
+\end{align*}
+
+\subsection{Least Squares Properties}
+\begin{align*}
+\lim_{N\to\infty} E\{\thn\} = \theta_0
+\end{align*}
+provided
+\begin{enumerate}
+\item $u(t)\perp e(t)$.
+\item $\mathcal{S}\in\mathcal{M} \Rightarrow \vp$ has the be the same for $\mathcal{S}$ and $\mathcal{M}$.
+\item $\{e(t)\}$ is white noise.
+\end{enumerate}
+Once you do a least squares estimate you implicitly make the assumption that the regressor, $\vp$, is uncorrelated with the noise. This is accomplished by using an orthogonal projection as in Lecture 7. The regressor vector must be orthogonal to the error vector. The only noise that is uncorrelated with the output is white noise, and since the regressor has past outputs we have that $\{e(t)\}$ must be white noise. This is a \textit{very} restrictive condition.
+
+Another way of stating this assumption is that $G_0(q)$ and $H_0(q)$ must have the same poles and that the numerator of $H_0(q)=1$.
+
+\section{Instrumental Variable Method}
+Typically the regressor is given by
+$$\vp(t) = \left[\begin{array}{c c c c c c c} u(t) & u(t-1) & \cdots & u(t-n_b) & -y(t-1) & \cdots & -y(t-n_a) \end{array}\right]$$
+The main idea of IV methods is to choose a different regressor vector that will yield different properties. We will use the notation $\xi(t)$ to denote the instrumental variable and use it to estimate the parameters, $\thiv$. This gives models and estimates for least squares and IV as
+\begin{align*}
+\mathcal{M}_{LS}: \fN\sumt\vp^T(t)y(t) &= \fN\sumt\vp(t)\vp^T(t)\theta + \underbrace{\fN\sumt\vp(t)\epsilon(t,\theta)}_{0,u\perp v} \\
+\thn &= \underbrace{\left[\fN\sumt\vp(t)\vp^T(t)\right]^{-1}}_{R^{-1}(N)} \underbrace{\left[\fN\sumt\vp(t)y(t)\right]}_{f(N)} \\
+\mathcal{M}_{IV}: \fN\sumt\xi(t)\vp^T(t) &= \fN\sumt\xi(t)\vp^T(t)\theta + \fN\sumt\xi(t)\epsilon(t,\theta) \\
+\thiv &= \underbrace{\left[\fN\sumt\xi(t)\vp^T(t)\right]^{-1}}_{R_\xi^{-1}(N)} \underbrace{\left[\fN\sumt\xi(t)y(t)\right]}_{f_\xi(N)}
+\end{align*}
+
+\subsection{Conditions For IV To Work}
+\begin{enumerate}
+\item $\xi(t)$ must be correlated with $\vp(t)$ or the inverse won't exist because $\xi(t)\vp^T(t) = 0$.
+\item $\xi(t)$ must have the correct dimensions, $p\times 1$.
+\item It is desirable that $\xi(t)\perp e(t)$.
+\end{enumerate}
+
+\subsection{Possible Choices for $\xi(t)$}
+We could try several different choices for $\xi(t)$. One is to extend the past inputs used so that $\xi(t)$ is $p\times 1$ such that
+$$\xi^T(t) = \left[\begin{array}{c c c c c c} u(t) & u(t-1) & \cdots & u(t-n_b) & u(t-n_b-1) & \cdots \end{array}\right]$$
+This is called the ``normal'' instrumental variable.
+
+Another choice is to use estimates of the output such that
+$$\xi^T(t) = \left[\begin{array}{c c c c c c c} u(t) & u(t-1) & \cdots & u(t-n_b) & -\hat{y}(t-1) & \cdots & -\hat{y}(t-n_a) \end{array}\right]$$
+where $\hat{y}(t)=F(q)u(t)$. This IV is uncorrelated with the noise because $u\perp e$. A good choice for the filter when estimating outputs is the real system, $G_0(q)$. We could start with an estimate of the real system, $\hat{G}(q)$.
+
+\subsection{Properties of IV}
+$$\lim_{N\to\infty}E\{\thiv\} = \theta_0$$
+provided $\mathcal{S}\in\mathcal{M}$ and $u(t)\perp e(t)$. The nice property is that it removes the constraint that $\{e(t)\}$ must be white noise.
+
+If we know the regressor the we should \textit{not} use least squares. Least squares will give a biased estimate if $\{e(t)\}$ is not white noise. But IV will give an unbiased estimate even when the noise is colored.
+
+\subsection{Drawbacks of IV}
+Instrumental variable methods lose optimality properties. There is no sense of minimizing error with respect to an argument. Least squares sets the derivative to zero but IV uses a solution set to zero. IV does not have a derivative that can be set to zero so it is not guaranteed to be a minimum. The IV estimate, $\thiv$, is a solution to $R_\xi(N)\theta=f_\xi(N)$.
+
+Although $E\{\thiv\}=\theta_0$ this says nothing about $\text{var}\{\thiv\}$. It could be very large. IV method only really works if you want to find $\theta_0$. Otherwise, the large variance makes it a poor estimator.
+
+To regain optimality use the filter as the real system, $G_0(q)$. Since we don't initially know this then iterative solution methods are required to try and converge to $G_0(q)$.
+
+\section{Realization Algorithms}
+This is not discussed in Ljung but there is a handout available at \\
+\href{http://mechatronics.ucsd.edu/mae283a/}{http://mechatronics.ucsd.edu/mae283a/}. These algorithms are used to estimate parameters by applying linear algebra techniques. They are more general than linear regression models because we can deal straight with state-space models.
+\begin{align*}
+x(t+1) &= Ax(t)+Bu(t) \\
+y(t) &= Cx(t)+Du(t)
+\end{align*}
+The goal is to directly estimate $\{A,B,C,D\}$. We have seen previously that
+\begin{align*}
+G_0(q) &\to \vp(t) \to \sumt g_0(k)q^{-k} \\
+H_0(q) &\to \vp(t) \to \sumt h_0(k)q^{-k}
+\end{align*}
+
+\subsection{Ho-Kalman Realization}
+This is the simplest realization algorithm. Similar to Kung's, which will be discussed later in this lecture. The difference is that Ho-Kalman is deterministic while Kung allows for noise.
+
+If we assume that we have measurements of the impulse response coefficients, $g_0(k), G_0(q)=\sumk g_0(k)q^{-k}$, then
+$$g_0(k) = \begin{cases} D, & k=0 \\ CA^{k-1}B, & k\neq0 \end{cases}$$
+We would like to find $\{A,B,C,D\}$ from $g_0(k)$. The first step is to find the dimension of $A=n$, where $n$ is the number of states in the state space model. Use the impulse response coefficients to build a Hankel matrix where
+\begin{align*}
+H &= \left[\begin{array}{c c c c} g_0(1) & g_0(2) & g_0(3) & \cdots \\ g_0(2) & g_0(3) & g_0(4) & \cdots \\ g_0(3) & g_0(4) & g_0(5) & \cdots \\ \vdots & \vdots & \vdots & \ddots \end{array}\right]
+= \left[\begin{array}{c c c c} CB & CAB & CA^2B & \cdots \\ CAB & CA^2B & CA^3B & \cdots \\ CA^2B & CA^3B & CA^4B & \cdots \\ \vdots & \vdots & \vdots & \ddots \end{array}\right] \\
+&= \left[\begin{array}{c} C \\ CA \\ CA^2 \\ \vdots \end{array}\right] \left[\begin{array}{c c c c} B & AB & A^2B & \cdots \end{array}\right]
+\end{align*}
+Then we have that $\text{rank}(H)=n$. We can make the assumption that the model is controllable and observable, otherwise we wouldn't be using that model.
+
+\begin{example}
+Let a structural engineer hit a post with a hammer and measure the response with accelerometers. Say we get $k=10$ for $g_0(k)$. But the response is only a single exponential decay. Then the real system is first-order with $n=1$. So we only model $A$ with $\text{rank}(A)=1$. This is how models can easily be considered controllable and observable.
+$\lozenge$
+\end{example}
+
+We know that
+$$\text{rank}(H)=n<N \exists H_1, H_2 \text{ s.t. } \underbrace{H}_{N\times N} = \underbrace{H_1}_{N\times n} \underbrace{H_2}_{n\times N}$$
+
+Now, create another Hankel matrix that is one time step later than $H$ such that
+\begin{align*}
+\overrightarrow{H} = \left[\begin{array}{c c c} g_0(2) & g_0(3) & \cdots \\ g_0(3) & g_0(4) & \cdots \\ \vdots & \vdots & \ddots \end{array}\right]
+= \left[\begin{array}{c c c} CAB & CA^2B & \cdots \\ CA^2B & CA^3B & \cdots \\ \vdots & \vdots & \ddots \end{array}\right] = H_1AH_2
+\end{align*}
+This gives us $A=H_1^+\overrightarrow{H}H_2^+$, where the $+$ superscript denotes the pseudo-inverse such that
+\begin{align*}
+H_1^+ &= [H_1H_1^T]^{-1}H_1^T \\
+H_2^+ &= H_2^T[H_2H_2^T]^{-1}
+\end{align*}
+We get the other state space matrices almost for free at this point.
+\begin{align*}
+B &= H_2(:,1) \\
+C &= H_1(1,:) \\
+D &= g(0)
+\end{align*}
+where \textsc{Matlab} notation has been used to denote first column and first row.
+
+\subsection{Kung's Algorithm}
+Kung basically came up with a smart choice for the decomposition $H=H_1H_2$ by using singular value decomposition (SVD). This yields
+$$\underbrace{H}_{N\times N} = H_1H_2 = \underbrace{U}_{N\times N} \underbrace{\Sigma}_{N\times N} \underbrace{V^T}_{N\times N} = \left[\begin{array}{c c} U_1 & U_2 \end{array}\right] \left[\begin{array}{c c} \Sigma_1 & 0 \\ 0 & \Sigma_2 \end{array}\right] \left[\begin{array}{c} V_1^T \\ V_2^T \end{array}\right]$$
+where $\Sigma_1$ is $n\times n$ and $\Sigma_2$ is $N-n\times N-n$ and $\text{rank}(H)=n$. For zero noise and no errors $\Sigma_2=0$ and
+$$H=U_1\Sigma V_1^T$$
+This gives
+\begin{align*}
+H_1 &= U_1\Sigma_1^{1/2} \\
+H_2 &= \Sigma_1^{1/2}V_1^T
+\end{align*}
+Note that $\Sigma$ and $\Sigma_1$ are diagonal matrices so the square root of those matrices is just the square root of the diagonal elements. If those matrices were not diagonal then we would have to define what the square root of a matrix is. Then we can find the pseudo-inverses as
+\begin{align*}
+H_1^+ &= [H_1H_1^T]^{-1}H_1^T = [\Sigma_1^{1/2}\underbrace{U_1^TU_1}_{I}\Sigma_1^{1/2}]^{-1}\Sigma_1^{1/2}U_1^T = \Sigma_1^{-1}\Sigma_1^{1/2}U_1^T = \Sigma_1^{-1/2}U_1^T \\
+H_2^+ &= H_2^T[H_2H_2^T]^{-1} = V_1^T\Sigma_1^{1/2}[\Sigma_1^{1/2}\underbrace{V_1^TV_1}_{I}\Sigma_1^{1/2}]^{-1} = V_1^T\Sigma_1^{1/2}\Sigma_1^{-1} = V_1^T\Sigma_1^{-1/2}
+\end{align*}
+
+When there is noise then $\Sigma$ is full rank. However, many of the singular values will be much smaller than others and we can consider these to be a consequence of the noise or error. Kung's other idea was to plot the singular values and look for the cutoff between singular values due to plant dynamics and singular values due to noise. Then $n$ can be set appropriately.
+
+\subsection{Finding $D$.}
+Ideally, $D$ is the first impulse response, $D=g(0)$. When there is noise Kung says to take $\hat{A}$ and $\hat{B}$ to reconstruct a state estimate $\hat{x}(t)$ such that
+$$\hat{x}(t+1) = \hat{A}x(t)+\hat{B}u(t)$$
+Then set up a standard least squares problem
+\begin{align*}
+\underbrace{\left[\begin{array}{c} \hat{x}(t+1) \\ y(t) \end{array}\right]}_{y^T(t)}
+= \underbrace{\left[\begin{array}{c c} A & B \\ C & D \end{array}\right]}_{\theta^T}
+\underbrace{\left[\begin{array}{c} x(t) \\ u(t) \end{array}\right]}_{\vp(t)} + e(t,\theta)
+\end{align*}
+This gives a better estimate for $D$ when noise is present.
+
+\subsection{Getting Impulse Response Coefficients}
+To get $\{g_0(k)\}$ we can use white noise as input and look at $R_{yu}(\tau)=g_0(\tau)$. If we can't use white noise as input then
+$$y(t) = \vp^T(t)\theta+\epsilon(t,\theta)$$
+with $\vp^T(t) = \left[\begin{array}{c c c c c} u(t) & u(t-1) & u(t-2) & \cdots & u(t-N) \end{array}\right]$. For a finite impulse response (FIR) model then we can look at the cross-spectral density function $\Phi_{yu}(\w)$ and do $R_{yu}(\tau) = \mathcal{F}^{-1}\{\Phi_{yu}(\w)\}$.
 
 
 \end{document}
