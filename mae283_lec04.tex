@@ -262,6 +262,7 @@ $$R_{yu}(\tau) = \lambda g(\tau)$$
 \begin{example}
 Let $G_0(q)$ be a mass-spring-damper system with low amounts of damping. Given an impulse as input the output signal will oscillate at some frequency while dying down due to the damping. See Figure \ref{fig:04dimSine}.
 \end{example}
+$\lozenge$
 \begin{figure}[ht!]
 	\centering
 	\includegraphics[width=.5\textwidth]{images/04dimSine}
@@ -281,6 +282,7 @@ Let $\{e(t)\}$ be white noise where $E\{e(t)\}=0$, $v(t)=H_0(q)e(t)$. How do we 
 \end{align*}
 The final equality uses the fact that $\phi_e(\w)=\lambda$ because the noise is white. This shows that applying the filter $H_0(q)$ changes the shape of the input of white noise. After the filter the white noise contains much lower frequencies so the noise, $v(t)$, is colored. See Figure \ref{fig:04filteredNoise}.
 \end{example}
+$\lozenge$
 \begin{figure}[ht!]
 	\centering
 	\includegraphics[width=.7\textwidth]{images/04filteredNoise}
@@ -294,6 +296,7 @@ How do we find $\phi_{yu}(\w)$?
 $$\phi_{yu}(\w) = \mathcal{F}\{R_{yu}(\tau)\} = \lambda G_0(e^{j\w})$$
 The Fourier transform of an implulse response yields the transfer function. This allows us to back out the Markov parameters.
 \end{example}
+$\lozenge$
 
 \begin{example}
 Given $y(t)=w(t)+v(t)$ we get
@@ -303,6 +306,7 @@ Given $y(t)=w(t)+v(t)$ we get
 \end{align*}
 $\phi_v(\w)$ is the noise that was acting on the system and can now be identified.
 \end{example}
+$\lozenge$
 
 \section{Effect of Periodogram}
 This is covered in Ljung, pages 31-33.
