@@ -79,21 +79,47 @@ This is a function of covariance functions! We know that $R_u(0)=1$ because $\{u
 \end{align*}
 Now we find
 $$P_\theta = \lambda\cdot \left[\begin{array}{c c} 1 & 0 \\ 0 & \frac{b_1^2+\lambda}{1-a_1^2} \end{array}\right]$$
-Since this is a diagonal matrix it means that the covariance of the parameters is uncorrelated, see Figure ??. Notice that we will get an ellipsoid when looking at the covariance and that if there is correlation the ellipsoid will be tilted (whatever tilted means in higher dimensions).
+Since this is a diagonal matrix it means that the covariance of the parameters is uncorrelated, see Figure \ref{fig:15ellipsoid}. Notice that we will get an ellipsoid when looking at the covariance and that if there is correlation the ellipsoid will be tilted (whatever tilted means in higher dimensions).
+
+\begin{figure}[ht!]
+	\centering
+	\includegraphics[width=.25\textwidth]{images/15ellipsoid}
+	\caption{Ellipsoid from covariance values.}
+	\label{fig:15ellipsoid}
+\end{figure}
 
 Now we can find the covariance of the parameters using $P_\theta^{-1}$ as
 \begin{align*}
 \cov\{\hat{b}\} &= \onen\cdot\lambda \\
 \cov\{\hat{a}\} &= \onen\cdot\lambda\cdot\frac{1-a_1^2}{b_1^2+\lambda} = \frac{1-a_1^2}{N}\cdot\frac{\lambda}{b_1^2+\lambda}
 \end{align*}
-Remember that $\lambda = \var\{e(t)\} = $ the amount of noise on the data. Figure ?? shows plots of the parameter covariance as the noise increases. Notice that $\cov\{\hat{a}\}$ settles to a limit because more noise on the data gives more information about the noise model since the $a$ term contributes to both $G_\theta$ and $H_\theta$. For a parameter estimate to reach an asymptotic limit that parameter needs to be in both the system and the noise models. Also notice that as $N\to\infty \Rightarrow \hat{\theta}\to\theta_0$.
+Remember that $\lambda = \var\{e(t)\} = $ the amount of noise on the data. Figure \ref{fig:15cov} shows plots of the parameter covariance as the noise increases. Notice that $\cov\{\hat{a}\}$ settles to a limit because more noise on the data gives more information about the noise model since the $a$ term contributes to both $G_\theta$ and $H_\theta$. For a parameter estimate to reach an asymptotic limit that parameter needs to be in both the system and the noise models. Also notice that as $N\to\infty \Rightarrow \hat{\theta}\to\theta_0$.
 $\lozenge$
 \end{example}
+
+\begin{figure}[ht!]
+	\centering
+	\subfloat[$\cov\{\hat{b}\}$.]{
+		\label{fig:15covb}\includegraphics[width=0.25\textwidth]{images/15covb}
+	} \hfill
+	\subfloat[$\cov\{\hat{a}\}$.]{
+		\label{fig:15cova}\includegraphics[width=0.25\textwidth]{images/15cova}
+	}
+	\caption{Covariance of the parameter estimates.}
+	\label{fig:15cov}
+\end{figure}
 
 \section{Variance of Transfer Function Estimates}
 We have seen so far that
 $$\cov\{\thetan\}\sim\mathcal{N}(0,P_\theta), \qquad P_\theta = \lambda\left[\bar{E}\{\psi(t,\theta)\psi^T(t,\theta)\}\right]^{-1}$$
-We are also interested in what happens to $\cov\{G_{\thetan}(e^{i\w})\}$ and $\cov\{H_{\thetan}e^{i\w})\}$. Using the system identification toolbox in \textsc{Matlab} we can plot the Bode response and get error bars such as those shown in Figure ??.
+We are also interested in what happens to $\cov\{G_{\thetan}(e^{i\w})\}$ and $\cov\{H_{\thetan}e^{i\w})\}$. Using the system identification toolbox in \textsc{Matlab} we can plot the Bode response and get error bars such as those shown in Figure \ref{fig:15bode1}.
+
+\begin{figure}[ht!]
+	\centering
+	\includegraphics[width=.25\textwidth]{images/15bode1}
+	\caption{Sample Bode plot with error bars.}
+	\label{fig:15bode1}
+\end{figure}
 
 The main idea here is that we want to set up the transfer functions as
 $$T(q,\theta) = \left[\begin{array}{c c} G(q,\theta) & H(q,\theta) \end{array}\right]$$
@@ -121,9 +147,28 @@ The idea that $n\to\infty$ will not happen in practice because we can't find a m
 \end{itemize}
 
 \begin{example}
-We can draw the transfer function estimates and their variances as $N\to\infty$ and $n\to\infty$, see Figure ??. The variance is still there at higher frequencies because we are looking at a log scale.
+We can draw the transfer function estimates and their variances as $N\to\infty$ and $n\to\infty$, see Figures \ref{fig:15tf} and \ref{fig:15phi}. The variance is still there at higher frequencies because we are looking at a log scale.
 $\lozenge$
 \end{example}
+
+\begin{figure}[ht!]
+	\centering
+	\subfloat[Bode plot of transfer functions.]{
+		\label{fig:15tfs}\includegraphics[width=0.25\textwidth]{images/15tfs}
+	} \hfill
+	\subfloat[Bode plot with variances.]{
+		\label{fig:15tfvar}\includegraphics[width=0.25\textwidth]{images/15tfvar}
+	}
+	\caption{Bode plots.}
+	\label{fig:15tf}
+\end{figure}
+
+\begin{figure}[ht!]
+	\centering
+	\includegraphics[width=.15\textwidth]{images/15phi}
+	\caption{Spectrum of white-noise input.}
+	\label{fig:15phi}
+\end{figure}
 
 \subsection{Designing Input Signals}
 Knowing this, what would a good input signal look like? Or, what would be a good $\Phi_u(\w)$ so that the variance on $\hat{G}$ is equal over all frequencies.
@@ -132,7 +177,7 @@ We could try white noise plus the noise spectrum where $\Phi_u(\w)=\lambda+\Phi_
 
 We could also try
 $$\Phi_u(\w) = \frac{\lambda+\Phi_v(\w)}{|G_0(e^{i\w})|^2}$$
-Why would we want to divide by the size of the transfer function here? Figure ?? shows that we would lose any smaller resonant modes or oscillations at frequencies away from the dominant mode. Typically, we do not want to excite the resonant modes much at all.
+Why would we want to divide by the size of the transfer function here? We would lose any smaller resonant modes or oscillations at frequencies away from the dominant mode. Typically, we do not want to excite the resonant modes much at all.
 
 Note that this is normally an iterative process where we guess a model, run an experiment to identify a better estimate of the model, design the new experiment input from the better model, get a better model from the new experiment, ...
 
@@ -142,17 +187,43 @@ $$\hat{G}(e^{i\w}) + \var\{\hat{G}(e^{i\w})\}$$
 Instead of only a nominal model, we can estimate a set (or family) of models. This is called the uncertainty model.
 $$\mathcal{G} = \left\lbrace G ~|~ \hat{G}+\Delta, ~\Delta=3\cdot\sqrt{\var\{\hat{G}\}}\right\rbrace$$
 
+\begin{figure}[ht!]
+	\centering
+	\includegraphics[width=.3\textwidth]{images/15bd}
+	\caption{Block diagram of feedback system with reference point.}
+	\label{fig:15bd}
+\end{figure}
+
 \subsection{Small Gain Theorem}
-Using Figure ?? how do we check the stability of the model? We can use the small gain theorem. From Figure ?? we see that
+Using Figure \ref{fig:15bd} how do we check the stability of the model? We can use the small gain theorem. From Figures \ref{fig:15sgtbd} and \ref{fig:15sgt} we see that
 \begin{align*}
 ||\Delta M||_\infty &< 1 \\
 ||\Delta M||_\infty &< ||\Delta||_\infty||M||_\infty < 1 \\
 \Rightarrow ||M||_\infty &< \frac{1}{||\Delta||_\infty}
 \end{align*}
-In Figure ?? we can check
+In Figure \ref{fig:15bd} we can check
 $$\left|\left|\frac{C}{1+GC}\Delta\right|\right|_\infty < 1$$
 for stability.
 
+\begin{figure}[ht!]
+	\centering
+	\includegraphics[width=.1\textwidth]{images/15sgtbd}
+	\caption{Block diagram for small gain theorem.}
+	\label{fig:15sgtbd}
+\end{figure}
+
 We want to make the uncertainty, $\Delta$, small around the bandwidth of the control poiont. We can handle more uncertainty away from teh control point.
+
+\begin{figure}[ht!]
+	\centering
+	\subfloat[Separate transfer function responses.]{
+		\label{fig:15sgt1}\includegraphics[width=0.25\textwidth]{images/15sgt1}
+	} \hfill
+	\subfloat[Combined transfer function response.]{
+		\label{fig:15sgt2}\includegraphics[width=0.25\textwidth]{images/15sgt2}
+	}
+	\caption{Transfer functions for small gain theorem.}
+	\label{fig:15sgt}
+\end{figure}
 
 %%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%
