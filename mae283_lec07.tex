@@ -1,133 +1,8 @@
 \documentclass[lecture,12pt,]{pcms-l}
 \input preamble.tex
-
-% For faster processing, load Matlab syntax for listings
-\definecolor{MyDarkGreen}{rgb}{0.0,0.4,0.0}
-\lstloadlanguages{Matlab}%
-\lstset{language=Matlab,
-        frame=single,
-        basicstyle=\small\ttfamily,
-        keywordstyle=[1]\color{Blue}\bf,
-        keywordstyle=[2]\color{Purple},
-        keywordstyle=[3]\color{Blue}\underbar,
-        identifierstyle=,
-        commentstyle=\usefont{T1}{pcr}{m}{sl}\color{MyDarkGreen}\small,
-        stringstyle=\color{Purple},
-        showstringspaces=false,
-        tabsize=5,
-        % Put standard MATLAB functions not included in the default
-        % language here
-        morekeywords={xlim,ylim,var,alpha,factorial,poissrnd,normpdf,normcdf},
-        % Put MATLAB function parameters here
-        morekeywords=[2]{on, off, interp},
-        % Put user defined functions here
-        morekeywords=[3]{FindESS},
-        morecomment=[l][\color{Blue}]{...},
-        numbers=left,
-        firstnumber=1,
-        numberstyle=\tiny\color{Blue},
-        stepnumber=0
-        }
-
-% Only the next five fields need to be edited.
-\newcommand{\lecAuth}{R.A. de Callafon}
-\newcommand{\scribe}{Thomas Denewiler}
-\newcommand{\authEmail}{callafon@ucsd.edu}
-\newcommand{\scribeEmail}{tdenewiler@gmail.com}
-\newcommand{\course}{MAE 283: Parameter Estimation}
-\newcommand{\lectureNum}{7}
-
-\address{Department of Mechanical and Aerospace Engineering, University of California, San Diego}
-
-% Adds a hyperlink to an email address.
-\newcommand{\mailto}[2]{\href{mailto:#1}{#2}}
-
-% These commands set the document properties for the PDF output. Needs the hyperref package.
-\hypersetup
-{
-    colorlinks,
-    linkcolor={black},
-    citecolor={black},
-    filecolor={black},
-    urlcolor={black},
-    pdfauthor={\scribe <\mailto{\scribeEmail}{\scribeEmail}>},
-    pdfsubject={\course},
-    pdftitle={Lecture \lectureNum},
-    pdfkeywords={UC San Diego, Parameter Estimation, System Identification},
-    pdfstartpage={1},
-}
-
-% Includes a figure
-% The first parameter is the label, which is also the name of the figure
-%   with or without the extension (e.g., .eps, .fig, .png, .gif, etc.)
-%   IF NO EXTENSION IS GIVEN, LaTeX will look for the most appropriate one.
-%   This means that if a DVI (or PS) is being produced, it will look for
-%   an eps. If a PDF is being produced, it will look for nearly anything
-%   else (gif, jpg, png, et cetera). Because of this, when I generate figures
-%   I typically generate an eps and a png to allow me the most flexibility
-%   when rendering my document.
-% The second parameter is the width of the figure normalized to column width
-%   (e.g. 0.5 for half a column, 0.75 for 75% of the column)
-% The third parameter is the caption.
-\newcommand{\scalefig}[3]{
-  \begin{figure}[ht!]
-    % Requires \usepackage{graphicx}
-    \centering
-	\fbox{
-	    \includegraphics[width=#2\columnwidth]{#1}
-	}
-    %%% I think \captionwidth (see above) can go away as long as
-    %%% \centering is above
-    %\captionwidth{#2\columnwidth}%
-    \caption{#3}
-    \label{#1}
-  \end{figure}}
-
-% Includes a MATLAB script.
-% The first parameter is the label, which also is the name of the script
-%   without the .m.
-% The second parameter is the optional caption.
-\newcommand{\matlabscript}[2]
-  {\begin{itemize}\item[]\lstinputlisting[caption=#2,label=#1]{#1.m}\end{itemize}}
-
-% Example environment.
-\newtheoremstyle{example}{\topsep}{\topsep}	%
-     {}%         Body font
-     {}%         Indent amount (empty = no indent, \parindent = para indent)
-     {\bfseries}% Thm head font
-     {}%        Punctuation after thm head
-     {\newline}%     Space after thm head (\newline = linebreak)
-     {\thmname{#1}\thmnumber{ #2}\thmnote{ #3}}%         Thm head spec
-
-   \theoremstyle{example}
-   \newtheorem{example}{Example}[section]
-
-% A command to show a vector norm that will have the pipe signs scale with the contents.
-\newcommand{\vectornorm}[1]{\left|\left|#1\right|\right|}
-
-% Commands for time and frequency integrals over infinty, cos and sin.
-\newcommand{\tint}{\int_{t=-\infty}^\infty}
-\newcommand{\fint}{\int_{\omega=-\infty}^\infty}
-\newcommand{\tauint}{\int_{\tau=0}^\infty}
-\newcommand{\w}{\omega}
-\newcommand{\wo}{\omega_0}
-\newcommand{\ejwt}{e^{j\omega t}}
-\newcommand{\emjwt}{e^{-j\omega t}}
-\newcommand{\dt}{\Delta T}
-\newcommand{\tausum}{\sum_{\tau=-\infty}^\infty}
-\newcommand{\ksum}{\sum_{k=-\infty}^\infty}
-\newcommand{\ruhat}{\hat{R}_u^N(\tau)}
-\newcommand{\ryuhat}{\hat{R}_{yu}^N(\tau)}
-\newcommand{\Phiuhat}{\hat{\Phi}_u^N(\omega)}
-\newcommand{\Phiyuhat}{\hat{\Phi}_{yu}^N(\omega)}
-\newcommand{\Phiyuhh}{\hat{\hat{\Phi}}_{yu}^N(\omega)}
-\newcommand{\Phiuhh}{\hat{\hat{\Phi}}_u^N(\omega)}
-\newcommand{\Phiyhh}{\hat{\hat{\Phi}}_y^N(\omega)}
-\newcommand{\ghh}{\hat{\hat{G}}(e^{j\omega})}
-
+\input header.tex
 
 %%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%
-
 
 \begin{document}
 \mainmatter
@@ -158,12 +33,12 @@ Figure \ref{fig:07overview} shows an overview of parameter estimation. Up to thi
 
 Spectral analysis consists of
 \begin{align*}
-&\Phiyuhat = \mathcal{F}\{\ryuhat\} = \frac{1}{N}Y_N(\w)U_N^*(\w) \\
-&\lim_{N\to\infty}E\{\Phiyuhat\} = \Phi_{yu}(\w) \text{ provided } \sum_{t=0}^\infty \tau|R_{yu}(\tau)| < \infty \\
-&\lim_{N\to\infty}E\{[\Phiyuhat - \Phi_{yu}(\w)]^2\} = \Phi_{yu}^2(\w)
+&\phiyuhat = \mathcal{F}\{\ryuhat\} = \frac{1}{N}Y_N(\w)U_N^*(\w) \\
+&\lim_{N\to\infty}E\{\phiyuhat\} = \Phi_{yu}(\w) \text{ provided } \sum_{t=0}^\infty \tau|R_{yu}(\tau)| < \infty \\
+&\lim_{N\to\infty}E\{[\phiyuhat - \Phi_{yu}(\w)]^2\} = \Phi_{yu}^2(\w)
 \end{align*}
-Additional averaging is needed to bring the variance to zero when using $\Phiyuhat$. The new estimate with averaging included is
-$$\Phiyuhh = \frac{\int_{\xi=-\pi}^\pi \Phiyuhat w(\w-\xi)d\xi}{\int_{\xi=-\pi}^\pi w(\xi)d\xi}$$
+Additional averaging is needed to bring the variance to zero when using $\phiyuhat$. The new estimate with averaging included is
+$$\phiyuhh = \frac{\int_{\xi=-\pi}^\pi \phiyuhat w(\w-\xi)d\xi}{\int_{\xi=-\pi}^\pi w(\xi)d\xi}$$
 This is called the spectral estimate or spectral analysis.
 
 How is all of this used? Starting with the system $y(t)=G_0(q)u(t)+v(t)$, with $v(t)=H_0(q)e(t)$ and $\{e(t)\}$ is white noise. This gives
@@ -173,8 +48,8 @@ How is all of this used? Starting with the system $y(t)=G_0(q)u(t)+v(t)$, with $
 \Rightarrow G_0(e^{j\w}) &= \frac{\Phi_{yu}(\w)}{\Phi_u(\w)} = \Phi_{yu}(\w)\Phi_u^{-1}(\w)
 \end{align*}
 The next step is to get a crude estimate of the transfer function using
-$$\hat{G}(e^{j\w}) = \frac{\Phiyuhat}{\Phiuhat} = \frac{Y_N(\w)U_N^*(\w)}{U_N(\w)U_N^*(\w)} = \frac{Y_N(\w)}{U_N(\w)}$$
-This is just dividing the transfer function of the output by the transfer function of the input. It is referred to as the empirical transfer function estimate (ETFE). Note that the means $\to 0$ but $\sigma>0$. The fact that the variance does not go to zero makes this a poor estimate. We can see this from the properties of $\Phiyuhat$ and $\Phiuhat$.
+$$\hat{G}(e^{j\w}) = \frac{\phiyuhat}{\phiuhat} = \frac{Y_N(\w)U_N^*(\w)}{U_N(\w)U_N^*(\w)} = \frac{Y_N(\w)}{U_N(\w)}$$
+This is just dividing the transfer function of the output by the transfer function of the input. It is referred to as the empirical transfer function estimate (ETFE). Note that the means $\to 0$ but $\sigma>0$. The fact that the variance does not go to zero makes this a poor estimate. We can see this from the properties of $\phiyuhat$ and $\phiuhat$.
 \begin{align*}
 E\{\hat{G}(e^{j\w})\} &= G_0(e^{j\w}) \\
 \text{var}\{\hat{G}(e^{j\w})\} &\nrightarrow 0 \text{ as } N\to\infty
@@ -190,11 +65,11 @@ In the last equation there are separate terms for the variance due to noise and 
 
 It is possible to create an estimator that is better than the previous crude estimate by taking advantage of the spectral estimate.
 \begin{align*}
-\hat{\hat{G}}^N(e^{j\w}) &= \frac{\Phiyuhh}{\Phiuhh} = \frac{\int\hat{\Phi}_{yu}^N(\xi)w(\w-\xi)d\xi}{\int \hat{\Phi}_u^N(\xi)w(\w-\xi)d\xi} \\
+\hat{\hat{G}}^N(e^{j\w}) &= \frac{\phiyuhh}{\phiuhh} = \frac{\int\hat{\Phi}_{yu}^N(\xi)w(\w-\xi)d\xi}{\int \hat{\Phi}_u^N(\xi)w(\w-\xi)d\xi} \\
 E\{\ghh\} &= G(e^{j\w}) \\
 \text{var}\{\hat{\hat{G}}(e^{j\w})\} &= 0 \text{ as } N\to\infty
 \end{align*}
-\textsc{Important:} Do some averaging by using this estimate based on the better spectral estimate. Include averaging on $\Phiyuhat$, $\Phiuhat$ to ensure a consistent estimate of $G_0(e^{j\w})$, the frequency response fo the system. And note that this is \textit{not} a parametric model. That comes later.
+\textsc{Important:} Do some averaging by using this estimate based on the better spectral estimate. Include averaging on $\phiyuhat$, $\phiuhat$ to ensure a consistent estimate of $G_0(e^{j\w})$, the frequency response fo the system. And note that this is \textit{not} a parametric model. That comes later.
 
 \subsection{Averaging vs. Bias}
 There will always be a trade-off between the amount of averaging done to reduce the variance and bias. See Figure \ref{fig:07msd} to see an example of a mass-spring-damper system and its frequency repsonse to a pulse input, $F(t)$. Note that the transfer function estimate is based on
@@ -236,9 +111,9 @@ How do we find the estimate $\hat{\Phi}_v(\w)$? One way would be to measure the 
 \end{align*}
 Now, suppose the estimate of the spectrum is
 \begin{align*}
-\hat{\hat{\Phi}}_v^N(\w) = \Phiyhh - \frac{|\Phiyuhh|^2}{\Phiuhh} \to \hat{\hat{\Phi}}_v(\w)\in\mathbb{R} = |H_0(e^{j\w})|^2
+\hat{\hat{\Phi}}_v^N(\w) = \phiyhh - \frac{|\phiyuhh|^2}{\phiuhh} \to \hat{\hat{\Phi}}_v(\w)\in\mathbb{R} = |H_0(e^{j\w})|^2
 \end{align*}
-Note that $\Phiyhh\in\mathbb{R} = \mathcal{F}\{R_u(\tau)\}$ is real because $R_u(\tau)$ is symmetric and the Fourier transform of a symmetric signal is real. The same goes for $\Phiuhh$. However, $\Phiyuhh\in\mathbb{C}$ in general, but we taking the square of that signal so it becomes real-valued as well. Using this result we can come up with a method for computing $H_0(e^{j\w})$, the frequency response of the transfer function of the noise entering the system even when inputs are applied.
+Note that $\phiyhh\in\mathbb{R} = \mathcal{F}\{R_u(\tau)\}$ is real because $R_u(\tau)$ is symmetric and the Fourier transform of a symmetric signal is real. The same goes for $\phiuhh$. However, $\phiyuhh\in\mathbb{C}$ in general, but we taking the square of that signal so it becomes real-valued as well. Using this result we can come up with a method for computing $H_0(e^{j\w})$, the frequency response of the transfer function of the noise entering the system even when inputs are applied.
 
 We start with
 \begin{align*}
