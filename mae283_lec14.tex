@@ -6,7 +6,7 @@
 \lectureseries[\course]{\course}
 
 \auth[\lecAuth]{Lecturer: \lecAuth\\ Scribe: \scribe}
-\date{September 24, 2009}
+\date{November 12, 2009}
 
 \setaddress
 
@@ -14,7 +14,43 @@
 \setcounter{lecture}{13}
 \setcounter{chapter}{13}
 
-\lecture{??}
+\lecture{Asymptotic Distribution of Parameters}
 
+\section{Convergence Review}
+In \S\ref{sec:convergence} we saw that
+\begin{align*}
+\lim_{N\to\infty}V_N(\theta,Z^N) &= \bar{V}(\theta) \text{ w.p. } 1 \\
+V_N(\theta,Z^N) &= \onen\sumt\epsilon^2(t,\theta) \\
+\bar{V}(\theta) &= \bar{E}\{\epsilon^2(t,\theta)
+\end{align*}
+where $\text{ w.p. } 1$ implies zero variance. We also saw that
+$$\lim_{N\to\infty}\thetan = \arg\min_\theta V_N(\theta,Z^N) = \theta^\ast \text{ w.p. } 1$$
+In Example \ref{ex:convergence} we saw that when if we have an ARMAX system but we use an ARX model then we get
+$$\theta^\ast = \left[\begin{array}{c} b_0 \\ a_0-\frac{c_0}{R_0} \end{array}\right], \qquad R_0=R_y(0)$$
+To make $\theta^\ast\to\theta_0$ we would need to make $R_0\to\infty$. We can make the variance of the output signal $y(t)=G_0u(t)+H_0e(t)$ larger by making the input signal larger.
+
+\section{Consistency Review}
+We want to have $\mathcal{S}\in\mathcal{M}$ but that is not always possible. Lacking that a useful trait for modeling is if the system transfer function is in the model set, $\mathcal{G}\in\mathcal{M}$, but not the transfer function of the noise. This can be thought of as
+$$\mathcal{S}\in\mathcal{M}:~\exists~\theta_0 \text{ s.t. } \mathcal{M}(\theta)=\mathcal{S}$$
+Note that $\mathcal{M}$ involves both $G_\theta$ and $H_\theta$. These models both need to be rich enough parameter-wise to capture the real parameters of the system. Under the assumptions on the data listed in \S\ref{sec:14data} we found that $\theta^\ast=\theta_0$. For the case where the transfer function of the noise is not in the model set we have
+$$\mathcal{G}\in\mathcal{M}:~\exists~\rho_0 \text{ s.t. } \mathcal{M}(\rho_0) \Rightarrow G_{\rho_0}=G_0$$
+We set
+$$\theta = \left[\begin{array}{c} \rho \\ \eta \end{array}\right]$$
+and use $G_\rho$ and $H_\eta$. We call this the independent parameterization of $G_\rho$ and $H_\eta$. The model structures that have this are OE, BJ and FIR. However, OE and BJ require non-linear optimization and FIR is linear but assumes $G_\rho$ is a finite impulse response. Using all of this we find that
+$$\rho^\ast = \arg\min_{\rho,\eta} V_N\left(\left[\begin{array}{c} \rho \\ \eta \end{array}\right],Z^N\right) \Rightarrow \rho^\ast = \rho_0 \text{ w.p. } 1 \text{ if } \mathcal{G}\in\mathcal{M}$$
+
+\section{Asymptotic Distribution of Parameters}
+We already know that $\lim_{N\to\infty}\thetan=\theta_0 \text{ w.p. } 1$. What is the probability distribution of the parameters when $N<\infty$? We can get a sense of this from looking back at least squares estimation where $Y_N=\Phi_N\theta_0+E_N$ and the covariance of the parameter estimate was given by
+\begin{align*}
+&E\left\lbrace (\thn-\theta_0)(\thn-\theta_0)^T\right\rbrace = \\
+&\qquad E\left\lbrace \left(\onen\Phi_N^T\Phi_N\right)^{-1} \left(\onen\Phi_N^TE_N\right) \left(E_N^T\Phi_N\onen\right) \left(\onen\Phi_N^T\Phi_N\right)^{-1} \right\rbrace
+\end{align*}
+The term $E_NE_N^T$ is an $N\times N$ matrix found by
+$$E\{E_NE_N^T\} = E\left\lbrace \onen \left[\begin{array}{c} e(1) \\ e(2) \\ \vdots \\ e(N) \end{array}\right] \left[\begin{array}{c c c c} e(1) & e(2) & \cdots & e(N) \end{array}\right]\right\rbrace$$
+Since we have $\mathcal{S}\in\mathcal{M}$ then $\{e(t)\}$ is white noise with variance $\lambda$. This leads to the matrix $E_NE_N^T$ being a diagonal matrix with $\lambda$ on the the diagonal so $E_NE_N^T=\lambda I$ and the $\lambda$ term can be moved outside of the expectation operator. Following that we can cancel out terms and the covariance simplifies to
+\begin{align*}
+\text{cov}\left(\thn\right) &= \lambda I_{N\times N}\cdot \onen\underbrace{\left(\onen\Phi_N^T\Phi_N\right)^{-1}}_{R^{-1}(N)} \\
+&= \frac{\lambda}{N}R^{-1}(N)
+\end{align*}
 
 %%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%

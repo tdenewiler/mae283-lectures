@@ -30,8 +30,8 @@ where $\varphi(t)$ is known as the ``regressor'' and is the same for the model a
 where $\hat{E}\{e(t,\theta)\}$ is the estimation of the expected variance. Recall that the regressor, $\varphi(t)$, is all of the past inputs and outputs such that
 \begin{align}
 \label{eq:regressor}
-\phi^T(t) &= \left[\begin{array}{c c c c c c c c}
-u(k) & u(k-1) & \cdots & u(k-n) & -y(k-1) & -y(k-2) & \cdots & -y(k-n) \end{array}\right]
+\phi^T(t) &= \left[\begin{array}{c c c c c c c}
+u(k) & u(k-1) & \cdots & u(k-n) & -y(k-1) & \cdots & -y(k-n) \end{array}\right]
 \end{align}
 and the parameter contains
 \begin{align}
@@ -174,6 +174,7 @@ f(N) = \left[\begin{array}{c}
 Conclusion: the least squares estimate for the parameter is filled with auto-/cross-covariance function estimates.
 
 \subsection{Invertibility of $R(N)$}
+\label{sec:upersistent}
 For an FIR model we only have the $\mathbf{R}_u$ block as all the rest of the terms in $R(N)=0$. Then, for FIR, $\mathbf{R}_u$ must have $\{u(t)\}$ be a persistently exciting signal to ensure the invertibility of $\mathbf{R}_u$.
 
 When we are not looking at an FIR model we know that $\mathbf{R}_u$ is invertible and must use the matrix inversion lemma to determine if $R(N)$ is invertible.
