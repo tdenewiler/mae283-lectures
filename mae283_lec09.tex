@@ -90,9 +90,30 @@
 \newcommand{\matlabscript}[2]
   {\begin{itemize}\item[]\lstinputlisting[caption=#2,label=#1]{#1.m}\end{itemize}}
 
+% Example environment.
+\newtheoremstyle{example}{\topsep}{\topsep}	%
+     {}%         Body font
+     {}%         Indent amount (empty = no indent, \parindent = para indent)
+     {\bfseries}% Thm head font
+     {}%        Punctuation after thm head
+     {\newline}%     Space after thm head (\newline = linebreak)
+     {\thmname{#1}\thmnumber{ #2}\thmnote{ #3}}%         Thm head spec
+
+   \theoremstyle{example}
+   \newtheorem{example}{Example}[section]
+
 % A command to show a vector norm that will have the pipe signs scale with the contents.
 \newcommand{\vectornorm}[1]{\left|\left|#1\right|\right|}
-\newcommand{\SI}{System Identification}
+
+% Commands for time and frequency integrals over infinty, cos and sin.
+\newcommand{\tint}{\int_{t=-\infty}^\infty}
+\newcommand{\fint}{\int_{\omega=-\infty}^\infty}
+\newcommand{\tauint}{\int_{\tau=0}^\infty}
+\newcommand{\w}{\omega}
+\newcommand{\wo}{\omega_0}
+\newcommand{\ejwt}{e^{j\omega t}}
+\newcommand{\emjwt}{e^{-j\omega t}}
+\newcommand{\dt}{\Delta T}
 
 
 %%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%

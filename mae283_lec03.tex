@@ -90,6 +90,18 @@
 \newcommand{\matlabscript}[2]
   {\begin{itemize}\item[]\lstinputlisting[caption=#2,label=#1]{#1.m}\end{itemize}}
 
+% Example environment.
+\newtheoremstyle{example}{\topsep}{\topsep}	%
+     {}%         Body font
+     {}%         Indent amount (empty = no indent, \parindent = para indent)
+     {\bfseries}% Thm head font
+     {}%        Punctuation after thm head
+     {\newline}%     Space after thm head (\newline = linebreak)
+     {\thmname{#1}\thmnumber{ #2}\thmnote{ #3}}%         Thm head spec
+
+   \theoremstyle{example}
+   \newtheorem{example}{Example}[section]
+
 % A command to show a vector norm that will have the pipe signs scale with the contents.
 \newcommand{\vectornorm}[1]{\left|\left|#1\right|\right|}
 
@@ -168,7 +180,8 @@ q^{-1}u(k) &= u(k-1)
 \end{align*}
 where $g_k$ is defined as the impulse response or Markov parameters.
 
-\textit{Example:} Let the input be a discrete time pulse function
+\begin{example}
+Let the input be a discrete time pulse function
 \begin{align}
 \label{eq:03impulse}
 u(k) = \begin{cases} 1, & k=0 \\ 0, & k\neq 0 \end{cases}
@@ -177,6 +190,7 @@ u(k) = \begin{cases} 1, & k=0 \\ 0, & k\neq 0 \end{cases}
 Then the outputs are
 $$y(0)=g_0, ~y(1)=g_1, ~y(2)=g_2, ~\ldots, ~y(n)=g_n$$
 This shows that the outputs to impulses are exactly the coefficients used to describe the system.
+\end{example}
 $\lozenge$
 
 \subsection{BIBO Stability}
@@ -198,7 +212,8 @@ $$y(k) = b_0u(k-1) + b_1u(k-1-l) + \cdots + b_nu(k-n-l) - a_1y(k-1) - \cdots - a
 
 If $a_i=0$, $i=0,1,2,\ldots,n$ then the sum of Markov parameters is finite, where $g_0=b_0, ~g_1=b_1, ~g_2=b_2, ~\ldots, ~g_n=b_n$. This means that the memory of the system is finite, where the memory of the system is embedded in the $a_i$ coefficients.
 
-\textit{Example:} Let
+\begin{example}
+Let
 \begin{align*}
 &G(q) = \frac{1}{1+a_1q^{-1}} \\
 &y(k) = G(q)u(k) = \frac{1}{1+a_1q^{-1}}u(k) \\
@@ -215,6 +230,7 @@ y(3) &= u(3) - a_1y(2) = -a_1^3 \\
 g_k &= (-1)^ka_1^k
 \end{align*}
 and the system is BIBO stable iff $|a_1|<1$. Since there is an exponential it is automatically strictly BIBO stable because the exponential function is decreasing and will "win" over the linear function of $k$.
+\end{example}
 $\lozenge$
 \begin{figure}[ht!]
 	\centering
