@@ -15,7 +15,7 @@
 
 \setaddress
 
-% the following hack starts the lecture numbering at 15
+% the following hack starts the lecture numbering at 21
 \setcounter{lecture}{20}
 \setcounter{chapter}{20}
 
@@ -59,7 +59,7 @@ As long as $\{u(t)\}$ is white and
 $$G_0(q)=\frac{B_0(q)}{A_0(q)}$$
 then
 $$\lim_{N\to\infty}\thn(k)=g_0(k)$$
-To show that this happens look at \S8.3.3 of the Lecture Notes. The parameter $\theta_0$ contains the impulse response coefficients so this estimate would go to $g_0(k)$. Remember that we must be looking at an FIR model where the noise filter is
+To show that this happens look at \S8.3.3 of the Lecture Notes. The parameter $\theta$ contains the impulse response coefficients so this estimate would go to $g_0(k)$. Remember that we must be looking at an FIR model where the noise filter is
 $$H_0(q)=\frac{1}{A(q)}$$
 See \S8.3.4 of the Lecture Notes for more details on how the filter will cause the measured noise, $v(t)$, to be colored even if the actual noise, $e(t)$, is white for any other model than FIR. If the noise is colored then the terms in the lower block matrix of $R_{\vp v}(0)$ will not zero.
 
