@@ -229,22 +229,30 @@ One of the drawbacks of sampling a continuous-time signal is that information ab
 \subsection{Relation between Original and Sampled Signal}
 Given
 $$u_s(\w) = \w_s \sum_{k=-\infty}^\infty u(\w-k\w_s), \w_s = \frac{2\pi}{\Delta T}$$
-where $u(\w-k\w_s)$ is the original signal shifted by $\w_s$, we can see how high frequency information is lost.
-
-*** TODO Put in magnitude comparison figure here. ***
-
-After a Fourier transform is applied low frequencies are about the same but high frequencies appear to have a larger magnitude compared to the original signal. This is due to shifting by $\w_s$.
+where $u(\w-k\w_s)$ is the original signal shifted by $\w_s$, we can see how high frequency information is lost as shown in Figure \ref{fig:02freqResp}.
+\begin{figure}[ht!]
+	\centering
+	\includegraphics[width=.5\textwidth]{images/02freqResp}
+	\caption{Sampling of a $\sin$ wave at a low sampling rate.}
+	\label{fig:02freqResp}
+\end{figure}
 
 \subsection{Aliasing}
-*** TODO Put in aliasing figure here. ***
+After a Fourier transform is applied low frequencies are about the same but high frequencies appear to have a larger magnitude compared to the original signal. This is due to shifting by $\w_s$ and is called aliasing.
+\begin{figure}[ht!]
+	\centering
+	\includegraphics[width=.5\textwidth]{images/02aliasing}
+	\caption{Effects of aliasing with original and sampled signal.}
+	\label{fig:02aliasing}
+\end{figure}
 
-To remove artifacts due to aliasing we need to sample at $\w_s = 2\cdot\w_N$.
-
-*** TODO Put in anti-aliasing figure here. ***
-
-If it is not possible to sample at $\w_s = 2\cdot\w_N$ because of hardware limitations or some other factor then an anit-aliasing filter is needed. For example, if $\w_N = 100 Hz$, then the anti-aliasing filter should use a cut-off of $< 50 Hz$, which will act as a low-pass filter in order to remove the artifacts associated with high frequencies.
-
-*** TODO Put in anti-aliasing filter block diagram here. ***
+To remove artifacts due to aliasing we need to sample at $\w_s = 2\cdot\w_N$. If it is not possible to sample at $\w_s = 2\cdot\w_N$ because of hardware limitations or some other factor then an anit-aliasing filter is needed. For example, if $\w_N = 100 Hz$, then the anti-aliasing filter should use a cut-off of $< 50 Hz$, which will act as a low-pass filter in order to remove the artifacts associated with high frequencies.
+\begin{figure}[ht!]
+	\centering
+	\includegraphics[width=.5\textwidth]{images/02aafilter}
+	\caption{Block diagram of estimator with anti-aliasing filter.}
+	\label{fig:02aafilter}
+\end{figure}
 
 \subsection{Discrete-Time Fourier Transform (DTFT)}
 A DTFT is defined, for $\w\in\mathbb{R}$, by
@@ -270,8 +278,6 @@ Some useful properties of Fourier transforms are
 \end{itemize}
 When the signal is periodic there are several other important properties. The finite time DTFT multiplied by an infinite sum of delta functions results in spikes at the points where there is a sinusoid in the signal. Recall that $u_\infty(\w)=0$ almost everywhere except at those frequencies that are multiples of $l\cdot \frac{2\pi}{T}$.
 
-*** Put in periodic DTFT figure here. ***
-
 Then the sampled version of the finite time DTFT is
 $$\int_{\w=l\cdot \frac{2\pi}{T}-\epsilon}^{l\cdot \frac{2\pi}{T}+\epsilon} u_\infty(\w)d\w
 = \frac{2\pi}{T}u_N(l\cdot \frac{2\pi}{T}$$
@@ -287,9 +293,9 @@ These are the functions used to compute Fourier transforms in Matlab using the \
 \subsection{Measurement Resolution and Implied Periodicity}
 The resolution in the time domain is $\Delta T$, with units of $s$. The resolution in the frequency domain is $\frac{2\pi}{T}$, with units in $rad/s$. Note that $T=N\cdot\Delta T$. The resolution in the frequency domain is a function of the number of samples \textit{and} the sampling time. This makes sense because  we need to sample signals longer in order to capture the low-frequency portions of the signal.
 
-$N$ points in the time domain (which only have $\text{Re}$ parts and no $\text{Im}$ parts) results in $\frac{N}{2}$ points in the frequency domain. Those $\frac{N}{2}$ points in the frequency domain are in the range $(0,\frac{\pi}{\Delta T}$, and each of those points has a real and an imaginary part.
+$N$ points in the time domain (which only have $\text{Re}$ parts and no $\text{Im}$ parts) results in $\frac{N}{2}$ points in the frequency domain. Those $\frac{N}{2}$ points in the frequency domain are in the range $(0,\frac{\pi}{\Delta T})$, and each of those points has a real and an imaginary part.
 
-An important point to notice is that once a signal is sampled to generate $u_N(\w)$ at $u_N(\frac{2\pi}{T}\cdot l$ there is an implicit assumption made that the original signal, $u(t)$, was periodic!
+An important point to notice is that once a signal is sampled to generate $u_N(\w)$ at $u_N(\frac{2\pi}{T}\cdot l)$ there is an implicit assumption made that the original signal, $u(t)$, was periodic!
 
 
 \end{document}
