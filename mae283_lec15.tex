@@ -17,7 +17,7 @@
 \lecture{Variance of Transfer Function Estimates}
 
 \section{Review of Parameter Estimate Variance}
-In Lecture 14 we looked at the variance of parameter estimates when $\mathcal{s}\in\mathcal{M}$ and found that $\text{cov}\{\sqrt{N}\thetan\} \sim \mathcal{N}(0,P_\theta)$ as $N\to\infty$, where $P_\theta = \lambda\bar{E}\{\psi(t,\theta_0)\psi^T(t,\theta_0)\}$ and
+In Lecture 14 we looked at the variance of parameter estimates when $\mathcal{S}\in\mathcal{M}$ and found that $\text{cov}\{\sqrt{N}\thetan\} \sim \mathcal{N}(0,P_\theta)$ as $N\to\infty$, where $P_\theta = \lambda\bar{E}\{\psi(t,\theta_0)\psi^T(t,\theta_0)\}$ and
 $$\psi(t,\theta_0) = -\left.\ptheta\epsilon(t,\theta)\right|_{\theta=\theta_0}$$
 This shows how the variance changes relative to the sensitivity of the estimate with respect to the parameters and the model. This can be estimated via
 \begin{align*}
@@ -35,6 +35,7 @@ Note that the last two expressions are both valid ways to solve for the estimate
 Recall that for IV there is no sense of the derivative being set to zero so we do not know if we are at a minimum and there is no sense of optimality.
 
 \begin{example}
+\label{ex:15arx}
 The system is given by
 $$\mathcal{S}: y(t) = b_1u(t-1)-a_1y(t-1)+e(t)$$
 where $u(t)\perp e(t)$, $\{e(t)\}$ is white noise with variance $\lambda$ and $\{u(t)\}$ is white noise with variance $1$. The model is given using ARX such that

@@ -19,9 +19,9 @@
 \section{Approximation Review}
 So far we have seen that when $\mathcal{S}\in\mathcal{M}$ we get
 $$\lim_{N\to\infty}\thetan=\theta_0 \text{ w.p. } 1$$
-and we can find expressions for the variance as in \S??. When $\mathcal{S}\notin\mathcal{M}$ we can only approximate the parameters as
+and we can find expressions for the variance as in \S\ref{sec:varsinm}. When $\mathcal{S}\notin\mathcal{M}$ we can only approximate the parameters as
 $$\lim_{N\to\infty}\thetan=\theta^\ast \text{ w.p. } 1$$
-In this case we are performing a $2$-norm minimization that works when we have enough data. This was shown in \S??. We saw in Example ?? that if the system is ARMAX and the model is ARX we could compute $\theta^\ast$.
+In this case we are performing a $2$-norm minimization that works when we have enough data. This was shown in \S\ref{sec:convergence}. We saw in Example \ref{ex:15arx} that if the system is ARMAX and the model is ARX we could compute $\theta^\ast$.
 
 What does $\theta^\ast$ represent though? Chapter 8 of Ljung looks at $\theta^\ast$ from a transfer function point-of-view. We will look at the effect on the transfer functions when using $\theta^\ast$ and no at what $\theta^\ast$ actually is which will give us a qualitative analysis. This will let us know what $\theta^\ast$ tends to look like.
 
@@ -48,7 +48,14 @@ This leads to
 &= \argmin{\T}\frac{1}{2\pi}\int_{-\pi}^\pi \Phi_\eps(\w,\T)d\w
 \end{align*}
 
-The main idea is to look the $\Phi_\eps(\w,\T)$ to get an interpretation for $\T^\ast$. We are trying to minimize the surface under the curve in Figure ??.
+The main idea is to look the $\Phi_\eps(\w,\T)$ to get an interpretation for $\T^\ast$. We are trying to minimize the surface under the curve in Figure \ref{fig:16spec}.
+
+\begin{figure}[ht!]
+	\centering
+	\includegraphics[width=.3\textwidth]{images/16spec}
+	\caption{Spectrum of prediction error.}
+	\label{fig:16spec}
+\end{figure}
 
 \section{Open Loop Case}
 For the system
@@ -87,21 +94,42 @@ Using an OE (output error) model we have that the noise filter is $\hth=1$ and t
 $$\Phi_\eps(\w,\T) = |G_0(e^{i\w})-G_\T(e^{i\w})|^2\Phi_u(\w)$$
 Now, $\T^\ast$ is the fit of $\gt$ onto $\go$ with the weighting determined entirely by the spectrum of the input signal, $\Phi_u(\w)$.
 
-Let the real system dynamics have a response as shown in Figure ??. If we choose to use a second-order model in open-loop with the input $\{u(t)\}$ white noise we see that $\Phi_u(\w)$ is flat. Also, the second-order dynamics will only capture one of the resonant modes. The flat weighting function with the OE model means that we will capture the largest error which corresponds to the largest resonant mode.
+Let the real system dynamics have a response as shown in Figure \ref{fig:16oebode}. If we choose to use a second-order model in open-loop with the input $\{u(t)\}$ white noise we see that $\Phi_u(\w)$ is flat. Also, the second-order dynamics will only capture one of the resonant modes. The flat weighting function with the OE model means that we will capture the largest error which corresponds to the largest resonant mode.
 
-We could design the input spectrum to look like Figure ?? to try and capture other low-frequency responses. Note that $\Phi_u(\w)$, the input spectrum, determines the ``fit'' of the model or $\T^\ast$.
+We could design the input spectrum to look like Figure \ref{fig:16uspec} to try and capture other low-frequency responses. Note that $\Phi_u(\w)$, the input spectrum, determines the ``fit'' of the model or $\T^\ast$.
 $\lozenge$
 \end{example}
 
+\begin{figure}[ht!]
+	\centering
+	\includegraphics[width=.3\textwidth]{images/16oebode}
+	\caption{Bode plot for OE model.}
+	\label{fig:16oebode}
+\end{figure}
+
+\begin{figure}[ht!]
+	\centering
+	\includegraphics[width=.3\textwidth]{images/16uspec}
+	\caption{Possible spectrum for input signal.}
+	\label{fig:16uspec}
+\end{figure}
+
 \begin{example}
-For the same system shown in Figure ?? we will now attempt to model it with an ARX model, where
+For the same system shown in Figure \ref{fig:16oebode} we will now attempt to model it with an ARX model, where
 $$\gt=\frac{B_\T(q)}{A_\T(q)}, \qquad \hth=\frac{1}{A_\T(q)}$$
 Again, we choose to use a second-order model in open loop with the input $\{u(t)\}$ white noise. We will see that when $\mathcal{S}\notin\mathcal{M}$ then the approximation result will be different when using different model structures. The spectrum of the prediction error now becomes
 \begin{align*}
 \Phi_\eps(\w,\T) &= \frac{|G_0(e^{i\w})-G_\T(e^{i\w})|^2\Phi_u(\w)}{|H_\T(e^{i\w})^2} + \frac{|H_0(e^{i\w})-H_\T(e^{i\w})|^2}{|H_\T(e^{i\w})|^2}\lambda \\
 &= |G_0(e^{i\w})-G_\T(e^{i\w})|^2\Phi_u(\w)|A_\T(\w)|^2 + \frac{|H_0(e^{i\w})-H_\T(e^{i\w})|^2}{|H_\T(e^{i\w})|^2}\lambda
 \end{align*}
-What is the shape of $\Phi_u(w)|A_\T(\w)|^2$? Recall that $\Phi_u(\w)$ is flat which means that the spectrum for the $B_\T(q)$ term will also be flat. So, the shape of the input spectrum will become the inverse of the response of $\gt$ because $A_\T(q)$ is in the denominator of $\gt$. See Figure ??.
+What is the shape of $\Phi_u(w)|A_\T(\w)|^2$? Recall that $\Phi_u(\w)$ is flat which means that the spectrum for the $B_\T(q)$ term will also be flat. So, the shape of the input spectrum will become the inverse of the response of $\gt$ because $A_\T(q)$ is in the denominator of $\gt$. See Figure \ref{fig:16inv}.
+
+\begin{figure}[ht!]
+	\centering
+	\includegraphics[width=.5\textwidth]{images/16inv}
+	\caption{Shape of the filtered input spectrum.}
+	\label{fig:16inv}
+\end{figure}
 
 This shows that an ARX model has implicit high-frequency weighting because ARX attempts to model the noise and the noise is in the denominator so we get the inverse of the noise model.
 

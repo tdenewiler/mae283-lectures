@@ -1,0 +1,144 @@
+<?xml version="1.0" encoding="UTF-8" standalone="no"?>
+<!-- Created with Inkscape (http://www.inkscape.org/) -->
+<svg
+   xmlns:dc="http://purl.org/dc/elements/1.1/"
+   xmlns:cc="http://creativecommons.org/ns#"
+   xmlns:rdf="http://www.w3.org/1999/02/22-rdf-syntax-ns#"
+   xmlns:svg="http://www.w3.org/2000/svg"
+   xmlns="http://www.w3.org/2000/svg"
+   xmlns:sodipodi="http://sodipodi.sourceforge.net/DTD/sodipodi-0.dtd"
+   xmlns:inkscape="http://www.inkscape.org/namespaces/inkscape"
+   width="744.09448819"
+   height="1052.3622047"
+   id="svg2"
+   sodipodi:version="0.32"
+   inkscape:version="0.46"
+   sodipodi:docname="16spec.svg"
+   inkscape:output_extension="org.inkscape.output.svg.inkscape">
+  <defs
+     id="defs4">
+    <marker
+       inkscape:stockid="Arrow1Mstart"
+       orient="auto"
+       refY="0.0"
+       refX="0.0"
+       id="Arrow1Mstart"
+       style="overflow:visible">
+      <path
+         id="path3168"
+         d="M 0.0,0.0 L 5.0,-5.0 L -12.5,0.0 L 5.0,5.0 L 0.0,0.0 z "
+         style="fill-rule:evenodd;stroke:#000000;stroke-width:1.0pt;marker-start:none"
+         transform="scale(0.4) translate(10,0)" />
+    </marker>
+    <marker
+       inkscape:stockid="Arrow1Mend"
+       orient="auto"
+       refY="0.0"
+       refX="0.0"
+       id="Arrow1Mend"
+       style="overflow:visible;">
+      <path
+         id="path3171"
+         d="M 0.0,0.0 L 5.0,-5.0 L -12.5,0.0 L 5.0,5.0 L 0.0,0.0 z "
+         style="fill-rule:evenodd;stroke:#000000;stroke-width:1.0pt;marker-start:none;"
+         transform="scale(0.4) rotate(180) translate(10,0)" />
+    </marker>
+    <inkscape:perspective
+       sodipodi:type="inkscape:persp3d"
+       inkscape:vp_x="0 : 526.18109 : 1"
+       inkscape:vp_y="0 : 1000 : 0"
+       inkscape:vp_z="744.09448 : 526.18109 : 1"
+       inkscape:persp3d-origin="372.04724 : 350.78739 : 1"
+       id="perspective10" />
+  </defs>
+  <sodipodi:namedview
+     id="base"
+     pagecolor="#ffffff"
+     bordercolor="#666666"
+     borderopacity="1.0"
+     gridtolerance="10000"
+     guidetolerance="10"
+     objecttolerance="10"
+     inkscape:pageopacity="0.0"
+     inkscape:pageshadow="2"
+     inkscape:zoom="1.4"
+     inkscape:cx="383.17799"
+     inkscape:cy="713.53296"
+     inkscape:document-units="px"
+     inkscape:current-layer="layer1"
+     showgrid="false"
+     inkscape:window-width="1920"
+     inkscape:window-height="1150"
+     inkscape:window-x="0"
+     inkscape:window-y="25" />
+  <metadata
+     id="metadata7">
+    <rdf:RDF>
+      <cc:Work
+         rdf:about="">
+        <dc:format>image/svg+xml</dc:format>
+        <dc:type
+           rdf:resource="http://purl.org/dc/dcmitype/StillImage" />
+      </cc:Work>
+    </rdf:RDF>
+  </metadata>
+  <g
+     inkscape:label="Layer 1"
+     inkscape:groupmode="layer"
+     id="layer1">
+    <path
+       style="fill:none;fill-rule:evenodd;stroke:#000000;stroke-width:1px;stroke-linecap:butt;stroke-linejoin:miter;stroke-opacity:1;marker-start:url(#Arrow1Mstart)"
+       d="M 224.28571,147.36218 L 224.28571,579.50504"
+       id="path3153" />
+    <path
+       style="fill:none;fill-rule:evenodd;stroke:#000000;stroke-width:1px;stroke-linecap:butt;stroke-linejoin:miter;stroke-opacity:1;marker-end:url(#Arrow1Mend)"
+       d="M 169.28571,566.6479 L 655,566.6479"
+       id="path3157" />
+    <text
+       xml:space="preserve"
+       style="font-size:24px;font-style:italic;font-variant:normal;font-weight:normal;font-stretch:normal;text-align:start;line-height:125%;writing-mode:lr-tb;text-anchor:start;fill:#000000;fill-opacity:1;stroke:none;stroke-width:1px;stroke-linecap:butt;stroke-linejoin:miter;stroke-opacity:1;font-family:Liberation Serif;-inkscape-font-specification:Liberation Serif Italic"
+       x="157.85715"
+       y="173.07648"
+       id="text4460"
+       sodipodi:linespacing="125%"><tspan
+         sodipodi:role="line"
+         id="tspan4462"
+         x="157.85715"
+         y="173.07648"
+         dy="0 0 -4.2857141">Φ<tspan
+   style="font-size:12px"
+   id="tspan4464"
+   dy="4.2857141">ε</tspan>(ω)</tspan></text>
+    <text
+       xml:space="preserve"
+       style="font-size:24px;font-style:italic;font-variant:normal;font-weight:normal;font-stretch:normal;text-align:start;line-height:125%;writing-mode:lr-tb;text-anchor:start;fill:#000000;fill-opacity:1;stroke:none;stroke-width:1px;stroke-linecap:butt;stroke-linejoin:miter;stroke-opacity:1;font-family:Liberation Serif;-inkscape-font-specification:Liberation Serif Italic"
+       x="640"
+       y="584.505"
+       id="text4466"
+       sodipodi:linespacing="125%"><tspan
+         sodipodi:role="line"
+         id="tspan4468"
+         x="640"
+         y="584.505">ω</tspan></text>
+    <text
+       xml:space="preserve"
+       style="font-size:24px;font-style:italic;font-variant:normal;font-weight:normal;font-stretch:normal;text-align:start;line-height:125%;writing-mode:lr-tb;text-anchor:start;fill:#000000;fill-opacity:1;stroke:none;stroke-width:1px;stroke-linecap:butt;stroke-linejoin:miter;stroke-opacity:1;font-family:Liberation Serif;-inkscape-font-specification:Liberation Serif Italic"
+       x="552.14288"
+       y="582.36218"
+       id="text4470"
+       sodipodi:linespacing="125%"><tspan
+         sodipodi:role="line"
+         id="tspan4472"
+         x="552.14288"
+         y="582.36218">π</tspan></text>
+    <path
+       style="fill:none;fill-rule:evenodd;stroke:#000000;stroke-width:1px;stroke-linecap:butt;stroke-linejoin:miter;stroke-opacity:1"
+       d="M 194.28571,465.21932 C 194.28571,465.21932 245.2236,203.84357 335,200.93361 C 370.00733,199.7989 361.59244,303.85866 396.42857,300.21932 C 421.57471,297.5923 433.46318,232.32827 458.57143,231.6479 C 496.7999,230.61199 450.5689,566.18014 565,566.6479"
+       id="path4474"
+       sodipodi:nodetypes="csssc" />
+    <path
+       style="opacity:0.5;fill:#a8d9e5;fill-opacity:1;stroke:#000000;stroke-width:0.71428572999999995;stroke-miterlimit:4;stroke-dasharray:none;stroke-dashoffset:0;stroke-opacity:1"
+       d="M 224.83191,460.3016 L 224.83191,354.68271 L 228.44279,344.08932 C 237.77198,316.71965 252.97834,282.00642 264.09305,262.70622 C 286.07905,224.52854 308.84126,204.3747 332.71969,201.94363 C 340.62819,201.13848 346.52369,204.69523 351.74341,213.4205 C 355.68891,220.01581 359.01948,229.76069 365.53626,253.77765 C 371.49598,275.74149 374.25326,283.36424 378.84212,290.56336 C 387.03426,303.41539 398.46012,304.52003 409.68248,293.54496 C 414.37769,288.95324 418.83948,282.22857 428.72226,264.84908 C 440.57184,244.01074 445.88319,237.32223 453.26512,233.94268 C 460.52126,230.62068 464.52634,233.48492 467.99976,244.48013 C 472.32398,258.16894 474.33226,276.61729 478.07019,336.99193 C 482.02798,400.91796 484.96305,430.00958 490.60948,461.27765 C 500.44205,515.72736 517.07198,548.89279 540.79169,561.35715 C 543.58055,562.82265 547.15741,564.4275 548.74005,564.92336 C 551.07634,565.65536 520.88119,565.83393 388.22476,565.87272 L 224.83191,565.9205 L 224.83191,460.3016 z"
+       id="path4476" />
+  </g>
+</svg>
