@@ -1,10 +1,5 @@
-% \documentclass[lecture,12pt,]{pcms-l}
-% \input preamble.tex
-% \input header.tex
-%
-% %%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%
-%
-% \begin{document}
+%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%
+
 \mainmatter
 \setcounter{page}{1}
 
@@ -193,13 +188,11 @@ $$u_d(k\Delta T) = \frac{1}{T} \sum_{l=0}^{N-1} U_N(l) e^{jl\frac{2\pi}{T}k\Delt
 These are the functions used to compute Fourier transforms in \textsc{Matlab} using the \texttt{fft} command.
 
 \subsection{Measurement Resolution and Implied Periodicity}
+\label{sec:impliedperiodicity}
 The resolution in the time domain is $\Delta T$, with units of $s$. The resolution in the frequency domain is $\frac{2\pi}{T}$, with units in $rad/s$. Note that $T=N\cdot\Delta T$. The resolution in the frequency domain is a function of the number of samples \textit{and} the sampling time. This makes sense because  we need to sample signals longer in order to capture the low-frequency portions of the signal.
 
 $N$ points in the time domain (which only have $\text{Re}$ parts and no $\text{Im}$ parts) results in $\frac{N}{2}$ points in the frequency domain. Those $\frac{N}{2}$ points in the frequency domain are in the range $[0,\frac{\pi}{\Delta T}]$, and each of those points has a real and an imaginary part.
 
 An important point to notice is that once a signal is sampled to generate $U_N(\w)$ at $U_N(\frac{2\pi}{T}\cdot l)$ there is an implicit assumption made that the original signal, $u(t)$, was periodic!
-
-
-% \end{document}
 
 %%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%

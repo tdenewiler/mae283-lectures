@@ -1,16 +1,11 @@
-% \documentclass[lecture,12pt,]{pcms-l}
-% \input preamble.tex
-% \input header.tex
-%
-% %%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%
-%
-% \begin{document}
+%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%
+
 \mainmatter
 \setcounter{page}{1}
 
 \lectureseries[\course]{\course}
 
-\auth[R.A. de Callafon]{Lecturer: \lecAuth\\ Scribe: \scribe}
+\auth[\lecAuth]{Lecturer: \lecAuth\\ Scribe: \scribe}
 \date{October 15, 2009}
 
 \setaddress
@@ -101,7 +96,7 @@ Here, $w(\xi)$ is a window or a weighting function. It will decrease the varianc
 \end{figure}
 
 \subsection{Estimating Effects of Noise}
-This corresponds to Chapter 6 in Ljung. Now that we have a method to get a nice estimate of the transfer function of the system, $G_(q)$, we want to estimate a transfer function for the noise entering the system, $H_0(q)$. The transfer function of the noise shapes the spectrum of the noise signal. We are still using $v(t) = H_0(q)e(t)$, where $\{e(t)\}$ is white noise with unit variance. We know that
+This corresponds to Chapter 6 in Ljung. Now that we have a method to get a nice estimate of the transfer function of the system, $G_0(q)$, we want to estimate a transfer function for the noise entering the system, $H_0(q)$. The transfer function of the noise shapes the spectrum of the noise signal. We are still using $v(t) = H_0(q)e(t)$, where $\{e(t)\}$ is white noise with unit variance. We know that
 $$\Phi_v(\w) = |H_0(e^{j\w})|^2$$
 How do we find the estimate $\hat{\Phi}_v(\w)$? One way would be to measure the output of the system with no inputs, or $\{u(t)\}=0 \Rightarrow y(t) = v(t) \Rightarrow \Phi_y(\w) = \Phi_v(\w)$. If $\{u(t)\}=0$ is not feasible then
 \begin{align*}
@@ -152,16 +147,14 @@ $\lozenge$
 This corresponds to Chapter 7.3 of Ljung.
 
 \subsection{Linear Regression Model}
-When looking at discrete-time systems we can represent them as linear regression models (see Lecture 3 for more details). The linear regression model looks like
+When looking at discrete-time systems we can represent them as linear regression models (see \S\ref{sec:linearregression} for more details). The linear regression model looks like
 $$y(t) = \varphi^T(t)\theta = \theta\varphi^T(t)$$
 where
 \begin{align*}
-\begin{split}
-\varphi(t) &= \left[\begin{array}{c} u(t) \\ u(t-1) \\ \vdots \\ u(t-n_b) \\ -y(t-1) \\ -y(t-2) \\ \vdots \\ -y(t-n_a) \end{array}\right],
-\end{split}
-\begin{split}
-\theta &= \left[\begin{array}{c} b_0 \\ b_1 \\ \vdots \\ b_{n_b} \\ a_1 \\ a_2 \\ \vdots \\ a_{n_a} \end{array}\right]
-\end{split}
+\phi^T(t) &= \left[\begin{array}{c c c c c c c c}
+u(k) & u(k-1) & \cdots & u(k-n) & -y(k-1) & -y(k-2) & \cdots & -y(k-n) \end{array}\right] \\
+\theta &= \left[\begin{array}{c c c c c c c c}
+b_0 & b_1 & \cdots & b_n & a_1 & a_2 & \cdots & a_n \end{array}\right]^T
 \end{align*}
 This representation can easily be extended to non-linear systems even though it will still be linear in its parameter $\theta$.
 
@@ -191,9 +184,9 @@ $$\hat{\theta} = \min_\theta ||e(t,\theta)||_2^2 = \min_\theta \mathbf{e}_N^T\ma
 
 A geometric interpretation of this can be seen in Figure \ref{fig:07ls}. What we are attempting to do is project $\mathbf{e}$ orthogonally onto the parameter plane to get $\hat{\mathbf{y}}$. This leads to
 \begin{align*}
-\frac{1}{N}\varphi^T(\mathbf{e} &= \mathbf{\vp}\mathbf{\theta} - \mathbf{y}) \\
-\Rightarrow \frac{1}{N}\varphi^Te &= \frac{1}{N}\varphi^T\varphi\theta - \frac{1}{N}\varphi^Ty = 0 \\
-\Rightarrow \hat{\theta}_{LS} &= (\frac{1}{N}\varphi^T\varphi)^{-1}\frac{1}{N}\varphi^Ty
+\frac{1}{N}\vp^T(\mathbf{e} &= \mathbf{\vp}\mathbf{\theta} - \mathbf{y}) \\
+\Rightarrow \frac{1}{N}\vp^Te &= \frac{1}{N}\vp^T\vp\theta - \frac{1}{N}\vp^Ty = 0 \\
+\Rightarrow \hat{\theta}_{LS} &= \left(\frac{1}{N}\vp^T\vp\right)^{-1}\frac{1}{N}\vp^Ty
 \end{align*}
 
 \begin{figure}[ht!]
@@ -204,8 +197,5 @@ A geometric interpretation of this can be seen in Figure \ref{fig:07ls}. What we
 \end{figure}
 
 It is very interesting, and useful, to note that the term $\frac{1}{N}\varphi^Ty$ is the same as the cross-covariance function of the system and the term $\frac{1}{N}\varphi^T\varphi$ is the same as the auto-covariance function of the system.
-
-
-% \end{document}
 
 %%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%

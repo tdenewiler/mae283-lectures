@@ -1,16 +1,11 @@
-% \documentclass[lecture,12pt,]{pcms-l}
-% \input preamble.tex
-% \input header.tex
-%
-% %%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%
-%
-% \begin{document}
+%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%
+
 \mainmatter
 \setcounter{page}{1}
 
 \lectureseries[\course]{\course}
 
-\auth[R.A. de Callafon]{Lecturer: \lecAuth\\ Scribe: \scribe}
+\auth[\lecAuth]{Lecturer: \lecAuth\\ Scribe: \scribe}
 \date{October 13, 2009}
 
 \setaddress
@@ -74,7 +69,7 @@ Try this in \textsc{Matlab}. Let $s(t)=L(q)e(t)$ have $\{e(t)\}$ be white noise 
 \Phi_s(\w) &= \mathcal{F}\{R_s(\tau)\} \\
 &= \mathcal{F}\{\bar{E}\{s(t)s(t-\tau)\}\} \\
 &= \mathcal{F}\{\bar{E}\{(L(q)e(t))(L(q)e(t-\tau))\}\} \\
-&= \mathcal{F}\{E\{\lim_{N\to\infty}\frac{1}{N}\sum_{t=1}^N(L(q)e(t))(L(q)e(t-\tau))\}\} \\
+&= \mathcal{F}\left\lbrace E\left\lbrace\lim_{N\to\infty}\frac{1}{N}\sum_{t=1}^N(L(q)e(t))(L(q)e(t-\tau))\right\rbrace\right\rbrace \\
 &= L(e^{j\w})L^*(e^{j\w})\Phi_e(\w) \\
 &= |L(e^{j\w})|^2
 \end{align*}
@@ -111,7 +106,7 @@ The expression $\text{w.p. } 1$ means that $\sigma\to 0$. The term $\hat{\hat{\P
 Spectral analysis is the convolution of the crude estimate $\hat{\Phi}_s^N(\w)$ with $w(\w)$ so that we get $\hat{\hat{\Phi}}_s^N(\w) \to \Phi_s(\w) \text{ w.p. } 1$. Recall that $\hat{\Phi}_s^N(\w) = \mathcal{F}\{R_s(\tau)\} = |S_N(\w)|^2$. This gives
 $$\hat{\hat{\Phi}}_s^N(\w) = \mathcal{F}\{R_s(\tau)\} * \mathcal{F}\{w(\tau)\} = \mathcal{F}\{R_s(\tau)\} * w(\w)$$
 where the $*$ symbol represents the convolution operator. Taking the inverse Fourier transform yields
-$$\hat{\hat{R}}_s^N(\tau) = \hat{R}_s^N(\tau)\cdot w(\tau)$$
+$$\mathcal{F}^{-1}\{\hat{\hat{\Phi}}_s^N(\w)\} = \hat{\hat{R}}_s^N(\tau) = \hat{R}_s^N(\tau)\cdot w(\tau)$$
 since the inverse Fourier transform of convolution is multiplication. This is referred to as ``windowed estimation'', where $w(\tau)$ is the ``time window'' and $w(\w)$ is the ``frequency window''. Note that using $w(\w)$ being a $\delta$-function would result in no change to the variance because $\mathcal{F}^{-1}\{\delta(\w)\} = 1$. Also, $w(\tau)$ and $w(\w)$ are functions that can be tuned by an engineer and give some flexibility for efficiently averaging out the variance. See Figure \ref{fig:06windowfilter}.
 
 \begin{figure}[ht!]
@@ -171,8 +166,5 @@ The Welsh method is similar to the Bartlett window when setting $\gamma=N_0$ in 
 	\caption{Welsh window method.}
 	\label{fig:06welsh}
 \end{figure}
-
-
-% \end{document}
 
 %%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%

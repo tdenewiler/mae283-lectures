@@ -1,16 +1,11 @@
-% \documentclass[lecture,12pt,]{pcms-l}
-% \input preamble.tex
-% \input header.tex
-%
-% %%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%
-%
-% \begin{document}
+%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%
+
 \mainmatter
 \setcounter{page}{1}
 
 \lectureseries[\course]{\course}
 
-\auth[R.A. de Callafon]{Lecturer: \lecAuth\\ Scribe: \scribe}
+\auth[\lecAuth]{Lecturer: \lecAuth\\ Scribe: \scribe}
 \date{October 8, 2009}
 
 \setaddress
@@ -23,8 +18,7 @@
 
 \section{Covariance and Spectral Functions}
 The covariance and spectral density functions are defined as
-\begin{definition}{Covariance and Spectral Density}
-
+\begin{definition}{Covariance and Spectral Density} \\
 Auto-covariance function
 \begin{align}
 \label{eq:autocov}
@@ -38,7 +32,7 @@ R_{yu}(\tau) = \bar{E}\{y(t)u(t-\tau)\}
 Auto-spectral density function
 \begin{align}
 \label{eq:autospec}
-\Phi_u(\w) = \tausum R_u(\tau)e^{-j\w\tau} = \mathcal{F}\{R_u(\tau)\}
+\Phi_u(\w) = \sum_{\tau=-\infty}^\infty R_u(\tau)e^{-j\w\tau} = \mathcal{F}\{R_u(\tau)\}
 \end{align}
 Cross-spectral density function
 \begin{align}
@@ -50,7 +44,7 @@ Cross-spectral density function
 \subsection{Applications}
 Suppose a system is given by $y(t) = G_0(q)u(t)+w(t)$ and assume that $u\perp v$. Then
 $$R_{yu}(\tau) = g_0(k)$$
-if the sequence of inputs $\{u(t)\}$ is white noise and says that we can get the impulse response, or Markov, parameters from the cross-covariance of the input and output. We can also find the other values in (\ref{eq:autocov} - \ref{eq:xspec}) as
+if the sequence of inputs $\{u(t)\}$ is white noise with unit variance and says that we can get the impulse response, or Markov, parameters from the cross-covariance of the input and output. We can also find the other values in (\ref{eq:autocov} - \ref{eq:xspec}) as
 \begin{align*}
 R_{yu}(\tau) &= G_0(q)R_u(\tau) \\
 \Phi_{yu}(\w) &= G_0(e^{j\w})\Phi_u(\w) \\
@@ -67,7 +61,7 @@ The cross-covariance function is \textit{not} symmetric, $R_{yu}(\tau)\neq R_{yu
 The cross-spectral density function is complex-valued in general,
 $$\Phi_{yu}(\w) = \mathcal{F}\{R_{yu}(\tau)\}\in\mathbb{C} \rightarrow \Phi_{yu}(\w)\in\mathbb{C} = G_0(e^{j\w})\in\mathbb{C} \cdot \Phi_u(\w)\in\mathbb{R}$$
 
-Let $y(t) = G_0(q)u(t)+v(t)$, with $\{u(t)\}=\text{ white noise}$ and $u\perp v$. This defines a causal system. In a causal system $R_{yu}(-\tau)=0$. This means that the system output is not reacting to an input \textit{before} the input is applied. Recall that $R_{yu}(-\tau)=g_0(k)$ because the input is white noise. The $g_0(k)$ values represent the impulse response and they \textit{must} be zero for input that has not occurred, as represented by $t=-\tau$.
+Let $y(t) = G_0(q)u(t)+v(t)$, where $\{u(t)\}$ is white noise and $u\perp v$. This defines a causal system. In a causal system $R_{yu}(-\tau)=0$. This means that the system output is not reacting to an input \textit{before} the input is applied. Recall that $R_{yu}(-\tau)=g_0(k)$ because the input is white noise. The $g_0(k)$ values represent the impulse response and they \textit{must} be zero for input that has not occurred, as represented by $t=-\tau$.
 
 \section{Finite-time Estimates}
 In the textbook, Ljung calls this non-parametric identification. The goal is to find estimates of (\ref{eq:autocov} - \ref{eq:xspec}). We have to find estimates for these values because they are defined assuming that there are an infite number of samples and we will only have a finite number of samples.
@@ -75,7 +69,7 @@ In the textbook, Ljung calls this non-parametric identification. The goal is to 
 \subsection{Correlation analysis}
 \begin{align*}
 R_{yu}(\tau) &= G_0(q)R_u(\tau) \Rightarrow R_u(\tau) = \begin{cases} \lambda, & \tau=0 \\ 0, & |\tau|\neq 0 \end{cases} \\
-&= \lambda g_00(\tau) \Rightarrow g_0(\tau) = \frac{R_{yu}(\tau)}{\lambda}
+&= \lambda g_0(\tau) \Rightarrow g_0(\tau) = \frac{R_{yu}(\tau)}{\lambda}
 \end{align*}
 Therefore, we need to find estimates for $R_{yu}(\tau)$ and $R_u(\tau)$ to find the impulse response coefficients.
 
@@ -83,7 +77,7 @@ Therefore, we need to find estimates for $R_{yu}(\tau)$ and $R_u(\tau)$ to find 
 From (\ref{eq:autocov}) we have
 $$R_u(\tau) = \bar{E}\{u(t)u(t-\tau)\} = \lim_{N\to\infty}\frac{1}{N}\sum_{t=1}^N E\{u(t)u(t-\tau)\}$$
 A proposed form of the estimate is
-$$\hat{R}_u^N(\tau) = \frac{1}{N}\sum_{t=1}^u(t)u(t-\tau)$$
+$$\hat{R}_u^N(\tau) = \frac{1}{N}\sum_{t=1}^Nu(t)u(t-\tau)$$
 The idea is that we will leave out the estimator operation because we do not know what it is. We hope that taking enough samples and averaging them will lead to a good estimate of the true covariance.
 
 Looking at the expected value of this proposed covariance estimate, we would like it to have the property
@@ -124,10 +118,10 @@ Let $m=k$, then
 \end{align*}
 Note that since $\{u(t)\}$ is quasi-stationary $R_u(\tau)\to0$ eventually. This leads to
 \begin{align*}
-\text{cov}\{\ruhat\ruhat\} &\sim \mathcal{O}(\frac{1}{N}) < \frac{C}{N} \\
-\lim_{N\to\infty}\text{cov}\{\ruhat\ruhat\} &= 0
+&\text{cov}\{\ruhat\ruhat\} \sim \mathcal{O}(\frac{1}{N}) < \frac{C}{N} \\
+&\lim_{N\to\infty}\text{cov}\{\ruhat\ruhat\} = 0
 \end{align*}
-This means that the variance goes to zero with probability $1$. See Figure \ref{fig:05estDist}.
+This means that the variance goes to zero with probability $1$ as $N\to\infty$. See Figure \ref{fig:05estDist}.
 \begin{figure}[ht!]
 	\centering
 	\includegraphics[width=.4\textwidth]{images/05estDist}
@@ -138,12 +132,12 @@ This means that the variance goes to zero with probability $1$. See Figure \ref{
 \begin{example}
 \begin{align*}
 \ruhat &= \begin{cases} \frac{1}{N}\sum_{t=1}^Nu(t)u(t-\tau), & |\tau|\leq N-1 \\ 0, & |\tau|\geq N \end{cases} \\
-&\text{use DTFT} \\
+&\qquad[\text{use DTFT}] \\
 \sum_{\tau=-\infty}^\infty\ruhat e^{-j\w\tau} &= \phiuhat = \frac{1}{N}\left|U_N(\w)\right|^2 \triangleq \text{ periodogram} \\
-&\text{use DTFT} \\
+&\qquad[\text{use DTFT}] \\
 U_N(\w) &= \sum_{t=0}^{N-1}u(t)e^{-j\w t}
 \end{align*}
-Later it will be shown why $\phiuhat$ is \textit{not} a good estimate. Now we can compute $\ruhat$ using (\ref{eq:autocovest}) or
+Later it will be shown why $\phiuhat$ is \textit{not} a good estimate. However, now we can compute $\ruhat$ using (\ref{eq:autocovest}) or
 \begin{align*}
 \mathcal{F}\{u(t)\} &= U_N(\w) \\
 \mathcal{F}^{-1}\{U_N(\w)\overline{U_N(\w)}\} &= \ruhat
@@ -233,8 +227,5 @@ Suppose that the input signal is $u(t)=\sin\w t$. Then we will only have $\text{
 Note that as $N\to\infty$ the parameters $g_0(k)$ go to the real values and are not estimated values.
 $\lozenge$
 \end{example}
-
-
-% \end{document}
 
 %%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%

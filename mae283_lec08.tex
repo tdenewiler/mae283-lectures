@@ -1,16 +1,11 @@
-% \documentclass[lecture,12pt,]{pcms-l}
-% \input preamble.tex
-% \input header.tex
-%
-% %%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%
-%
-% \begin{document}
+%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%
+
 \mainmatter
 \setcounter{page}{1}
 
 \lectureseries[\course]{\course}
 
-\auth[R.A. de Callafon]{Lecturer: \lecAuth\\ Scribe: \scribe}
+\auth[\lecAuth]{Lecturer: \lecAuth\\ Scribe: \scribe}
 \date{October 20, 2009}
 
 \setaddress
@@ -35,12 +30,14 @@ where $\varphi(t)$ is known as the ``regressor'' and is the same for the model a
 where $\hat{E}\{e(t,\theta)\}$ is the estimation of the expected variance. Recall that the regressor, $\varphi(t)$, is all of the past inputs and outputs such that
 \begin{align}
 \label{eq:regressor}
-\varphi(t) = \left[\begin{array}{c} u(t) \\ u(t-1) \\ \vdots \\ u(t-n_b) \\ -y(t-1) \\ \vdots \\ -y(t-n_a) \end{array}\right]
+\phi^T(t) &= \left[\begin{array}{c c c c c c c c}
+u(k) & u(k-1) & \cdots & u(k-n) & -y(k-1) & -y(k-2) & \cdots & -y(k-n) \end{array}\right]
 \end{align}
 and the parameter contains
 \begin{align}
 \label{eq:parameter}
-\theta = \left[\begin{array}{c} b_0 \\ b_1 \\ \vdots \\ b_{n_b} \\ a_1 \\ \vdots \\ a_{n_a} \end{array}\right]
+\theta &= \left[\begin{array}{c c c c c c c c}
+b_0 & b_1 & \cdots & b_n & a_1 & a_2 & \cdots & a_n \end{array}\right]^T
 \end{align}
 The model given by
 $$y(t) = \varphi(t)\theta + e(t,\theta)$$
@@ -52,7 +49,7 @@ can be accumulated over $N$ samples and written in matrix form as
 \Rightarrow \hat{\theta} &= \min_\theta \frac{1}{N}\mathbf{e}^T\mathbf{e}
 \end{align*}
 This uses an orthogonal projection to make $\hat{\theta}$ as small as possible. Rearranging to get the parameter estimate yields
-$$\thn = (\frac{1}{N}\mathbf{\varphi\varphi}^T)^{-1} (\frac{1}{N}\mathbf{\varphi y})$$
+$$\thn = \left(\frac{1}{N}\mathbf{\varphi\varphi}^T\right)^{-1} \left(\frac{1}{N}\mathbf{\varphi y}\right)$$
 Note that this is an ordinal equation and is not the best way to compute the least square estimate from a numerical methods standpoint.
 
 \section{Applications}
@@ -63,14 +60,17 @@ The least squares estimate from the perspective of modeling discrete-time system
 \end{align}
 using (\ref{eq:regressor}) and (\ref{eq:parameter}). This is equivalent to writing
 \begin{align*}
-&y(t) = b_0u(t) + b_1u(t-1) + \cdots + b_{n_b}u(t-n_b) \\
-&- a_1y(t-1) - a_2y(t-2) - \cdots - a_{n_a}y(t-n_a) + e(t,\theta) \\
-&(1+a_1q^{-1}+a_2q^{-2}+\cdots+a_{n_a}q^{-n_a})y(t) = (b_0+b_1q^{-1}+b_2q^{-2}+\cdots+b_{n_b}q^{-n_b})u(t) + e(t,\theta)
+y(t) &= b_0u(t) + b_1u(t-1) + \cdots + b_{n_b}u(t-n_b) \\
+&\quad- a_1y(t-1) - a_2y(t-2) - \cdots - a_{n_a}y(t-n_a) + e(t,\theta) \\
 \end{align*}
 \begin{align*}
-y(t) &= G(q,\theta)u(t) + H(q,\theta)e(t,\theta) \\
-&= \frac{b_0+b_1q^{-1}+b_2q^{-2}+\cdots+b_{n_b}q^{-n_b}}{1+a_1q^{-1}+a_2q^{-2}+\cdots+a_{n_a}q^{-n_a}}u(t)
-+ \frac{1}{1+a_1q^{-1}+a_2q^{-2}+\cdots+a_{n_a}q^{-n_a}}e(t,\theta)
+\Rightarrow &(1+a_1q^{-1}+a_2q^{-2}+\cdots+a_{n_a}q^{-n_a})y(t) \\
+&\qquad = (b_0+b_1q^{-1}+b_2q^{-2}+\cdots+b_{n_b}q^{-n_b})u(t) + e(t,\theta)
+\end{align*}
+\begin{align*}
+\Rightarrow y(t) &= G(q,\theta)u(t) + H(q,\theta)e(t,\theta) \\
+&= \frac{b_0+b_1q^{-1}+b_2q^{-2}+\cdots+b_{n_b}q^{-n_b}}{1+a_1q^{-1}+a_2q^{-2}+\cdots+a_{n_a}q^{-n_a}}u(t) \\
+&\quad + \frac{1}{1+a_1q^{-1}+a_2q^{-2}+\cdots+a_{n_a}q^{-n_a}}e(t,\theta)
 \end{align*}
 Here we can see that the denominators for $G(q,\theta)$ and $H(q,\theta)$ are the same. This is referred to as a ``Autogenous Regression with eXogenous input'' (ARX) model. The ARX model has shared poles between $G(q,\theta)$ and $H(q,\theta)$ and the numerator of $H(q,\theta)=1$.
 
@@ -112,6 +112,7 @@ Conclusion: If $\{u(t),y(t)\} + \{x(t)\}$ is available then the estimation of $A
 Some important properties of the least squares estimate, $\thn$, are given below.
 
 \subsection{Relation to the Covariance Functions}
+\label{sec:lsecovfns}
 $$\thn = (\frac{1}{N}\mathbf{\varphi\varphi}^T)^{-1}(\frac{1}{N}\mathbf{\varphi y}) \triangleq \underbrace{R^{-1}(N)}_{p\times p} \underbrace{f(N)}_{p\times 1}$$
 Looking more closely at $R(N)$ we can see that it is a $p\times p$ matrix built from elements of (\ref{eq:regressor}).
 $$R(N) = \frac{1}{N}\left[\begin{array}{c c c} \varphi(1) & \cdots & \varphi(N) \end{array}\right]
@@ -123,46 +124,42 @@ R(N)_{1,2} &= \frac{1}{N}\sum_{t=1}^Nu(t)u(t-1) = \hat{R}_u^N(1) \\
 R(N)_{2,1} &= \frac{1}{N}\sum_{t=1}^Nu(t-1)u(t) = \hat{R}_u^N(1)
 \end{align*}
 The last two equalities show that $R(N)$ has some symmetry within it. The general form for $R(N)$ is
+\renewcommand{\arraystretch}{2}
 \begin{align*}
-\left[\begin{array}{c c}
+\newcommand*{\temp}{\multicolumn{1}{r|}{}}
+R(N) = \left[\begin{array}{ccc}
+\mathbf{R}_u & \temp & \mathbf{R}_{yu} \\ \cline{1-3}
+\mathbf{R}_{yu}^T & \temp & \mathbf{R}_y
+\end{array}\right]
+\end{align*}
+
+where the blocks are found as
+
+\begin{align*}
 % Top left.
-\begin{array}{c c c c|}
+\mathbf{R}_u &= \left[\begin{array}{c c c c}
 \hat{R}_u^N(0) & \hat{R}_u^N(1) & \cdots & \hat{R}_u^N(n_b) \\
 \hat{R}_u^N(1) & \hat{R}_u^N(0) & \cdots & \hat{R}_u^N(n_b-1) \\
 \vdots & \vdots & \ddots & \vdots \\
-\hat{R}_u^N(n_b) & \hat{R}_u^N(n_b-1) & \cdots & \hat{R}_u^N(0) \\
-\hline
-\end{array}
-% Top right.
-\begin{array}{c c c}
+\hat{R}_u^N(n_b) & \hat{R}_u^N(n_b-1) & \cdots & \hat{R}_u^N(0)
+\end{array}\right] \\
+% % Top right.
+\mathbf{R}_{yu} &= \left[\begin{array}{c c c}
 \hat{R}_{yu}^N(1) & \cdots & \hat{R}_{yu}^N(n_a) \\
 \hat{R}_{yu}^N(0) & \cdots & \hat{R}_{yu}^N(n_a-1) \\
 \vdots & \ddots & \vdots \\
-\hat{R}_{yu}^N(n_a-n_b-1) & \cdots & \hat{R}_{yu}^N(0) \\
-\hline
-\end{array} \\
-% Bottom left.
-\begin{array}{c c c|}
-\hat{R}_{yu}^N(1) & \cdots & \hat{R}_{yu}^N(n_a) \\
-\hat{R}_{yu}^N(0) & \cdots & \hat{R}_{yu}^N(n_a-1) \\
-\vdots & \ddots & \vdots \\
-\hat{R}_{yu}^N(n_a-n_b-1) & \cdots & \hat{R}_{yu}^N(0) \\
-\end{array}
+\hat{R}_{yu}^N(n_a-n_b-1) & \cdots & \hat{R}_{yu}^N(0)
+\end{array}\right] \\
 % Bottom right.
-\begin{array}{c c c c}
+\mathbf{R}_y &= \left[\begin{array}{c c c c}
 \hat{R}_y^N(0) & \hat{R}_y^N(1) & \cdots & \hat{R}_y^N(n_b) \\
 \hat{R}_y^N(1) & \hat{R}_y^N(0) & \cdots & \hat{R}_y^N(n_b-1) \\
 \vdots & \vdots & \ddots & \vdots \\
 \hat{R}_y^N(n_b) & \hat{R}_y^N(n_b-1) & \cdots & \hat{R}_y^N(0)
-\end{array}
 \end{array}\right]
 \end{align*}
-In the block matrix above the off-diagonal elements are supposed to be tranposes of each other but it's not shown that way currently. The $[1,1]$ and $[2,2]$ blocks are Toeplitz and $[1,2]$ and $[2,1]$ are transposes of each other. This can be written as
-$$R(N) = \left[\begin{array}{c c c} \mathbf{R}_u & \vline & \mathbf{R}_{yu} \\
-\hline \\
-\mathbf{R}_{yu}^T & \vline & \mathbf{R}_y \end{array}\right]$$
 
-We also have that
+Note that the $\mathbf{R}_u$ and $\mathbf{R}_y$ blocks are Toeplitz. We also have that
 \begin{align*}
 f(N) = \left[\begin{array}{c}
 \hat{R}_{yu}^N(0) \\
@@ -187,6 +184,7 @@ $$\det\left(\left[\begin{array}{c c}A&B\\C&D\end{array}\right]\right) = \det(A) 
 For $R(N)$ to be invertible it must be true that $\det(\mathbf{R}_y-\mathbf{R}_{yu}^T\mathbf{R}_u^{-1}\mathbf{R}_{yu})\neq 0$. Note that $\mathbf{R}_y$ is usually perturbed by noise. However, we stil need to have $\{u(t)\}$ be a persistently exciting signal.
 
 \subsection{Consistency of the Parameter Estimation}
+\label{sec:peconsistency}
 What happens in
 $$\lim_{N\to\infty} \thn  = \theta_0 \text{ w.p. } 1$$
 Is this a true statement? If we use the model
@@ -214,6 +212,7 @@ The first $n_b$ terms in the upper block are zero because of $u\perp v$. The las
 Conclusion: For $\mathcal{S}: y(t) = \varphi^T(t)\theta_0 + v(t)$ it must be true that $\{v(t)\}$ is white noise in order to avoid bias in the least squares estimation of the parameter.
 
 \subsection{Careful with the White Noise Assumption}
+\label{sec:carefulwhitenoise}
 Given a system and model such that
 \begin{align*}
 \mathcal{S}: y(t) &= G_0(q)u(t) + e(t) \\
@@ -227,7 +226,7 @@ Does it go to the real parameter, $\theta_0$?
 
 We can re-write this as
 \begin{align*}
-y(t) &= \frac{B(q)}{A(q}u(t) + e(t) \\
+y(t) &= \frac{B(q)}{A(q)}u(t) + e(t) \\
 y(t)A(q) &= B(q)u(t) + A(q)e(t) \\
 y(t) &= \varphi^T(t)\theta_0 + v(t) \\
 v(t) &= A(q)e(t)
@@ -236,8 +235,5 @@ The last equality shows that the noise is actually colored by the filter, $A(q)$
 $$\mathcal{S}: y(t) = G_0(q)u(t) + H_0(q)e(t)$$
 with
 $$H_0(q) = \frac{1}{A(q)}$$
-
-
-% \end{document}
 
 %%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%

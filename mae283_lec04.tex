@@ -1,16 +1,11 @@
-% \documentclass[lecture,12pt,]{pcms-l}
-% \input preamble.tex
-% \input header.tex
-%
-% %%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%
-%
-% \begin{document}
+%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%
+
 \mainmatter
 \setcounter{page}{1}
 
 \lectureseries[\course]{\course}
 
-\auth[R.A. de Callafon]{Lecturer: \lecAuth\\ Scribe: \scribe}
+\auth[\lecAuth]{Lecturer: \lecAuth\\ Scribe: \scribe}
 \date{October 6, 2009}
 
 \setaddress
@@ -72,47 +67,40 @@ Some process $u(t)$ is quasi-stationary if there exists some $c_1, c_2 \in\mathb
 \item $\bar{E}\{u(t)\} < c_1, ~\forall t$
 \item $\bar{E}\{u(t)u(t-\tau)\} = R_u(\tau) < c_2, ~\forall \tau$
 \end{itemize}
-The first inequality means that the mean of the process must be bounded. The second inequality means that $u(t)$ correlated with itself and time-shifted a small amount should also be bounded and is known as the ``auto-covariance'' function.
+The first inequality indicates that the mean of the process must be bounded. The second inequality means that $u(t)$ correlated with itself and time-shifted a small amount should also be bounded and is known as the ``auto-covariance'' function.
 \end{definition}
 
 \begin{definition}{Covariance and Spectral Functions}
 
-These are formal definitions and cannot actually be computed because they require an infinite number of samples. Later we will learn how to estimate their values.
+These are formal definitions and cannot actually be computed because they require an infinite number of samples. Later we will learn how to estimate their values given a finite number of samples.
 \begin{itemize}
-\item Auto-covariance function
-
+\item Auto-covariance function \\
 $R_y(\tau) \triangleq \bar{E}\{y(t)y(t-\tau)\}, |\tau|\in\mathbb{N}$
-\item Cross-covariance function
-
+\item Cross-covariance function \\
 $R_{yu}(\tau) \triangleq \bar{E}\{y(t)u(t-\tau)\}, |\tau|\in\mathbb{N}$
-\item Auto-spectral density function
-
-$\Phi_u(\w) \triangleq \sum_{\tau=-\infty}^\infty R_y(\tau)e^{-j\w\tau}$
-
+\item Auto-spectral density function \\
+$\Phi_u(\w) \triangleq \sum_{\tau=-\infty}^\infty R_y(\tau)e^{-j\w\tau}$ \\
 This is the discrete-time Fourier transform (DTFT) of the auto-covariance function.
-\item Cross-spectral density function
-
-$\Phi_{yu}(\w) \triangleq \sum_{\tau=-\infty}^\infty R_yu(\tau)e^{-j\w\tau}$
-
+\item Cross-spectral density function \\
+$\Phi_{yu}(\w) \triangleq \sum_{\tau=-\infty}^\infty R_yu(\tau)e^{-j\w\tau}$ \\
 This is the DTFT of the cross-covariance function.
 \end{itemize}
-Note that $\w\in\mathbb{R}$ and $|\tau|\in\mathbb{N}$. To get from the spectral density functions to the covariance functions use the inverse Fourier transform: $R_y(\tau) = \frac{1}{2\pi}\int_{\w=-\pi}^\pi R_y(\tau)e^{j\w\tau}d\w$.
+Note that $\w\in\mathbb{R}$ and $|\tau|\in\mathbb{N}$. To get from the spectral density functions to the covariance functions use the inverse Fourier transform:
+$$R_y(\tau) = \frac{1}{2\pi}\int_{\w=-\pi}^\pi \Phi_y(\tau)e^{j\w\tau}d\w$$
 \end{definition}
 
 \section{White Noise}
 White noise, $e(t)$, is a zero-mean signal and is satisfied by the following properties:
 \begin{itemize}
 \item $\bar{E}\{e(t)\}=0$
-\item $\bar{E}\{e(t)e(t-\tau)\} = R_e(\tau) = \begin{cases} \lambda>0, & \tau=0 \\ 0, & |\tau|\neq 0 \end{cases}$
-
+\item $\bar{E}\{e(t)e(t-\tau)\} = R_e(\tau) = \begin{cases} \lambda>0, & \tau=0 \\ 0, & |\tau|\neq 0 \end{cases}$ \\
 The case when $\tau=0$ is known as the variance of the signal.
-\item $\Phi_e(\w) = \sum_{\tau=-\infty}^\infty \lambda\delta_d(t)e^{-j\w t} = \lambda e^{-j\w 0} = \lambda$
-
+\item $\Phi_e(\w) = \sum_{\tau=-\infty}^\infty \lambda\delta_d(t)e^{-j\w t} = \lambda e^{-j\w 0} = \lambda$ \\
 We only need to evaluate the $\delta$-function at time $t=0$. See Figure \ref{fig:04deltaFn}.
-\item $\bar{E}\{e^2(t)\} = R_e(0) = \lambda = \frac{1}{2\pi}\int_{\w=-\pi}^\pi\Phi_u(\w)e^{j\w\tau}d\w = \frac{1}{2\pi} \int_{\w=-\pi}^\pi\Phi_u(\w)d\w$
-
+\item $\bar{E}\{e^2(t)\} = R_e(0) = \lambda = \frac{1}{2\pi}\int_{\w=-\pi}^\pi\Phi_u(\w)e^{j\w\tau}d\w = \frac{1}{2\pi} \int_{\w=-\pi}^\pi\Phi_u(\w)d\w$ \\
 where the exponential goes to one because $\tau=0$. This can be thought of as the surface under the auto-spectral density function between $[-\pi,\pi]$ and is equal to the variance of the signal.
 \end{itemize}
+
 \begin{figure}[ht!]
 	\centering
 	\includegraphics[width=.4\textwidth]{images/04deltaFn}
@@ -200,9 +188,9 @@ This is covered in Ljung, pages 31-33.
 Essentially, the periodogram $\hat{\Phi}_y(\w)$ is a cheap way of estimating the spectrum, or the frequency contents, of a signal.
 \begin{align*}
 \Phi_y(\w) &= \mathcal{F}\{R_u(\tau)\} \\
-\hat{\Phi}_y(\w) &= y(\w)y^*(\w) \\
-y(\w) &= \sum_{t=1}^Ny(t)e^{-j\w t}, |t|\in\mathbb{N} \\
-\hat{\Phi}_y(\w) &= |y(\w)|^2 = y(\w)y^*(\w)
+\hat{\Phi}_y(\w) &= Y(\w)Y^\ast(\w) \\
+Y(\w) &= \sum_{t=1}^Ny(t)e^{-j\w t}, |t|\in\mathbb{N} \\
+\hat{\Phi}_y(\w) &= |Y(\w)|^2 = Y(\w)Y^\ast(\w)
 \end{align*}
 Recall that the Fourier transform of the convolution operator is the multiplication operator.
 \end{definition}
@@ -219,9 +207,6 @@ The first two equalities are discrete Fourier transforms. $Y_N(\w)$ and $U_N(\w)
 $$|R_N(\w)| \leq 2\cdot C_w\cdot \frac{C_g}{\sqrt{N}}$$
 where $|u(t)|<C_w ~\forall t$, $C_g=\sum_{k=0}^\infty k|g_k|<\infty$ if the system is BIBO stable.
 \end{theorem}
-Note that $R_N(\w)$ is the noise due to the inital and end conditions that can be bounded. This noise arises because when we use the Fourier transform we automatically make the assumption that the signal is periodic even when they are not periodic as discussed in Lecture 2.
-
-
-% \end{document}
+Note that $R_N(\w)$ is the noise due to the inital and end conditions that can be bounded. This noise arises because when we use the Fourier transform we automatically make the assumption that the signal is periodic even when they are not periodic as discussed in \S\ref{sec:impliedperiodicity}.
 
 %%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%

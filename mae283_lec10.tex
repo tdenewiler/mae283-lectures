@@ -1,16 +1,11 @@
-% \documentclass[lecture,12pt,]{pcms-l}
-% \input preamble.tex
-% \input header.tex
-%
-% %%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%
-%
-% \begin{document}
+%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%
+
 \mainmatter
 \setcounter{page}{1}
 
 \lectureseries[\course]{\course}
 
-\auth[R.A. de Callafon]{Lecturer: \lecAuth\\ Scribe: \scribe}
+\auth[\lecAuth]{Lecturer: \lecAuth\\ Scribe: \scribe}
 \date{September 24, 2009}
 
 \setaddress
@@ -52,10 +47,10 @@ Another way of stating this assumption is that $G_0(q)$ and $H_0(q)$ must have t
 
 \section{Instrumental Variable Method}
 Typically the regressor is given by
-$$\vp(t) = \left[\begin{array}{c c c c c c c} u(t) & u(t-1) & \cdots & u(t-n_b) & -y(t-1) & \cdots & -y(t-n_a) \end{array}\right]$$
+$$\vp^T(t) = \left[\begin{array}{c c c c c c c} u(t) & u(t-1) & \cdots & u(t-n_b) & -y(t-1) & \cdots & -y(t-n_a) \end{array}\right]$$
 The main idea of IV methods is to choose a different regressor vector that will yield different properties. We will use the notation $\xi(t)$ to denote the instrumental variable and use it to estimate the parameters, $\thiv$. This gives models and estimates for least squares and IV as
 \begin{align*}
-\mathcal{M}_{LS}: \fN\sumt\vp^T(t)y(t) &= \fN\sumt\vp(t)\vp^T(t)\theta + \underbrace{\fN\sumt\vp(t)\epsilon(t,\theta)}_{0,u\perp v} \\
+\mathcal{M}_{LS}: \fN\sumt\vp^T(t)y(t) &= \fN\sumt\vp(t)\vp^T(t)\theta + \underbrace{\fN\sumt\vp(t)\epsilon(t,\theta)}_{=0,~u\perp v} \\
 \thn &= \underbrace{\left[\fN\sumt\vp(t)\vp^T(t)\right]^{-1}}_{R^{-1}(N)} \underbrace{\left[\fN\sumt\vp(t)y(t)\right]}_{f(N)} \\
 \mathcal{M}_{IV}: \fN\sumt\xi(t)\vp^T(t) &= \fN\sumt\xi(t)\vp^T(t)\theta + \fN\sumt\xi(t)\epsilon(t,\theta) \\
 \thiv &= \underbrace{\left[\fN\sumt\xi(t)\vp^T(t)\right]^{-1}}_{R_\xi^{-1}(N)} \underbrace{\left[\fN\sumt\xi(t)y(t)\right]}_{f_\xi(N)}
@@ -175,8 +170,5 @@ This gives a better estimate for $D$ when noise is present.
 To get $\{g_0(k)\}$ we can use white noise as input and look at $R_{yu}(\tau)=g_0(\tau)$. If we can't use white noise as input then
 $$y(t) = \vp^T(t)\theta+\epsilon(t,\theta)$$
 with $\vp^T(t) = \left[\begin{array}{c c c c c} u(t) & u(t-1) & u(t-2) & \cdots & u(t-N) \end{array}\right]$. For a finite impulse response (FIR) model then we can look at the cross-spectral density function $\Phi_{yu}(\w)$ and do $R_{yu}(\tau) = \mathcal{F}^{-1}\{\Phi_{yu}(\w)\}$.
-
-
-% \end{document}
 
 %%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%

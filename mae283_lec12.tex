@@ -1,16 +1,11 @@
-% \documentclass[lecture,12pt,]{pcms-l}
-% \input preamble.tex
-% \input header.tex
-%
-% %%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%
-%
-% \begin{document}
+%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%
+
 \mainmatter
 \setcounter{page}{1}
 
 \lectureseries[\course]{\course}
 
-\auth[R.A. de Callafon]{Lecturer: \lecAuth\\ Scribe: \scribe}
+\auth[\lecAuth]{Lecturer: \lecAuth\\ Scribe: \scribe}
 \date{November 3, 2009}
 
 \setaddress
@@ -48,7 +43,7 @@ $\lozenge$
 \end{example}
 
 \begin{example}
-Let $v(t)=H_0(q)e(t)$ where $H_0(q)=1_cq^{-1}$ giving $v(t)=e(t)+ce(t-1)$. Then
+Let $v(t)=H_0(q)e(t)$ where $H_0(q)=1+cq^{-1}$ giving $v(t)=e(t)+ce(t-1)$. Then
 \begin{align*}
 v(t|t-1) &= [1-H_0^{-1}(q)]v(t) \\
 &= \left[1-\frac{1}{1+cq^{-1}}\right]v(t) \\
@@ -219,12 +214,7 @@ Also, $k$ is the number of time delays and $n_a$, $n_b$, $n_c$, $n_d$ and $n_f$ 
 \subsection{ARMAX Model}
 The ARMAX model is given by
 \begin{align*}
-\begin{split}
-G_\theta = \frac{B_\theta}{A_\theta},
-\end{split}
-\begin{split}
-H_\theta = \frac{C_\theta}{A_\theta}
-\end{split}
+G_\theta = \frac{B_\theta}{A_\theta}, \qquad H_\theta = \frac{C_\theta}{A_\theta}
 \end{align*}
 The prediction error is found to be
 \begin{align*}
@@ -237,12 +227,7 @@ This expression is called pseudo-linear. It is not actually linear because of th
 \subsection{OE Model}
 The OE model is given by
 \begin{align*}
-\begin{split}
-G_\theta = \frac{B_\theta}{A_\theta},
-\end{split}
-\begin{split}
-H_\theta = \frac{C_\theta}{A_\theta}
-\end{split}
+G_\theta = \frac{B_\theta}{A_\theta}, \qquad H_\theta = \frac{C_\theta}{A_\theta}
 \end{align*}
 The prediction error is found to be
 $$\epsilon(t,\theta) = y(t)-G_\theta u(t) = y(t)-\frac{B_\theta}{F_\theta}u(t)$$
@@ -250,7 +235,8 @@ $$\epsilon(t,\theta) = y(t)-G_\theta u(t) = y(t)-\frac{B_\theta}{F_\theta}u(t)$$
 \begin{example}
 Consider a $2$nd order continuous time system with no feedthrough component described by
 \begin{align*}
-\begin{cases} \dot{x}=Ax+Bu \\ y=Cx \end{cases}
+\dot{x} &= Ax + Bu \\
+y &= Cx
 \end{align*}
 This gives $D=0$, $A=2\times 2$, $B=2\times 1$ and $C=1\times 2$. If we use a zero-order hold (ZOH) input as $\{u(t)\}$ and decide to use the ARX model with linear optimization then what should $k$, $n_a$ and $n_b$ be set to? We want
 $$G_\theta(q) = \frac{b_1q^{-1}+b_2q^{-2}}{1+a_1q^{-1}+a_2q^{-2}}$$
@@ -266,8 +252,5 @@ $$G_\theta(q) = \frac{b_1q^{-1}+b_2q^{-2}+b_3q^{-3}}{1+a_1q^{-1}+a_2q^{-2}} = \f
 For $n_a=2$ it means that we are missing a pole, $a_3$. We need to have $n_a=3$ to get all of the information.
 $\lozenge$
 \end{example}
-
-
-% \end{document}
 
 %%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%

@@ -1,16 +1,11 @@
-% \documentclass[lecture,12pt,]{pcms-l}
-% \input preamble.tex
-% \input header.tex
-%
-% %%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%
-%
-% \begin{document}
+%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%
+
 \mainmatter
 \setcounter{page}{1}
 
 \lectureseries[\course]{\course}
 
-\auth[R.A. de Callafon]{Lecturer: \lecAuth\\ Scribe: \scribe}
+\auth[\lecAuth]{Lecturer: \lecAuth\\ Scribe: \scribe}
 \date{October 1, 2009}
 
 \setaddress
@@ -95,7 +90,7 @@ $$y(k) + a_1y(k-1)+\cdots + a_ny(k-n) = b_0u(k-l)+b_1u(k-1-l) + \cdots + b_nu(k-
 This form is much easier to use for computation of the $a_i$ and $b_i$ coefficients. It is also possible to write the output as
 $$y(k) = b_0u(k-1) + b_1u(k-1-l) + \cdots + b_nu(k-n-l) - a_1y(k-1) - \cdots - a_ny(k-n)$$
 
-If $a_i=0$, $i=0,1,2,\ldots,n$ then the sum of Markov parameters is finite, where $g_0=b_0, ~g_1=b_1, ~g_2=b_2, ~\ldots, ~g_n=b_n$. This means that the memory of the system is finite, where the memory of the system is embedded in the $a_i$ coefficients.
+If $a_i=0$, $i=0,1,2,\ldots,n$ then the sum of Markov parameters is finite and $g_0=b_0, ~g_1=b_1, ~g_2=b_2, ~\ldots, ~g_n=b_n$. This means that the memory of the system is finite where the memory of the system is embedded in the $a_i$ coefficients.
 
 \begin{example}
 Let
@@ -105,16 +100,16 @@ Let
 &\Rightarrow (1+a_1q^{-1})y(k) = u(k) \\
 &\Rightarrow y(k) = u(k) - a_1y(k-1)
 \end{align*}
-where the last equation is known as a "difference equation". How do we then re-write this as an infinite sum of Markov parameters? Apply the impulse input from (\ref{eq:03impulse}) to get the parameters as
+This last equation is known as a "difference equation". How do we then re-write this as an infinite sum of Markov parameters? Apply the impulse input from (\ref{eq:03impulse}) to get the parameters as
 \begin{align*}
 y(0) &= u(0) - a_1y(-1) = 1-0 = 1 \\
 y(1) &= u(1) - a_1y(0) = 0 - a_1 \cdot 1 = -a_1 \\
 y(2) &= u(2) - a_1y(1) = a_1^2 \\
 y(3) &= u(3) - a_1y(2) = -a_1^3 \\
 \vdots & \\
-g_k &= (-1)^ka_1^k
+\Rightarrow g_k &= (-1)^ka_1^k
 \end{align*}
-and the system is BIBO stable iff $|a_1|<1$. Since there is an exponential it is automatically strictly BIBO stable because the exponential function is decreasing and will "win" over the linear function of $k$.
+and the system is BIBO stable if and only if $|a_1|<1$. Since there is an exponential it is automatically strictly BIBO stable because the exponential function is decreasing and will "win" over the linear function of $k$.
 $\lozenge$
 \end{example}
 \begin{figure}[ht!]
@@ -150,41 +145,22 @@ y(2) &= Cx(2) + Du(2) = CAB \\
 x(3) &= Ax(2) + Bu(2) = A^2B \\
 y(3) &= Cx(3) + Du(3) = CA^2B \\
 &\vdots \\
-g_k &= \begin{cases} D, & k=0 \\ CA^{k-1}B, & k\neq 0 \end{cases}
+\Rightarrow g_k &= \begin{cases} D, & k=0 \\ CA^{k-1}B, & k\neq 0 \end{cases}
 \end{align*}
 
 \subsection{Linear Regression Representation}
+\label{sec:linearregression}
 Let the system description be
 $$y(t)=\phi^T(t)\theta = \theta^T\phi(t)$$
 where $\phi(t)$ is the regressor and $\theta$ is the parameter. Typically, $\phi(t)$ contains past inputs and outputs.
 \begin{align*}
-\begin{split}
-\phi(t) = \left[\begin{array}{c}
-			u(k) \\
-			u(k-1) \\
-			\vdots \\
-			u(k-n) \\
-			-y(k-1) \\
-			-y(k-2) \\
-			\vdots \\
-			-y(k-n)
-		\end{array}\right],
-\end{split}
-\begin{split}
-\theta = \left[\begin{array}{c}
-			b_0 \\
-			b_1 \\
-			\vdots \\
-			b_n \\
-			a_1 \\
-			a_2 \\
-			\vdots \\
-			a_n
-		\end{array}\right]
-\end{split}
+\phi^T(t) &= \left[\begin{array}{c c c c c c c c}
+u(k) & u(k-1) & \cdots & u(k-n) & -y(k-1) & -y(k-2) & \cdots & -y(k-n) \end{array}\right] \\
+\theta &= \left[\begin{array}{c c c c c c c c}
+b_0 & b_1 & \cdots & b_n & a_1 & a_2 & \cdots & a_n \end{array}\right]^T
 \end{align*}
 Writing out the product gives
-$$y(k) = G(q)u(k), ~ G(q) = \frac{b_0+b_1q^{-1}+\cdots+b_nq^{-n}}{1+a_1q^{-1}+\cdots+a_nq^{-n}}$$
+$$y(k) = G(q)u(k), \qquad G(q) = \frac{b_0+b_1q^{-1}+\cdots+b_nq^{-n}}{1+a_1q^{-1}+\cdots+a_nq^{-n}}$$
 Linear regression makes it easy to modify elements of $\phi(t)$ to make the system description non-linear. Possibilities include squaring some of the elements or multiplying two elements to get a new element.
 
 \section{Summary}
@@ -192,7 +168,7 @@ Linear regression makes it easy to modify elements of $\phi(t)$ to make the syst
 $G(q) = \sum_{k=0}^\infty g_kq^{-k}$, with BIBO stability if $\sum_{k=0}^\infty |g_k| < \infty$ and strict BIBO stability if $\sum_{k=0}^\infty k|g_k| < \infty$.
 
 \subsection{Transfer Function}
-$G(q) = \frac{num}{den}$, and assuming no cancellations then the system is strictly BIBO stable if $|\text{roots}\lbrace \text{den}(q)\rbrace|<1$. Figure \ref{fig:03poleMapSZ} shows that the continuous time poles must be $\text{Re}(\cdot) < 0$ and the discrete time poles must be $|(\cdot)| < 1$ for stability.
+$G(q) = \frac{\text{num}}{\text{den}}$, and assuming no cancellations then the system is strictly BIBO stable if $|\text{roots}\lbrace \text{den}(q)\rbrace|<1$. Figure \ref{fig:03poleMapSZ} shows that the continuous time poles must be $\text{Re}(\cdot) < 0$ and the discrete time poles must be $|(\cdot)| < 1$ for stability.
 \begin{figure}[ht!]
 	\centering
 	\includegraphics[width=.6\textwidth]{images/03poleMapSZ}
@@ -221,7 +197,7 @@ $G(q)|_{z=q} = G(z)$
 
 \subsection{z-Transform and System Poles}
 $z=e^{s\dt}$ also holds for poles $S$ of a continuous time system converted to discrete time using the ZOH input signal.
-$$z_i=e^{S_i\dt}, ~ S_i = a_i+jb_i \Rightarrow z_i = e^{a_i\dt} \cdot e^{jb_i\dt}$$
+$$z_i=e^{S_i\dt}, \qquad S_i = a_i+jb_i \Rightarrow z_i = e^{a_i\dt} \cdot e^{jb_i\dt}$$
 For stability $|z_i|<1$, $|z_i|=\left| e^{a_i\dt}\right|$. See Figure \ref{fig:03poleMapSZ} for pole ranges. For very small $\dt$ the poles become ill-conditioned as seen in Figure \ref{fig:03poleMapSZsmallT}.
 \begin{figure}[ht!]
 	\centering
@@ -231,12 +207,9 @@ For stability $|z_i|<1$, $|z_i|=\left| e^{a_i\dt}\right|$. See Figure \ref{fig:0
 \end{figure}
 
 \subsection{Frequency Response}
-In continuous time the system can be modeled as $G(s)|_{s=j\w}\to|G(j\w)|$. And in discrete time the system model $G(z)|_{z=e^{j\w\dt}}$ is periodic with period $\frac{2\pi}{\dt}$. Also, $G(e^{j\w\dt}) = \overline{G(e^{-j\w\dt)}}$ means that we  \textit{still} only need to plot the function over the range $[0, \frac{\pi}{2}]$, where the Nyquist frequency is $\w_N=\frac{\pi}{2}$. When the functions are plotted outside of this range it looks unprofessional.
+In continuous time the system can be modeled as $G(s)|_{s=j\w}\to|G(j\w)|$. And in discrete time the system model $G(z)|_{z=e^{j\w\dt}}$ is periodic with period $\frac{2\pi}{\dt}$. Also, $G(e^{j\w\dt}) = \overline{G(e^{-j\w\dt)}}$ means that we  \textit{still} only need to plot the function over the range $[0, \w_N]$, where the Nyquist frequency is $\w_N=\frac{\pi}{2}$. When the functions are plotted outside of this range it looks unprofessional.
 
 \subsection{Ljung Notation}
 In the textbook by Ljung it always uses $\dt=1$ in discrete time and does so without loss of generality. This means that $u(k\dt) = u(k)$. The book uses $u(t)$ for $u(k)$, where $t=0,1,2,\ldots,n$. Try not to get confused.
-
-
-% \end{document}
 
 %%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%

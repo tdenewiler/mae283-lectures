@@ -1,16 +1,11 @@
-% \documentclass[lecture,12pt,]{pcms-l}
-% \input preamble.tex
-% \input header.tex
-%
-% %%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%
-%
-% \begin{document}
+%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%
+
 \mainmatter
 \setcounter{page}{1}
 
 \lectureseries[\course]{\course}
 
-\auth[R.A. de Callafon]{Lecturer: \lecAuth\\ Scribe: \scribe}
+\auth[\lecAuth]{Lecturer: \lecAuth\\ Scribe: \scribe}
 \date{September 24, 2009}
 
 \setaddress
@@ -53,13 +48,13 @@ $$\text{cov}\{\thn\} = E\{(\thn-\theta_0)(\thn-\theta_0)^T\}$$
 Converting the system in (\ref{eq:09sys}) to matrix form gives
 \begin{align*}
 \mathcal{S}: Y_N &= \Phi_N\theta_0+E_N \\
-\Rightarrow \thn &= (\frac{1}{N}\Phi_N^T\Phi_N)^{-1}(\frac{1}{N}\Phi_N^TY_N) = R(N)^{-1}f(N)
+\Rightarrow \thn &= \left(\frac{1}{N}\Phi_N^T\Phi_N\right)^{-1}\left(\frac{1}{N}\Phi_N^TY_N\right) = R(N)^{-1}f(N)
 \end{align*}
 Then the covariance is found as
 \begin{align*}
-\text{cov}\{\thn\} &= E\left\lbrace(\frac{1}{N}\Phi_N^T\Phi_N)^{-1} (\frac{1}{N}\Phi_N^TE_N) (\frac{1}{N}E_N^T\Phi_N) (\frac{1}{N}\Phi_N^T\Phi_N)^{-1}\right\rbrace \\
-&= \lambda E\left\lbrace(\frac{1}{N}\Phi_N^T\Phi_N)^{-1} (\frac{1}{N}\Phi_N^T\Phi_N) (\frac{1}{N}\Phi_N^T\Phi_N)^{-1}\right\rbrace \\
-&\sim \lambda E\left\lbrace(\frac{1}{N}\Phi_N^T\Phi_N)^{-1}\right\rbrace
+\text{cov}\{\thn\} &= E\left\lbrace\left(\frac{1}{N}\Phi_N^T\Phi_N\right)^{-1} \left(\frac{1}{N}\Phi_N^TE_N\right) \left(\frac{1}{N}E_N^T\Phi_N\right) \left(\frac{1}{N}\Phi_N^T\Phi_N\right)^{-1}\right\rbrace \\
+&= \lambda E\left\lbrace\left(\frac{1}{N}\Phi_N^T\Phi_N\right)^{-1} \left(\frac{1}{N}\Phi_N^T\Phi_N\right) \left(\frac{1}{N}\Phi_N^T\Phi_N\right)^{-1}\right\rbrace \\
+&\sim \lambda E\left\lbrace\left(\frac{1}{N}\Phi_N^T\Phi_N\right)^{-1}\right\rbrace
 \end{align*}
 where $\lambda = \frac{1}{N}E_NE_N^T$ is a scalar that can be moved outside the expectation operator. This shows that
 $$\text{cov}\{\thn\} \sim \frac{1}{N}\lambda R^{-1}(N)$$
@@ -135,21 +130,16 @@ G_0(q) = \frac{b_0+b_1+\cdots+b_{n_b}}{1+a_1+\cdots+a_{n_a}} = s
 where $s$ is a known scalar value. (\ref{eq:constraint}) is the constraint we wish to enforce. We can turn (\ref{eq:constraint}) into a linear constraint such that
 \begin{align*}
 &\frac{b_0+b_1+\cdots+b_{n_b}}{1+a_1+\cdots+a_{n_a}} = s \Leftrightarrow b_0+b_1+\cdots+b_{n_b} - s(1+a_1+\cdots+a_{n_a}) = 0 \\
-&\rightarrow \left[\begin{array}{c c c c c c c c c} 1 & 1 & \cdots & 1 & \vdots & -s & -s & \cdots & -s \end{array}\right]\theta-s=0 \\
-&\rightarrow A\theta = b
+&\Rightarrow \left[\begin{array}{c c c c c c c c c} 1 & 1 & \cdots & 1 & \vdots & -s & -s & \cdots & -s \end{array}\right]\theta-s=0 \\
+&\Rightarrow A\theta = b
 \end{align*}
 where the second equation equals zero because $w(\theta)=0$ and the last equation shows the linear constraint as being $A\theta=b$. This results in the constrained least squares estimate being
 $$\thn = \min_\theta\frac{1}{N}\sum_{t=1}^N\epsilon(t,\theta)$$
 subject to $A\theta=b$. Next we find that
-$$\hat{\theta}_N = \min_{\theta,\lambda}[\underbrace{\frac{1}{N}\sum_{t=1}^N\epsilon(t,\theta)}_{V(\theta)} +\lambda w(\theta)]$$
+$$\hat{\theta}_N = \min_{\theta,\lambda}\left[\underbrace{\frac{1}{N}\sum_{t=1}^N\epsilon(t,\theta)}_{V(\theta)} +\lambda w(\theta)\right]$$
 where $\lambda$ is called a constraint variable. To minimize this equation we must have
 \begin{align*}
-\begin{split}
-\frac{\partial\hat{\theta}_N}{\partial\theta}=0,
-\end{split}
-\begin{split}
-\frac{\partial\hat{\theta}_N}{\partial\lambda}=0
-\end{split}
+\frac{\partial\hat{\theta}_N}{\partial\theta}=0, \qquad \frac{\partial\hat{\theta}_N}{\partial\lambda}=0
 \end{align*}
 Recall that $\thn=R(N)^{-1}f(N)\Rightarrow R(N)\thn-f(N)=0$. Then we find
 \begin{align*}
@@ -202,8 +192,5 @@ This leads to the real way that a least squares estimate is found. Let $||\cdot|
 
 \subsection{Computer Precision}
 On modern computer hardware running \textsc{Matlab} the machine precision is approximately $10^{15}$. If $\kappa(X)=10^7$ then $\kappa(X^TX)=10^{14}$ which is getting close to the hardware limit. However, using (\ref{eq:lsreal}) for the least squares estimate gives a condition number of $\kappa(X)=\kappa(R_{11})=10^7$. The difference between methods used for computing the least squares estimate can make the difference between whether a problem is computationally feasible or not.
-
-
-% \end{document}
 
 %%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%
