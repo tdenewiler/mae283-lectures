@@ -75,7 +75,10 @@
        height="423"
        width="640"
        sodipodi:absref="/home/thomas/school/mae283/lectures/images/pastedpic_09292009_173937.png"
-       xlink:href="pastedpic_09292009_173937.png" />
+       xlink:href="pastedpic_09292009_173937.png"
+       inkscape:export-xdpi="150"
+       inkscape:export-ydpi="150"
+       inkscape:export-filename="/home/thomas/school/mae283/lectures/images/02lowSampleRate.png" />
     <path
        style="fill:none;fill-rule:evenodd;stroke:#000000;stroke-width:1;stroke-linecap:butt;stroke-linejoin:miter;stroke-opacity:1;stroke-miterlimit:4;stroke-dasharray:none"
        d="M 120.36004,405.73828 L 665.60352,405.73828"

@@ -91,8 +91,8 @@
      inkscape:pageopacity="0.0"
      inkscape:pageshadow="2"
      inkscape:zoom="1.4"
-     inkscape:cx="330.17513"
-     inkscape:cy="772.8626"
+     inkscape:cx="179.64632"
+     inkscape:cy="775.6793"
      inkscape:document-units="px"
      inkscape:current-layer="layer1"
      showgrid="false"
@@ -177,7 +177,7 @@
          sodipodi:role="line"
          id="tspan3949"
          x="547.50269"
-         y="189.69191">f(t)</tspan></text>
+         y="189.69191">u(t)</tspan></text>
     <text
        xml:space="preserve"
        style="font-size:40px;font-style:italic;font-variant:normal;font-weight:normal;font-stretch:normal;text-align:start;line-height:100%;writing-mode:lr-tb;text-anchor:start;fill:#000000;fill-opacity:1;stroke:none;stroke-width:1px;stroke-linecap:butt;stroke-linejoin:miter;stroke-opacity:1;font-family:Liberation Serif;-inkscape-font-specification:Liberation Serif Italic"
@@ -314,13 +314,9 @@
        inkscape:export-xdpi="600"
        inkscape:export-ydpi="600" />
     <path
-       style="fill:none;fill-rule:evenodd;stroke:#000000;stroke-width:1px;stroke-linecap:butt;stroke-linejoin:miter;stroke-opacity:1"
-       d="M 435.37575,300.80869 L 435.37575,331.61834"
+       style="fill:none;fill-rule:evenodd;stroke:#000000;stroke-width:1;stroke-linecap:butt;stroke-linejoin:miter;stroke-opacity:1;stroke-miterlimit:4;stroke-dasharray:none"
+       d="M 435.37575,300.6515 L 435.37575,321.77553"
        id="path4283" />
-    <path
-       id="path4285"
-       d="M 481.84277,300.80869 L 481.84277,331.61834"
-       style="fill:none;fill-rule:evenodd;stroke:#000000;stroke-width:1px;stroke-linecap:butt;stroke-linejoin:miter;stroke-opacity:1" />
     <text
        xml:space="preserve"
        style="font-size:40px;font-style:italic;font-variant:normal;font-weight:normal;font-stretch:normal;text-align:start;line-height:125%;writing-mode:lr-tb;text-anchor:start;fill:#000000;fill-opacity:1;stroke:none;stroke-width:1px;stroke-linecap:butt;stroke-linejoin:miter;stroke-opacity:1;font-family:Liberation Serif;-inkscape-font-specification:Liberation Serif Italic"
@@ -348,5 +344,31 @@
          x="464.92273"
          y="303.33405"
          style="font-size:20px">ɛ</tspan></text>
+    <text
+       xml:space="preserve"
+       style="font-size:40px;font-style:italic;font-variant:normal;font-weight:normal;font-stretch:normal;text-align:start;line-height:100%;writing-mode:lr-tb;text-anchor:start;fill:#000000;fill-opacity:1;stroke:none;stroke-width:1px;stroke-linecap:butt;stroke-linejoin:miter;stroke-opacity:1;font-family:Liberation Serif;-inkscape-font-specification:Liberation Serif Italic"
+       x="425.14658"
+       y="149.28581"
+       id="text2595"
+       sodipodi:linespacing="100%"><tspan
+         sodipodi:role="line"
+         x="425.14658"
+         y="149.28581"
+         id="tspan2597"><tspan
+           dx="0 0 0"
+           dy="0 0 0 8.5714293"
+           id="tspan2599">δ(t<tspan
+   style="font-size:20px"
+   id="tspan2607">k</tspan></tspan><tspan
+           style="font-size:20px;font-style:italic;font-variant:normal;font-weight:normal;font-stretch:normal;text-align:start;line-height:100%;writing-mode:lr-tb;text-anchor:start;font-family:Liberation Serif;-inkscape-font-specification:Liberation Serif Italic"
+           dy="-10.101525"
+           id="tspan2603"><tspan
+             style="font-size:40px"
+             dy="-8.0812187"
+             id="tspan2605">)</tspan></tspan></tspan></text>
+    <path
+       id="path2609"
+       d="M 482.07218,300.6515 L 482.07218,321.77553"
+       style="fill:none;fill-rule:evenodd;stroke:#000000;stroke-width:1;stroke-linecap:butt;stroke-linejoin:miter;stroke-opacity:1;stroke-miterlimit:4;stroke-dasharray:none" />
   </g>
 </svg>

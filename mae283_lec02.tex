@@ -164,7 +164,7 @@ This will be useful later in comparing the Fourier transforms of discrete and co
 \end{figure}
 
 \section{Fourier Transform}
-The Fourier transform involves taking a signal and decomposing it into a sum of $\sin$'s and $\cos$'s. We can use Euler's formula to convert from the time to the frequency domain
+The Fourier transform involves taking a signal and decomposing it into a sum of sines and cosines. We can use Euler's formula to convert from the time to the frequency domain
 $$e^{j\w t} = \cos\w t + j\sin\w t.$$
 Then we can write the Fourier and inverse Fourier transforms as
 \begin{align*}
@@ -175,7 +175,7 @@ u(t) &= \frac{1}{2\pi} \fint u(\w)e^{j\w t}d\w.
 \textit{Example:} Given a signal $u(t)=\cos\wo t$ the Fourier transform is found as
 \begin{align*}
 u(\w) &= \tint \cos(\wo t)e^{-j\w t}dt \\
-&= \tint \left(\cos(\wo t)\cos(-\w t) + j\sin(-\w t)\cos(\wo t)\right)dt \\
+&= \tint \left(\cos(\wo t)\cos(\w t) + j\sin(-\w t)\cos(\wo t)\right)dt \\
 &= \tint \left(\cos(\w t)\cos(\wo t) - j\sin(\w t)\cos(\wo t)\right)dt \\
 &\text{use }\tint \sin(\w t)\cos(\wo t)dt = 0, ~ \forall \w \\
 &= \tint \cos(\w t)\cos(\wo t)dt \\
@@ -205,10 +205,10 @@ u_s(\w) &= \tint u_s(t)\emjwt dt \\
 This shows that an infinite sum of sampled signals is a continuous function. Also, since we know that $e^{-j\w k\Delta T} = \cos(\w k\Delta T) - j\sin(\w k\Delta T)$, then we can say that $e^{-j\w k\Delta T}$ has periodicity with $\w_s = \frac{2\pi}{\Delta T}$, where $\w_s$ is known as the sampling frequency and has units of $rad/s$. This lets us write
 \begin{align*}
 u_s(\w) &= u_s(\w+n\w_s) \text{, where } \w_s = \frac{2\pi}{\Delta T} \text{, } n\in\mathbb{Z} \\
-\Rightarrow u_s(\w) &= u_s(\w+\frac{2\pi}{\Delta T} \text{, } n=1 \\
-u_s(\w) &= -\overline{u_s(\w)}
+\Rightarrow u_s(\w) &= u_s(\w+\frac{2\pi}{\Delta T}) \text{, } n=1 \\
+u_s(\w) &= -\overline{u_s(\w)}.
 \end{align*}
-and $\mathbb{Z}$ is the set of natural numbers and $\overline{(\cdot)}$ represents the complex conjugate of $(\cdot)$. Remember that $u_s(\w)$ is the Fourier transform of $u(s)$. Using the properties of the Fourier transform it is only necessary to know a small segment of the function, the rest can be automatically duplicated as shown in Figure \ref{fig:02sin}, where knowledge of the function in the range $[0,\frac{2\pi}{\Delta T}]$ is sufficient to recreate the entire function shown.
+$\mathbb{Z}$ is the set of natural numbers and $\overline{(\cdot)}$ represents the complex conjugate of $(\cdot)$. Remember that $u_s(\w)$ is the Fourier transform of $u_s(t)$. Using the properties of the Fourier transform it is only necessary to know a small segment of the function, the rest can be automatically duplicated as shown in Figure \ref{fig:02sin}, where knowledge of the function in the range $[0,\frac{2\pi}{\Delta T}]$ is sufficient to recreate the entire function shown.
 \begin{figure}[ht!]
 	\centering
 	\includegraphics[width=.5\textwidth]{images/02sin}
@@ -216,9 +216,9 @@ and $\mathbb{Z}$ is the set of natural numbers and $\overline{(\cdot)}$ represen
 	\label{fig:02sin}
 \end{figure}
 
-The result of looking at $\text{Re}(u_s(\w))$ is that the signal, after going through a Fourier transform, is periodic over the range $[0, \frac{2\pi}{\Delta T}]$ and that the complex conjugate of the signal is the same as the original signal. Thus, it is sufficient to compute the Fourier transform \textit{only} over the range $[0, \frac{\pi}{\Delta T}]$. This sampling frequency is known as the Nyquist frequency, $\w_N = \frac{\w_s}{2} = \frac{\pi}{2}$ and has units of $rad/s$.
+The result of looking at $\text{Re}\{u_s(\w)\}$ is that the signal, after going through a Fourier transform, is periodic over the range $[0, \frac{2\pi}{\Delta T}]$ and that the complex conjugate of the signal is the same as the original signal. Thus, it is sufficient to compute the Fourier transform \textit{only} over the range $[0, \frac{\pi}{\Delta T}]$. This sampling frequency is known as the Nyquist frequency, $\w_N = \frac{\w_s}{2} = \frac{\pi}{2}$, and has units of $rad/s$.
 
-One of the drawbacks of sampling a continuous-time signal is that information about higher frequencies is lost. This can be seen by looking at a sinusoidal function. If $f(t) = \sin(\w t)$ and samples are taken at $\w_N = \frac{\w t}{2}$, then $f(t)$ will look like $f(t) = 0$ when sampling. That is how information is lost. Figure \ref{fig:02lowSamplingRate} shows that if the signal is a $\sin$ wave that is only sampled at the points indicated the captured signal will look like a line with zero slope and zero magnitude.
+One of the drawbacks of sampling a continuous-time signal is that information about higher frequencies is lost. This can be seen by looking at a sinusoidal function. If $f(t) = \sin(\w t)$ and samples are taken at $\w_N = \frac{\w t}{2}$, then $f(t)$ will look like $f(t) = 0$ when sampling. That is how information is lost. Figure \ref{fig:02lowSampleRate} shows that if the signal is a sine wave that is only sampled at the points indicated the captured signal will look like a line with zero slope and zero magnitude.
 \begin{figure}[ht!]
 	\centering
 	\includegraphics[width=.5\textwidth]{images/02lowSampleRate}
@@ -229,27 +229,27 @@ One of the drawbacks of sampling a continuous-time signal is that information ab
 \subsection{Relation between Original and Sampled Signal}
 Given
 $$u_s(\w) = \w_s \sum_{k=-\infty}^\infty u(\w-k\w_s), \w_s = \frac{2\pi}{\Delta T}$$
-where $u(\w-k\w_s)$ is the original signal shifted by $\w_s$, we can see how high frequency information is lost as shown in Figure \ref{fig:02freqResp}.
+where $u(\w-k\w_s)$ is the original signal shifted by $\w_s$, we can see how high frequency information is lost as shown in Figure \ref{fig:02freqResp}. The sampled signal has a higher magnitude than the original signal throughout most of the range.
 \begin{figure}[ht!]
 	\centering
-	\includegraphics[width=.5\textwidth]{images/02freqResp}
+	\includegraphics[width=.56\textwidth]{images/02freqResp}
 	\caption{Sampling of a $\sin$ wave at a low sampling rate.}
 	\label{fig:02freqResp}
 \end{figure}
 
 \subsection{Aliasing}
-After a Fourier transform is applied low frequencies are about the same but high frequencies appear to have a larger magnitude compared to the original signal. This is due to shifting by $\w_s$ and is called aliasing.
+After a Fourier transform is applied low frequencies are about the same but high frequencies appear to have a larger magnitude compared to the original signal. This is due to shifting by $\w_s$ and is called aliasing, as seen in Figure \ref{fig:02aliasingSines}.
 \begin{figure}[ht!]
 	\centering
-	\includegraphics[width=.5\textwidth]{images/02aliasing}
+	\includegraphics[width=.6\textwidth]{images/02aliasingSines}
 	\caption{Effects of aliasing with original and sampled signal.}
-	\label{fig:02aliasing}
+	\label{fig:02aliasingSines}
 \end{figure}
 
 To remove artifacts due to aliasing we need to sample at $\w_s = 2\cdot\w_N$. If it is not possible to sample at $\w_s = 2\cdot\w_N$ because of hardware limitations or some other factor then an anit-aliasing filter is needed. For example, if $\w_N = 100 Hz$, then the anti-aliasing filter should use a cut-off of $< 50 Hz$, which will act as a low-pass filter in order to remove the artifacts associated with high frequencies.
 \begin{figure}[ht!]
 	\centering
-	\includegraphics[width=.5\textwidth]{images/02aafilter}
+	\includegraphics[width=.3\textwidth]{images/02aafilter}
 	\caption{Block diagram of estimator with anti-aliasing filter.}
 	\label{fig:02aafilter}
 \end{figure}
@@ -265,7 +265,7 @@ where $u_d(k)$ represents the discrete time samples used to compute the continuo
 
 \subsection{Finite Time Fourier Transform (FTFT)}
 A FTFT is defined, for $\w\in\mathbb{R}$, by
-$$u_N(\w) = \sum_{k=0}^{N-1} u_d(k) e^{-j\w k\Delta T}$$
+$$u_N(\w) = \sum_{k=0}^{N-1} u_d(k) e^{-j\w k\Delta T}.$$
 
 \subsection{Properties of Fourier Transforms}
 Some useful properties of Fourier transforms are
@@ -280,7 +280,7 @@ When the signal is periodic there are several other important properties. The fi
 
 Then the sampled version of the finite time DTFT is
 $$\int_{\w=l\cdot \frac{2\pi}{T}-\epsilon}^{l\cdot \frac{2\pi}{T}+\epsilon} u_\infty(\w)d\w
-= \frac{2\pi}{T}u_N(l\cdot \frac{2\pi}{T}$$
+= \frac{2\pi}{T}u_N(l\cdot \frac{2\pi}{T}).$$
 This shows that we only need to compute the finite time DTFT for the range $\w\in[0,\frac{\pi}{T}]$, and even then we only need to compute at the discrete frequencies of $l\cdot\frac{2\pi}{T}$ on that range.
 
 \subsection{Discrete Fourier Transform (DFT)}
@@ -293,7 +293,7 @@ These are the functions used to compute Fourier transforms in Matlab using the \
 \subsection{Measurement Resolution and Implied Periodicity}
 The resolution in the time domain is $\Delta T$, with units of $s$. The resolution in the frequency domain is $\frac{2\pi}{T}$, with units in $rad/s$. Note that $T=N\cdot\Delta T$. The resolution in the frequency domain is a function of the number of samples \textit{and} the sampling time. This makes sense because  we need to sample signals longer in order to capture the low-frequency portions of the signal.
 
-$N$ points in the time domain (which only have $\text{Re}$ parts and no $\text{Im}$ parts) results in $\frac{N}{2}$ points in the frequency domain. Those $\frac{N}{2}$ points in the frequency domain are in the range $(0,\frac{\pi}{\Delta T})$, and each of those points has a real and an imaginary part.
+$N$ points in the time domain (which only have $\text{Re}$ parts and no $\text{Im}$ parts) results in $\frac{N}{2}$ points in the frequency domain. Those $\frac{N}{2}$ points in the frequency domain are in the range $[0,\frac{\pi}{\Delta T}]$, and each of those points has a real and an imaginary part.
 
 An important point to notice is that once a signal is sampled to generate $u_N(\w)$ at $u_N(\frac{2\pi}{T}\cdot l)$ there is an implicit assumption made that the original signal, $u(t)$, was periodic!
 
