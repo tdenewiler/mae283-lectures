@@ -215,11 +215,11 @@ Y_N(\w) &= \frac{1}{\sqrt{N}}\sum_{t=1}^Ny(t)e^{-j\w t} \\
 U_N(\w) &= \frac{1}{\sqrt{N}}\sum_{t=1}^Nu(t)e^{-j\w t} \\
 Y_N(\w) &= G_0(e^{j\w})U_N(\w) + R_N(\w)
 \end{align*}
-The first two equalities are discrete Fourier transforms. $Y_N(\w)$ and $U_N(\w)$ are finite F.T.s and $R_N(\w)$ is an infinite Fourier transform. This leads to
+The first two equalities are discrete Fourier transforms. $Y_N(\w)$ and $U_N(\w)$ are finite Fourier transforms and $R_N(\w)$ is an infinite Fourier transform. This leads to
 $$|R_N(\w)| \leq 2\cdot C_w\cdot \frac{C_g}{\sqrt{N}}$$
 where $|u(t)|<C_w ~\forall t$, $C_g=\sum_{k=0}^\infty k|g_k|<\infty$ if the system is BIBO stable.
 \end{theorem}
-Note that $R_N(\w)$ is the noise due to the inital and end conditions that can be bounded. This noise arises because when we use the F.T. we automatically make the assumption that the signal is periodic even when they are not periodic as discussed in Lecture 2.
+Note that $R_N(\w)$ is the noise due to the inital and end conditions that can be bounded. This noise arises because when we use the Fourier transform we automatically make the assumption that the signal is periodic even when they are not periodic as discussed in Lecture 2.
 
 
 % \end{document}
