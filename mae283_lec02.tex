@@ -190,7 +190,7 @@ u(t) &= \fint u(\w)e^{j\w t}dt \\
 &= \frac{1}{2}\left(2\cos\wo t\right) \\
 &= \cos\wo t,
 \end{align*}
-which is exactly what we started with, up to a scale factor of $\frac{1}{2\pi}$ that was left out of the expression for the inverse Fourier transform.
+which is exactly what we started with, up to a scale factor of $\frac{1}{2\pi}$ that was left out of the expression for the inverse Fourier transform. $\lozenge$
 
 \subsection{Effect of Sampling on Fourier Transform}
 Notice from Figure \ref{fig:02samplingDeltaFn} that $u_s(t) = 0$ almost everywhere, with the exceptions being that $u_s(t) = \infty$ at $t=k\Delta T$. Then we have, with $t\in\mathbb{R}$ and $\w\in\mathbb{R}$,
@@ -288,7 +288,7 @@ The discrete, or ``sampled'', Fourier transform is defined as
 $$u_N(l) = \sum_{k=0}^{N-1} u_d(k) e^{-jl\frac{2\pi}{T}k\Delta T}$$
 and we can go the other direction using
 $$u_d(k\Delta T) = \frac{1}{T} \sum_{l=0}^{N-1} u_N(l) e^{jl\frac{2\pi}{T}k\Delta T}.$$
-These are the functions used to compute Fourier transforms in Matlab using the \texttt{fft} command.
+These are the functions used to compute Fourier transforms in \textsc{Matlab} using the \texttt{fft} command.
 
 \subsection{Measurement Resolution and Implied Periodicity}
 The resolution in the time domain is $\Delta T$, with units of $s$. The resolution in the frequency domain is $\frac{2\pi}{T}$, with units in $rad/s$. Note that $T=N\cdot\Delta T$. The resolution in the frequency domain is a function of the number of samples \textit{and} the sampling time. This makes sense because  we need to sample signals longer in order to capture the low-frequency portions of the signal.
