@@ -138,7 +138,7 @@ For discrete time it is useful to model the input signal, $u(k\Delta T)$, as a `
 y(t) &= \tauint g(\tau)u(k\dt -\tau)d\tau \\
 &= \sum_{l=0}^\infty \int_{\tau=(l-1)\dt}^{l\dt}g(\tau)u(k\dt -\tau)d\tau \\
 &= \sum_{l=0}^\infty g_d(l)u_d(k-l) \\
-&= \sum_{l=0}^\infty q^{-1}u(k)
+&= \sum_{l=0}^\infty g_d(l)q^{-1}u(k)
 \end{align*}
 where $g_d(l)=\int_{\tau=(l-1)\dt}^{l\dt}g(\tau)d\tau$. The second equality is due to our ability to consider $u(k\dt -\tau)$ to be constant. Note that the expressions $qu(k) = u(k+1)$ and $q^{-1}u(k)=u(k-1)$ are not multiplication operations but instead are time-shift operators. All of this results in
 $$y(k) = \sum_{l-0}^\infty g_k(l)q^{-l}u(k) = G(q)u(k)$$
@@ -214,7 +214,7 @@ y(3) &= u(3) - a_1y(2) = -a_1^3 \\
 \vdots & \\
 g_k &= (-1)^ka_1^k
 \end{align*}
-and the system is BIBO stable iff $|a_1|<1$, and since there is an exponential it is automatically strictly BIBO stable because the exponential function will "win" over the linear function of $k$.
+and the system is BIBO stable iff $|a_1|<1$. Since there is an exponential it is automatically strictly BIBO stable because the exponential function is decreasing and will "win" over the linear function of $k$.
 $\lozenge$
 \begin{figure}[ht!]
 	\centering
@@ -239,7 +239,7 @@ How do we go from state space to transfer function representation? Use
 \end{align*}
 where we let $G(q) = (C(qI-A)^{-1}B+D$.
 
-How do we go from state space to impulse response representation? Recall that the IR is $\sum_{k=0}^\infty g_kq^{-k}$. By applying an impulse response from (\ref{eq:03impulse}) as input to get
+How do we go from state space to impulse response representation? Recall that the IR is $\sum_{k=0}^\infty g_kq^{-k}$. Applying an impulse response from (\ref{eq:03impulse}) as input yields
 \begin{align*}
 y(0) &= Cx(0) + Du(0) = D \\
 x(1) &= Ax(0) + Bu(0) = B \\
@@ -264,6 +264,7 @@ where $\phi(t)$ is the regressor and $\theta$ is the parameter. Typically, $\phi
 			\vdots \\
 			u(k-n) \\
 			-y(k-1) \\
+			-y(k-2) \\
 			\vdots \\
 			-y(k-n)
 		\end{array}\right],
@@ -287,7 +288,7 @@ Linear regression makes it easy to modify elements of $\phi(t)$ to make the syst
 
 \section{Summary}
 \subsection{Impulse Response}
-$G(q) = \sum_{k=0}^\infty$, with BIBO stability if $\sum_{k=0}^\infty |g_k| < \infty$ and strict BIBO stability if $\sum_{k=0}^\infty k|g_k| < \infty$.
+$G(q) = \sum_{k=0}^\infty g_kq^{-k}$, with BIBO stability if $\sum_{k=0}^\infty |g_k| < \infty$ and strict BIBO stability if $\sum_{k=0}^\infty k|g_k| < \infty$.
 
 \subsection{Transfer Function}
 $G(q) = \frac{num}{den}$, and assuming no cancellations then the system is strictly BIBO stable if $|\text{roots}\lbrace \text{den}(q)\rbrace|<1$. Figure \ref{fig:03poleMapSZ} shows that the continuous time poles must be $\text{Re}(\cdot) < 0$ and the discrete time poles must be $|(\cdot)| < 1$ for stability.
