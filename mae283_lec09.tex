@@ -178,19 +178,17 @@ The invertibility of $R(N)$ is equivalent to $\{u(t)\}$ being a persistently exc
 $$\text{cov}\{\thn\} = E\{(\thn-\theta_0)(\thn-\theta_0)^T\}$$
 Converting the system in (\ref{eq:sys}) to matrix form gives
 \begin{align*}
-\mathcal{S}: Y_N &= \Phi_N\theta_0+E+N \\
+\mathcal{S}: Y_N &= \Phi_N\theta_0+E_N \\
 \Rightarrow \thn &= (\frac{1}{N}\Phi_N^T\Phi_N)^{-1}(\frac{1}{N}\Phi_N^TY_N) = R(N)^{-1}f(N)
 \end{align*}
 Then the covariance is found as
 \begin{align*}
-\text{cov}\{\thn\} &= E\{(\frac{1}{N}\Phi_N^T\Phi_N)^{-1} (\frac{1}{N}\Phi_N^TE_N) (\frac{1}{N}E_N^T\Phi_N) (\frac{1}{N}\Phi_N^T\Phi_N)^{-1}\} \\
-&= \lambda E\{(\frac{1}{N}\Phi_N^T\Phi_N)^{-1} (\frac{1}{N}\Phi_N^T\Phi_N) (\frac{1}{N}\Phi_N^T\Phi_N)^{-1}\} \\
-&\sim \lambda E\{(\frac{1}{N}\Phi_N^T\Phi_N)^{-1}\}
+\text{cov}\{\thn\} &= E\left\lbrace(\frac{1}{N}\Phi_N^T\Phi_N)^{-1} (\frac{1}{N}\Phi_N^TE_N) (\frac{1}{N}E_N^T\Phi_N) (\frac{1}{N}\Phi_N^T\Phi_N)^{-1}\right\rbrace \\
+&= \lambda E\left\lbrace(\frac{1}{N}\Phi_N^T\Phi_N)^{-1} (\frac{1}{N}\Phi_N^T\Phi_N) (\frac{1}{N}\Phi_N^T\Phi_N)^{-1}\right\rbrace \\
+&\sim \lambda E\left\lbrace(\frac{1}{N}\Phi_N^T\Phi_N)^{-1}\right\rbrace
 \end{align*}
 where $\lambda = \frac{1}{N}E_NE_N^T$ is a scalar that can be moved outside the expectation operator. This shows that
-\begin{align}
-\text{cov}\{\thn\} \sim \frac{1}{N}\lambda R(N)^{-1}
-\end{align}
+$$\text{cov}\{\thn\} \sim \frac{1}{N}\lambda R^{-1}(N)$$
 Hence we have that
 $$\lim_{N\to\infty}\text{cov}\{\thn\} = 0$$
 which makes $\thn$ a good estimator. The conclusion is

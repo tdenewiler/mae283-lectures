@@ -218,7 +218,7 @@ H_0(q) = \frac{1}{1+a_1q^{-1}+a_2q^{-2}+\cdots+a_{n_a}q^{-n_a}}
 \end{align}
 This means that we are implicitly assuming that the noise on the system is filtered such that it has the exact same poles as the real data. That is a very restrictive assumption as it does not apply to many real-world systems.
 
-If we use $\mathcal{S}: y(t) = G_0(q)u(t) = e(t)$ where $\{e(t)\}$ is white noise then we cannot write it as a linear regression because the noise and the system transfer functions do not have the same poles. An exception is when we are looking at a Finite Impulse Response (FIR) system. Then the denominators for both transfer functions can be $1$ and the current output has no dependance on past outputs.
+If we use $\mathcal{S}: y(t) = G_0(q)u(t) + e(t)$ where $\{e(t)\}$ is white noise then we cannot write it as a linear regression because the noise and the system transfer functions do not have the same poles. An exception is when we are looking at a Finite Impulse Response (FIR) system. Then the denominators for both transfer functions can be $1$ and the current output has no dependance on past outputs.
 
 \subsection{State Space}
 Given a state space model
@@ -239,7 +239,7 @@ Conclusion: If $\{u(t),y(t)\} + \{x(t)\}$ is available then the estimation of $A
 Some important properties of the least squares estimate, $\thn$, are given below.
 
 \subsection{Relation to the Covariance Functions}
-$$\thn = (\frac{1}{N}\mathbf{\phi\phi}^T)^{-1}(\frac{1}{N}\mathbf{\phi y}) \triangleq \underbrace{R(N)^{-1}}_{p\times p} \underbrace{f(N)}_{p\times 1}$$
+$$\thn = (\frac{1}{N}\mathbf{\phi\phi}^T)^{-1}(\frac{1}{N}\mathbf{\phi y}) \triangleq \underbrace{R^{-1}(N)}_{p\times p} \underbrace{f(N)}_{p\times 1}$$
 Looking more closely at $R(N)$ we can see that it is a $p\times p$ matrix built from elements of (\ref{eq:regressor}).
 $$R(N) = \frac{1}{N}\left[\begin{array}{c c c} \phi(1) & \cdots & \phi(N) \end{array}\right]
 \left[\begin{array}{c} \phi^T(1) \\ \vdots \\ \phi^T(N) \end{array}\right]$$
@@ -323,17 +323,17 @@ $$\mathcal{S}: y(t) = \phi^T(t)\theta_0 + v(t)$$
 where the assumption means that $\theta$ and $\theta_0$ have the same size, $\{v(t)\}$ is not necessarily white noise, $E\{v(t)\} = 0$ and $u\perp v$, then
 \begin{align}
 \label{eq:thn}
-\thn &= R(N)^{-1}f(N) \nonumber \\
-&= R(N)^{-1}\left(\frac{1}{N}\sum_{t=1}^N\phi(t)y(t)\right) \nonumber \\
-&= R(N)^{-1}\left( \underbrace{\frac{1}{N}\sum_{t=1}^N\phi(t)\phi^T(t)}_{R(N)}\theta_0+\frac{1}{N}\sum_{t=1}^N\phi(t)v(t)\right) \nonumber\\
-&= \theta_0 + R(N)^{-1}\cdot \frac{1}{N}\sum_{t=1}^N\phi(t)v(t)
+\thn &= R^{-1}(N)f(N) \nonumber \\
+&= R^{-1}(N)\left(\frac{1}{N}\sum_{t=1}^N\phi(t)y(t)\right) \nonumber \\
+&= R^{-1}(N)\left( \underbrace{\frac{1}{N}\sum_{t=1}^N\phi(t)\phi^T(t)}_{R(N)}\theta_0+\frac{1}{N}\sum_{t=1}^N\phi(t)v(t)\right) \nonumber\\
+&= \theta_0 + R^{-1}(N)\cdot \frac{1}{N}\sum_{t=1}^N\phi(t)v(t)
 \end{align}
 This leads to
-$$\lim_{N\to\infty} E\{\thn\} = \theta_0 + \lim_{N\to\infty}R(N)^{-1}\frac{1}{N}\sum_{t=1}^N\phi(t)v(t)$$
+$$\lim_{N\to\infty} E\{\thn\} = \theta_0 + \lim_{N\to\infty}R^{-1}(N)\frac{1}{N}\sum_{t=1}^N\phi(t)v(t)$$
 We want the last term to go to zero so that
 $$\lim_{N\to\infty} E\{\thn\} = 0$$
 That happens when
-$$\lim_{N\to\infty} R(N)^{-1}R_{\phi v}(0) = 0$$
+$$\lim_{N\to\infty} R^{-1}(N)R_{\phi v}(0) = 0$$
 Recall that $\phi(t)$ is given by (\ref{eq:regressor}) and $u\perp v$. Then we have that
 $$R_{\phi v}(0) = \left[\begin{array}{c} R_{uv}(0) \\ R_{uv}(-1) \\ \vdots \\ R_{uv}(-n_b) \\ \hline \\ R_{yv}(-1) \\ \vdots \\ R_{yv}(-n_a) \end{array}\right]$$
 The first $n_b$ terms in the upper block are zero because of $u\perp v$. The last $n_a$ terms in the lower block are zero if and only if $\{v(t)\}$ is white noise.
