@@ -503,7 +503,9 @@
          sodipodi:role="line"
          id="tspan17265"
          x="325.13336"
-         y="418.79074">F{}</tspan></text>
+         y="418.79074"><tspan
+   style="-inkscape-font-specification:LMMathSymbols8 Bold Italic;font-family:LMMathSymbols8;font-weight:bold;font-style:italic;font-stretch:normal;font-variant:normal"
+   id="tspan2624">F</tspan>{}</tspan></text>
     <text
        xml:space="preserve"
        style="font-size:24px;font-style:italic;font-variant:normal;font-weight:normal;font-stretch:normal;text-align:start;line-height:125%;writing-mode:lr-tb;text-anchor:start;fill:#000000;fill-opacity:1;stroke:none;stroke-width:1px;stroke-linecap:butt;stroke-linejoin:miter;stroke-opacity:1;font-family:Bitstream Vera Serif;-inkscape-font-specification:Bitstream Vera Serif Italic"
@@ -516,7 +518,9 @@
          x="319.28571"
          y="497.36218"
          dy="0 0 0 10.714287"
-         dx="0 0 0 -3.5714283">F<tspan
+         dx="0 0 0 -3.5714283"><tspan
+   style="-inkscape-font-specification:LMMathSymbols8 Bold Italic;font-family:LMMathSymbols8;font-weight:bold;font-style:italic;font-stretch:normal;font-variant:normal"
+   id="tspan2638">F</tspan><tspan
    style="font-size:12px"
    id="tspan17271"
    dy="-10.714287"

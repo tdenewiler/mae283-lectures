@@ -14,7 +14,10 @@
    sodipodi:version="0.32"
    inkscape:version="0.46"
    sodipodi:docname="07spectrum.svg"
-   inkscape:output_extension="org.inkscape.output.svg.inkscape">
+   inkscape:output_extension="org.inkscape.output.svg.inkscape"
+   inkscape:export-filename="/home/ibotics/classes/mae283/lectures/images/07spectrum.png"
+   inkscape:export-xdpi="150"
+   inkscape:export-ydpi="150">
   <defs
      id="defs7112">
     <marker
@@ -158,8 +161,23 @@
        id="path8697"
        sodipodi:nodetypes="cccc" />
     <path
-       style="fill:none;fill-rule:evenodd;stroke:#ff0000;stroke-width:1;stroke-linecap:butt;stroke-linejoin:miter;stroke-opacity:1;stroke-miterlimit:4;stroke-dasharray:none"
-       d="M 409.83156,206.6479 L 435.88273,206.6479"
+       style="fill:none;fill-rule:evenodd;stroke:#ff0000;stroke-width:1;stroke-linecap:butt;stroke-linejoin:miter;stroke-miterlimit:4;stroke-dasharray:none;stroke-opacity:1"
+       d="M 409.83156,207.4935 L 435.88273,207.4935"
        id="path9220" />
+    <text
+       xml:space="preserve"
+       style="font-size:24px;font-style:italic;font-variant:normal;font-weight:normal;font-stretch:normal;text-align:start;line-height:125%;writing-mode:lr-tb;text-anchor:start;fill:#000000;fill-opacity:1;stroke:none;stroke-width:1px;stroke-linecap:butt;stroke-linejoin:miter;stroke-opacity:1;font-family:Liberation Serif;-inkscape-font-specification:Liberation Serif Italic"
+       x="350.42044"
+       y="212.938"
+       id="text12369"
+       sodipodi:linespacing="125%"><tspan
+         sodipodi:role="line"
+         id="tspan12371"
+         x="350.42044"
+         y="212.938"
+         dy="0 0 -6.393013">ϕ<tspan
+   style="font-size:12px"
+   id="tspan10042"
+   dy="5">v</tspan>(ω)</tspan></text>
   </g>
 </svg>
