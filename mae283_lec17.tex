@@ -159,12 +159,19 @@ However,
 \end{align*}
 Note that $F(e^{j\w},\theta)$ is an implicit weighting function.
 
-This is similar to ARX where the implicit weighting function brings out the high-frequency response. In Figure ?? the response increases at the poles of the system.
+This is similar to ARX where the implicit weighting function brings out the high-frequency response. In Figure \ref{fig:17poles} the response increases at the poles of the system.
 
 The conclusion is that fitting frequency data using least squares (minimizing the equation error) leads to a fit with an implicit high-frequency emphasis.
 
+\begin{figure}[ht!]
+	\centering
+	\includegraphics[width=.4\textwidth]{images/17poles}
+	\caption{Implicit high-frequency weighting.}
+	\label{fig:17poles}
+\end{figure}
+
 \begin{example}
-Using a high order system with a response and estimate as shown in Figure ?? we get a noisy estimate because
+Using a high order system with a response and estimate as shown in Figure \ref{fig:17model} we get a noisy estimate because
 \begin{itemize}
 \item There is usually noise at high frequencies.
 \item $G_0\ejw\to0$ as $\w\to\infty$.
@@ -183,6 +190,13 @@ where
 $$\tilde{E}_w(\w) = \frac{1}{F(e^{j\w},\theta)}\tilde{E}(\w,\theta)$$
 $\lozenge$
 \end{example}
+
+\begin{figure}[ht!]
+	\centering
+	\includegraphics[width=.4\textwidth]{images/17model}
+	\caption{High order system and model response.}
+	\label{fig:17model}
+\end{figure}
 
 \subsection{Sanathanan and Koerner Iteration}
 The Sanathanan and Koerner iteration is given by
