@@ -92,7 +92,16 @@
 
 % A command to show a vector norm that will have the pipe signs scale with the contents.
 \newcommand{\vectornorm}[1]{\left|\left|#1\right|\right|}
-\newcommand{\SI}{System Identification}
+
+% Commands for time and frequency integrals over infinty, cos and sin.
+\newcommand{\tint}{\int_{t=-\infty}^\infty}
+\newcommand{\fint}{\int_{\omega=-\infty}^\infty}
+\newcommand{\tauint}{\int_{\tau=0}^\infty}
+\newcommand{\w}{\omega}
+\newcommand{\wo}{\omega_0}
+\newcommand{\ejwt}{e^{j\omega t}}
+\newcommand{\emjwt}{e^{-j\omega t}}
+\newcommand{\dt}{\Delta T}
 
 
 %%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%
@@ -113,7 +122,27 @@
 \setcounter{lecture}{2}
 \setcounter{chapter}{2}
 
-\lecture{??}
+\lecture{Discrete Time Systems}
+
+\section{System Descriptions}
+Most of the work done for this course will be in discrete time as a consequence of dealing with sampled signals, but it is relatively easy to convert back to continuous time with some minor assumptions.
+
+\subsection{Continuous Time}
+Continuous time systems are described by
+$$y(t) = \tauint g(\tau)u(t-\tau)d\tau$$
+where $g(\tau)=\mathcal{L}^{-1}\lbrace G(s)\rbrace$ and $y(s)=G(s)u(s)$. Note that multiplication in the Laplacian domain is equivalent to convolution in the time domain.
+
+\subsection{Discrete Time}
+For discrete time it is useful to model the input signal, $u(k\Delta T)$, as a ``Zero-order hold'' (ZOH) signal. *** Refer to a figure here. *** Other methods of modeling the input signal include linear fit where the discrete points are connected by lines and polynomial fitting, but those methods don't help nearly as much with the math we will see later in this lecture. What happens to the input when $u(t)$ is ZOH?
+\begin{align*}
+y(t) &= \tauint g(\tau)u(k\dt -\tau)d\tau \\
+&= \sum_{l=0}^\infty \int_{\tau=(l-1)\dt}^{l\dt}g(\tau)u(k\dt -\tau)d\tau \\
+&= \sum_{l=0}^\infty g_d(l)u_d(k-l) \\
+&= \sum_{l=0}^\infty q^{-1}u(k)
+\end{align*}
+where $g_d(l)=\int_{\tau=(l-1)\dt}^{l\dt}g(\tau)u(k\dt -\tau)d\tau$. The second equality is due to our ability to consider $u(k\dt -\tau)$ to be constant. Note that the expressions $qu(k) = u(k+1)$ and $q^{-1}u(k)=u(k-1)$ are not multiplication operations but instead are time-shift operators. All of this results in
+$$y(k) = \sum_{l-0}^\infty g_k(l)q^{-l}u(k) = G(q)u(k)$$
+which shows that the output is a linear combination of \textit{all} past inputs.
 
 
 \end{document}
