@@ -15,7 +15,7 @@
    inkscape:version="0.46"
    sodipodi:docname="06freqResp.svg"
    inkscape:output_extension="org.inkscape.output.svg.inkscape"
-   inkscape:export-filename="/home/ibotics/classes/mae283/lectures/images/06butterworthFilter.png"
+   inkscape:export-filename="/home/thomas/school/mae283/lectures/images/06freqResp.png"
    inkscape:export-xdpi="150"
    inkscape:export-ydpi="150">
   <defs
@@ -65,13 +65,13 @@
      inkscape:pageopacity="0.0"
      inkscape:pageshadow="2"
      inkscape:zoom="1.4"
-     inkscape:cx="410.78647"
-     inkscape:cy="787.59526"
+     inkscape:cx="429.69919"
+     inkscape:cy="741.16045"
      inkscape:document-units="px"
      inkscape:current-layer="layer1"
      showgrid="false"
-     inkscape:window-width="1440"
-     inkscape:window-height="850"
+     inkscape:window-width="1280"
+     inkscape:window-height="974"
      inkscape:window-x="0"
      inkscape:window-y="25" />
   <metadata
@@ -104,19 +104,19 @@
        sodipodi:nodetypes="ccc" />
     <text
        xml:space="preserve"
-       style="font-size:24px;font-style:normal;font-weight:normal;fill:#000000;fill-opacity:1;stroke:none;stroke-width:1px;stroke-linecap:butt;stroke-linejoin:miter;stroke-opacity:1;font-family:Bitstream Vera Sans"
-       x="510.63211"
-       y="226.56248"
+       style="font-size:24px;font-style:normal;font-weight:normal;line-height:125%;fill:#000000;fill-opacity:1;stroke:none;stroke-width:1px;stroke-linecap:butt;stroke-linejoin:miter;stroke-opacity:1;font-family:Bitstream Vera Sans"
+       x="553.48926"
+       y="270.13391"
        id="text5055"
        sodipodi:linespacing="125%"><tspan
          sodipodi:role="line"
          id="tspan5057"
-         x="510.63211"
-         y="226.56248"
-         style="-inkscape-font-specification:Bitstream Vera Serif Italic;font-family:Bitstream Vera Serif;font-weight:normal;font-style:italic;font-stretch:normal;font-variant:normal;font-size:24px;text-anchor:start;text-align:start;writing-mode:lr;line-height:125%">80dB/sec</tspan></text>
+         x="553.48926"
+         y="270.13391"
+         style="font-size:24px;font-style:italic;font-variant:normal;font-weight:normal;font-stretch:normal;text-align:start;line-height:125%;writing-mode:lr-tb;text-anchor:start;font-family:Bitstream Vera Serif;-inkscape-font-specification:Bitstream Vera Serif Italic">80dB/sec</tspan></text>
     <path
        style="fill:none;fill-rule:evenodd;stroke:#000000;stroke-width:1px;stroke-linecap:butt;stroke-linejoin:miter;marker-start:url(#Arrow1Mstart);stroke-opacity:1"
-       d="M 461.63972,260.90766 L 505.96858,235.31438 L 497.85085,265.61013 L 558.36328,230.67327"
+       d="M 480.21115,304.47909 L 524.54001,278.88581 L 516.42228,309.18156 L 576.93471,274.2447"
        id="path5582" />
     <path
        style="fill:none;fill-rule:evenodd;stroke:#0000ff;stroke-width:1px;stroke-linecap:butt;stroke-linejoin:miter;stroke-opacity:1"
@@ -125,20 +125,20 @@
        sodipodi:nodetypes="ccccccccccccccccccccccccccccccccccccc" />
     <path
        style="fill:none;fill-rule:evenodd;stroke:#0000ff;stroke-width:1px;stroke-linecap:butt;stroke-linejoin:miter;stroke-opacity:1"
-       d="M 567.70573,146.39946 L 594.47477,146.39946"
+       d="M 567.70573,154.25661 L 594.47477,154.25661"
        id="path6107" />
     <text
        xml:space="preserve"
-       style="font-size:24px;font-style:normal;font-weight:normal;fill:#000000;fill-opacity:1;stroke:none;stroke-width:1px;stroke-linecap:butt;stroke-linejoin:miter;stroke-opacity:1;font-family:Bitstream Vera Sans"
+       style="font-size:24px;font-style:normal;font-weight:normal;line-height:125%;fill:#000000;fill-opacity:1;stroke:none;stroke-width:1px;stroke-linecap:butt;stroke-linejoin:miter;stroke-opacity:1;font-family:Bitstream Vera Sans"
        x="453.55847"
-       y="155.34673"
+       y="163.20386"
        id="text6109"
        sodipodi:linespacing="125%"><tspan
          sodipodi:role="line"
          id="tspan6111"
          x="453.55847"
-         y="155.34673"
-         style="-inkscape-font-specification:Bitstream Vera Serif Italic;font-family:Bitstream Vera Serif;font-weight:normal;font-style:italic;font-stretch:normal;font-variant:normal;font-size:24px;text-anchor:start;text-align:start;writing-mode:lr;line-height:125%">variance</tspan></text>
+         y="163.20386"
+         style="font-size:24px;font-style:italic;font-variant:normal;font-weight:normal;font-stretch:normal;text-align:start;line-height:125%;writing-mode:lr-tb;text-anchor:start;font-family:Bitstream Vera Serif;-inkscape-font-specification:Bitstream Vera Serif Italic">variance</tspan></text>
     <text
        xml:space="preserve"
        style="font-size:24px;font-style:italic;font-variant:normal;font-weight:normal;font-stretch:normal;text-align:start;line-height:125%;writing-mode:lr-tb;text-anchor:start;fill:#000000;fill-opacity:1;stroke:none;stroke-width:1px;stroke-linecap:butt;stroke-linejoin:miter;stroke-opacity:1;font-family:Bitstream Vera Serif;-inkscape-font-specification:Bitstream Vera Serif Italic"
@@ -665,5 +665,84 @@
          d="M 259.16895,350.32815 L 263.50544,346.06541"
          style="fill:none;fill-rule:evenodd;stroke:#000000;stroke-width:0.53338927px;stroke-linecap:butt;stroke-linejoin:miter;stroke-opacity:1" />
     </g>
+    <text
+       xml:space="preserve"
+       style="font-size:24px;font-style:italic;font-variant:normal;font-weight:normal;font-stretch:normal;text-align:start;line-height:125%;writing-mode:lr-tb;text-anchor:start;fill:#000000;fill-opacity:1;stroke:none;stroke-width:1px;stroke-linecap:butt;stroke-linejoin:miter;stroke-opacity:1;font-family:Liberation Serif;-inkscape-font-specification:Liberation Serif Italic"
+       x="355.71426"
+       y="396.64789"
+       id="text2740"
+       sodipodi:linespacing="125%"><tspan
+         sodipodi:role="line"
+         id="tspan2742"
+         x="355.71426"
+         y="396.64789">ω<tspan
+   style="font-size:12px"
+   id="tspan2744"
+   dy="4.2857141">c</tspan></tspan></text>
+    <path
+       style="fill:none;fill-rule:evenodd;stroke:#000000;stroke-width:1.097;stroke-linecap:butt;stroke-linejoin:miter;stroke-opacity:1;stroke-miterlimit:4;stroke-dasharray:3.291,3.291;stroke-dashoffset:0"
+       d="M 366.42857,152.46389 L 366.42857,383.68905"
+       id="path2746" />
+    <path
+       style="fill:none;fill-rule:evenodd;stroke:#000000;stroke-width:1px;stroke-linecap:butt;stroke-linejoin:miter;stroke-opacity:1"
+       d="M 535.71429,364.50504 L 535.71429,382.36218"
+       id="path3532" />
+    <g
+       id="g3548"
+       transform="translate(-20,-44.285714)">
+      <text
+         sodipodi:linespacing="125%"
+         id="text3534"
+         y="442.36218"
+         x="549.18414"
+         style="font-size:24px;font-style:italic;font-variant:normal;font-weight:normal;font-stretch:normal;text-align:start;line-height:125%;writing-mode:lr-tb;text-anchor:start;fill:#000000;fill-opacity:1;stroke:none;stroke-width:1px;stroke-linecap:butt;stroke-linejoin:miter;stroke-opacity:1;font-family:Liberation Serif;-inkscape-font-specification:Liberation Serif Italic"
+         xml:space="preserve"><tspan
+           y="442.36218"
+           x="549.18414"
+           id="tspan3536"
+           sodipodi:role="line">π</tspan></text>
+      <g
+         transform="translate(0.7823581,0)"
+         id="g3542">
+        <text
+           xml:space="preserve"
+           style="font-size:24px;font-style:italic;font-variant:normal;font-weight:normal;font-stretch:normal;text-align:start;line-height:125%;writing-mode:lr-tb;text-anchor:start;fill:#000000;fill-opacity:1;stroke:none;stroke-width:1px;stroke-linecap:butt;stroke-linejoin:miter;stroke-opacity:1;font-family:Liberation Serif;-inkscape-font-specification:Liberation Serif Italic"
+           x="540.71429"
+           y="475.93362"
+           id="text3538"
+           sodipodi:linespacing="125%"><tspan
+             sodipodi:role="line"
+             id="tspan3540"
+             x="540.71429"
+             y="475.93362">ΔT</tspan></text>
+      </g>
+      <path
+         id="path3546"
+         d="M 540.17857,452.49163 L 570.89286,452.49163"
+         style="fill:none;fill-rule:evenodd;stroke:#000000;stroke-width:1px;stroke-linecap:butt;stroke-linejoin:miter;stroke-opacity:1" />
+    </g>
+    <g
+       id="g3572"
+       transform="translate(47.142857,20)">
+      <text
+         sodipodi:linespacing="125%"
+         id="text3561"
+         y="179.50504"
+         x="456.42856"
+         style="font-size:24px;font-style:italic;font-variant:normal;font-weight:normal;font-stretch:normal;text-align:start;line-height:125%;writing-mode:lr-tb;text-anchor:start;fill:#000000;fill-opacity:1;stroke:none;stroke-width:1px;stroke-linecap:butt;stroke-linejoin:miter;stroke-opacity:1;font-family:Liberation Serif;-inkscape-font-specification:Liberation Serif Italic"
+         xml:space="preserve"><tspan
+           dy="0 0 -4.2857141"
+           y="179.50504"
+           x="456.42856"
+           id="tspan3563"
+           sodipodi:role="line">ϕ<tspan
+   dy="4.2857141"
+   id="tspan3565"
+   style="font-size:12px">s</tspan>(ω)</tspan></text>
+    </g>
+    <path
+       id="path3570"
+       d="M 567.70573,192.94254 L 594.47477,192.94254"
+       style="fill:none;fill-rule:evenodd;stroke:#000000;stroke-width:1px;stroke-linecap:butt;stroke-linejoin:miter;stroke-opacity:1" />
   </g>
 </svg>

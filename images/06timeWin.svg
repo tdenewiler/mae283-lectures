@@ -13,9 +13,9 @@
    id="svg2"
    sodipodi:version="0.32"
    inkscape:version="0.46"
-   sodipodi:docname="06autoCovDecay.svg"
+   sodipodi:docname="06timeWin.svg"
    inkscape:output_extension="org.inkscape.output.svg.inkscape"
-   inkscape:export-filename="/home/thomas/school/mae283/lectures/images/06autoCovDecay.png"
+   inkscape:export-filename="/home/thomas/school/mae283/lectures/images/06timeWin.png"
    inkscape:export-xdpi="150"
    inkscape:export-ydpi="150">
   <defs
@@ -65,8 +65,8 @@
      inkscape:pageopacity="0.0"
      inkscape:pageshadow="2"
      inkscape:zoom="1.4"
-     inkscape:cx="398.27138"
-     inkscape:cy="743.26256"
+     inkscape:cx="408.72229"
+     inkscape:cy="772.59382"
      inkscape:document-units="px"
      inkscape:current-layer="layer1"
      showgrid="false"
@@ -97,48 +97,26 @@
        style="fill:none;fill-rule:evenodd;stroke:#000000;stroke-width:1px;stroke-linecap:butt;stroke-linejoin:miter;stroke-opacity:1;marker-end:url(#Arrow1Mend)"
        d="M 123.23861,373.53967 L 587.90878,373.53967"
        id="path2385" />
-    <path
-       style="fill:none;fill-rule:evenodd;stroke:#000000;stroke-width:1px;stroke-linecap:butt;stroke-linejoin:miter;stroke-opacity:1"
-       d="M 190.91883,151.30611 L 551.54329,296.76808"
-       id="path2387" />
-    <path
-       style="fill:none;fill-rule:evenodd;stroke:#000000;stroke-width:1px;stroke-linecap:butt;stroke-linejoin:miter;stroke-opacity:1"
-       d="M 190.91883,373.53967 C 195.98568,284.99651 204.69275,227.2298 220.21325,227.06755 C 258.04147,236.15706 236.80541,340.31467 278.8021,323.03204 C 291.60076,320.89478 282.13653,290.09616 299.00515,291.71732 C 330.21228,298.8928 317.68134,352.75065 350.52293,355.35693 C 373.75802,352.48529 363.4847,310.5395 382.84781,306.8696 C 401.15951,306.44988 392.60357,340.1195 415.1727,340.32719 C 436.12336,342.36525 440.69467,332.85489 449.51788,338.30689 C 456.65812,343.0071 452.10398,349.66317 460.62956,352.32647 C 473.10174,354.09693 493.5175,346.0957 496.69919,351.24452 C 499.23608,354.4966 499.31998,361.09919 504.78041,364.37651 C 514.17529,369.43131 518.6729,361.8782 532.35039,361.41784 C 541.06552,363.45132 543.22641,367.66955 546.49253,371.51937"
-       id="path2389"
-       sodipodi:nodetypes="ccccccccccccc" />
-    <path
-       style="fill:none;fill-rule:evenodd;stroke:#000000;stroke-width:1px;stroke-linecap:butt;stroke-linejoin:miter;stroke-opacity:1;marker-start:url(#Arrow1Mstart)"
-       d="M 534.87577,359.90262 L 578.21261,334.88208 L 573.16581,353.71697 L 602.15298,336.98123"
-       id="path2472" />
     <text
        xml:space="preserve"
        style="font-size:24px;font-style:italic;font-variant:normal;font-weight:normal;font-stretch:normal;text-align:start;line-height:125%;writing-mode:lr-tb;text-anchor:start;fill:#000000;fill-opacity:1;stroke:none;stroke-width:1px;stroke-linecap:butt;stroke-linejoin:miter;stroke-opacity:1;font-family:Liberation Serif;-inkscape-font-specification:Liberation Serif Italic"
-       x="588.11182"
-       y="332.41928"
-       id="text2474"
+       x="348.25208"
+       y="204.64246"
+       id="text3286"
        sodipodi:linespacing="125%"><tspan
          sodipodi:role="line"
-         id="tspan2476"
-         x="588.11182"
-         y="332.41928"
-         dy="0 0 -3.0304575">R<tspan
-   style="font-size:12px"
-   id="tspan2478"
-   dy="3.0304575">s</tspan>(τ)</tspan></text>
+         id="tspan3288"
+         x="348.25208"
+         y="204.64246">w(τ)</tspan></text>
     <path
-       id="path3783"
-       d="M 489.87577,269.18833 L 533.21261,244.16779 L 528.16581,263.00268 L 557.15298,246.26694"
-       style="fill:none;fill-rule:evenodd;stroke:#000000;stroke-width:1px;stroke-linecap:butt;stroke-linejoin:miter;marker-start:url(#Arrow1Mstart);stroke-opacity:1" />
-    <text
-       xml:space="preserve"
-       style="font-size:24px;font-style:italic;font-variant:normal;font-weight:normal;font-stretch:normal;text-align:start;line-height:125%;writing-mode:lr-tb;text-anchor:start;fill:#000000;fill-opacity:1;stroke:none;stroke-width:1px;stroke-linecap:butt;stroke-linejoin:miter;stroke-opacity:1;font-family:Liberation Serif;-inkscape-font-specification:Liberation Serif Italic"
-       x="559.28571"
-       y="248.79076"
-       id="text3785"
-       sodipodi:linespacing="125%"><tspan
-         sodipodi:role="line"
-         id="tspan3787"
-         x="559.28571"
-         y="248.79076">τ</tspan></text>
+       style="fill:none;fill-rule:evenodd;stroke:#000000;stroke-width:1px;stroke-linecap:butt;stroke-linejoin:miter;stroke-opacity:1"
+       d="M 368.03572,212.71932 C 312.5231,212.4595 310.20305,373.17775 240.89286,373.43361"
+       id="path3310"
+       sodipodi:nodetypes="cc" />
+    <path
+       sodipodi:nodetypes="cc"
+       id="path3316"
+       d="M 368.03571,212.71932 C 423.54833,212.4595 425.86838,373.17775 495.17857,373.43361"
+       style="fill:none;fill-rule:evenodd;stroke:#000000;stroke-width:1px;stroke-linecap:butt;stroke-linejoin:miter;stroke-opacity:1" />
   </g>
 </svg>
