@@ -139,11 +139,11 @@ This means that the variance goes to zero with probability $1$. See Figure \ref{
 \begin{align*}
 \ruhat &= \begin{cases} \frac{1}{N}\sum_{t=1}^Nu(t)u(t-\tau), & |\tau|\leq N-1 \\ 0, & |\tau|\geq N \end{cases} \\
 &\text{use DTFT} \\
-\sum_{\tau=-\infty}^\infty\ruhat e^{-j\w\tau} &= \Phiuhat = \frac{1}{N}\left|U_N(\w)\right|^2 \triangleq \text{ periodogram} \\
+\sum_{\tau=-\infty}^\infty\ruhat e^{-j\w\tau} &= \phiuhat = \frac{1}{N}\left|U_N(\w)\right|^2 \triangleq \text{ periodogram} \\
 &\text{use DTFT} \\
 U_N(\w) &= \sum_{t=0}^{N-1}u(t)e^{-j\w t}
 \end{align*}
-Later it will be shown why $\Phiuhat$ is \textit{not} a good estimate. Now we can compute $\ruhat$ using (\ref{eq:autocovest}) or
+Later it will be shown why $\phiuhat$ is \textit{not} a good estimate. Now we can compute $\ruhat$ using (\ref{eq:autocovest}) or
 \begin{align*}
 \mathcal{F}\{u(t)\} &= U_N(\w) \\
 \mathcal{F}^{-1}\{U_N(\w)\overline{U_N(\w)}\} &= \ruhat
