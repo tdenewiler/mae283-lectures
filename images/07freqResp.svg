@@ -13,9 +13,9 @@
    id="svg2"
    sodipodi:version="0.32"
    inkscape:version="0.46"
-   sodipodi:docname="06freqResp.svg"
+   sodipodi:docname="07freqResp.svg"
    inkscape:output_extension="org.inkscape.output.svg.inkscape"
-   inkscape:export-filename="/home/ibotics/classes/mae283/lectures/images/06freqResp.png"
+   inkscape:export-filename="/home/ibotics/classes/mae283/lectures/images/07freqResp.png"
    inkscape:export-xdpi="150"
    inkscape:export-ydpi="150">
   <defs
@@ -65,8 +65,8 @@
      inkscape:pageopacity="0.0"
      inkscape:pageshadow="2"
      inkscape:zoom="1.4"
-     inkscape:cx="387.84506"
-     inkscape:cy="769.34827"
+     inkscape:cx="341.75436"
+     inkscape:cy="790.87121"
      inkscape:document-units="px"
      inkscape:current-layer="layer1"
      showgrid="false"
@@ -99,28 +99,32 @@
        id="path2385" />
     <path
        style="fill:none;fill-rule:evenodd;stroke:#000000;stroke-width:1px;stroke-linecap:butt;stroke-linejoin:miter;stroke-opacity:1"
-       d="M 190.91883,191.20714 L 365.67522,191.20714 C 448.49756,197.13561 493.32592,315.90166 494.97475,389.19704"
+       d="M 190.91883,191.20714 C 234.36428,184.54308 313.74701,209.93988 367.14285,159.77857 C 436.63702,214.4497 486.75612,283.15688 494.97475,389.19704"
        id="path5053"
        sodipodi:nodetypes="ccc" />
     <text
        xml:space="preserve"
        style="font-size:24px;font-style:normal;font-weight:normal;line-height:125%;fill:#000000;fill-opacity:1;stroke:none;stroke-width:1px;stroke-linecap:butt;stroke-linejoin:miter;stroke-opacity:1;font-family:Bitstream Vera Sans"
-       x="553.48926"
-       y="270.13391"
+       x="472.0607"
+       y="200.84821"
        id="text5055"
        sodipodi:linespacing="125%"><tspan
          sodipodi:role="line"
          id="tspan5057"
-         x="553.48926"
-         y="270.13391"
-         style="font-size:24px;font-style:italic;font-variant:normal;font-weight:normal;font-stretch:normal;text-align:start;line-height:125%;writing-mode:lr-tb;text-anchor:start;font-family:Bitstream Vera Serif;-inkscape-font-specification:Bitstream Vera Serif Italic">-80dB/dec</tspan></text>
-    <path
-       style="fill:none;fill-rule:evenodd;stroke:#000000;stroke-width:1px;stroke-linecap:butt;stroke-linejoin:miter;marker-start:url(#Arrow1Mstart);stroke-opacity:1"
-       d="M 480.21115,304.47909 L 524.54001,278.88581 L 516.42228,309.18156 L 576.93471,274.2447"
-       id="path5582" />
+         x="472.0607"
+         y="200.84821"
+         style="font-size:24px;font-style:italic;font-variant:normal;font-weight:normal;font-stretch:normal;text-align:start;line-height:125%;writing-mode:lr-tb;text-anchor:start;font-family:Bitstream Vera Serif;-inkscape-font-specification:Bitstream Vera Serif Italic"
+         dy="0 0 0 -5 0 0 0 10.000001"
+         dx="0 0 0 0 0 0 0 -3.5714285">|G<tspan
+   style="font-size:12px"
+   id="tspan3566"
+   dy="5">0</tspan>(e<tspan
+   style="font-size:12px"
+   id="tspan3564"
+   dy="-10.000001">jω</tspan>)|</tspan></text>
     <path
        style="fill:none;fill-rule:evenodd;stroke:#0000ff;stroke-width:1px;stroke-linecap:butt;stroke-linejoin:miter;stroke-opacity:1"
-       d="M 190.91883,179.59038 L 217.09179,211.00229 L 229.15234,176.57044 L 241.75822,200.29851 L 256.07367,165.95332 L 268.57367,208.56356 L 285.74626,183.27385 L 302.98449,207.23216 L 320.86085,160.6067 L 337.7586,200.44644 L 355.06862,169.48885 L 363.14984,203.32897 L 380.40474,174.87138 L 385.59291,207.28292 L 396.98995,188.68176 L 402.85217,215.49721 L 413.16726,184.87574 L 422.56501,241.20969 L 429.50302,206.15021 L 436.93122,248.65276 L 442.96676,228.00591 L 446.40512,265.4936 L 452.30759,218.9189 L 455.05269,277.06394 L 458.29257,248.97637 L 461.16437,285.53385 L 465.07449,250.19639 L 468.28595,292.39089 L 472.20338,261.28253 L 472.24632,321.51682 L 476.15266,283.55545 L 478.65386,319.14989 L 481.36307,281.76628 L 482.55089,340.31848 L 485.61289,305.91276 L 487.37757,354.2496 L 490.3424,321.2235 L 490.87432,362.32683 L 493.67218,340.66483 L 492.22493,370.82723 L 495.77896,350.46274 L 493.40429,385.26108 L 496.93012,364.17695 L 497.42834,388.51864"
+       d="M 190.91883,179.59038 L 217.09179,211.00229 L 229.15234,176.57044 L 241.75822,200.29851 L 256.07367,165.95332 L 268.57367,208.56356 L 285.74626,183.27385 L 302.98449,207.23216 L 320.86085,160.6067 L 337.7586,200.44644 L 350.42576,154.84599 L 362.07841,189.75754 L 373.26188,152.72852 L 385.95005,195.85435 L 398.06138,171.5389 L 404.63788,205.85435 L 413.16726,184.87574 L 422.56501,241.20969 L 429.50302,206.15021 L 436.93122,248.65276 L 442.96676,228.00591 L 446.40512,265.4936 L 452.30759,218.9189 L 455.05269,277.06394 L 458.29257,248.97637 L 461.16437,285.53385 L 465.07449,250.19639 L 468.28595,292.39089 L 472.20338,261.28253 L 472.24632,321.51682 L 476.15266,283.55545 L 478.65386,319.14989 L 481.36307,281.76628 L 482.55089,340.31848 L 485.61289,305.91276 L 487.37757,354.2496 L 490.3424,321.2235 L 490.87432,362.32683 L 493.67218,340.66483 L 492.22493,370.82723 L 495.77896,350.46274 L 493.40429,385.26108 L 496.93012,364.17695 L 497.42834,388.51864"
        id="path6105"
        sodipodi:nodetypes="cccccccccccccccccccccccccccccccccccccccccccc" />
     <path
@@ -721,28 +725,42 @@
          d="M 540.17857,452.49163 L 570.89286,452.49163"
          style="fill:none;fill-rule:evenodd;stroke:#000000;stroke-width:1px;stroke-linecap:butt;stroke-linejoin:miter;stroke-opacity:1" />
     </g>
-    <g
-       id="g3572"
-       transform="translate(47.142857,20)">
-      <text
-         sodipodi:linespacing="125%"
-         id="text3561"
-         y="179.50504"
-         x="456.42856"
-         style="font-size:24px;font-style:italic;font-variant:normal;font-weight:normal;font-stretch:normal;text-align:start;line-height:125%;writing-mode:lr-tb;text-anchor:start;fill:#000000;fill-opacity:1;stroke:none;stroke-width:1px;stroke-linecap:butt;stroke-linejoin:miter;stroke-opacity:1;font-family:Liberation Serif;-inkscape-font-specification:Liberation Serif Italic"
-         xml:space="preserve"><tspan
-           dy="0 0 -4.2857141"
-           y="179.50504"
-           x="456.42856"
-           id="tspan3563"
-           sodipodi:role="line">ϕ<tspan
-   dy="4.2857141"
-   id="tspan3565"
-   style="font-size:12px">s</tspan>(ω)</tspan></text>
-    </g>
     <path
        id="path3570"
        d="M 567.70573,192.94254 L 594.47477,192.94254"
        style="fill:none;fill-rule:evenodd;stroke:#000000;stroke-width:1px;stroke-linecap:butt;stroke-linejoin:miter;stroke-opacity:1" />
+    <g
+       id="g6392">
+      <g
+         style="stroke:#ff0000;stroke-opacity:1"
+         id="g3573">
+        <path
+           style="fill:none;fill-rule:evenodd;stroke:#ff0000;stroke-width:1px;stroke-linecap:butt;stroke-linejoin:miter;stroke-opacity:1"
+           d="M 199.28571,373.07647 C 223.45238,373.43361 220.20584,279.90521 257.85714,279.86218"
+           id="path3568"
+           sodipodi:nodetypes="cc" />
+        <path
+           sodipodi:nodetypes="cc"
+           id="path3571"
+           d="M 316.42857,373.07647 C 292.2619,373.43361 295.50844,279.90521 257.85714,279.86218"
+           style="fill:none;fill-rule:evenodd;stroke:#ff0000;stroke-width:1px;stroke-linecap:butt;stroke-linejoin:miter;stroke-opacity:1" />
+      </g>
+    </g>
+    <path
+       style="fill:none;fill-rule:evenodd;stroke:#ff0000;stroke-width:1px;stroke-linecap:butt;stroke-linejoin:miter;stroke-opacity:1"
+       d="M 567.70573,238.3994 L 594.47477,238.3994"
+       id="path3577" />
+    <text
+       xml:space="preserve"
+       style="font-size:24px;font-style:italic;font-variant:normal;font-weight:normal;font-stretch:normal;text-align:start;line-height:125%;writing-mode:lr-tb;text-anchor:start;fill:#000000;fill-opacity:1;stroke:none;stroke-width:1px;stroke-linecap:butt;stroke-linejoin:miter;stroke-opacity:1;font-family:Bitstream Vera Serif;-inkscape-font-specification:Bitstream Vera Serif Italic"
+       x="487.90369"
+       y="245.75539"
+       id="text3579"
+       sodipodi:linespacing="125%"><tspan
+         sodipodi:role="line"
+         id="tspan3581"
+         x="487.90369"
+         y="245.75539"
+         dx="0 0 0 -2.0203052">w(ω)</tspan></text>
   </g>
 </svg>

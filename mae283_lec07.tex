@@ -126,7 +126,7 @@
 \lectureseries[\course]{\course}
 
 \auth[R.A. de Callafon]{Lecturer: \lecAuth\\ Scribe: \scribe}
-\date{September 24, 2009}
+\date{October 15, 2009}
 
 \setaddress
 
@@ -134,7 +134,59 @@
 \setcounter{lecture}{6}
 \setcounter{chapter}{6}
 
-\lecture{??}
+\lecture{Spectral Analysis and Least Squares}
+
+\section{Spectral Analysis Review}
+\begin{figure}[ht!]
+  \centering
+  \subfloat[Free-body diagram of mass spring damper system.]{
+    \label{fig:07fbd}\includegraphics[width=0.4\textwidth]{images/07fbd}
+  } \hfill
+  \subfloat[Frequency response with variance.]{
+    \label{fig:07freqResp}\includegraphics[width=0.4\textwidth]{images/07freqResp}
+  } \hfill
+  \caption{Frequency response of a mass spring damper system.}
+  \label{fig:07msd}
+\end{figure}
+
+\begin{figure}[ht!]
+  \centering
+  \subfloat[Large variance, small bias.]{
+    \label{fig:07largeSigma}\includegraphics[width=0.4\textwidth]{images/07largeSigma}
+  } \hfill
+  \subfloat[Small variance, large bias.]{
+    \label{fig:07smallSigma}\includegraphics[width=0.4\textwidth]{images/07smallSigma}
+  } \hfill
+  \caption{Trade-off between variance and bias when averaging the spectrum.}
+  \label{fig:07tradeoff}
+\end{figure}
+
+\begin{figure}[ht!]
+  \centering
+  \includegraphics[width=.5\textwidth]{images/07spectrum}
+  \caption{Spectrum of the noise, $v(t)$.}
+  \label{fig:07spectrum}
+\end{figure}
+
+\begin{figure}[ht!]
+  \centering
+  \subfloat[Magnitude of the spectrum.]{
+    \label{fig:07mag}\includegraphics[width=0.4\textwidth]{images/07mag}
+  } \hfill
+  \subfloat[Phase of the spectrum.]{
+    \label{fig:07phase}\includegraphics[width=0.4\textwidth]{images/07phase}
+  } \hfill
+  \caption{Magnitude and phase of the spectrum.}
+  \label{fig:07magphase}
+\end{figure}
+
+\begin{figure}[ht!]
+  \centering
+  \includegraphics[width=1\textwidth]{images/07overview}
+  \caption{Overview of parameter estimation.}
+  \label{fig:07overview}
+\end{figure}
+
 
 
 \end{document}
