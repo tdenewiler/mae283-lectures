@@ -45,21 +45,21 @@
 % such as e-mail or current addresses which has equal logical weight to the
 % address itself, having the first line of the footnote indented presents a
 % strange appearance.  As an easy fix, indentation from footnotes was
-% removed. 
+% removed.
 %
 % 6A. In v.1.1 of this file, the commands \thanks, \subjclass, \keywords,
-% and \date were all implemented; as in most AMS styles, they produce 
+% and \date were all implemented; as in most AMS styles, they produce
 % additional footnotes on the first page.
 %
 % 7. The sample files have also been rewritten in a way compatible with these
-% changes. 
+% changes.
 %
 % 8. Changes in v 1.4: fixed font size of author, and fixed spacing after
-% lecture 
+% lecture
 
 \makeatletter
 
-% First, we define a new command \lectureseries, replacing the 
+% First, we define a new command \lectureseries, replacing the
 % \chapter*{title} command at the head of the file.  An optional argument
 % allows a shortened form to be specified for use in running heads.  (The
 % thing used in running heads is \thelectureseries -- this is unchanged.)
@@ -73,10 +73,10 @@
 \newif\iffirstlecture\firstlecturefalse
 
 \newcommand{\lectureseries}{\firstlecturetrue
-              \secdef\@lectureseries\@slectureseries} 
+              \secdef\@lectureseries\@slectureseries}
 
 \newcommand{\@lectureseries}[2][default]{\chapter*{#2}%
-              \gdef\thelectureseries{#1}} 
+              \gdef\thelectureseries{#1}}
 
 \newcommand{\@slectureseries}[1]{\chapter*{#1}}
 
@@ -127,7 +127,7 @@
   \addcontentsline{toc}{chapter}{%
     \thelecturelabel\ \thelecturenum.\ \thelecturename}%
   \vspace{34\p@}\noindent}
-  
+
 % In v.1.1, \lecture is redefined again, to implement the inclusion of a
 % "starred" form \lecture*.
 
@@ -154,7 +154,7 @@
 %    \thelecturelabel\ \thelecturenum.\ \thelecturename}%
     \thelecturelabel\ \thelecturenum.\ #2}%
   \vspace{34\p@}\noindent}
-  
+
 \def\slecturerunhead#1#2#3{%
     \let\@tempa\chaptername
     \uppercasenonmath{\@tempa}%
@@ -177,7 +177,7 @@
 %   \raggedleft
 %   \@xp\uppercase\@xp{\thelecturelabel} {\LARGE\thelecturenum}\\
 %   \vspace*{3pt}%
-%\noindent\@xp\uppercase\@xp{\thelecturename} 
+%\noindent\@xp\uppercase\@xp{\thelecturename}
 \noindent\thelecturename
    \endgraf}%
   \let\@secnumber=\thelecturenum
@@ -206,7 +206,7 @@
   \vspace{34\p@}\noindent
 \fi}
 
-% We make the following changes to definitions of running heads: 
+% We make the following changes to definitions of running heads:
 % (1) add \textmd so that the header is not boldface
 % (2) use a comma, not a period, to separate author and lectureseries
 
@@ -344,7 +344,7 @@
 \def\@tmpevenhead{\relax}
 
 \def\cleardoublepage{\clearpage\if@twoside \ifodd\c@page\else
-    \let\@tmpevenhead\@evenhead \let\@evenhead\relax\hbox{}\eject 
+    \let\@tmpevenhead\@evenhead \let\@evenhead\relax\hbox{}\eject
     \let\@evenhead\@tmpevenhead\if@twocolumn\hbox{}\newpage\fi\fi\fi}
 
 % define \copyrightyear to be \currentyear (Dan Freed -- March 13, 1998)
@@ -363,7 +363,7 @@
 
 % macro to put in blank page at beginning for 2-up viewing
 
-\def\BlankPage{\pagestyle{empty}\thispagestyle{empty}\null\vfil\eject} 
+\def\BlankPage{\pagestyle{empty}\thispagestyle{empty}\null\vfil\eject}
 
 %fix font size of author:
 
@@ -402,7 +402,7 @@
   \addcontentsline{toc}{chapter}{%
     \thelecturelabel\ \thelecturenum.\ #2}%
   \vspace{10\p@}\noindent}
-  
+
 \def\@slecture#1{%
 \iffirstlecture
 \gdef\thelecturename{#1\unskip}\firstlecturefalse
@@ -444,7 +444,7 @@
 \usepackage{ifthen}
 \usepackage{listings}
 \usepackage{courier}
-\usepackage[bw,framed,numbered]{../../mcode}
+\usepackage[bw,framed,numbered]{mcode}
 \usepackage{microtype}
 \usepackage{appendix}
 \usepackage{hyperref}

@@ -35,7 +35,7 @@
 \newcommand{\authEmail}{callafon@ucsd.edu}
 \newcommand{\scribeEmail}{tdenewiler@gmail.com}
 \newcommand{\course}{MAE 283: Parameter Estimation}
-\newcommand{\lectureNum}{1}
+\newcommand{\lectureNum}{6}
 
 \address{Department of Mechanical and Aerospace Engineering, University of California, San Diego}
 
@@ -109,19 +109,12 @@
 
 \setaddress
 
-% the following hack starts the lecture numbering at 1
-\setcounter{lecture}{0}
-\setcounter{chapter}{0}
+% the following hack starts the lecture numbering at 6
+\setcounter{lecture}{5}
+\setcounter{chapter}{5}
 
-\lecture{Course Introduction}
+\lecture{??}
 
-\section{Introduction}
-This lecture is an introduction to the course. Typical lectures will be done at the blackboard but this one is done using slides that can be found at the main course website -- \href{http://mechatronics.ucsd.edu/mae283a/}{http://mechatronics.ucsd.edu/mae283a/}. The main contact information for Prof. de Callafon is \mailto{\authEmail}{\authEmail}. The grading will consist of the average of three homework assignments (20\%), one in-class midterm (30\%) and a final (50\%), where the final is split between a take-home project and an in-class test. The main text is ``System Identification, Theory for the User'' by Lennart Ljung, Second Edition (ISBN: 0-13-656695-2) and the recommended text is ``System Identification'' by Torsten Soderstrom and Petre Stoica (ISBN: 0-13-881236-5). The slides, pictures and videos for this lecture can be found at the course website.
-
-\section{What Is \SI?}
-\SI is the modeling of a dynamic system on the basis of experimental data. It can be thought of the the formulation and estimation of systematic relationships between measured discrete-time input/output data. Formulation is the parameterization of a dynamic model, or determining the salient parameters necessary to model a system. Estimation is the realization and/or optimization of those parameters. Discrete time concerns the sampling (multivariable) of continuous time systems at consistent or known intervals. Input/output gives the causal relationship between measurable actions and the reaction of the dynamic system.
-
-\SI is a systematic method of data extraction techniques to reduce a large number $N$ of noisy I/O observations to a small $p \ll N$ of parameters of a deterministic or stochastic dynamic model. The model that is produced is referred to as the ``empirical'' or ``data-based'' model. It is an alternative to ``physics'' or ``first-principle'' methods of generating models. Models based on the laws of physics tend to be much more complex due to the greater number of parameters and are thus more likely to have greater uncertainties. The models generated using \SI sacrifice capturing higher-order dynamics compared to first-principle-based models but are generally much simpler and can have performance criteria as constraints so that enough of the dynamics can be modeled to make the model useful.
 
 \end{document}
 
