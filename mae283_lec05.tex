@@ -203,7 +203,7 @@ Therefore, we need to find estimates for $R_{yu}(\tau)$ and $R_u(\tau)$ to find 
 From (\ref{eq:autocov}) we have
 $$R_u(\tau) = \bar{E}\{u(t)u(t-\tau)\} = \lim_{N\to\infty}\frac{1}{N}\sum_{t=1}^N E\{u(t)u(t-\tau)\}$$
 A proposed form of the estimate is
-$$\hat{R}_u^N(\tau) = \frac{1}{N}\sum_{t=1}^Nu(t)u(t-\tau)$$
+$$\hat{R}_u^N(\tau) = \frac{1}{N}\sum_{t=1}^u(t)u(t-\tau)$$
 The idea is that we will leave out the estimator operation because we do not know what it is. We hope that taking enough samples and averaging them will lead to a good estimate of the true covariance.
 
 Looking at the expected value of this proposed covariance estimate, we would like it to have the property
@@ -275,7 +275,7 @@ $\lozenge$
 \subsection{Cross-covariance Functions}
 This analysis is very similar to that for the auto-covariance functions. From (\ref{eq:xcov}) we have
 \begin{align*}
-R_{yu}(\tau) &= \bar{E}\{y(t)u(t-\tau)\} = \lim_{N\to\infty}\frac{1}{N}\sum{t=1}^N E\{y(t)u(t-\tau)\} \\
+R_{yu}(\tau) = \bar{E}\{y(t)u(t-\tau)\} &= \lim_{N\to\infty}\frac{1}{N}\sum{t=1}^N E\{y(t)u(t-\tau)\} \\
 \ryuhat &= \frac{1}{N}\sum_{t=1}^Ny(t)u(t-\tau) \\
 E\{R_{yu}(\tau)\} &= \frac{N-|\tau|}{N}R_{yu}(\tau) \sim \mathcal{O}(\frac{1}{N}) \\
 \lim_{N\to\infty}\ryuhat &= R_{yu}(\tau) \text{ w.p. } 1
