@@ -30,11 +30,11 @@ $$\theta^\ast = \left[\begin{array}{c} b_0 \\ a_0-\frac{c_0}{R_0} \end{array}\ri
 To make $\theta^\ast\to\theta_0$ we would need to make $R_0\to\infty$. We can make the variance of the output signal $y(t)=G_0u(t)+H_0e(t)$ larger by making the input signal larger.
 
 \section{Consistency Review}
-We want to have $\mathcal{S}\in\mathcal{M}$ but that is not always possible. Lacking that a useful trait for modeling is if the system transfer function is in the model set, $\mathcal{G}\in\mathcal{M}$, but not the transfer function of the noise. This can be thought of as
+We want to have $\mathcal{S}\in\mathcal{M}$ but that is not always possible. Lacking that a useful trait for modeling is if the system transfer function is in the model set, $\mathcal{G}\in\mathcal{M}$, but the transfer function of the noise is not in the model set. This can be thought of as
 $$\mathcal{S}\in\mathcal{M}:~\exists~\theta_0 \text{ s.t. } \mathcal{M}(\theta)=\mathcal{S}$$
 Note that $\mathcal{M}$ involves both $G_\theta$ and $H_\theta$. These models both need to be rich enough parameter-wise to capture the real parameters of the system. Under the assumptions on the data listed in \S\ref{sec:14data} we found that $\theta^\ast=\theta_0$. For the case where the transfer function of the noise is not in the model set we have
 $$\mathcal{G}\in\mathcal{M}:~\exists~\rho_0 \text{ s.t. } \mathcal{M}(\rho_0) \Rightarrow G_{\rho_0}=G_0$$
-We set
+We set the parameter to
 $$\theta = \left[\begin{array}{c} \rho \\ \eta \end{array}\right]$$
 and use $G_\rho$ and $H_\eta$. We call this the independent parameterization of $G_\rho$ and $H_\eta$. The model structures that have this are OE, BJ and FIR. However, OE and BJ require non-linear optimization and FIR is linear but assumes $G_\rho$ is a finite impulse response. Using all of this we find that
 $$\rho^\ast = \arg\min_{\rho,\eta} V_N\left(\left[\begin{array}{c} \rho \\ \eta \end{array}\right],Z^N\right) \Rightarrow \rho^\ast = \rho_0 \text{ w.p. } 1 \text{ if } \mathcal{G}\in\mathcal{M}$$
@@ -52,5 +52,123 @@ Since we have $\mathcal{S}\in\mathcal{M}$ then $\{e(t)\}$ is white noise with va
 \text{cov}\left(\thn\right) &= \lambda I_{N\times N}\cdot \onen\underbrace{\left(\onen\Phi_N^T\Phi_N\right)^{-1}}_{R^{-1}(N)} \\
 &= \frac{\lambda}{N}R^{-1}(N)
 \end{align*}
+
+\subsection{Optimality Condition}
+Define
+\begin{align*}
+\thetan &= \arg\min_\theta\onen\sumt\epsilon^2(t,\theta), \qquad \epsilon(t,\theta) = H_\theta^{-1}(y(t)-G_\theta u(t)) \\
+&= \arg\min_\theta V_N(\theta,Z^N) \\
+\psi(t,\theta) &= -\frac{\partial}{\partial\theta}\epsilon(t,\theta)
+\end{align*}
+For now, let $\dim(\epsilon)=1\times1$, $\dim(\theta)=p\times1$ leading to $\dim(\psi)=p\times1$. We want to show that
+\begin{align*}
+\onen\sumt\psi(t,\thetan)\epsilon(t,\thetan) = 0
+\end{align*}
+This can be shown by multiplying out the terms such that
+\begin{align*}
+\frac{\partial}{\partial\theta}V_N(\theta,Z^N) &= \frac{\partial}{\partial\epsilon}\frac{\partial\epsilon}{\partial\theta}V_N(\theta,Z^N) \\
+&= -\frac{\partial}{\partial\epsilon}\psi(t,\theta)V_N(\theta,Z^N) \\
+&= -2\onen\sumt\psi(t,\theta)\epsilon(t,\theta)
+\end{align*}
+Then we have that
+\begin{align*}
+\left.\frac{\partial}{\partial\theta}V_N(\theta,Z^N)\right|_{\theta=\thetan} = 0 \\
+\end{align*}
+\begin{align}
+\label{eq:14optimality}
+\Rightarrow \boxed{\onen\sumt\psi(t,\thetan)\epsilon(t,\thetan) = 0}
+\end{align}
+This is known as the \textit{optimality condition} on $\thetan$. Note that the $0$ term in (\ref{eq:14optimality}) is a $p\times1$ vector of zeros.
+
+\subsection{Optimality Condition and ARX}
+Applying the optimality condition to an ARX model shows that
+\begin{align*}
+\mathcal{M}: G_\theta&=\frac{B_\theta}{A_\theta}, \qquad H_\theta=\frac{1}{A_\theta} \\
+y(t)&= \vp^T(t)\theta+\epsilon(t,\theta) \\
+\epsilon(t,\theta) &= y(t)-\vp^T(t)\theta \\
+\psi(t,\theta) &= -\ptheta\epsilon(t,\theta) = \vp(t)
+\end{align*}
+In least squares estimation we performed an orthogonal projection to get
+\begin{align*}
+\onen\sumt\vp(t)\epsilon(t,\theta) = 0
+\end{align*}
+This shows that for a least squares estimate $\psi(t,\theta) = \vp(t)$!
+
+\subsection{Approximation Result}
+We want to show that
+$$\epsilon(t,\thetan) \approx e(t) - \psi^T(t,\thetan)[\thetan-\theta_0]$$
+This is the form of a Taylor series expansion so we use
+\begin{align*}
+e(t) &= \epsilon(t,\thetan) + \frac{1}{1!}\underbrace{\left.\ptheta\epsilon(t,\theta)\right|_{\theta=\thetan}}_{\psi(t,\thetan)}[\theta_0-\thetan] + \left.\frac{1}{2!}\frac{\partial^2}{\partial\theta^2}\epsilon(t,\theta)\right|_{\theta=\thetan}[\theta_0-\thetan]^2
+\end{align*}
+The Taylor series is an infinite sum so there are some higher order terms that are not shown here. By ignoring even the last term shown we get the \textit{approximation result} of
+\begin{align}
+\label{eq:14approximation}
+\boxed{\epsilon(,t,\thetan) \approx e(t) - \psi^T(t,\thetan)[\theta_0-\thetan]}
+\end{align}
+Note that $\{e(t)\}$ is still white noise here and that for an ARX model this is an equality because all of the higher order terms do drop out.
+
+\subsection{Parameter Error}
+We want to show that the parameter error, $\btheta$, is
+$$\btheta = \frac{1}{\sqrt{N}}\cdot\sqrt{\lambda}\cdot V^T\Psi\left[\thetan-\theta_0\right] \sim \mathcal{N}(0,1)$$
+Note that for a Gaussian distribution we have $c\tilde{\theta}\sim\mathcal{N}(0,1)\Rightarrow \text{var}(\tilde{\theta})=c^2$. We have used that
+$$\Psi = \left[\begin{array}{c} \psi(1,\thetan) \\ \vdots \\ \psi(N,\thetan) \end{array}\right]$$
+and $V$ comes from the SVD of $\Psi^T=U\Sigma V^T$. Then, let
+\begin{align*}
+\mathcal{E} = \left[\begin{array}{c} \epsilon(1,\thetan) \\ \vdots \\ \epsilon(N,\thetan) \end{array}\right], \qquad
+E = \left[\begin{array}{c} e(1) \\ \vdots \\ e(N) \end{array}\right]
+\end{align*}
+This gives $\Psi^T\mathcal{E} = 0$ using the optimality condition on $\thetan$ from (\ref{eq:14optimality}) and $\mathcal{E} \approx E-\Psi[\thetan-\theta_0]$ using the approximation result from (\ref{eq:14approximation}). This shows that
+\begin{align*}
+\Psi^T\mathcal{E} &\approx \Psi^TE-\Psi^T\Psi[\thetan-\theta_0] \\
+\Psi^TE &\approx \Psi^T\Psi[\thetan-\theta_0] \\
+&[\text{right multiply entire expression by } \Sigma^{-1}U^T] \\
+V^TE &\approx V^T\Psi[\thetan-\theta_0]
+\end{align*}
+From
+$$\onen E^TV^TVE, \qquad V^TV=I$$
+we see that $\onen E^TE$ is the variance so
+$$\frac{1}{\sqrt{N}}V^TE \approx \frac{1}{\sqrt{N}}V^T\Psi[\thetan-\theta_0]$$
+where the right hand side has a variance of $\lambda$. We also have that the mean is zero because as $N\to\infty$
+$$\thetan\to\theta_0 \Rightarrow \thetan-\theta_0 = 0 \Rightarrow \btheta = 0$$
+This leads to
+\begin{align}
+\begin{split}
+&\sqrt{N}(\thetan-\theta_0) \sim \mathcal{N}(0,P_\theta) \\
+&P_\theta = \left[V''(\theta^\ast)\right]^{-1}Q\left[V''(\theta^\ast)\right]^{-T} \\
+&Q = \lim_{N\to\infty}N\cdot E\left\lbrace V'(\theta^\ast,Z^N)V'(\theta^\ast,Z^N)^T \right\rbrace
+\end{split}
+\end{align}
+where the $'$ and $''$ represent derivatives.
+
+\subsection{Covariance with System in Model Set}
+Let $\mathcal{S}\in\mathcal{M}$, then we know $\theta^\ast=\theta_0$. The covariance of $\sqrt{N}(\thetan-\theta_0$ is found by
+\begin{align}
+\label{eq:14covariance}
+\boxed{P_\theta = \lambda\left[E\left\lbrace \psi(t,\theta_0)\psi(t,\theta_0)^T\right\rbrace\right]^{-1}}
+\end{align}
+where
+$$\psi(t,\theta) = -\left.\ptheta\epsilon(t,\theta)\right|_{\theta=\theta_0}$$
+Again, this form is very similar to least squares but can be applied to more general situations. Note that the derivative depends on the model structure, so we really have to estimate the values in (\ref{eq:14covariance}) because they cannot be computed directly.
+\begin{align*}
+\boxed{\hat{\lambda}^N = \onen\sumt\epsilon^2(t,\thetan)}
+\end{align*}
+\begin{align*}
+\boxed{\hat{P}_\theta = \hat{\lambda}^N\cdot\onen\sumt\psi(t,\thetan)\psi^T(t,\thetan)}
+\end{align*}
+It is very important to look at the covariance of the parameter estimates because it tells us how sensitive our parameter estimate is to the model structure being used.
+
+\begin{example}
+Let
+\begin{align*}
+\mathcal{S}: y(t) &= \frac{b_1q^{-1}}{1+f_1q^{-1}}u(t) + e(t) \\
+\mathcal{M}: y(t) &= \frac{\hat{b}_0 + \hat{b}_1q^{-1}}{1+\hat{f}_1q^{-1}}u(t) + \epsilon(t,\thetan)
+\end{align*}
+In the estimate $\hat{b}_0$ will have a large confidence interval because it is not really needed to describe the system. Another model structure that would have large confidence intervals for this system would be
+$$\mathcal{M}: y(t) = \frac{\hat{b}_0+\hat{b}_1q^{-1}+\hat{b}_2q^{-2}}{1+\hat{f}_1q^{-1}+\hat{f}_2q^{-2}}u(t)+\epsilon(t,\thetan)$$
+$\lozenge$
+\end{example}
+
+Large confidence intervals indicate that the model is over-parameterized or that the wrong model structure is being used.
 
 %%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%
