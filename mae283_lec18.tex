@@ -41,6 +41,20 @@ We can make this slightly more general by using
 \end{align*}
 where $\alpha(\theta_i)$ is such that $|f(\theta_{i+1})|<|f(\theta_i)|$ and $\alpha(\theta_i)$ is known as the bending parameter or step-size function.
 
+\begin{figure}[ht!]
+	\centering
+	\includegraphics[width=.4\textwidth]{images/18nr}
+	\caption{Finding zero with Newton-Raphson method.}
+	\label{fig:18nr}
+\end{figure}
+
+\begin{figure}[ht!]
+	\centering
+	\includegraphics[width=.6\textwidth]{images/18min}
+	\caption{Finding minimum with Newton-Raphson method.}
+	\label{fig:18min}
+\end{figure}
+
 The Newton-Raphson method can also be used to find the minimum of a function as in Figure ??. Then the algorithm would be
 \begin{align*}
 \boxed{\theta_{i+1} = \theta_i - \alpha(\theta_i)\left[\left.f^{\prime\prime}(\theta)\right|_{\theta=\theta_i}\right]^{-1}\cdot\left[\left.f^\prime(\theta)\right|_{\theta=\theta_i}\right]}
