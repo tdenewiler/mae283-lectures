@@ -212,13 +212,13 @@ The response from Example \ref{ex:sSpectrum} looks like Figure \ref{fig:06freqRe
 
 \begin{figure}[ht!]
 	\centering
-	\includegraphics[width=.4\textwidth]{images/06freqResp}
+	\includegraphics[width=.5\textwidth]{images/06freqResp}
 	\caption{Frequency response with variance.}
 	\label{fig:06freqResp}
 \end{figure}
 
-To reduce the variance we can take the average of the spectrum over a small range. By doing that over the entire spectrum signal the effect is that we are multiplying the spectrum by a window function called $w(\w)$, which can also be thought of as a weighting function. The result of using a rectangular window of width $\Xi$ is
-$$\hat{\hat{\phi}}_s^N(\w) = \frac{1}{2\pi}\int_{\w=-\pi}^\pi \phi_s^N(\Xi)w(\Xi-\w)d\Xi$$
+To reduce the variance we can take the average of the spectrum over a small range. By doing that over the entire spectrum signal the effect is that we are multiplying the spectrum by a window function called $w(\w)$, which can also be thought of as a weighting function. The result of using a rectangular window of width $\xi$ is
+$$\hat{\hat{\phi}}_s^N(\w) = \frac{1}{2\pi}\int_{\w=-\pi}^\pi \phi_s^N(\xi)w(\xi-\w)d\Xi$$
 When $w(\w)$ is not a simple rectangular window with range $[0,1]$ this estimate must be normalized by dividing the right hand side by $\frac{1}{2\pi}\int_{\w=-\pi}^\pi w(\w)d\w$.
 
 \begin{theorem}
@@ -287,7 +287,7 @@ The Welsh method is similar to the Bartlett window when setting $\gamma=N_0$ in 
 
 \begin{figure}[ht!]
 	\centering
-	\includegraphics[width=.4\textwidth]{images/06welsh}
+	\includegraphics[width=.5\textwidth]{images/06welsh}
 	\caption{Welsh window method.}
 	\label{fig:06welsh}
 \end{figure}
