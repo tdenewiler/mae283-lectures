@@ -118,7 +118,7 @@
 \newcommand{\ksum}{\sum_{k=-\infty}^\infty}
 \newcommand{\ruhat}{\hat{R}_u^N(\tau)}
 \newcommand{\ryuhat}{\hat{R}_{yu}^N(\tau)}
-\newcommand{\phiuhat}{\hat{\phi}_u^N(\omega)}
+\newcommand{\Phiuhat}{\hat{\Phi}_u^N(\omega)}
 
 
 %%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%
@@ -158,12 +158,12 @@ R_{yu}(\tau) = \bar{E}\{y(t)u(t-\tau)\}
 Auto-spectral density function
 \begin{align}
 \label{eq:autospec}
-\phi_u(\w) = \tausum R_u(\tau)e^{-j\w\tau} = \mathcal{F}\{R_u(\tau)\}
+\Phi_u(\w) = \tausum R_u(\tau)e^{-j\w\tau} = \mathcal{F}\{R_u(\tau)\}
 \end{align}
 Cross-spectral density function
 \begin{align}
 \label{eq:xspec}
-\phi_{yu}(\w) = \mathcal{F}\{R_{yu}(\tau)\}
+\Phi_{yu}(\w) = \mathcal{F}\{R_{yu}(\tau)\}
 \end{align}
 \end{definition}
 
@@ -173,19 +173,19 @@ $$R_{yu}(\tau) = g_0(k)$$
 if the sequence of inputs $\{u(t)\}$ is white noise and says that we can get the impulse response, or Markov, parameters from the cross-covariance of the input and output. We can also find the other values in (\ref{eq:autocov} - \ref{eq:xspec}) as
 \begin{align*}
 R_{yu}(\tau) &= G_0(q)R_u(\tau) \\
-\phi_{yu}(\w) &= G_0(e^{j\w})\phi_u(\w) \\
-\phi_y(\w) &= |G_0(e^{j\w})|^2\phi_u(\w) + \phi_v(\w)
+\Phi_{yu}(\w) &= G_0(e^{j\w})\Phi_u(\w) \\
+\Phi_y(\w) &= |G_0(e^{j\w})|^2\Phi_u(\w) + \Phi_v(\w)
 \end{align*}
 
 \subsection{Properties}
 Notice that $R_u(\tau)=R_u(-\tau)$. The product $u(t)u(t-\tau)$ remains the same and implies that the auto-covariance function is symmetric about $\tau=0$.
 
-The auto-spectral density function is real-valued, $\phi_u(\w) = \mathcal{F}\{R_u(\tau)\}\in\mathbb{R}$. Any Fourier transform is real when the signal is symmetric.
+The auto-spectral density function is real-valued, $\Phi_u(\w) = \mathcal{F}\{R_u(\tau)\}\in\mathbb{R}$. Any Fourier transform is real when the signal is symmetric.
 
 The cross-covariance function is \textit{not} symmetric, $R_{yu}(\tau)\neq R_{yu}(-\tau)$.
 
 The cross-spectral density function is complex-valued in general,
-$$\phi_{yu}(\w) = \mathcal{F}\{R_{yu}(\tau)\}\in\mathbb{C} \rightarrow \phi_{yu}(\w)\in\mathbb{C} = G_0(e^{j\w})\in\mathbb{C} \cdot \phi_u(\w)\in\mathbb{R}$$
+$$\Phi_{yu}(\w) = \mathcal{F}\{R_{yu}(\tau)\}\in\mathbb{C} \rightarrow \Phi_{yu}(\w)\in\mathbb{C} = G_0(e^{j\w})\in\mathbb{C} \cdot \Phi_u(\w)\in\mathbb{R}$$
 
 Let $y(t) = G_0(q)u(t)+v(t)$, with $\{u(t)\}=\text{ white noise}$ and $u\perp v$. This defines a causal system. In a causal system $R_{yu}(-\tau)=0$. This means that the system output is not reacting to an input \textit{before} the input is applied. Recall that $R_{yu}(-\tau)=g_0(k)$ because the input is white noise. The $g_0(k)$ values represent the impulse response and they \textit{must} be zero for input that has not occurred, as represented by $t=-\tau$.
 
@@ -259,18 +259,18 @@ This means that the variance goes to zero with probability $1$. See Figure \ref{
 \begin{align*}
 \ruhat &= \begin{cases} \frac{1}{N}\sum_{t=1}^Nu(t)u(t-\tau), & |\tau|\leq N-1 \\ 0, & |\tau|\geq N \end{cases} \\
 &\text{use DTFT} \\
-\sum_{\tau=-\infty}^\infty\ruhat e^{-j\w\tau} &= \phiuhat = \frac{1}{N}\left|U_N(\w)\right|^2 \triangleq \text{ periodogram} \\
+\sum_{\tau=-\infty}^\infty\ruhat e^{-j\w\tau} &= \Phiuhat = \frac{1}{N}\left|U_N(\w)\right|^2 \triangleq \text{ periodogram} \\
 &\text{use DTFT} \\
 U_N(\w) &= \sum_{t=0}^{N-1}u(t)e^{-j\w t}
 \end{align*}
-Later it will be shown why $\phiuhat$ is \textit{not} a good estimate. Now we can compute $\ruhat$ using (\ref{eq:autocovest}) or
+Later it will be shown why $\Phiuhat$ is \textit{not} a good estimate. Now we can compute $\ruhat$ using (\ref{eq:autocovest}) or
 \begin{align*}
 \mathcal{F}\{u(t)\} &= U_N(\w) \\
 \mathcal{F}^{-1}\{U_N(\w)\overline{U_N(\w)}\} &= \ruhat
 \end{align*}
 The benefit of this last representation is that Fourier transforms can be \textit{very} fast to compute using digital systems and this is important when there are a large number of estimates to find.
-\end{example}
 $\lozenge$
+\end{example}
 
 \subsection{Cross-covariance Functions}
 This analysis is very similar to that for the auto-covariance functions. From (\ref{eq:xcov}) we have
@@ -348,11 +348,11 @@ This works even when the noise is not white. However, if the noise is white then
 Notice that $\hat{\mathbf{R}}_u$ only depends on the input sequence $\{u(t)\}$. The invertibility of $\hat{\mathbf{R}}_u$ is a property of $\{u(t)\}$ and when it is possible is referred to as the ``persistence of excitation''. It is the responsibility of the engineer to create the input signal $\{u(t)\}$ such that $\hat{\mathbf{R}}_u$ is invertible.
 
 \begin{example}
-Suppose that the input signal is $u(t)=sin\w t$. Then we will only have $\text{rank}\{\hat{\mathbf{R}}_u\}=2$. We would only be able to estimate the first two parameters, $g_0(0)$ and $g_0(1)$. This is because a sinusoid only has two parameters, the frequency and amplitude or the frequency and phase shift. If two sinusoids are used as input then we could estimate four parameters.
+Suppose that the input signal is $u(t)=\sin\w t$. Then we will only have $\text{rank}\{\hat{\mathbf{R}}_u\}=2$. We would only be able to estimate the first two parameters, $g_0(0)$ and $g_0(1)$. This is because a sinusoid only has two parameters, the frequency and amplitude or the frequency and phase shift. If two sinusoids are used as input then we could estimate four parameters.
 
 Note that as $N\to\infty$ the parameters $g_0(k)$ go to the real values and are not estimated values.
-\end{example}
 $\lozenge$
+\end{example}
 
 
 \end{document}

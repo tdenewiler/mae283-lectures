@@ -118,11 +118,11 @@
 \newcommand{\ksum}{\sum_{k=-\infty}^\infty}
 \newcommand{\ruhat}{\hat{R}_u^N(\tau)}
 \newcommand{\ryuhat}{\hat{R}_{yu}^N(\tau)}
-\newcommand{\phiuhat}{\hat{\phi}_u^N(\omega)}
-\newcommand{\phiyuhat}{\hat{\phi}_{yu}^N(\omega)}
-\newcommand{\phiyuhh}{\hat{\hat{\phi}}_{yu}^N(\omega)}
-\newcommand{\phiuhh}{\hat{\hat{\phi}}_u^N(\omega)}
-\newcommand{\phiyhh}{\hat{\hat{\phi}}_y^N(\omega)}
+\newcommand{\varphiuhat}{\hat{\varphi}_u^N(\omega)}
+\newcommand{\varphiyuhat}{\hat{\varphi}_{yu}^N(\omega)}
+\newcommand{\varphiyuhh}{\hat{\hat{\varphi}}_{yu}^N(\omega)}
+\newcommand{\varphiuhh}{\hat{\hat{\varphi}}_u^N(\omega)}
+\newcommand{\varphiyhh}{\hat{\hat{\varphi}}_y^N(\omega)}
 \newcommand{\ghh}{\hat{\hat{G}}(e^{j\omega})}
 \newcommand{\thn}{\hat{\theta}_{LS}^N}
 
@@ -150,18 +150,18 @@
 \section{Least Squares/Linear Regression Review}
 These notes correspond to Chapter 7.3 in Ljung. The least squares estimate is our first attempt to generate a parametric model. The system and model are given by
 \begin{align*}
-\mathcal{S}: y(t) &= \phi(t)\theta_0 \\
-\mathcal{M}: y(t) &= \phi(t)\theta + e(t,\theta)
+\mathcal{S}: y(t) &= \varphi(t)\theta_0 \\
+\mathcal{M}: y(t) &= \varphi(t)\theta + e(t,\theta)
 \end{align*}
-where $\phi(t)$ is known as the ``regressor'' and is the same for the model and the system. Also, $\theta_0$ is the ``real'' parameter and $\theta$ is the model of the parameter. Then the least squares estimate of the parameter, $\theta$, is
+where $\varphi(t)$ is known as the ``regressor'' and is the same for the model and the system. Also, $\theta_0$ is the ``real'' parameter and $\theta$ is the model of the parameter. Then the least squares estimate of the parameter, $\theta$, is
 \begin{align*}
 \hat{\theta}_{LS} &= \min_\theta ||e(t,\theta)|| \\
 \thn &= \min_\theta \frac{1}{N}\sum_{t=1}^Ne^2(t,\theta) = \min_\theta R_e(\tau=0) = \min_\theta\hat{E}\{e(t,\theta)\}
 \end{align*}
-where $\hat{E}\{e(t,\theta)\}$ is the estimation of the expected variance. Recall that the regressor, $\phi(t)$, is all of the past inputs and outputs such that
+where $\hat{E}\{e(t,\theta)\}$ is the estimation of the expected variance. Recall that the regressor, $\varphi(t)$, is all of the past inputs and outputs such that
 \begin{align}
 \label{eq:regressor}
-\phi(t) = \left[\begin{array}{c} u(t) \\ u(t-1) \\ \vdots \\ u(t-n_b) \\ -y(t-1) \\ \vdots \\ -y(t-n_a) \end{array}\right]
+\varphi(t) = \left[\begin{array}{c} u(t) \\ u(t-1) \\ \vdots \\ u(t-n_b) \\ -y(t-1) \\ \vdots \\ -y(t-n_a) \end{array}\right]
 \end{align}
 and the parameter contains
 \begin{align}
@@ -169,16 +169,16 @@ and the parameter contains
 \theta = \left[\begin{array}{c} b_0 \\ b_1 \\ \vdots \\ b_{n_b} \\ a_1 \\ \vdots \\ a_{n_a} \end{array}\right]
 \end{align}
 The model given by
-$$y(t) = \phi(t)\theta + e(t,\theta)$$
+$$y(t) = \varphi(t)\theta + e(t,\theta)$$
 can be accumulated over $N$ samples and written in matrix form as
 \begin{align*}
-\underbrace{\left[\begin{array}{c} y(1) \\ y(2) \\ \vdots \\ y(N) \end{array}\right]}_{\mathbf{y}} &= \underbrace{\left[\begin{array}{c} \phi^T(1) \\ \phi^T(2) \\ \vdots \\ \phi^T(N) \end{array}\right]}_{\mathbf{\phi}^T} \theta
+\underbrace{\left[\begin{array}{c} y(1) \\ y(2) \\ \vdots \\ y(N) \end{array}\right]}_{\mathbf{y}} &= \underbrace{\left[\begin{array}{c} \varphi^T(1) \\ \varphi^T(2) \\ \vdots \\ \varphi^T(N) \end{array}\right]}_{\mathbf{\varphi}^T} \theta
 + \underbrace{\left[\begin{array}{c} e(1,0) \\ e(2,0) \\ \vdots \\ e(N,0) \end{array}\right]}_{\mathbf{e}} \\
-\Rightarrow \frac{1}{N}\mathbf{\phi}\mathbf{y} &= \frac{1}{N}\mathbf{\phi}\mathbf{\phi}^T\theta + \frac{1}{N}\mathbf{\phi}\mathbf{e} \\
+\Rightarrow \frac{1}{N}\mathbf{\varphi}\mathbf{y} &= \frac{1}{N}\mathbf{\varphi}\mathbf{\varphi}^T\theta + \frac{1}{N}\mathbf{\varphi}\mathbf{e} \\
 \Rightarrow \hat{\theta} &= \min_\theta \frac{1}{N}\mathbf{e}^T\mathbf{e}
 \end{align*}
 This uses an orthogonal projection to make $\hat{\theta}$ as small as possible. Rearranging to get the parameter estimate yields
-$$\thn = (\frac{1}{N}\mathbf{\phi\phi}^T)^{-1} (\frac{1}{N}\mathbf{\phi y})$$
+$$\thn = (\frac{1}{N}\mathbf{\varphi\varphi}^T)^{-1} (\frac{1}{N}\mathbf{\varphi y})$$
 Note that this is an ordinal equation and is not the best way to compute the least square estimate from a numerical methods standpoint.
 
 \section{Applications}
@@ -186,7 +186,7 @@ Note that this is an ordinal equation and is not the best way to compute the lea
 The least squares estimate from the perspective of modeling discrete-time systems can be used when the model is given by
 \begin{align}
 \label{eq:model}
-\mathcal{M}: y(t) = \phi(t)\theta + e(t,\theta)
+\mathcal{M}: y(t) = \varphi(t)\theta + e(t,\theta)
 \end{align}
 using (\ref{eq:regressor}) and (\ref{eq:parameter}). This is equivalent to writing
 \begin{align*}
@@ -203,10 +203,10 @@ Here we can see that the denominators for $G(q,\theta)$ and $H(q,\theta)$ are th
 
 \subsection{Linear Regression and Noise}
 If we look at a system with white noise such as
-$$\mathcal{S}: y(t) = \phi^T(t)\theta_0 + e(t)$$
+$$\mathcal{S}: y(t) = \varphi^T(t)\theta_0 + e(t)$$
 where $\{e(t)\}=$ white noise and the parameter $\theta_0$ is unknown we can re-write this as
 $$y(t) = G_0(q)u(t) + v(t)$$
-where $v(t)=H_0(q)e(t)$. How do we find the transfer functions of this system? First, note that $G(q,\theta_0)=G_0(q)$. Next we need to find the regressor, $\phi(t)$. We can assume that the regressor is of the form (\ref{eq:regressor}) and contains all past inputs and outputs. Then we know
+where $v(t)=H_0(q)e(t)$. How do we find the transfer functions of this system? First, note that $G(q,\theta_0)=G_0(q)$. Next we need to find the regressor, $\varphi(t)$. We can assume that the regressor is of the form (\ref{eq:regressor}) and contains all past inputs and outputs. Then we know
 \begin{align}
 \label{eq:g}
 G_0(q) = \frac{b_0+b_1q^{-1}+b_2q^{-2}+\cdots+b_{n_b}q^{-n_b}}{1+a_1q^{-1}+a_2q^{-2}+\cdots+a_{n_a}q^{-n_a}}
@@ -230,8 +230,8 @@ where $\{v(t)\}$ and $\{w(t)\}$ are white noise and assuming that we have access
 \left[\begin{array}{c} x(t+1) \\ y(t) \end{array}\right] &=
 \left[\begin{array}{c c} A & B \\ C & D \end{array}\right] \left[\begin{array}{c} x(t) \\ u(t) \end{array}\right] +
 \left[\begin{array}{c} v(t) \\ w(t) \end{array}\right] \nonumber \\
-\bar{y}(t) &= \bar{\theta}^T\bar{phi}(t) + \bar{e}(t) \nonumber \\
-\bar{y}^T(t) &= \bar{\phi}^T(t)\bar{\theta} + \bar{e}^T(t)
+\bar{y}(t) &= \bar{\theta}^T\bar{\varphi}(t) + \bar{e}(t) \nonumber \\
+\bar{y}^T(t) &= \bar{\varphi}^T(t)\bar{\theta} + \bar{e}^T(t)
 \end{align}
 Conclusion: If $\{u(t),y(t)\} + \{x(t)\}$ is available then the estimation of $A,B,C,D$ can be written as a least squares problem.
 
@@ -239,10 +239,10 @@ Conclusion: If $\{u(t),y(t)\} + \{x(t)\}$ is available then the estimation of $A
 Some important properties of the least squares estimate, $\thn$, are given below.
 
 \subsection{Relation to the Covariance Functions}
-$$\thn = (\frac{1}{N}\mathbf{\phi\phi}^T)^{-1}(\frac{1}{N}\mathbf{\phi y}) \triangleq \underbrace{R^{-1}(N)}_{p\times p} \underbrace{f(N)}_{p\times 1}$$
+$$\thn = (\frac{1}{N}\mathbf{\varphi\varphi}^T)^{-1}(\frac{1}{N}\mathbf{\varphi y}) \triangleq \underbrace{R^{-1}(N)}_{p\times p} \underbrace{f(N)}_{p\times 1}$$
 Looking more closely at $R(N)$ we can see that it is a $p\times p$ matrix built from elements of (\ref{eq:regressor}).
-$$R(N) = \frac{1}{N}\left[\begin{array}{c c c} \phi(1) & \cdots & \phi(N) \end{array}\right]
-\left[\begin{array}{c} \phi^T(1) \\ \vdots \\ \phi^T(N) \end{array}\right]$$
+$$R(N) = \frac{1}{N}\left[\begin{array}{c c c} \varphi(1) & \cdots & \varphi(N) \end{array}\right]
+\left[\begin{array}{c} \varphi^T(1) \\ \vdots \\ \varphi^T(N) \end{array}\right]$$
 Calculating a few of the elements of $R(N)$ gives
 \begin{align*}
 R(N)_{1,1} &= \frac{1}{N}\sum_{t=1}^Nu(t)u(t) = \hat{R}_u^N(0) \\
@@ -317,34 +317,34 @@ For $R(N)$ to be invertible it must be true that $\det(\mathbf{R}_y-\mathbf{R}_{
 What happens in
 $$\lim_{N\to\infty} \thn  = \theta_0 \text{ w.p. } 1$$
 Is this a true statement? If we use the model
-$$\mathcal{M}: y(t) = \phi^T(t)\theta + e(t,\theta)$$
+$$\mathcal{M}: y(t) = \varphi^T(t)\theta + e(t,\theta)$$
 and assume that the system is
-$$\mathcal{S}: y(t) = \phi^T(t)\theta_0 + v(t)$$
+$$\mathcal{S}: y(t) = \varphi^T(t)\theta_0 + v(t)$$
 where the assumption means that $\theta$ and $\theta_0$ have the same size, $\{v(t)\}$ is not necessarily white noise, $E\{v(t)\} = 0$ and $u\perp v$, then
 \begin{align}
 \label{eq:thn}
 \thn &= R^{-1}(N)f(N) \nonumber \\
-&= R^{-1}(N)\left(\frac{1}{N}\sum_{t=1}^N\phi(t)y(t)\right) \nonumber \\
-&= R^{-1}(N)\left( \underbrace{\frac{1}{N}\sum_{t=1}^N\phi(t)\phi^T(t)}_{R(N)}\theta_0+\frac{1}{N}\sum_{t=1}^N\phi(t)v(t)\right) \nonumber\\
-&= \theta_0 + R^{-1}(N)\cdot \frac{1}{N}\sum_{t=1}^N\phi(t)v(t)
+&= R^{-1}(N)\left(\frac{1}{N}\sum_{t=1}^N\varphi(t)y(t)\right) \nonumber \\
+&= R^{-1}(N)\left( \underbrace{\frac{1}{N}\sum_{t=1}^N\varphi(t)\varphi^T(t)}_{R(N)}\theta_0+\frac{1}{N}\sum_{t=1}^N\varphi(t)v(t)\right) \nonumber\\
+&= \theta_0 + R^{-1}(N)\cdot \frac{1}{N}\sum_{t=1}^N\varphi(t)v(t)
 \end{align}
 This leads to
-$$\lim_{N\to\infty} E\{\thn\} = \theta_0 + \lim_{N\to\infty}R^{-1}(N)\frac{1}{N}\sum_{t=1}^N\phi(t)v(t)$$
+$$\lim_{N\to\infty} E\{\thn\} = \theta_0 + \lim_{N\to\infty}R^{-1}(N)\frac{1}{N}\sum_{t=1}^N\varphi(t)v(t)$$
 We want the last term to go to zero so that
 $$\lim_{N\to\infty} E\{\thn\} = 0$$
 That happens when
-$$\lim_{N\to\infty} R^{-1}(N)R_{\phi v}(0) = 0$$
-Recall that $\phi(t)$ is given by (\ref{eq:regressor}) and $u\perp v$. Then we have that
-$$R_{\phi v}(0) = \left[\begin{array}{c} R_{uv}(0) \\ R_{uv}(-1) \\ \vdots \\ R_{uv}(-n_b) \\ \hline \\ R_{yv}(-1) \\ \vdots \\ R_{yv}(-n_a) \end{array}\right]$$
+$$\lim_{N\to\infty} R^{-1}(N)R_{\varphi v}(0) = 0$$
+Recall that $\varphi(t)$ is given by (\ref{eq:regressor}) and $u\perp v$. Then we have that
+$$R_{\varphi v}(0) = \left[\begin{array}{c} R_{uv}(0) \\ R_{uv}(-1) \\ \vdots \\ R_{uv}(-n_b) \\ \hline \\ R_{yv}(-1) \\ \vdots \\ R_{yv}(-n_a) \end{array}\right]$$
 The first $n_b$ terms in the upper block are zero because of $u\perp v$. The last $n_a$ terms in the lower block are zero if and only if $\{v(t)\}$ is white noise.
 
-Conclusion: For $\mathcal{S}: y(t) = \phi^T(t)\theta_0 + v(t)$ it must be true that $\{v(t)\}$ is white noise in order to avoid bias in the least squares estimation of the parameter.
+Conclusion: For $\mathcal{S}: y(t) = \varphi^T(t)\theta_0 + v(t)$ it must be true that $\{v(t)\}$ is white noise in order to avoid bias in the least squares estimation of the parameter.
 
 \subsection{Careful with the White Noise Assumption}
 Given a system and model such that
 \begin{align*}
 \mathcal{S}: y(t) &= G_0(q)u(t) + e(t) \\
-\mathcal{M}: y(t) &+ \phi^T(t)\theta + e(t,\theta)
+\mathcal{M}: y(t) &+ \varphi^T(t)\theta + e(t,\theta)
 \end{align*}
 where $\{e(t)\}$ is white noise we get
 $$\thn = \min_\theta \frac{1}{N}\sum_{t=1}^N e^2(t,\theta)$$
@@ -356,7 +356,7 @@ We can re-write this as
 \begin{align*}
 y(t) &= \frac{B(q)}{A(q}u(t) + e(t) \\
 y(t)A(q) &= B(q)u(t) + e(t) \\
-y(t) &= \phi^T(t)\theta_0 + v(t) \\
+y(t) &= \varphi^T(t)\theta_0 + v(t) \\
 v(t) &= A(q)e(t)
 \end{align*}
 The last equality shows that the noise is actually colored by the filter, $A(q)$ and so $\{v(t)\}$ is \textit{not} white noise. The noise we actually measure is $\{v(t)\}$ and not $\{e(t)\}$. The only time that we can say that we have white noise in this situation is when

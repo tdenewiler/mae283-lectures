@@ -118,11 +118,11 @@
 \newcommand{\ksum}{\sum_{k=-\infty}^\infty}
 \newcommand{\ruhat}{\hat{R}_u^N(\tau)}
 \newcommand{\ryuhat}{\hat{R}_{yu}^N(\tau)}
-\newcommand{\phiuhat}{\hat{\phi}_u^N(\omega)}
-\newcommand{\phiyuhat}{\hat{\phi}_{yu}^N(\omega)}
-\newcommand{\phiyuhh}{\hat{\hat{\phi}}_{yu}^N(\omega)}
-\newcommand{\phiuhh}{\hat{\hat{\phi}}_u^N(\omega)}
-\newcommand{\phiyhh}{\hat{\hat{\phi}}_y^N(\omega)}
+\newcommand{\varphiuhat}{\hat{\varphi}_u^N(\omega)}
+\newcommand{\varphiyuhat}{\hat{\varphi}_{yu}^N(\omega)}
+\newcommand{\varphiyuhh}{\hat{\hat{\varphi}}_{yu}^N(\omega)}
+\newcommand{\varphiuhh}{\hat{\hat{\varphi}}_u^N(\omega)}
+\newcommand{\varphiyhh}{\hat{\hat{\varphi}}_y^N(\omega)}
 \newcommand{\ghh}{\hat{\hat{G}}(e^{j\omega})}
 \newcommand{\thn}{\hat{\theta}_{LS}^N}
 
@@ -151,7 +151,7 @@
 Up to this point we have seen that for a model
 \begin{align}
 \label{eq:model}
-\mathcal{M}: y(t) = \phi^T(t)\theta + e(t,\theta)
+\mathcal{M}: y(t) = \varphi^T(t)\theta + e(t,\theta)
 \end{align}
 we get the least squares estimate as
 \begin{align}
@@ -167,7 +167,7 @@ $$E\{\thn\} = \theta_0$$
 provided the noise, $\{e(t)\}$, is white. This is for the system
 \begin{align}
 \label{eq:sys}
-\mathcal{S}: y(t) = \phi^T(t)\theta_0 + e(t)
+\mathcal{S}: y(t) = \varphi^T(t)\theta_0 + e(t)
 \end{align}
 
 $R(N)$ and $f(N)$ are a collection of the auto-/cross-covariance functions.
@@ -208,7 +208,7 @@ These are some ways that the least squares estimate can be modified to achieve b
 Starting with the model from (\ref{eq:model}) and the estimate from (\ref{eq:lse}) we can add a weighting function such that
 $$\thn = \min_\theta \frac{1}{N}\sum_{t=1}^N e_w^2(t)$$
 where $e_w(t)=w(t)e(t)$. This can be useful for weighting recent data more than past data (Figure \ref{fig:09wRecent}) or for removing data that could be unreliable data (Figure \ref{fig:09bad}). The latter case allows us to ignore unreliable data that would result in determining a model that does not capture the dynamics of the actual system. The way to solve the weighted least squares problem is to find
-$$\underbrace{w(t)y(t)}_{y_w(t)} = \underbrace{w(t)\phi^T(t)}_{\phi_w^T(t)}\theta + \underbrace{w(t)e(t)}_{e_w(t)}$$
+$$\underbrace{w(t)y(t)}_{y_w(t)} = \underbrace{w(t)\varphi^T(t)}_{\varphi_w^T(t)}\theta + \underbrace{w(t)e(t)}_{e_w(t)}$$
 and then use the standard tools. Note that this method can be used recursively.
 
 \begin{figure}[ht!]
@@ -232,7 +232,7 @@ and then use the standard tools. Note that this method can be used recursively.
 
 \subsection{Total Least Squares Estimate}
 For this method we use a different model
-$$\mathcal{M}: y(t) = (\phi(t)+e_2(t,\theta))^T\theta+e_1(t,\theta)$$
+$$\mathcal{M}: y(t) = (\varphi(t)+e_2(t,\theta))^T\theta+e_1(t,\theta)$$
 This method minimizes the error on \textit{both} the input and the output, not just the output like the standard least squares estimate. See Figure \ref{fig:09totalLS}.
 
 \begin{figure}[ht!]
@@ -243,7 +243,7 @@ This method minimizes the error on \textit{both} the input and the output, not j
 \end{figure}
 
 \subsection{Constrained Least Squares Estimate}
-Suppose we have the model $\mathcal{M}: y(t) = \phi^T(t)\theta + e(t,\theta)$ and having data $\{u(t),y(t)\}, t=1,\ldots,N$. Further suppose that we have a-priori knowledge of some part of the system dynamics that we want to use in our estimate. We then say that we will constrain the estimate so that it respects the a-priori knowledge of the system dynamics.
+Suppose we have the model $\mathcal{M}: y(t) = \varphi^T(t)\theta + e(t,\theta)$ and having data $\{u(t),y(t)\}, t=1,\ldots,N$. Further suppose that we have a-priori knowledge of some part of the system dynamics that we want to use in our estimate. We then say that we will constrain the estimate so that it respects the a-priori knowledge of the system dynamics.
 
 \begin{example}
 Assume we know the DC-gain of $G_0(q)$. We can write the DC-gain of a system as being

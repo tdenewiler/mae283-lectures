@@ -71,10 +71,10 @@
 % The third parameter is the caption.
 \newcommand{\scalefig}[3]{
   \begin{figure}[ht!]
-    % Requires \usepackage{graphicx}
+    % Requires \usepackage{graPhicx}
     \centering
 	\fbox{
-	    \includegraphics[width=#2\columnwidth]{#1}
+	    \includegraPhics[width=#2\columnwidth]{#1}
 	}
     %%% I think \captionwidth (see above) can go away as long as
     %%% \centering is above
@@ -157,10 +157,10 @@ and we typically assume $\bar{E}\{w(t)\}=0$.
 
 \begin{example}
 Given a deterministic signal, $u(t)$, as shown in Figure \ref{fig:04inputSignal} we can say that
-$$lim_{N\to\infty}\frac{1}{N}\sum_{t=1}^NE\{u(t)\} = 0$$
+$$\lim_{N\to\infty}\frac{1}{N}\sum_{t=1}^NE\{u(t)\} = 0$$
 This is shown as a block diagram in Figure \ref{fig:04detSignal} and makes it clear that $\lim_{N\to\infty}\frac{1}{N}\sum_{t=1}^Nw(t)=0$ since $u(t)=0$ and the system is linear.
-\end{example}
 $\lozenge$
+\end{example}
 \begin{figure}[ht!]
 	\centering
 	\includegraphics[width=.5\textwidth]{images/04inputSignal}
@@ -202,12 +202,12 @@ $R_y(\tau) \triangleq \bar{E}\{y(t)y(t-\tau)\}, |\tau|\in\mathbb{N}$
 $R_{yu}(\tau) \triangleq \bar{E}\{y(t)u(t-\tau)\}, |\tau|\in\mathbb{N}$
 \item Auto-spectral density function
 
-$\phi_u(\w) \triangleq \sum_{\tau=-\infty}^\infty R_y(\tau)e^{-j\w\tau}$
+$\Phi_u(\w) \triangleq \sum_{\tau=-\infty}^\infty R_y(\tau)e^{-j\w\tau}$
 
 This is the discrete-time Fourier transform (DTFT) of the auto-covariance function.
 \item Cross-spectral density function
 
-$\phi_{yu}(\w) \triangleq \sum_{\tau=-\infty}^\infty R_yu(\tau)e^{-j\w\tau}$
+$\Phi_{yu}(\w) \triangleq \sum_{\tau=-\infty}^\infty R_yu(\tau)e^{-j\w\tau}$
 
 This is the DTFT of the cross-covariance function.
 \end{itemize}
@@ -221,10 +221,10 @@ White noise, $e(t)$, is a zero-mean signal and is satisfied by the following pro
 \item $\bar{E}\{e(t)e(t-\tau)\} = R_e(\tau) = \begin{cases} \lambda>0, & \tau=0 \\ 0, & |\tau|\neq 0 \end{cases}$
 
 The case when $\tau=0$ is known as the variance of the signal.
-\item $\phi_e(\w) = \sum_{\tau=-\infty}^\infty \lambda\delta_d(t)e^{-j\w t} = \lambda e^{-j\w 0} = \lambda$
+\item $\Phi_e(\w) = \sum_{\tau=-\infty}^\infty \lambda\delta_d(t)e^{-j\w t} = \lambda e^{-j\w 0} = \lambda$
 
 We only need to evaluate the $\delta$-function at time $t=0$. See Figure \ref{fig:04deltaFn}.
-\item $\bar{E}\{e^2(t)\} = R_e(0) = \lambda = \frac{1}{2\pi}\int_{\w=-\pi}^\pi\phi_u(\w)e^{j\w\tau}d\w = \frac{1}{2\pi} \int_{\w=-\pi}^\pi\phi_u(\w)d\w$
+\item $\bar{E}\{e^2(t)\} = R_e(0) = \lambda = \frac{1}{2\pi}\int_{\w=-\pi}^\pi\Phi_u(\w)e^{j\w\tau}d\w = \frac{1}{2\pi} \int_{\w=-\pi}^\pi\Phi_u(\w)d\w$
 
 where the exponential goes to one because $\tau=0$. This can be thought of as the surface under the auto-spectral density function between $[-\pi,\pi]$ and is equal to the variance of the signal.
 \end{itemize}
@@ -261,8 +261,8 @@ $$R_{yu}(\tau) = \lambda g(\tau)$$
 
 \begin{example}
 Let $G_0(q)$ be a mass-spring-damper system with low amounts of damping. Given an impulse as input the output signal will oscillate at some frequency while dying down due to the damping. See Figure \ref{fig:04dimSine}.
-\end{example}
 $\lozenge$
+\end{example}
 \begin{figure}[ht!]
 	\centering
 	\includegraphics[width=.5\textwidth]{images/04dimSine}
@@ -272,17 +272,17 @@ $\lozenge$
 
 \subsection{Auto-spectral Density Function}
 \begin{example}
-Let $\{e(t)\}$ be white noise where $E\{e(t)\}=0$, $v(t)=H_0(q)e(t)$. How do we find $\phi_v(\w)$?
+Let $\{e(t)\}$ be white noise where $E\{e(t)\}=0$, $v(t)=H_0(q)e(t)$. How do we find $\Phi_v(\w)$?
 \begin{align*}
-\phi_v(\w) &= \mathcal{F}\{R_v(\tau)\} \\
+\Phi_v(\w) &= \mathcal{F}\{R_v(\tau)\} \\
 &= \mathcal{F}\{E\{v(t)v(t-\tau)\}\} \\
 &= \mathcal{F}\{E\{H_0(q)e(t)H_0(q)e(t-\tau)\}\} \\
-&= \vectornorm{H_0(e^{j\w})}^2\phi_e(\w) \\
+&= \vectornorm{H_0(e^{j\w})}^2\Phi_e(\w) \\
 &= \vectornorm{H_0(e^{j\w})}^2\cdot\lambda
 \end{align*}
-The final equality uses the fact that $\phi_e(\w)=\lambda$ because the noise is white. This shows that applying the filter $H_0(q)$ changes the shape of the input of white noise. After the filter the white noise contains much lower frequencies so the noise, $v(t)$, is colored. See Figure \ref{fig:04filteredNoise}.
-\end{example}
+The final equality uses the fact that $\Phi_e(\w)=\lambda$ because the noise is white. This shows that applying the filter $H_0(q)$ changes the shape of the input of white noise. After the filter the white noise contains much lower frequencies so the noise, $v(t)$, is colored. See Figure \ref{fig:04filteredNoise}.
 $\lozenge$
+\end{example}
 \begin{figure}[ht!]
 	\centering
 	\includegraphics[width=.7\textwidth]{images/04filteredNoise}
@@ -292,32 +292,32 @@ $\lozenge$
 
 \subsection{Cross-spectral Density Function}
 \begin{example}
-How do we find $\phi_{yu}(\w)$?
-$$\phi_{yu}(\w) = \mathcal{F}\{R_{yu}(\tau)\} = \lambda G_0(e^{j\w})$$
+How do we find $\Phi_{yu}(\w)$?
+$$\Phi_{yu}(\w) = \mathcal{F}\{R_{yu}(\tau)\} = \lambda G_0(e^{j\w})$$
 The Fourier transform of an implulse response yields the transfer function. This allows us to back out the Markov parameters.
-\end{example}
 $\lozenge$
+\end{example}
 
 \begin{example}
 Given $y(t)=w(t)+v(t)$ we get
 \begin{align*}
-\phi_y(\w) &= \lambda\vectornorm{G_0(e^{j\w}}^2 + \phi_v(\w) \\
-\phi_v(\w) &= \phi_y(\w) - \vectornorm{\phi_{yu}(\w)}
+\Phi_y(\w) &= \lambda\vectornorm{G_0(e^{j\w}}^2 + \Phi_v(\w) \\
+\Phi_v(\w) &= \Phi_y(\w) - \vectornorm{\Phi_{yu}(\w)}
 \end{align*}
-$\phi_v(\w)$ is the noise that was acting on the system and can now be identified.
-\end{example}
+$\Phi_v(\w)$ is the noise that was acting on the system and can now be identified.
 $\lozenge$
+\end{example}
 
 \section{Effect of Periodogram}
 This is covered in Ljung, pages 31-33.
 \begin{definition}{Periodogram}
 
-Essentially, the periodogram $\hat{\phi}_y(\w)$ is a cheap way of estimating the spectrum, or the frequency contents, of a signal.
+Essentially, the periodogram $\hat{\Phi}_y(\w)$ is a cheap way of estimating the spectrum, or the frequency contents, of a signal.
 \begin{align*}
-\phi_y(\w) &= \mathcal{F}\{R_u(\tau)\} \\
-\hat{\phi}_y(\w) &= y(\w)y^*(\w) \\
+\Phi_y(\w) &= \mathcal{F}\{R_u(\tau)\} \\
+\hat{\Phi}_y(\w) &= y(\w)y^*(\w) \\
 y(\w) &= \sum_{t=1}^Ny(t)e^{-j\w t}, |t|\in\mathbb{N} \\
-\hat{\phi}_y(\w) &= |y(\w)|^2 = y(\w)y^*(\w)
+\hat{\Phi}_y(\w) &= |y(\w)|^2 = y(\w)y^*(\w)
 \end{align*}
 Recall that the Fourier transform of the convolution operator is the multiplication operator.
 \end{definition}

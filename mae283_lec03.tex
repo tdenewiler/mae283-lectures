@@ -190,8 +190,8 @@ u(k) = \begin{cases} 1, & k=0 \\ 0, & k\neq 0 \end{cases}
 Then the outputs are
 $$y(0)=g_0, ~y(1)=g_1, ~y(2)=g_2, ~\ldots, ~y(n)=g_n$$
 This shows that the outputs to impulses are exactly the coefficients used to describe the system.
-\end{example}
 $\lozenge$
+\end{example}
 
 \subsection{BIBO Stability}
 BIBO is bounded input bounded output and is achieved when the Markov parameters satisfy the relationship
@@ -230,8 +230,8 @@ y(3) &= u(3) - a_1y(2) = -a_1^3 \\
 g_k &= (-1)^ka_1^k
 \end{align*}
 and the system is BIBO stable iff $|a_1|<1$. Since there is an exponential it is automatically strictly BIBO stable because the exponential function is decreasing and will "win" over the linear function of $k$.
-\end{example}
 $\lozenge$
+\end{example}
 \begin{figure}[ht!]
 	\centering
 	\includegraphics[width=.5\textwidth]{images/03markovParams}

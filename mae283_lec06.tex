@@ -118,7 +118,7 @@
 \newcommand{\ksum}{\sum_{k=-\infty}^\infty}
 \newcommand{\ruhat}{\hat{R}_u^N(\tau)}
 \newcommand{\ryuhat}{\hat{R}_{yu}^N(\tau)}
-\newcommand{\phiuhat}{\hat{\phi}_u^N(\omega)}
+\newcommand{\Phiuhat}{\hat{\Phi}_u^N(\omega)}
 
 
 %%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%
@@ -143,18 +143,18 @@
 
 \section{Why Use Frequency Domain?}
 Recall that the cross-spectral density function is defined as
-$$\phi_{yu}(\w) = \mathcal{F}\{R_{yu}(\tau)\}$$
+$$\Phi_{yu}(\w) = \mathcal{F}\{R_{yu}(\tau)\}$$
 No information is lost when moving from the time domain to the frequency domain because this is a unitary transformation.
 
 \begin{example}
-Apply the input $u(t) = \sum_{k=1}^n Aksin(\w_kt+\phi k)$, where $\phi_k\in\mathcal{U}[0,\pi]$, with $\mathcal{U}$ representing a uniform distribution. What does the spectrum of the signal look like?
+Apply the input $u(t) = \sum_{k=1}^n Ak\sin(\w_kt+\Phi k)$, where $\Phi_k\in\mathcal{U}[0,\pi]$, with $\mathcal{U}$ representing a uniform distribution. What does the spectrum of the signal look like?
 
 There are $n$ $\delta$-functions with amplitude $\frac{Ak}{2\pi}$ such that
-$$\phi_u(\w) = \sum_{k=1}^n \frac{Ak}{2\pi}\delta(\w-\w_k)$$
-\end{example}
+$$\Phi_u(\w) = \sum_{k=1}^n \frac{Ak}{2\pi}\delta(\w-\w_k)$$
 $\lozenge$
+\end{example}
 
-Following that, what happens to the frequency resolution of $\phi_u(l\cdot\Delta\w)$ as $\lim_{N\to\infty}T = N\dt$? The frequency resolution goes to zero, $\Delta\w\to 0$. This means that the more samples taken the closer the discrete-time representation is to a continuous-time representation. However, since $\phi_u(\w)$ is a function of $\delta(\w-\w_k)$ the only information that matters is at $\w_k$. This property has several important consequences:
+Following that, what happens to the frequency resolution of $\Phi_u(l\cdot\Delta\w)$ as $\lim_{N\to\infty}T = N\dt$? The frequency resolution goes to zero, $\Delta\w\to 0$. This means that the more samples taken the closer the discrete-time representation is to a continuous-time representation. However, since $\Phi_u(\w)$ is a function of $\delta(\w-\w_k)$ the only information that matters is at $\w_k$. This property has several important consequences:
 \begin{itemize}
 \item Data compression -- $n$ points in the frequency domain represent $N>>n$ points in the time domain.
 \item For periodic signals, information at $N$ time domain points is fully represented by $n$ points in the frequency domain. However, this does not work for $\{u(t)\} =$ white noise.
@@ -162,22 +162,22 @@ Following that, what happens to the frequency resolution of $\phi_u(l\cdot\Delta
 In a later lecture we will see how to approximate signals as periodic even when they are not in order to take advantage of these data compression properties.
 
 \begin{lemma}
-This is Lemma 2.1 in Ljung. Let $\{s(t)\}$ be a quasi-stationary signal with spectrum $\phi_s(\w)$. Let $S_N(\w) = \frac{1}{\sqrt{N}} \sum_{t=1}^N s(t)e^{-j\w t}$, with $|t|\in\mathbb{N}$ and $\w\in\mathbb{R}$. Knowing
+This is Lemma 2.1 in Ljung. Let $\{s(t)\}$ be a quasi-stationary signal with spectrum $\Phi_s(\w)$. Let $S_N(\w) = \frac{1}{\sqrt{N}} \sum_{t=1}^N s(t)e^{-j\w t}$, with $|t|\in\mathbb{N}$ and $\w\in\mathbb{R}$. Knowing
 \begin{align*}
-\phi_s(\w) &= \mathcal{F}\{R_s(\tau)\} \\
-\hat{\phi}_s^N(\w) &= \mathcal{F}\{\hat{R}_S^N(\tau)\} = S_N(\w)S_N^*(\w) = |S_N(\w)|^2
+\Phi_s(\w) &= \mathcal{F}\{R_s(\tau)\} \\
+\hat{\Phi}_s^N(\w) &= \mathcal{F}\{\hat{R}_S^N(\tau)\} = S_N(\w)S_N^*(\w) = |S_N(\w)|^2
 \end{align*}
 then the following result holds
-$$\lim_{N\to\infty} \fint E\{|S_N(\w)|^2\}\Psi(\w)d\w = \fint \phi_s(\w)\Psi(\w)d\w$$
+$$\lim_{N\to\infty} \fint E\{|S_N(\w)|^2\}\Psi(\w)d\w = \fint \Phi_s(\w)\Psi(\w)d\w$$
 where $\Psi(\w)$ is sufficiently smooth.
 \end{lemma}
 The expected value converges weakly to the spectrum. We need the additional term and the integral to get convergence.
 
-The result of this lemma is bad news. $\hat{\phi}^N(\w) = \mathcal{F}\{\hat{R}_u^N(\tau)\}$ only converges weakly to the actual spectrum, $\phi(\w)$. The good news is that, if in addition to the quasi-stationary constraint, the function $\sum_{\tau=0}^\infty|\tau R_s(\tau)|<\infty$ is bounded, then
+The result of this lemma is bad news. $\hat{\Phi}^N(\w) = \mathcal{F}\{\hat{R}_u^N(\tau)\}$ only converges weakly to the actual spectrum, $\Phi(\w)$. The good news is that, if in addition to the quasi-stationary constraint, the function $\sum_{\tau=0}^\infty|\tau R_s(\tau)|<\infty$ is bounded, then
 \begin{itemize}
-\item $\lim_{N\to\infty}E\{\hat{\phi}_s(\w)\} = \phi_s(\w)$. For this to work $R_s(\tau)$ needs to go to zero faster than $\tau$. See Figure \ref{fig:06autoCovDecay}. This happens automatically if $s(t)=L(q)e(t)$, where $L(q)$ is a BIBO filter and $e(t)$ is white noise.
-\item $\lim_{N\to\infty}E\{[\hat{\phi}_s^N(\w)-\phi_s(\w)]^2\} = \phi_s^2(\w)$. The squared term represents the variance, $\sigma$, of the signal and $\sigma$ never goes to zero. This is more bad news.
-\item $\lim_{N\to\infty}E\{[\hat{\phi}_s^N(\w_1)-\phi_s(\w_1)][\hat{\phi}_s^N(\w_2)-\phi_s(\w_2)]\} = 0$. This means that the variance beteween neighboring points goes to zero. This can be used in a way that makes it good news.
+\item $\lim_{N\to\infty}E\{\hat{\Phi}_s(\w)\} = \Phi_s(\w)$. For this to work $R_s(\tau)$ needs to go to zero faster than $\tau$. See Figure \ref{fig:06autoCovDecay}. This happens automatically if $s(t)=L(q)e(t)$, where $L(q)$ is a BIBO filter and $e(t)$ is white noise.
+\item $\lim_{N\to\infty}E\{[\hat{\Phi}_s^N(\w)-\Phi_s(\w)]^2\} = \Phi_s^2(\w)$. The squared term represents the variance, $\sigma$, of the signal and $\sigma$ never goes to zero. This is more bad news.
+\item $\lim_{N\to\infty}E\{[\hat{\Phi}_s^N(\w_1)-\Phi_s(\w_1)][\hat{\Phi}_s^N(\w_2)-\Phi_s(\w_2)]\} = 0$. This means that the variance beteween neighboring points goes to zero. This can be used in a way that makes it good news.
 \end{itemize}
 
 \begin{figure}[ht!]
@@ -189,17 +189,17 @@ The result of this lemma is bad news. $\hat{\phi}^N(\w) = \mathcal{F}\{\hat{R}_u
 
 \begin{example}
 \label{ex:sSpectrum}
-Try this in \textsc{Matlab}. Let $s(t)=L(q)e(t)$ have $\{e(t)\}$ be white noise and $L(q)$ be a second-order Butterworth filter (see Figure \ref{fig:06butterworthFilter}). What does the spectrum, $\phi_s(\w)$, look like?
+Try this in \textsc{Matlab}. Let $s(t)=L(q)e(t)$ have $\{e(t)\}$ be white noise and $L(q)$ be a second-order Butterworth filter (see Figure \ref{fig:06butterworthFilter}). What does the spectrum, $\Phi_s(\w)$, look like?
 \begin{align*}
-\phi_s(\w) &= \mathcal{F}\{R_s(\tau)\} \\
+\Phi_s(\w) &= \mathcal{F}\{R_s(\tau)\} \\
 &= \mathcal{F}\{\bar{E}\{s(t)s(t-\tau)\}\} \\
 &= \mathcal{F}\{\bar{E}\{(L(q)e(t))(L(q)e(t-\tau))\}\} \\
 &= \mathcal{F}\{E\{\lim_{N\to\infty}\frac{1}{N}\sum_{t=1}^N(L(q)e(t))(L(q)e(t-\tau))\}\} \\
-&= L(e^{j\w})L^*(e^{j\w})\phi_e(\w) \\
+&= L(e^{j\w})L^*(e^{j\w})\Phi_e(\w) \\
 &= |L(e^{j\w})|^2
 \end{align*}
-\end{example}
 $\lozenge$
+\end{example}
 
 \begin{figure}[ht!]
 	\centering
@@ -218,18 +218,18 @@ The response from Example \ref{ex:sSpectrum} looks like Figure \ref{fig:06freqRe
 \end{figure}
 
 To reduce the variance we can take the average of the spectrum over a small range. By doing that over the entire spectrum of the signal the effect is that we are multiplying the spectrum by a window function called $w(\w)$, which can also be thought of as a weighting function. The result of using a rectangular window of width $\xi$ is
-$$\hat{\hat{\phi}}_s^N(\w) = \frac{1}{2\pi}\int_{\w=-\pi}^\pi \phi_s^N(\xi)w(\xi-\w)d\xi$$
+$$\hat{\hat{\Phi}}_s^N(\w) = \frac{1}{2\pi}\int_{\w=-\pi}^\pi \Phi_s^N(\xi)w(\xi-\w)d\xi$$
 When $w(\w)$ is not a simple rectangular window with range $[0,1]$ this estimate must be normalized by dividing the right hand side by $\frac{1}{2\pi}\int_{\w=-\pi}^\pi w(\w)d\w$.
 
 \begin{theorem}
-$$\lim_{N\to\infty}\hat{\hat{\phi}}_s^N(\w) = \phi_s(\w) \text{ w.p. } 1$$
+$$\lim_{N\to\infty}\hat{\hat{\Phi}}_s^N(\w) = \Phi_s(\w) \text{ w.p. } 1$$
 provided $w(\w)$ is sufficiently smooth.
 \end{theorem}
-The expression $\text{w.p. } 1$ means that $\sigma\to 0$. The term $\hat{\hat{\phi}}_s^N(\w)$ is called the spectral estimate, spectral analysis or spectral estimation.
+The expression $\text{w.p. } 1$ means that $\sigma\to 0$. The term $\hat{\hat{\Phi}}_s^N(\w)$ is called the spectral estimate, spectral analysis or spectral estimation.
 
 \section{Spectral Analysis}
-Spectral analysis is the convolution of the crude estimate $\hat{\phi}_s^N(\w)$ with $w(\w)$ so that we get $\hat{\hat{\phi}}_s^N(\w) \to \phi_s(\w) \text{ w.p. } 1$. Recall that $\hat{\phi}_s^N(\w) = \mathcal{F}\{R_s(\tau)\} = |S_N(\w)|^2$. This gives
-$$\hat{\hat{\phi}}_s^N(\w) = \mathcal{F}\{R_s(\tau)\} * \mathcal{F}\{w(\tau)\} = \mathcal{F}\{R_s(\tau)\} * w(\w)$$
+Spectral analysis is the convolution of the crude estimate $\hat{\Phi}_s^N(\w)$ with $w(\w)$ so that we get $\hat{\hat{\Phi}}_s^N(\w) \to \Phi_s(\w) \text{ w.p. } 1$. Recall that $\hat{\Phi}_s^N(\w) = \mathcal{F}\{R_s(\tau)\} = |S_N(\w)|^2$. This gives
+$$\hat{\hat{\Phi}}_s^N(\w) = \mathcal{F}\{R_s(\tau)\} * \mathcal{F}\{w(\tau)\} = \mathcal{F}\{R_s(\tau)\} * w(\w)$$
 where the $*$ symbol represents the convolution operator. Taking the inverse Fourier transform yields
 $$\hat{\hat{R}}_s^N(\tau) = \hat{R}_s^N(\tau)\cdot w(\tau)$$
 since the inverse Fourier transform of convolution is multiplication. This is referred to as ``windowed estimation'', where $w(\tau)$ is the ``time window'' and $w(\w)$ is the ``frequency window''. Note that using $w(\w)$ being a $\delta$-function would result in no change to the variance because $\mathcal{F}^{-1}\{\delta(\w)\} = 1$. Also, $w(\tau)$ and $w(\w)$ are functions that can be tuned by an engineer and give some flexibility for efficiently averaging out the variance. See Figure \ref{fig:06windowfilter}.
@@ -246,7 +246,7 @@ since the inverse Fourier transform of convolution is multiplication. This is re
 	\label{fig:06windowfilter}
 \end{figure}
 
-Summarizing, the windowing functions involve multiplying $\hat{R}_s^N(\tau)$ with $w(\tau)$ or convolving $\hat{\phi}_S^N(\w)$ with $w(\w)$, where $w(\w)=\mathcal{F}\{w(\tau)\}$. This windowing operation is essential to obtaining a consistent estimate of the spectrum of a signal.
+Summarizing, the windowing functions involve multiplying $\hat{R}_s^N(\tau)$ with $w(\tau)$ or convolving $\hat{\Phi}_S^N(\w)$ with $w(\w)$, where $w(\w)=\mathcal{F}\{w(\tau)\}$. This windowing operation is essential to obtaining a consistent estimate of the spectrum of a signal.
 
 \subsection{Common Windows}
 Some common windows, as specified in the time domain, are listed below. Note that $\gamma$ is the design variable.
@@ -276,8 +276,8 @@ $\frac{1}{2}\left(1+\cos\frac{\pi\tau}{\gamma}\right)$. See Figure \ref{fig:06ha
 \end{figure}
 
 \subsection{Welsh Method}
-The Welsh method is another way of averaging to reduce the noise on a spectral estimate, $\hat{\phi}_s^N(\w)$. The first step is to split the data with $N$ points into $k\cdot N_0$ points as in Figure \ref{fig:06welsh}. Assume $k=8$ for the next steps. Second, compute $\hat{\phi}_s^{N_0}(\w)$ for each period $k$, $\hat{\phi}_s^{N_0} = |S_{N_0}(\w)|^2$. Third, calculate
-$$\hat{\hat{\phi}}_s^N(\w) = \sum_{k=1}^8 \hat{\phi}_s^{N_0}(\w)$$
+The Welsh method is another way of averaging to reduce the noise on a spectral estimate, $\hat{\Phi}_s^N(\w)$. The first step is to split the data with $N$ points into $k\cdot N_0$ points as in Figure \ref{fig:06welsh}. Assume $k=8$ for the next steps. Second, compute $\hat{\Phi}_s^{N_0}(\w)$ for each period $k$, $\hat{\Phi}_s^{N_0} = |S_{N_0}(\w)|^2$. Third, calculate
+$$\hat{\hat{\Phi}}_s^N(\w) = \sum_{k=1}^8 \hat{\Phi}_s^{N_0}(\w)$$
 Then, instead of working with $\bar{E}\{s(t)s(t-\tau)\}$ use
 \begin{align*}
 \frac{1}{N}\sum_{t=1}^Ns(t)w(t)s(t-\tau)w(t-\tau) =
