@@ -59,7 +59,7 @@ Also, remember Theorem 2.1 of Ljung.
 y(t) &= G_0(q)u(t) + v(t) \\
 Y_N(\w) &= G_0(e^{j\w})U_N(\w) + V_N(\w) + R_N(\w) \\
 R_N(\w) &< 2\cdot \frac{1}{\sqrt{N}}\cdot C_w\cdot C_G \\
-\frac{Y_N(\w)}{U_N(\w)} &= \hat{G}_0(e^{j\w}) = G_0(e^{j\w}) + \frac{U_N(\w)}{U_N(\w)} + \frac{R_N(\w)}{U_N(\w)}
+\frac{Y_N(\w)}{U_N(\w)} &= \hat{G}_0(e^{j\w}) = G_0(e^{j\w}) + \frac{V_N(\w)}{U_N(\w)} + \frac{R_N(\w)}{U_N(\w)}
 \end{align*}
 In the last equation there are separate terms for the variance due to noise and to end and beginning effects of the estimator.
 
@@ -69,7 +69,7 @@ It is possible to create an estimator that is better than the previous crude est
 E\{\ghh\} &= G(e^{j\w}) \\
 \text{var}\{\hat{\hat{G}}(e^{j\w})\} &= 0 \text{ as } N\to\infty
 \end{align*}
-\textsc{Important:} Do some averaging by using this estimate based on the better spectral estimate. Include averaging on $\phiyuhat$, $\phiuhat$ to ensure a consistent estimate of $G_0(e^{j\w})$, the frequency response fo the system. And note that this is \textit{not} a parametric model. That comes later.
+\textsc{Important:} Do some averaging by using this estimate based on the better spectral estimate. Include averaging on $\phiyuhat$, $\phiuhat$ to ensure a consistent estimate of $G_0(e^{j\w})$, the frequency response of the system. And note that this is \textit{not} a parametric model. That comes later.
 
 \subsection{Averaging vs. Bias}
 There will always be a trade-off between the amount of averaging done to reduce the variance and bias. See Figure \ref{fig:07msd} to see an example of a mass-spring-damper system and its frequency repsonse to a pulse input, $F(t)$. Note that the transfer function estimate is based on
@@ -105,15 +105,15 @@ This corresponds to Chapter 6 in Ljung. Now that we have a method to get a nice 
 $$\Phi_v(\w) = |H_0(e^{j\w})|^2$$
 How do we find the estimate $\hat{\Phi}_v(\w)$? One way would be to measure the output of the system with no inputs, or $\{u(t)\}=0 \Rightarrow y(t) = v(t) \Rightarrow \Phi_y(\w) = \Phi_v(\w)$. If $\{u(t)\}=0$ is not feasible then
 \begin{align*}
-\Phi_y(\w) &= |G_0(e^{\w})``^2\Phi_u(\w) + \Phi_v(\w) \\
+\Phi_y(\w) &= |G_0(e^{j\w})|^2\Phi_u(\w) + \Phi_v(\w) \\
 \Phi_v(\w) &= \Phi_y(\w) - |G_0(e^{j\w})|^2\Phi_u(\w) \\
 &= \Phi_y(\w) - \frac{|\Phi_{yu}(\w)|^2}{\Phi_u(\w)}
 \end{align*}
 Now, suppose the estimate of the spectrum is
 \begin{align*}
-\hat{\hat{\Phi}}_v^N(\w) = \phiyhh - \frac{|\phiyuhh|^2}{\phiuhh} \to \hat{\hat{\Phi}}_v(\w)\in\mathbb{R} = |H_0(e^{j\w})|^2
+\hat{\hat{\Phi}}_v^N(\w) = \phiyhh - \frac{|\phiyuhh|^2}{\phiuhh} \Rightarrow \hat{\hat{\Phi}}_v(\w)\in\mathbb{R} = |H_0(e^{j\w})|^2
 \end{align*}
-Note that $\phiyhh\in\mathbb{R} = \mathcal{F}\{R_u(\tau)\}$ is real because $R_u(\tau)$ is symmetric and the Fourier transform of a symmetric signal is real. The same goes for $\phiuhh$. However, $\phiyuhh\in\mathbb{C}$ in general, but we taking the square of that signal so it becomes real-valued as well. Using this result we can come up with a method for computing $H_0(e^{j\w})$, the frequency response of the transfer function of the noise entering the system even when inputs are applied.
+Note that $\phiyhh\in\mathbb{R} = \mathcal{F}\{R_u(\tau)\}$ is real because $R_u(\tau)$ is symmetric and the Fourier transform of a symmetric signal is real. The same goes for $\phiuhh$. However, $\phiyuhh\in\mathbb{C}$ in general, but we are taking the square of that signal so it becomes real-valued as well. Using this result we can come up with a method for computing $H_0(e^{j\w})$, the frequency response of the transfer function of the noise entering the system, even when inputs are applied.
 
 We start with
 \begin{align*}
@@ -125,7 +125,7 @@ From here we would like to get the impulse response coefficients, but this shows
 \begin{example}
 Figure \ref{fig:07spectrum} shows an example of the spectrum of the noise signal. Then we have that
 $$\Phi_v(\w) = |H_0(e^{j\w})|^2$$
-Figure \subref{fig:07mag} shows the magnitude of the square root of the spectrum and Figure \subref{fig:07phase} shows the phase for the stable and unstable versions of the signal. This means that using $\sqrt{\Phi_v(\w)}$ lets the engineer choose a phase that yields a unique filter, $H_0(e^{j\w})$.
+Figure \ref{fig:07magphase}\subref{fig:07mag} shows the magnitude of the square root of the spectrum and Figure \ref{fig:07magphase}\subref{fig:07phase} shows the phase for the stable and unstable versions of the signal. This means that using $\sqrt{\Phi_v(\w)}$ lets the engineer choose a phase that yields a unique filter, $H_0(e^{j\w})$.
 $\lozenge$
 \end{example}
 
@@ -191,7 +191,7 @@ $$\hat{\theta} = \min_\theta ||e(t,\theta)||_2^2 = \min_\theta \mathbf{e}_N^T\ma
 
 A geometric interpretation of this can be seen in Figure \ref{fig:07ls}. What we are attempting to do is project $\mathbf{e}$ orthogonally onto the parameter plane to get $\hat{\mathbf{y}}$. This leads to
 \begin{align*}
-\frac{1}{N}\varphi^T(\mathbf{e} &= \mathbf{\varphi}\mathbf{\theta} - \mathbf{y}) \\
+\frac{1}{N}\varphi^T(\mathbf{e} &= \mathbf{\vp}\mathbf{\theta} - \mathbf{y}) \\
 \Rightarrow \frac{1}{N}\varphi^Te &= \frac{1}{N}\varphi^T\varphi\theta - \frac{1}{N}\varphi^Ty = 0 \\
 \Rightarrow \hat{\theta}_{LS} &= (\frac{1}{N}\varphi^T\varphi)^{-1}\frac{1}{N}\varphi^Ty
 \end{align*}
