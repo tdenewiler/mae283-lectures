@@ -174,10 +174,10 @@ E(\theta) = \left[\begin{array}{c} \epsilon(1,\theta) \\ \epsilon(2,\theta) \\ \
 provided
 \begin{enumerate}
 \item $u(t)\perp e(t)$.
-\item $\mathcal{S}\in\mathcal{M} \Rightarrow \vp$ has the be the same for $\mathcal{S}$ and $\mathcal{M}$.
+\item $\mathcal{S}\in\mathcal{M} \Rightarrow \vp$ has to be the same for $\mathcal{S}$ and $\mathcal{M}$.
 \item $\{e(t)\}$ is white noise.
 \end{enumerate}
-Once you do a least squares estimate you implicitly make the assumption that the regressor, $\vp$, is uncorrelated with the noise. This is accomplished by using an orthogonal projection as in Lecture 7. The regressor vector must be orthogonal to the error vector. The only noise that is uncorrelated with the output is white noise, and since the regressor has past outputs we have that $\{e(t)\}$ must be white noise. This is a \textit{very} restrictive condition.
+Once you do a least squares estimate you implicitly make the assumption that the regressor, $\vp(t)$, is uncorrelated with the noise. This is accomplished by using an orthogonal projection as in Lecture 7. The regressor vector must be orthogonal to the error vector. The only noise that is uncorrelated with the output is white noise, and since the regressor has past outputs we have that $\{e(t)\}$ must be white noise. This is a \textit{very} restrictive condition.
 
 Another way of stating this assumption is that $G_0(q)$ and $H_0(q)$ must have the same poles and that the numerator of $H_0(q)=1$.
 
@@ -235,7 +235,7 @@ H_0(q) &\to \vp(t) \to \sumt h_0(k)q^{-k}
 \end{align*}
 
 \subsection{Ho-Kalman Realization}
-This is the simplest realization algorithm. Similar to Kung's, which will be discussed later in this lecture. The difference is that Ho-Kalman is deterministic while Kung allows for noise.
+This is the simplest realization algorithm. It is similar to Kung's, which will be discussed later in this lecture. The difference is that Ho-Kalman is deterministic while Kung allows for noise.
 
 If we assume that we have measurements of the impulse response coefficients, $g_0(k), G_0(q)=\sumk g_0(k)q^{-k}$, then
 $$g_0(k) = \begin{cases} D, & k=0 \\ CA^{k-1}B, & k\neq0 \end{cases}$$
@@ -243,9 +243,9 @@ We would like to find $\{A,B,C,D\}$ from $g_0(k)$. The first step is to find the
 \begin{align*}
 H &= \left[\begin{array}{c c c c} g_0(1) & g_0(2) & g_0(3) & \cdots \\ g_0(2) & g_0(3) & g_0(4) & \cdots \\ g_0(3) & g_0(4) & g_0(5) & \cdots \\ \vdots & \vdots & \vdots & \ddots \end{array}\right]
 = \left[\begin{array}{c c c c} CB & CAB & CA^2B & \cdots \\ CAB & CA^2B & CA^3B & \cdots \\ CA^2B & CA^3B & CA^4B & \cdots \\ \vdots & \vdots & \vdots & \ddots \end{array}\right] \\
-&= \left[\begin{array}{c} C \\ CA \\ CA^2 \\ \vdots \end{array}\right] \left[\begin{array}{c c c c} B & AB & A^2B & \cdots \end{array}\right]
+&= \left[\begin{array}{c} C \\ CA \\ CA^2 \\ \vdots \end{array}\right] \left[\begin{array}{c c c c} B & AB & A^2B & \cdots \end{array}\right] = \mathcal{O}\mathcal{C}
 \end{align*}
-Then we have that $\text{rank}(H)=n$. We can make the assumption that the model is controllable and observable, otherwise we wouldn't be using that model.
+where $\mathcal{O}$ is the extended observability matrix and $\mathcal{C}$ is the extended controllability matrix. Then we have that $\text{rank}(H)=n$. We can make the assumption that the model is controllable and observable, otherwise we wouldn't be using that model.
 
 \begin{example}
 Let a structural engineer hit a post with a hammer and measure the response with accelerometers. Say we get $k=10$ for $g_0(k)$. But the response is only a single exponential decay. Then the real system is first-order with $n=1$. So we only model $A$ with $\text{rank}(A)=1$. This is how models can easily be considered controllable and observable.
@@ -253,7 +253,7 @@ $\lozenge$
 \end{example}
 
 We know that
-$$\text{rank}(H)=n<N \exists H_1, H_2 \text{ s.t. } \underbrace{H}_{N\times N} = \underbrace{H_1}_{N\times n} \underbrace{H_2}_{n\times N}$$
+$$\text{rank}(H)=n<N ~\exists~ H_1, H_2 \text{ s.t. } \underbrace{H}_{N\times N} = \underbrace{H_1}_{N\times n} \underbrace{H_2}_{n\times N}$$
 
 Now, create another Hankel matrix that is one time step later than $H$ such that
 \begin{align*}
