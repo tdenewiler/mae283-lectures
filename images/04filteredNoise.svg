@@ -37,7 +37,7 @@
      inkscape:window-width="1280"
      inkscape:window-height="974"
      inkscape:window-x="0"
-     inkscape:window-y="25" />
+     inkscape:window-y="49" />
   <defs
      id="defs10701">
     <marker
@@ -194,10 +194,13 @@
          id="tspan12371"
          x="352.05688"
          y="276.1738"
-         dy="0 0 -5.6787276">ϕ<tspan
+         dy="0 0 -5.6787276"><tspan
    style="font-size:12px"
    id="tspan12373"
-   dy="5.6787276">e</tspan>(ω)</tspan></text>
+   dy="0 4.1105905"><tspan
+   style="font-size:24px"
+   id="tspan4314"
+   dy="1.5681373">Φ</tspan>e</tspan>(ω)</tspan></text>
     <text
        xml:space="preserve"
        style="font-size:24px;font-style:italic;font-variant:normal;font-weight:normal;font-stretch:normal;text-align:start;line-height:125%;writing-mode:lr-tb;text-anchor:start;fill:#000000;fill-opacity:1;stroke:none;stroke-width:1px;stroke-linecap:butt;stroke-linejoin:miter;stroke-opacity:1;font-family:Liberation Serif;-inkscape-font-specification:Liberation Serif Italic"
@@ -227,7 +230,7 @@
          id="tspan12385"
          x="310.97406"
          y="410.03503"
-         dy="0 0 0 -4.894659 0 0 0 0 0 0 0 0 0 -4.6650105 0 0 0 10.114092 0 0 9.78932">|ϕ<tspan
+         dy="0 0 0 -4.894659 0 0 0 0 0 0 0 0 0 -4.6650105 0 0 0 10.114092 0 0 9.78932">|Φ<tspan
    style="font-size:12px"
    id="tspan12387"
    dy="4.894659">v</tspan>(ω)| = |H<tspan

@@ -23,9 +23,10 @@ In Lecture 11 (\ref{eq:error}) showed that the prediction error is
 \hat{\theta} &= \arg\min_\theta\frac{1}{N}\sumt\epsilon^2(t,\theta)
 \end{align*}
 
-In Table \ref{tab:models} we looked at different model strutures to parameterize $G_\theta$ and $H_\theta$, some of which were ARX, ARMAX, OE, BJ, PEM. We saw that conventional least squares is equivalent to using PEM+ARX.  The structural parameters for these models were given as $n_a$, $n_b$, $n_c$, $n_d$, $n_f$ and $n_k$.
+In Table \ref{tab:models} of Lecture 12 we looked at different model strutures to parameterize $G_\theta$ and $H_\theta$, some of which were ARX, ARMAX, OE, BJ, PEM. We saw that conventional least squares is equivalent to using PEM+ARX.  The structural parameters for these models were given as $n_a$, $n_b$, $n_c$, $n_d$, $n_f$ and $n_k$.
 
 \section{Convergence \& Consistency for PEM Model}
+\label{sec:13convergence}
 This section corresponds to Chapter 8 in Ljung. See Figure \ref{fig:13overview} to see how models are typically used and validated. If the model is not validated then we can go back and modify our experiments to collect new or more data. The model $M(\theta)$ needs prior assumptions about what noise model structure will be used and the order of the noise/system. Optimization can be performed using conventional, time-weighted or constrained least squares approaches or even quadratic programming. When attempting to validate a model we typically assume that $u(t)\perp e(t)$. The validation process usually involves checking to see if $e(t)$ or $\epsilon(t,\theta)$ are white noise. If they are white it means that we have extracted all of the useful information out of the system and the model is a good fit, see \S\ref{sec:generalpredictor} for more details.
 
 \begin{figure}[ht!]
@@ -46,7 +47,7 @@ u(t) &= \sumk d_3(k)R(t-k) + \sumk d_4(k)e(t-k)
 \end{align*}
 $\{R(t)\}$ is a bounded, deterministic signal and $\{e(t)\}$ is an independent, random variable with variance $E\{e(t)\} = 0$, covariance $E\{e^2(t)\}<C_2<\infty$ and fourth moment $E\{e^4(t)\}<C_4<\infty$. The result of looking at the input and output signals in this fashion is that a family of transfer functions describes the data where
 $$\sumk d_i(k)q^{-k}, \qquad i=1,2,3,\ldots$$
-are all BIBO stable (see \S\ref{sec:bibostability}). We also need to assume that $\{u(t)\}$ and $\{y(t)\}$ are jointly quasi-stationary (\S\ref{def:quasistationary}) so that we can still find the spectral densities and covariance functions because the variance properties don't change over time. This generality lets us examine systems like open-loop controllers such as shown in Figure \ref{fig:13openloop}. In that case a lot of the transfer function terms will go to zero, or $d_i(k)\to0$. For feedback controllers with a reference point like that in Figure \ref{fig:13feedback} we have that many of the transfer function terms are non-zero but we use the same tools to analyze both types of systems.
+are all BIBO stable (see \S\ref{sec:bibostability}). We also need to assume that $\{u(t)\}$ and $\{y(t)\}$ are jointly quasi-stationary (see \S\ref{def:quasistationary}) so that we can still find the spectral densities and covariance functions because the variance properties don't change over time. This generality lets us examine systems like open-loop controllers such as shown in Figure \ref{fig:13openloop}. In that case a lot of the transfer function terms will go to zero, or $d_i(k)\to0$. For feedback controllers with a reference point like that in Figure \ref{fig:13feedback} we have that many of the transfer function terms are non-zero but we use the same tools to analyze both types of systems.
 
 \begin{figure}[ht!]
   \centering
@@ -101,14 +102,14 @@ Now, with these assumptions we can look at what happens to the estimated paramet
 \label{sec:convergence}
 Let
 $$\thetan = \arg\min_\theta V_N(\theta,Z^N) = \onen\sumt\epsilon^2(t,\theta)$$
-where $\theta$ is the parameter and $Z^N$ is the input and output data. Let $\mathcal{M}$ be a model set with a parameter set $\Theta$ that is uniformly stable and let $Z^\infty$ satisfy the assumptions mentioned in this Lecture. Then
+where $\theta$ is the parameter and $Z^N$ is the input and output data. Let $\mathcal{M}$ be a model set with a parameter set $\Theta$ that is uniformly stable and let $Z^\infty$ satisfy the assumptions mentioned in \S\ref{sec:13convergence}. Then
 \begin{align}
 \label{eq:13convergence}
 \sup_{\theta\in\Theta}\left|V_N(\theta,Z^N)-\bar{V}(\theta)\right| \to 0 \text{ w.p. } 1
 \end{align}
 where $\bar{V}(\theta)=\bar{E}\{\epsilon^2(t,\theta)\}$. Note that the variance of the parameter estimate is then
 $$\lim_{N\to\infty}\onen\sumt\epsilon^2(t,\theta) = R_\epsilon(\tau=0) = E\{\epsilon^2(t,\theta)\}$$
-(\ref{eq:13convergence}) means that the stochastic variable $V_N(\theta,Z^N)$ converges to $\bar{V}(\theta)$ and note that $\bar{V}(\theta)$ does not depend on the data as $N\to\infty$.
+(\ref{eq:13convergence}) means that the stochastic variable $V_N(\theta,Z^N)$ converges to $\bar{V}(\theta)$ and that $\bar{V}(\theta)$ does not depend on the data as $N\to\infty$.
 
 We then have that if
 $$\thetan = \arg\min_\theta V_N(\theta,Z^N)$$
@@ -135,7 +136,9 @@ and the model has the condition that there exists $\theta_0$ such that $\mathcal
 \begin{align*}
 G_\theta(q) = \frac{bq^{-1}}{1+aq^{-1}}, \qquad H_\theta(q)=\frac{1+cq^{-1}}{1+aq^{-1}}
 \end{align*}
-and the parameter is $\theta=\left[\begin{array}{c c c} a & b & c \end{array}\right]$. We also have that $n_a=1$, $n_b=1$, $n_c=1$ and $n_k=1$ so we would call \texttt{theta = armax([y u],[1 1 1 1])} in \textsc{Matlab}. For this example we are using $u(t)$ as white noise with unit variance.
+and the parameter is
+$$\theta=\left[\begin{array}{c c c} a & b & c \end{array}\right]$$
+We also have that $n_a=1$, $n_b=1$, $n_c=1$ and $n_k=1$ so we would call \texttt{theta = armax([y u],[1 1 1 1])} in \textsc{Matlab}. For this example we are using $u(t)$ as white noise with unit variance.
 
 We know from earlier in this lecture that
 $$\lim_{N\to\infty}\thetan = \theta_0 \text{ w.p. } 1$$
@@ -143,7 +146,9 @@ But, ARMAX requires non-linear optimization and it is possible to get stuck in a
 \begin{align*}
 G_\theta(q) = \frac{bq^{-1}}{1+aq^{-1}}, \qquad H_\theta(q)=\frac{1}{1+aq^{-1}}
 \end{align*}
-and $\theta=\left[\begin{array}{c c} a & b \end{array}\right]$. This means we can use linear solvers and will be estimating a lower-dimensional parameter and will not get to $\theta_0$. But,
+and
+$$\theta=\left[\begin{array}{c c} a & b \end{array}\right]$$
+This means we can use linear solvers and will be estimating a lower-dimensional parameter and will not get to $\theta_0$. But,
 $$\lim_{N\to\infty}\thetan = \theta^\ast \text{ w.p. } 1$$
 What is $\theta^\ast$? Does it converge to the the true parameter, $\theta_0$?
 
@@ -154,28 +159,28 @@ y(t) &= -a_0y(t-1) + b_0u(t-1) + \underbrace{e(t) + c_0e(t-1)}_{w(t)}
 \end{align*}
 Now, we have the system and model as
 \begin{align*}
-\mathcal{S}: y(t) &= \vp^T(t)\theta_0+w(t), \qquad \theta_0=\left[\begin{array}{c}b_0\\a_0\end{array}\right], \qquad \vp^T(t) = \left[\begin{array}{c c} u(t-1) & -y(t-1) \end{array}\right] \\
-\mathcal{M}: y(t) &= \vp^T(t)\theta+\epsilon(t,\theta), \qquad \theta=\left[\begin{array}{c}b\\a\end{array}\right]
+\mathcal{S}: y(t) &= \vp^T(t)\theta_0+w(t), \qquad \theta_0=\left[\begin{array}{c c} b_0 & a_0 \end{array}\right]^T, \qquad \vp^T(t) = \left[\begin{array}{c c} u(t-1) & -y(t-1) \end{array}\right] \\
+\mathcal{M}: y(t) &= \vp^T(t)\theta+\epsilon(t,\theta), \qquad \theta=\left[\begin{array}{c c} b & a\end{array}\right]^T
 \end{align*}
 The parameter estimate is
 $$\hat{\theta} = \arg\min_\theta\onen\sumt\epsilon^2(t,\theta)$$
 For the least squares estimate to work we need
 \begin{itemize}
-\item $u\perp v$
+\item $u(t)\perp v(t)$
 \item $\{u(t)\}$ persistently exciting
-\item $\vp\perp w\Rightarrow\{w(t)\}$ must be white noise
+\item $\vp(t)\perp w(t) \Rightarrow \{w(t)\}$ must be white noise
 \end{itemize}
 But, we have that $e(t)$ is correlated with $e(t-1)$ because of the time-shift so $\vp(t)$ is also correlated with $w(t)$ and the estimate $\theta^\ast\neq\theta_0$.
 
 We can find the parameter estimate and prediction error as
 \begin{align*}
 \theta^\ast &= \arg\min_\theta\bar{V}(\theta) \\
-\bar{V}(\theta) &= E\{\epsilon^2(t,\theta)\} \\
+\bar{V}(\theta) &= \bar{E}\{\epsilon^2(t,\theta)\} \\
 \epsilon(t,\theta) &= H_\theta^{-1}(q)[y(t)-G_\theta(q)u(t)] \\
 &= (1+aq^{-1})\left[y(t) - \frac{bq^{-1}}{1+aq^{-1}}u(t)\right] \\
 &= (1+aq^{-1})y(t) - bq^{-1}u(t) \\
 &= y(t)+ay(t-1)-bu(t-1) \\
-\theta &= \left[\begin{array}{c} b \\ a \end{array}\right]
+\theta &= \left[\begin{array}{c c} b & a \end{array}\right]^T
 \end{align*}
 We find $\bar{V}(\theta)$ using
 \begin{align*}
@@ -183,11 +188,11 @@ We find $\bar{V}(\theta)$ using
 &= (1+a^2)R_y(0) + 2aR_y(1) + b^2 - 2bR_{yu}(1) - 2abR_y(0)
 \end{align*}
 
-From here we set up four equations to determine the four unknowns while recalling that for this example $u(t)$ and $e(t)$ are white noise.
+From here we set up four equations to determine the four unknowns while recalling that for this example $\{u(t)\}$ and $\{e(t)\}$ are white noise.
 \begin{align*}
 R_{yu}(0) + a_0R_{yu}(1) &= b_0R_u(1) = 0 \\
 R_{yu}(1) + a_0R_{yu}(0) &= b_0R_u(0) = b_0 \\
-R_{ye}(1) + a_0\underbrace{R_{ye}(-1)}_{=0} &= \underbrace{R_e(0)}_{=1} + c_0\underbrace{R_e(1)}_{=0} \\
+R_{ye}(0) + a_0\underbrace{R_{ye}(-1)}_{=0} &= \underbrace{R_e(0)}_{=1} + c_0\underbrace{R_e(1)}_{=0} \\
 R_y(1) + a_0R_y(0) &= b_0R_{yu}(0) + c_0R_{ye}(0) \\
 \Rightarrow R_{yu}(0) &= 0 \\
 R_{yu}(1) &= b_0 \\
@@ -213,7 +218,9 @@ Since the ARX model ignored the $c_0$ term in the real system we are getting bia
 The real pole, $a_0$, is being biased by the noise, $c_0$.
 
 If we substitute $a_0$ and $b_0$ into $\theta$ then we get
-$$\left.\bar{V}(\theta)\right|_{\theta=\left[\begin{array}{c}b_0\\a_0\end{array}\right]} = 1+c_0^2 > 1+c_0^2-\frac{c_0^2}{R_0^2}$$
+$$\left.\bar{V}(\theta)\right|_{\theta=\theta_0} = 1+c_0^2 > 1+c_0^2-\frac{c_0^2}{R_0^2}$$
+where
+$$\theta_0 = \left[\begin{array}{c c} b_0 & a_0 \end{array}\right]^T$$
 so the biased estimate is better at minimizing the prediction error but might not be so good to use for controlling the system.
 $\lozenge$
 \end{example}

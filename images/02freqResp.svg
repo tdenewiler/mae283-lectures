@@ -15,7 +15,7 @@
    inkscape:version="0.46"
    sodipodi:docname="02freqResp.svg"
    inkscape:output_extension="org.inkscape.output.svg.inkscape"
-   inkscape:export-filename="d:\school\mae283\lectures\images\02lowPass.png"
+   inkscape:export-filename="/home/thomas/school/mae283/lectures/images/02freqResp.png"
    inkscape:export-xdpi="150"
    inkscape:export-ydpi="150">
   <defs
@@ -51,14 +51,14 @@
      objecttolerance="10"
      inkscape:pageopacity="0.0"
      inkscape:pageshadow="2"
-     inkscape:zoom="1.4"
-     inkscape:cx="386.80769"
-     inkscape:cy="812.41631"
+     inkscape:zoom="1.979899"
+     inkscape:cx="288.19598"
+     inkscape:cy="834.86596"
      inkscape:document-units="px"
      inkscape:current-layer="layer1"
      showgrid="false"
-     inkscape:window-width="1280"
-     inkscape:window-height="974"
+     inkscape:window-width="1920"
+     inkscape:window-height="1150"
      inkscape:window-x="0"
      inkscape:window-y="25" />
   <metadata
@@ -119,61 +119,11 @@
          x="563.66516"
          y="279.94211"
          style="font-size:24px">∞</tspan></text>
-    <g
-       id="g2554"
-       inkscape:export-filename="/home/thomas/school/mae283/lectures/images/path2383.png"
-       inkscape:export-xdpi="150"
-       inkscape:export-ydpi="150">
-      <path
-         style="fill:none;fill-rule:evenodd;stroke:#000000;stroke-width:1px;stroke-linecap:butt;stroke-linejoin:miter;stroke-opacity:1"
-         d="M 75.761437,242.21984 L 87.378189,236.664 L 98.99495,224.0371 L 107.07617,205.85435 L 111.62186,193.22744 L 120.20815,180.60054 L 133.34014,170.49901 L 148.49243,169.48886"
-         id="path2550"
-         sodipodi:nodetypes="cccccccc" />
-      <path
-         sodipodi:nodetypes="cccccccc"
-         id="path2552"
-         d="M 221.22341,242.21984 L 209.60666,236.664 L 197.9899,224.0371 L 189.90868,205.85435 L 185.36299,193.22744 L 176.7767,180.60054 L 163.64471,170.49901 L 148.49242,169.48886"
-         style="fill:none;fill-rule:evenodd;stroke:#000000;stroke-width:1px;stroke-linecap:butt;stroke-linejoin:miter;stroke-opacity:1" />
-    </g>
-    <g
-       id="g2558"
-       transform="translate(111.11678,0)"
-       inkscape:export-filename="/home/thomas/school/mae283/lectures/images/path2383.png"
-       inkscape:export-xdpi="150"
-       inkscape:export-ydpi="150">
-      <path
-         sodipodi:nodetypes="cccccccc"
-         id="path2560"
-         d="M 75.761437,242.21984 L 87.378189,236.664 L 98.99495,224.0371 L 107.07617,205.85435 L 111.62186,193.22744 L 120.20815,180.60054 L 133.34014,170.49901 L 148.49243,169.48886"
-         style="fill:none;fill-rule:evenodd;stroke:#000000;stroke-width:1px;stroke-linecap:butt;stroke-linejoin:miter;stroke-opacity:1" />
-      <path
-         style="fill:none;fill-rule:evenodd;stroke:#000000;stroke-width:1px;stroke-linecap:butt;stroke-linejoin:miter;stroke-opacity:1"
-         d="M 221.22341,242.21984 L 209.60666,236.664 L 197.9899,224.0371 L 189.90868,205.85435 L 185.36299,193.22744 L 176.7767,180.60054 L 163.64471,170.49901 L 148.49242,169.48886"
-         id="path2562"
-         sodipodi:nodetypes="cccccccc" />
-    </g>
-    <g
-       transform="translate(226.27416,0)"
-       id="g2564"
-       inkscape:export-filename="/home/thomas/school/mae283/lectures/images/path2383.png"
-       inkscape:export-xdpi="150"
-       inkscape:export-ydpi="150">
-      <path
-         style="fill:none;fill-rule:evenodd;stroke:#000000;stroke-width:1px;stroke-linecap:butt;stroke-linejoin:miter;stroke-opacity:1"
-         d="M 75.761437,242.21984 L 87.378189,236.664 L 98.99495,224.0371 L 107.07617,205.85435 L 111.62186,193.22744 L 120.20815,180.60054 L 133.34014,170.49901 L 148.49243,169.48886"
-         id="path2566"
-         sodipodi:nodetypes="cccccccc" />
-      <path
-         sodipodi:nodetypes="cccccccc"
-         id="path2568"
-         d="M 221.22341,242.21984 L 209.60666,236.664 L 197.9899,224.0371 L 189.90868,205.85435 L 185.36299,193.22744 L 176.7767,180.60054 L 163.64471,170.49901 L 148.49242,169.48886"
-         style="fill:none;fill-rule:evenodd;stroke:#000000;stroke-width:1px;stroke-linecap:butt;stroke-linejoin:miter;stroke-opacity:1" />
-    </g>
     <text
        xml:space="preserve"
        style="font-size:40px;font-style:italic;font-variant:normal;font-weight:normal;font-stretch:normal;text-align:start;line-height:100%;writing-mode:lr-tb;text-anchor:start;fill:#000000;fill-opacity:1;stroke:none;stroke-width:1px;stroke-linecap:butt;stroke-linejoin:miter;stroke-opacity:1;font-family:Times New Roman;-inkscape-font-specification:Times New Roman Italic"
-       x="117.66791"
-       y="135.95076"
+       x="83.382195"
+       y="147.37933"
        id="text2570"
        sodipodi:linespacing="100%"
        inkscape:export-filename="/home/thomas/school/mae283/lectures/images/path2383.png"
@@ -181,48 +131,14 @@
        inkscape:export-ydpi="150"><tspan
          sodipodi:role="line"
          id="tspan2572"
-         x="117.66791"
-         y="135.95076"><tspan
+         x="83.382195"
+         y="147.37933"><tspan
            style="font-size:24px"
            id="tspan5802">|U</tspan><tspan
            style="font-size:24px"
            id="tspan5777">(ω)</tspan><tspan
            style="font-size:24px"
            id="tspan5800">|</tspan></tspan></text>
-    <g
-       id="g2574"
-       transform="translate(226.27416,0)"
-       inkscape:export-filename="/home/thomas/school/mae283/lectures/images/path2383.png"
-       inkscape:export-xdpi="150"
-       inkscape:export-ydpi="150">
-      <path
-         sodipodi:nodetypes="cccccccc"
-         id="path2576"
-         d="M 75.761437,242.21984 L 87.378189,236.664 L 98.99495,224.0371 L 107.07617,205.85435 L 111.62186,193.22744 L 120.20815,180.60054 L 133.34014,170.49901 L 148.49243,169.48886"
-         style="fill:none;fill-rule:evenodd;stroke:#000000;stroke-width:1px;stroke-linecap:butt;stroke-linejoin:miter;stroke-opacity:1" />
-      <path
-         style="fill:none;fill-rule:evenodd;stroke:#000000;stroke-width:1px;stroke-linecap:butt;stroke-linejoin:miter;stroke-opacity:1"
-         d="M 221.22341,242.21984 L 209.60666,236.664 L 197.9899,224.0371 L 189.90868,205.85435 L 185.36299,193.22744 L 176.7767,180.60054 L 163.64471,170.49901 L 148.49242,169.48886"
-         id="path2578"
-         sodipodi:nodetypes="cccccccc" />
-    </g>
-    <g
-       transform="translate(335.37064,0)"
-       id="g2580"
-       inkscape:export-filename="/home/thomas/school/mae283/lectures/images/path2383.png"
-       inkscape:export-xdpi="150"
-       inkscape:export-ydpi="150">
-      <path
-         style="fill:none;fill-rule:evenodd;stroke:#000000;stroke-width:1px;stroke-linecap:butt;stroke-linejoin:miter;stroke-opacity:1"
-         d="M 75.761437,242.21984 L 87.378189,236.664 L 98.99495,224.0371 L 107.07617,205.85435 L 111.62186,193.22744 L 120.20815,180.60054 L 133.34014,170.49901 L 148.49243,169.48886"
-         id="path2582"
-         sodipodi:nodetypes="cccccccc" />
-      <path
-         sodipodi:nodetypes="cccccccc"
-         id="path2584"
-         d="M 221.22341,242.21984 L 209.60666,236.664 L 197.9899,224.0371 L 189.90868,205.85435 L 185.36299,193.22744 L 176.7767,180.60054 L 163.64471,170.49901 L 148.49242,169.48886"
-         style="fill:none;fill-rule:evenodd;stroke:#000000;stroke-width:1px;stroke-linecap:butt;stroke-linejoin:miter;stroke-opacity:1" />
-    </g>
     <path
        style="fill:none;fill-rule:evenodd;stroke:#000000;stroke-width:1;stroke-linecap:butt;stroke-linejoin:miter;stroke-opacity:1;stroke-miterlimit:4;stroke-dasharray:2,2;stroke-dashoffset:0"
        d="M 147.48227,168.4787 L 160.72572,169.36346 L 175.01716,174.48805 L 186.32236,185.52241 L 194.90371,200.32531 L 202.7448,213.3946"
@@ -272,15 +188,15 @@
        inkscape:export-xdpi="150"
        inkscape:export-ydpi="150" />
     <path
-       style="fill:none;fill-rule:evenodd;stroke:#000000;stroke-width:1px;stroke-linecap:butt;stroke-linejoin:miter;stroke-opacity:1"
-       d="M 442.14286,111.64789 L 486.42857,111.64789"
+       style="fill:none;fill-rule:evenodd;stroke:#ff0000;stroke-width:1px;stroke-linecap:butt;stroke-linejoin:miter;stroke-opacity:1"
+       d="M 442.14286,87.362176 L 486.42857,87.362176"
        id="path3414"
        inkscape:export-filename="/home/thomas/school/mae283/lectures/images/path2383.png"
        inkscape:export-xdpi="150"
        inkscape:export-ydpi="150" />
     <path
        id="path3416"
-       d="M 442.14286,148.07645 L 486.42857,148.07645"
+       d="M 442.14286,123.79074 L 486.42857,123.79074"
        style="fill:none;fill-rule:evenodd;stroke:#000000;stroke-width:1;stroke-linecap:butt;stroke-linejoin:miter;stroke-miterlimit:4;stroke-dasharray:2, 2;stroke-dashoffset:0;stroke-opacity:1"
        inkscape:export-filename="/home/thomas/school/mae283/lectures/images/path2383.png"
        inkscape:export-xdpi="150"
@@ -289,7 +205,7 @@
        xml:space="preserve"
        style="font-size:40px;font-style:italic;font-variant:normal;font-weight:normal;font-stretch:normal;text-align:start;line-height:100%;writing-mode:lr-tb;text-anchor:start;fill:#000000;fill-opacity:1;stroke:none;stroke-width:1px;stroke-linecap:butt;stroke-linejoin:miter;stroke-opacity:1;font-family:Times New Roman;-inkscape-font-specification:Times New Roman Italic"
        x="497.14285"
-       y="118.79075"
+       y="94.505035"
        id="text3418"
        sodipodi:linespacing="100%"
        inkscape:export-filename="/home/thomas/school/mae283/lectures/images/path2383.png"
@@ -298,13 +214,13 @@
          sodipodi:role="line"
          id="tspan3420"
          x="497.14285"
-         y="118.79075"
+         y="94.505035"
          style="font-size:24px">U(ω)</tspan></text>
     <text
        xml:space="preserve"
        style="font-size:40px;font-style:italic;font-variant:normal;font-weight:normal;font-stretch:normal;text-align:start;line-height:100%;writing-mode:lr-tb;text-anchor:start;fill:#000000;fill-opacity:1;stroke:none;stroke-width:1px;stroke-linecap:butt;stroke-linejoin:miter;stroke-opacity:1;font-family:Times New Roman;-inkscape-font-specification:Times New Roman Italic"
        x="487.85715"
-       y="157.3622"
+       y="133.07648"
        id="text3422"
        sodipodi:linespacing="100%"
        inkscape:export-filename="/home/thomas/school/mae283/lectures/images/path2383.png"
@@ -313,7 +229,7 @@
          sodipodi:role="line"
          id="tspan3424"
          x="487.85715"
-         y="157.3622"
+         y="133.07648"
          dy="0 -2.1475815e-08 -5.3571429"
          style="font-size:24px"><tspan
    style="font-size:24px"
@@ -413,5 +329,60 @@
            dy="0.35714245"
            id="tspan3710"
            style="font-size:12px">s</tspan></tspan></text>
+    <g
+       id="g4171">
+      <path
+         sodipodi:nodetypes="cc"
+         id="path3652"
+         d="M 148.57143,168.79075 C 190.48371,167.42744 191.23867,243.29498 219.28571,242.36218"
+         style="fill:none;fill-rule:evenodd;stroke:#ff0000;stroke-width:1px;stroke-linecap:butt;stroke-linejoin:miter;stroke-opacity:1" />
+      <path
+         style="fill:none;fill-rule:evenodd;stroke:#ff0000;stroke-width:1px;stroke-linecap:butt;stroke-linejoin:miter;stroke-opacity:1"
+         d="M 148.66071,168.79075 C 106.74843,167.42744 105.99347,243.29498 77.94643,242.36218"
+         id="path4169"
+         sodipodi:nodetypes="cc" />
+    </g>
+    <g
+       id="g4175"
+       transform="translate(109.60155,0)">
+      <path
+         style="fill:none;fill-rule:evenodd;stroke:#ff0000;stroke-width:1px;stroke-linecap:butt;stroke-linejoin:miter;stroke-opacity:1"
+         d="M 148.57143,168.79075 C 190.48371,167.42744 191.23867,243.29498 219.28571,242.36218"
+         id="path4177"
+         sodipodi:nodetypes="cc" />
+      <path
+         sodipodi:nodetypes="cc"
+         id="path4179"
+         d="M 148.66071,168.79075 C 106.74843,167.42744 105.99347,243.29498 77.94643,242.36218"
+         style="fill:none;fill-rule:evenodd;stroke:#ff0000;stroke-width:1px;stroke-linecap:butt;stroke-linejoin:miter;stroke-opacity:1" />
+    </g>
+    <g
+       transform="translate(226.27417,0)"
+       id="g4181">
+      <path
+         sodipodi:nodetypes="cc"
+         id="path4183"
+         d="M 148.57143,168.79075 C 190.48371,167.42744 191.23867,243.29498 219.28571,242.36218"
+         style="fill:none;fill-rule:evenodd;stroke:#ff0000;stroke-width:1px;stroke-linecap:butt;stroke-linejoin:miter;stroke-opacity:1" />
+      <path
+         style="fill:none;fill-rule:evenodd;stroke:#ff0000;stroke-width:1px;stroke-linecap:butt;stroke-linejoin:miter;stroke-opacity:1"
+         d="M 148.66071,168.79075 C 106.74843,167.42744 105.99347,243.29498 77.94643,242.36218"
+         id="path4185"
+         sodipodi:nodetypes="cc" />
+    </g>
+    <g
+       id="g4187"
+       transform="translate(335.37064,0)">
+      <path
+         style="fill:none;fill-rule:evenodd;stroke:#ff0000;stroke-width:1px;stroke-linecap:butt;stroke-linejoin:miter;stroke-opacity:1"
+         d="M 148.57143,168.79075 C 190.48371,167.42744 191.23867,243.29498 219.28571,242.36218"
+         id="path4189"
+         sodipodi:nodetypes="cc" />
+      <path
+         sodipodi:nodetypes="cc"
+         id="path4191"
+         d="M 148.66071,168.79075 C 106.74843,167.42744 105.99347,243.29498 77.94643,242.36218"
+         style="fill:none;fill-rule:evenodd;stroke:#ff0000;stroke-width:1px;stroke-linecap:butt;stroke-linejoin:miter;stroke-opacity:1" />
+    </g>
   </g>
 </svg>

@@ -21,10 +21,10 @@ In Lecture 14 we looked at the variance of parameter estimates when $\mathcal{S}
 $$\psi(t,\theta_0) = -\left.\ptheta\epsilon(t,\theta)\right|_{\theta=\theta_0}$$
 This shows how the variance changes relative to the sensitivity of the estimate with respect to the parameters and the model. This can be estimated via
 \begin{align*}
-\hat{P}_N &= \hat{\lambda}\onen\sumt\psi(t,\thetan)\psi^T(t,\thetan) \\
-\hat{\lambda} &= \onen\sumt\epsilon^2(t,\thetan) \\
-\thetan &= \text{sol}_\theta\onen\sumt\psi(t,\theta)\epsilon(t,\theta) = 0 \\
-\ptheta\onen\sumt\epsilon^2(t,\theta) &= 0
+&\hat{P}_N = \hat{\lambda}\onen\sumt\psi(t,\thetan)\psi^T(t,\thetan) \\
+&\hat{\lambda} = \onen\sumt\epsilon^2(t,\thetan) \\
+&\thetan = \text{sol}_\theta\onen\sumt\psi(t,\theta)\epsilon(t,\theta) = 0 \\
+&\ptheta\onen\sumt\epsilon^2(t,\theta) = 0
 \end{align*}
 Note that the last two expressions are both valid ways to solve for the estimate. Either find the solution with respect to $\theta$ using the inner products or set the derivative to zero -- both will find a minimum. Typically these estimates are found iteratively and can only be found directly when something like least squares or instrumental variable is able to be used.
 
@@ -75,7 +75,7 @@ R_u(0) & -R_{yu}(0) \\ -R_{yu}(0) & R_y(0)
 \end{align*}
 This is a function of covariance functions! We know that $R_u(0)=1$ because $\{u(t)\}$ is white noise. We also know that $R_{yu}$ contains the impulse response coefficients because $\{u(t)\}$ is white noise. However, there is a one-step time delay so $R_{yu}(0) = 0$. The only term left to calculate is $R_y(0)$.
 \begin{align*}
-&\begin{cases} R_y(0) + a_1R_y(0)+2a_1R_y(1) = b_1^2+\lambda \\ R_y(-1)+a_1R_y(0) = R_{yu}(0) = 0 \end{cases} \\
+&\begin{cases} R_y(0) + a_1^2R_y(0)+2a_1R_y(1) = b_1^2+\lambda \\ R_y(-1)+a_1R_y(0) = R_{yu}(0) = 0 \end{cases} \\
 &\Rightarrow R_y(0) = \frac{b_1^2+\lambda}{1-a_1^2}
 \end{align*}
 Now we find
@@ -213,7 +213,7 @@ for stability.
 	\label{fig:15sgtbd}
 \end{figure}
 
-We want to make the uncertainty, $\Delta$, small around the bandwidth of the control poiont. We can handle more uncertainty away from teh control point.
+We want to make the uncertainty, $\Delta$, small around the bandwidth of the control poiont. We can handle more uncertainty away from the control point.
 
 \begin{figure}[ht!]
 	\centering

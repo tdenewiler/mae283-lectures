@@ -25,7 +25,7 @@ $$y(t) = \tauint g(\tau)u(t-\tau)d\tau$$
 where $g(\tau)=\mathcal{L}^{-1}\lbrace G(s)\rbrace$ and $y(s)=G(s)u(s)$. Note that multiplication in the Laplacian domain is equivalent to convolution in the time domain.
 
 \subsection{Discrete Time}
-For discrete time it is useful to model the input signal, $u(k\Delta T)$, as a ``Zero-order hold'' (ZOH) signal. See Figure \ref{fig:03zoh} for an example of the input described by a set of discrete scalars, known as a ZOH signal. Other methods of modeling the input signal include linear fit where the discrete points are connected by lines and polynomial fitting, but those methods don't help nearly as much with the math we will see later in this lecture. What happens to the input when $u(t)$ is ZOH?
+For discrete time it is useful to model the input signal, $u(k\dt)$, as a ``Zero-order hold'' (ZOH) signal. See Figure \ref{fig:03zoh} for an example of the input described by a set of discrete scalars, known as a ZOH signal. Other methods of modeling the input signal include linear fit where the discrete points are connected by lines and polynomial fitting, but those methods don't help nearly as much with the math we will see later in this lecture. What happens to the input when $u(t)$ is ZOH?
 \begin{align*}
 y(t) &= \tauint g(\tau)u(k\dt -\tau)d\tau \\
 &= \sum_{l=0}^\infty \int_{\tau=(l-1)\dt}^{l\dt}g(\tau)u(k\dt -\tau)d\tau \\

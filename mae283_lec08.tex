@@ -45,11 +45,11 @@ can be accumulated over $N$ samples and written in matrix form as
 \begin{align*}
 \underbrace{\left[\begin{array}{c} y(1) \\ y(2) \\ \vdots \\ y(N) \end{array}\right]}_{\mathbf{y}} &= \underbrace{\left[\begin{array}{c} \varphi^T(1) \\ \varphi^T(2) \\ \vdots \\ \varphi^T(N) \end{array}\right]}_{\mathbf{\varphi}^T} \theta
 + \underbrace{\left[\begin{array}{c} e(1,0) \\ e(2,0) \\ \vdots \\ e(N,0) \end{array}\right]}_{\mathbf{e}} \\
-\Rightarrow \frac{1}{N}\mathbf{\varphi}\mathbf{y} &= \frac{1}{N}\mathbf{\varphi}\mathbf{\varphi}^T\theta + \frac{1}{N}\mathbf{\varphi}\mathbf{e} \\
-\Rightarrow \hat{\theta} &= \min_\theta \frac{1}{N}\mathbf{e}^T\mathbf{e}
+\Rightarrow \tfrac{1}{N}\mathbf{\varphi}\mathbf{y} &= \tfrac{1}{N}\mathbf{\varphi}\mathbf{\varphi}^T\theta + \tfrac{1}{N}\mathbf{\varphi}\mathbf{e} \\
+\Rightarrow \hat{\theta} &= \min_\theta \tfrac{1}{N}\mathbf{e}^T\mathbf{e}
 \end{align*}
 This uses an orthogonal projection to make $\hat{\theta}$ as small as possible. Rearranging to get the parameter estimate yields
-$$\thn = \left(\frac{1}{N}\mathbf{\varphi\varphi}^T\right)^{-1} \left(\frac{1}{N}\mathbf{\varphi y}\right)$$
+$$\thn = \left(\tfrac{1}{N}\mathbf{\varphi\varphi}^T\right)^{-1} \left(\tfrac{1}{N}\mathbf{\varphi y}\right)$$
 Note that this is an ordinal equation and is not the best way to compute the least square estimate from a numerical methods standpoint.
 
 \section{Applications}
@@ -113,7 +113,7 @@ Some important properties of the least squares estimate, $\thn$, are given below
 
 \subsection{Relation to the Covariance Functions}
 \label{sec:lsecovfns}
-$$\thn = (\frac{1}{N}\mathbf{\varphi\varphi}^T)^{-1}(\frac{1}{N}\mathbf{\varphi y}) \triangleq \underbrace{R^{-1}(N)}_{p\times p} \underbrace{f(N)}_{p\times 1}$$
+$$\thn = (\tfrac{1}{N}\mathbf{\varphi\varphi}^T)^{-1}(\tfrac{1}{N}\mathbf{\varphi y}) \triangleq \underbrace{R^{-1}(N)}_{p\times p} \underbrace{f(N)}_{p\times 1}$$
 Looking more closely at $R(N)$ we can see that it is a $p\times p$ matrix built from elements of (\ref{eq:regressor}).
 $$R(N) = \frac{1}{N}\left[\begin{array}{c c c} \varphi(1) & \cdots & \varphi(N) \end{array}\right]
 \left[\begin{array}{c} \varphi^T(1) \\ \vdots \\ \varphi^T(N) \end{array}\right]$$

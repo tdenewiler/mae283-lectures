@@ -109,7 +109,7 @@ Now, suppose the estimate of the spectrum is
 \begin{align*}
 \hat{\hat{\Phi}}_v^N(\w) = \phiyhh - \frac{|\phiyuhh|^2}{\phiuhh} \Rightarrow \hat{\hat{\Phi}}_v(\w)\in\mathbb{R} = |H_0(e^{j\w})|^2
 \end{align*}
-Note that $\phiyhh\in\mathbb{R} = \mathcal{F}\{R_u(\tau)\}$ is real because $R_u(\tau)$ is symmetric and the Fourier transform of a symmetric signal is real. The same goes for $\phiuhh$. However, $\phiyuhh\in\mathbb{C}$ in general, but we are taking the square of that signal so it becomes real-valued as well. Using this result we can come up with a method for computing $H_0(e^{j\w})$, the frequency response of the transfer function of the noise entering the system, even when inputs are applied.
+Note that $\phiyhh\in\mathbb{R} = \mathcal{F}\{R_y(\tau)\}$ is real because $R_y(\tau)$ is symmetric and the Fourier transform of a symmetric signal is real. The same goes for $\phiuhh$. However, $\phiyuhh\in\mathbb{C}$ in general, but we are taking the square of that signal so it becomes real-valued as well. Using this result we can come up with a method for computing $H_0(e^{j\w})$, the frequency response of the transfer function of the noise entering the system, even when inputs are applied.
 
 We start with
 \begin{align*}
@@ -185,9 +185,9 @@ $$\hat{\theta} = \min_\theta ||e(t,\theta)||_2^2 = \min_\theta \mathbf{e}_N^T\ma
 
 A geometric interpretation of this can be seen in Figure \ref{fig:07ls}. What we are attempting to do is project $\mathbf{e}$ orthogonally onto the parameter plane to get $\hat{\mathbf{y}}$. This leads to
 \begin{align*}
-\frac{1}{N}\vp^T(\mathbf{e} &= \mathbf{\vp}\mathbf{\theta} - \mathbf{y}) \\
-\Rightarrow \frac{1}{N}\vp^Te &= \frac{1}{N}\vp^T\vp\theta - \frac{1}{N}\vp^Ty = 0 \\
-\Rightarrow \hat{\theta}_{LS} &= \left(\frac{1}{N}\vp^T\vp\right)^{-1}\frac{1}{N}\vp^Ty
+\tfrac{1}{N}\vp^T(\mathbf{e} &= \mathbf{\vp}\mathbf{\theta} - \mathbf{y}) \\
+\Rightarrow \tfrac{1}{N}\vp^Te &= \tfrac{1}{N}\vp^T\vp\theta - \tfrac{1}{N}\vp^Ty = 0 \\
+\Rightarrow \hat{\theta}_{LS} &= \left(\tfrac{1}{N}\vp^T\vp\right)^{-1}\tfrac{1}{N}\vp^Ty
 \end{align*}
 
 \begin{figure}[ht!]
@@ -197,6 +197,6 @@ A geometric interpretation of this can be seen in Figure \ref{fig:07ls}. What we
   \label{fig:07ls}
 \end{figure}
 
-It is very interesting, and useful, to note that the term $\frac{1}{N}\varphi^Ty$ is the same as the cross-covariance function of the system and the term $\frac{1}{N}\varphi^T\varphi$ is the same as the auto-covariance function of the system.
+It is very interesting, and useful, to note that the term $\tfrac{1}{N}\varphi^Ty$ is the same as the cross-covariance function of the system and the term $\tfrac{1}{N}\varphi^T\varphi$ is the same as the auto-covariance function of the system.
 
 %%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%

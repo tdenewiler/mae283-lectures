@@ -118,7 +118,7 @@ Let $m=k$, then
 \end{align*}
 Note that since $\{u(t)\}$ is quasi-stationary $R_u(\tau)\to0$ eventually. This leads to
 \begin{align*}
-&\text{cov}\{\ruhat\ruhat\} \sim \mathcal{O}(\frac{1}{N}) < \frac{C}{N} \\
+&\text{cov}\{\ruhat\ruhat\} \sim \mathcal{O}(\tfrac{1}{N}) < \tfrac{C}{N} \\
 &\lim_{N\to\infty}\text{cov}\{\ruhat\ruhat\} = 0
 \end{align*}
 This means that the variance goes to zero with probability $1$ as $N\to\infty$. See Figure \ref{fig:05estDist}.
@@ -151,7 +151,7 @@ This analysis is very similar to that for the auto-covariance functions. From (\
 \begin{align*}
 R_{yu}(\tau) = \bar{E}\{y(t)u(t-\tau)\} &= \lim_{N\to\infty}\frac{1}{N}\sum{t=1}^N E\{y(t)u(t-\tau)\} \\
 \ryuhat &= \frac{1}{N}\sum_{t=1}^Ny(t)u(t-\tau) \\
-E\{R_{yu}(\tau)\} &= \frac{N-|\tau|}{N}R_{yu}(\tau) \sim \mathcal{O}(\frac{1}{N}) \\
+E\{R_{yu}(\tau)\} &= \frac{N-|\tau|}{N}R_{yu}(\tau) \sim \mathcal{O}\left(\frac{1}{N}\right) \\
 \lim_{N\to\infty}\ryuhat &= R_{yu}(\tau) \text{ w.p. } 1
 \end{align*}
 The last equality implies that there is no variance in the estimate when an infinite number of samples are available. It is a stronger statement than

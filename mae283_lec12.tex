@@ -130,7 +130,7 @@ $\lozenge$
 \section{System Identification Topics}
 \begin{itemize}
 \item Parameterization. What do $G(q,\theta)$ and $H(q,\theta)$ look like?
-\item Optimization. How easy can we solve the minimization?
+\item Optimization. How easily can we solve the minimization?
 \item Approximation. How does parameterization/optimization influence the models $G(q,\theta)$ and $H(q,\theta)$ that are generated?
 \item Consistency. If $\lim_{N\to\infty}$, when does $\theta=\theta_0$?
 \end{itemize}
@@ -241,7 +241,7 @@ y &= Cx
 \end{align*}
 This gives $D=0$, $A=2\times 2$, $B=2\times 1$ and $C=1\times 2$. If we use a zero-order hold (ZOH) input as $\{u(t)\}$ and decide to use the ARX model with linear optimization then what should $k$, $n_a$ and $n_b$ be set to? We want
 $$G_\theta(q) = \frac{b_1q^{-1}+b_2q^{-2}}{1+a_1q^{-1}+a_2q^{-2}}$$
-This leads to $k=1$ in order to have $D=0$, $n_a=2$ and $n_b=2$. This can then be used in \textsc{Matlab} to call \texttt{ARX([y u],[na nb nk])}.
+This leads to $k=1$ in order to have $D=0$, $n_a=2$ and $n_b=2$. This can then be used in \textsc{Matlab} by calling \texttt{ARX([y u],[na nb nk])}.
 
 Note that ZOH directly implies $D=0$ in discrete time. Also, we need to have the degree of $B_\theta$ be one lower than $A_\theta$ to get $D=0$.
 $\lozenge$

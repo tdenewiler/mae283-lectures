@@ -52,7 +52,7 @@
      inkscape:pageopacity="0.0"
      inkscape:pageshadow="2"
      inkscape:zoom="1.979899"
-     inkscape:cx="338.435"
+     inkscape:cx="248.02635"
      inkscape:cy="843.96212"
      inkscape:document-units="px"
      inkscape:current-layer="layer1"
@@ -171,5 +171,9 @@
        id="path6740"
        d="M 445.98235,130.59798 L 445.98235,150.80104"
        style="fill:none;fill-rule:evenodd;stroke:#000000;stroke-width:1px;stroke-linecap:butt;stroke-linejoin:miter;stroke-opacity:1" />
+    <path
+       id="path4905"
+       d="M 173.99878,140.69951 L 193.69675,140.69951"
+       style="fill:none;fill-rule:evenodd;stroke:#ff0000;stroke-width:1px;stroke-linecap:butt;stroke-linejoin:miter;stroke-opacity:1" />
   </g>
 </svg>

@@ -17,7 +17,7 @@
 \lecture{Stochastic Systems and Dynamics}
 
 \section{Stationary Stochastic Signals}
-This lecture closely follows Chapter 2 of Ljung, specifically \S2.1-2.3, which deal with stationary stochastic signals. These systems can be modeled as in Figure \ref{fig:04system}, where $u(t)$ is deterministic and $v(t)$ is noise. When $v(t)=0$ it implies that $y(t)$ is noise-free -- this is a boring topic to study. The system is more interesting when $v(t)\neq 0$ and then $y(t)$ is a sum of deterministic and stochastic signals. This means that the output can be found as $y(t)=w(t)+v(t)$, where $w(t)=G_0(q)u(t)$ is unknown. Recall that $G_0(q)$ is not a function but is a time-shift operator so that $w(t)$ is not a product of two terms. Typically, we assume that the noise has zero-mean such that
+This lecture closely follows Chapter 2 of Ljung, specifically \S2.1-2.3, which deal with stationary stochastic signals. These systems can be modeled as in Figure \ref{fig:04system}, where $u(t)$ is deterministic and $v(t)$ is noise. When $v(t)=0$ it implies that $y(t)$ is noise-free -- this is a boring topic to study and very rarely occurs in practice. The system is more interesting when $v(t)\neq 0$ and then $y(t)$ is a sum of deterministic and stochastic signals. This means that the output can be found as $y(t)=w(t)+v(t)$, where $w(t)=G_0(q)u(t)$ is unknown. Recall that $G_0(q)$ is not a function but is a time-shift operator so that $w(t)$ is not a product of two terms. Typically, we assume that the noise has zero-mean such that
 $$E\{v(t)\}=0 \Rightarrow E\{y(t)\}=w(t)$$
 This is referred to as the ``time-varying'' or ``non-stationary'' mean value.
 \begin{figure}[ht!]
@@ -63,10 +63,10 @@ Typically, we assume that $E\{y(t)\}=0$ if $\bar{E}\{u(t)\}=0$ and $G_0(q)$ is B
 \begin{definition}{Quasi-stationary Signal}
 
 \label{def:quasistationary}
-Some process $u(t)$ is quasi-stationary if there exists some $c_1, c_2 \in\mathbb{R}$ such that
+A process $u(t)$ is quasi-stationary if there exists some $c_1, c_2 \in\mathbb{R}$ such that
 \begin{itemize}
-\item $\bar{E}\{u(t)\} < c_1, ~\forall t$
-\item $\bar{E}\{u(t)u(t-\tau)\} = R_u(\tau) < c_2, ~\forall \tau$
+\item $\bar{E}\{u(t)\} < c_1 ~\forall t$
+\item $\bar{E}\{u(t)u(t-\tau)\} = R_u(\tau) < c_2 ~\forall \tau$
 \end{itemize}
 The first inequality indicates that the mean of the process must be bounded. The second inequality means that $u(t)$ correlated with itself and time-shifted a small amount should also be bounded and is known as the ``auto-covariance'' function.
 \end{definition}
@@ -76,9 +76,9 @@ The first inequality indicates that the mean of the process must be bounded. The
 These are formal definitions and cannot actually be computed because they require an infinite number of samples. Later we will learn how to estimate their values given a finite number of samples.
 \begin{itemize}
 \item Auto-covariance function \\
-$R_y(\tau) \triangleq \bar{E}\{y(t)y(t-\tau)\}, |\tau|\in\mathbb{N}$
+$R_y(\tau) \triangleq \bar{E}\{y(t)y(t-\tau)\}, \qquad |\tau|\in\mathbb{N}$
 \item Cross-covariance function \\
-$R_{yu}(\tau) \triangleq \bar{E}\{y(t)u(t-\tau)\}, |\tau|\in\mathbb{N}$
+$R_{yu}(\tau) \triangleq \bar{E}\{y(t)u(t-\tau)\}, \qquad |\tau|\in\mathbb{N}$
 \item Auto-spectral density function \\
 $\Phi_u(\w) \triangleq \sum_{\tau=-\infty}^\infty R_y(\tau)e^{-j\w\tau}$ \\
 This is the discrete-time Fourier transform (DTFT) of the auto-covariance function.
@@ -87,7 +87,7 @@ $\Phi_{yu}(\w) \triangleq \sum_{\tau=-\infty}^\infty R_yu(\tau)e^{-j\w\tau}$ \\
 This is the DTFT of the cross-covariance function.
 \end{itemize}
 Note that $\w\in\mathbb{R}$ and $|\tau|\in\mathbb{N}$. To get from the spectral density functions to the covariance functions use the inverse Fourier transform:
-$$R_y(\tau) = \frac{1}{2\pi}\int_{\w=-\pi}^\pi \Phi_y(\tau)e^{j\w\tau}d\w$$
+$$R_y(\tau) = \frac{1}{2\pi}\int_{\w=-\pi}^\pi \Phi_y(\w)e^{j\w\tau}d\w$$
 \end{definition}
 
 \section{White Noise}
