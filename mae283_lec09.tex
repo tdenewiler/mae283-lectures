@@ -24,7 +24,7 @@
 \section{Least Squares Summary}
 Up to this point we have seen that for a model
 \begin{align}
-\label{eq:model}
+\label{eq:09model}
 \mathcal{M}: y(t) = \varphi^T(t)\theta + e(t,\theta)
 \end{align}
 we get the least squares estimate as
@@ -40,7 +40,7 @@ The expected value of the estimated parameter converges to the true parameter.
 $$E\{\thn\} = \theta_0$$
 provided the noise, $\{e(t)\}$, is white. This is for the system
 \begin{align}
-\label{eq:sys}
+\label{eq:09sys}
 \mathcal{S}: y(t) = \varphi^T(t)\theta_0 + e(t)
 \end{align}
 
@@ -50,7 +50,7 @@ The invertibility of $R(N)$ is equivalent to $\{u(t)\}$ being a persistently exc
 
 \section{Variance Properties of Least Squares Estimate}
 $$\text{cov}\{\thn\} = E\{(\thn-\theta_0)(\thn-\theta_0)^T\}$$
-Converting the system in (\ref{eq:sys}) to matrix form gives
+Converting the system in (\ref{eq:09sys}) to matrix form gives
 \begin{align*}
 \mathcal{S}: Y_N &= \Phi_N\theta_0+E_N \\
 \Rightarrow \thn &= (\frac{1}{N}\Phi_N^T\Phi_N)^{-1}(\frac{1}{N}\Phi_N^TY_N) = R(N)^{-1}f(N)
@@ -79,7 +79,7 @@ The assumption that $\{e(t)\}$ is white noise means that we assume the dynamics 
 These are some ways that the least squares estimate can be modified to achieve better results in more general situations than those we have encountered so far. In other words, these extensions are methods used to overcome the limitations of the standard least squares estimator.
 
 \subsection{Weighted Least Squares Estimate}
-Starting with the model from (\ref{eq:model}) and the estimate from (\ref{eq:lse}) we can add a weighting function such that
+Starting with the model from (\ref{eq:09model}) and the estimate from (\ref{eq:lse}) we can add a weighting function such that
 $$\thn = \min_\theta \frac{1}{N}\sum_{t=1}^N e_w^2(t)$$
 where $e_w(t)=w(t)e(t)$. This can be useful for weighting recent data more than past data (Figure \ref{fig:09wRecent}) or for removing data that could be unreliable data (Figure \ref{fig:09bad}). The latter case allows us to ignore unreliable data that would result in determining a model that does not capture the dynamics of the actual system. The way to solve the weighted least squares problem is to find
 $$\underbrace{w(t)y(t)}_{y_w(t)} = \underbrace{w(t)\varphi^T(t)}_{\varphi_w^T(t)}\theta + \underbrace{w(t)e(t)}_{e_w(t)}$$
