@@ -22,7 +22,7 @@ This lecture roughly corresponds to Chapters 10.1 and 10.2 of Ljung. These are i
 \section{Newton-Raphson}
 This is a quick derivation of the Newton-Raphson method where we are looking for a solution to the equation $f(\theta)=0$ which is given by
 $$\hat{\theta} = \argsol_\theta f(\theta) = 0$$
-Figure ?? shows an example function where we would be looking for the root of the function. This is similar to the Instrumental Variable (IV) method we saw in Lecture \ref{lec:IV} where the solution we obtained was given by
+Figure \ref{fig:18nr} shows an example function where we would be looking for the root of the function. This is similar to the Instrumental Variable (IV) method we saw in Lecture \ref{lec:IV} where the solution we obtained was given by
 $$\hat{\theta}_{IV} = \argsol_\theta f(\theta,Z^N) = 0$$
 In the IV method $f$ is linearly parameterized in $\theta$ so it is easy to compute a solution such that
 $$\hat{\theta}_{IV} = [R(N)]^{-1}[f(N)]$$
@@ -48,18 +48,18 @@ where $\alpha(\theta_i)$ is such that $|f(\theta_{i+1})|<|f(\theta_i)|$ and $\al
 	\label{fig:18nr}
 \end{figure}
 
+The Newton-Raphson method can also be used to find the minimum of a function as in Figure \ref{fig:18min}. Then the algorithm would be
+\begin{align*}
+\boxed{\theta_{i+1} = \theta_i - \alpha(\theta_i)\left[\left.f^{\prime\prime}(\theta)\right|_{\theta=\theta_i}\right]^{-1}\cdot\left[\left.f^\prime(\theta)\right|_{\theta=\theta_i}\right]}
+\end{align*}
+Note that we are looking for a minimum so we want $f^{\prime\prime}(\theta)>0$ and $f^{\prime\prime}(\theta)$ is known as the Hessian.
+
 \begin{figure}[ht!]
 	\centering
 	\includegraphics[width=.6\textwidth]{images/18min}
 	\caption{Finding minimum with Newton-Raphson method.}
 	\label{fig:18min}
 \end{figure}
-
-The Newton-Raphson method can also be used to find the minimum of a function as in Figure ??. Then the algorithm would be
-\begin{align*}
-\boxed{\theta_{i+1} = \theta_i - \alpha(\theta_i)\left[\left.f^{\prime\prime}(\theta)\right|_{\theta=\theta_i}\right]^{-1}\cdot\left[\left.f^\prime(\theta)\right|_{\theta=\theta_i}\right]}
-\end{align*}
-Note that we are looking for a minimum so we want $f^{\prime\prime}(\theta)>0$ and $f^{\prime\prime}(\theta)$ is known as the Hessian.
 
 \subsection{Gradient Method}
 What if $f^{\prime\prime}(\theta)$ is unknown? Then we can use the gradient method where the algorithm is
