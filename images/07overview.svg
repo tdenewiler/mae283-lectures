@@ -15,7 +15,7 @@
    inkscape:version="0.46"
    sodipodi:docname="07overview.svg"
    inkscape:output_extension="org.inkscape.output.svg.inkscape"
-   inkscape:export-filename="/home/ibotics/classes/mae283/lectures/images/07overview.png"
+   inkscape:export-filename="/home/thomas/school/mae283/lectures/images/07overview.png"
    inkscape:export-xdpi="150"
    inkscape:export-ydpi="150">
   <defs
@@ -68,9 +68,9 @@
      inkscape:cx="309.4992"
      inkscape:cy="579.93509"
      inkscape:document-units="px"
-     inkscape:current-layer="layer1"
+     inkscape:current-layer="g12863"
      showgrid="false"
-     inkscape:window-width="1440"
+     inkscape:window-width="1270"
      inkscape:window-height="850"
      inkscape:window-x="0"
      inkscape:window-y="25" />
@@ -219,7 +219,7 @@
              sodipodi:role="line"
              id="tspan12096"
              x="215.16249"
-             y="232.11832">data{y(t),u(t)}</tspan></text>
+             y="232.11832">Data{y(t),u(t)}</tspan></text>
         <rect
            style="opacity:1;fill:#000000;fill-opacity:0;stroke:#000000;stroke-width:0.80881286;stroke-miterlimit:4;stroke-dasharray:none;stroke-dashoffset:0;stroke-opacity:1"
            id="rect12098"
@@ -241,11 +241,11 @@
              sodipodi:role="line"
              id="tspan12904"
              x="306.07623"
-             y="647.29102">parametric</tspan><tspan
+             y="647.29102">Parametric</tspan><tspan
              sodipodi:role="line"
              x="306.07623"
              y="677.29102"
-             id="tspan12906">model</tspan></text>
+             id="tspan12906">Model</tspan></text>
         <path
            sodipodi:type="arc"
            style="opacity:1;fill:#000000;fill-opacity:0;stroke:#000000;stroke-width:1;stroke-miterlimit:4;stroke-dasharray:none;stroke-dashoffset:0;stroke-opacity:1"
