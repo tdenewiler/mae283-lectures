@@ -222,7 +222,7 @@ Let
 \end{align*}
 where the last equation is known as a "difference equation". How do we then re-write this as an infinite sum of Markov parameters? Apply the impulse input from (\ref{eq:03impulse}) to get the parameters as
 \begin{align*}
-y(0) &= u(0) - a_1y(-1) = 1-1 = 1 \\
+y(0) &= u(0) - a_1y(-1) = 1-0 = 1 \\
 y(1) &= u(1) - a_1y(0) = 0 - a_1 \cdot 1 = -a_1 \\
 y(2) &= u(2) - a_1y(1) = a_1^2 \\
 y(3) &= u(3) - a_1y(2) = -a_1^3 \\
@@ -253,7 +253,7 @@ How do we go from state space to transfer function representation? Use
 &x(k) = (qI-A)^{-1}Bu(k) \\
 &y(k) = (C(qI-A)^{-1}B+D)u(k)
 \end{align*}
-where we let $G(q) = (C(qI-A)^{-1}B+D$.
+where we let $G(q) = C(qI-A)^{-1}B+D$.
 
 How do we go from state space to impulse response representation? Recall that the IR is $\sum_{k=0}^\infty g_kq^{-k}$. Applying an impulse response from (\ref{eq:03impulse}) as input yields
 \begin{align*}

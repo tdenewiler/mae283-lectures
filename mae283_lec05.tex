@@ -139,7 +139,7 @@
 \setcounter{lecture}{4}
 \setcounter{chapter}{4}
 
-\lecture{Estimating Covariance and Spectral Density Functions}
+\lecture{Estimating Covariance and Spectral Functions}
 
 \section{Covariance and Spectral Functions}
 The covariance and spectral density functions are defined as
@@ -180,7 +180,7 @@ R_{yu}(\tau) &= G_0(q)R_u(\tau) \\
 \subsection{Properties}
 Notice that $R_u(\tau)=R_u(-\tau)$. The product $u(t)u(t-\tau)$ remains the same and implies that the auto-covariance function is symmetric about $\tau=0$.
 
-The auto-spectral density function is real-valued, $\phi_u(\w) = \mathcal{F}\{R_u(\tau)\{\in\mathbb{R}$. Any Fourier transform is real when the signal is symmetric.
+The auto-spectral density function is real-valued, $\phi_u(\w) = \mathcal{F}\{R_u(\tau)\}\in\mathbb{R}$. Any Fourier transform is real when the signal is symmetric.
 
 The cross-covariance function is \textit{not} symmetric, $R_{yu}(\tau)\neq R_{yu}(-\tau)$.
 
@@ -203,7 +203,7 @@ Therefore, we need to find estimates for $R_{yu}(\tau)$ and $R_u(\tau)$ to find 
 From (\ref{eq:autocov}) we have
 $$R_u(\tau) = \bar{E}\{u(t)u(t-\tau)\} = \lim_{N\to\infty}\frac{1}{N}\sum_{t=1}^N E\{u(t)u(t-\tau)\}$$
 A proposed form of the estimate is
-$$\hat{R}_u^N(\tau) = \frac{1}{N}\sum_{t=1}{N}u(t)u(t-\tau)$$
+$$\hat{R}_u^N(\tau) = \frac{1}{N}\sum_{t=1}^Nu(t)u(t-\tau)$$
 The idea is that we will leave out the estimator operation because we do not know what it is. We hope that taking enough samples and averaging them will lead to a good estimate of the true covariance.
 
 Looking at the expected value of this proposed covariance estimate, we would like it to have the property
@@ -228,7 +228,7 @@ We can only sum samples over $N-|\tau|$. In the end, we will use the biased esti
 
 \begin{figure}[ht!]
 	\centering
-	\includegraphics[width=.4\textwidth]{images/05triWindow}
+	\includegraphics[width=.3\textwidth]{images/05triWindow}
 	\caption{Triangular window from weighting factor.}
 	\label{fig:05triWindow}
 \end{figure}
@@ -250,7 +250,7 @@ Note that since $\{u(t)\}$ is quasi-stationary $R_u(\tau)\to0$ eventually. This 
 This means that the variance goes to zero with probability $1$. See Figure \ref{fig:05estDist}.
 \begin{figure}[ht!]
 	\centering
-	\includegraphics[width=.5\textwidth]{images/05estDist}
+	\includegraphics[width=.4\textwidth]{images/05estDist}
 	\caption{Distributions of estimators as $N\to\infty$.}
 	\label{fig:05estDist}
 \end{figure}
@@ -303,7 +303,7 @@ If $u\perp v$ then $R_{vu}(\tau)=0$, but $\hat{R}_{vu}^N(\tau)\neq 0$ because th
 If $v(t)=0$ then $\ryuhat=\hat{g}_0(\tau)$ is \textit{still} an estimate because we do not have a perfect $\delta$-function so we do not get a perfect impulse response, but it typically gives a pretty close estimate of the parameters $g_0(\tau)$.
 \begin{figure}[ht!]
 	\centering
-	\includegraphics[width=.6\textwidth]{images/05xcov}
+	\includegraphics[width=.5\textwidth]{images/05xcov}
 	\caption{Estimated covariance when the input is not a perfect $\delta$-function.}
 	\label{fig:05xcov}
 \end{figure}
@@ -311,14 +311,14 @@ If $v(t)=0$ then $\ryuhat=\hat{g}_0(\tau)$ is \textit{still} an estimate because
 \section{Finite Impulse Response}
 Assume $G_0(q) = \sum_{k=0}^ng_0(k)q^{-k}$. This means that $G_0(q)$ is the finite impulse response (FIR) because we are only looking at $n$ samples, not an infinte amount of samples.
 
-When $\{u(t)\}$ is white noise how do we estimate the parameters $g_0(k)$? We cannot use $\hat{g}^0(k) = \hat{R}_{yu}^N(k)$ because $R_u(\tau)\neq \delta_d(\tau)$, where $\delta_d(\tau)$ is a $\delta$-function. However, we can use
+When $\{u(t)\}$ is white noise how do we estimate the parameters $g_0(k)$? We cannot use $\hat{g}_0(k) = \hat{R}_{yu}^N(k)$ because $R_u(\tau)\neq \delta_d(\tau)$, where $\delta_d(\tau)$ is a $\delta$-function. However, we can use
 $$R_{yu}(\tau) = G_0(q)R_u(\tau) = \sum_{k=0}^ng_0(k)R_u(\tau-k)$$
 Solving for the first few values of $k$ gives
 \begin{align*}
-R_{yu}(0) &= g_0(0)R_u(0) + g_0(1)R_u(-1) + g_0(2)R_u(-2) + \cdots \\
-&= g_0(0)R_u(0) + g_0(1)R_u(1) + g_0(2)R_u(2) + \cdots \\
-R_{yu}(1) &= g_0(0)R_u(1) + g_0(1)R_u(0) + g_0(2)R_u(-1) + \cdots \\
-&= g_0(0)R_u(1) + g_0(1)R_u(0) + g_0(2)R_u(1) + \cdots
+R_{yu}(0) &= g_0(0)R_u(0) + g_0(1)R_u(-1) + g_0(2)R_u(-2) + \cdots + g_0(n)R_u(-n) \\
+&= g_0(0)R_u(0) + g_0(1)R_u(1) + g_0(2)R_u(2) + \cdots + g_0(n)R_u(n) \\
+R_{yu}(1) &= g_0(0)R_u(1) + g_0(1)R_u(0) + g_0(2)R_u(-1) + \cdots + g_0(n)R_u(-n) \\
+&= g_0(0)R_u(1) + g_0(1)R_u(0) + g_0(2)R_u(1) + \cdots + g_0(n)R_u(n)
 \end{align*}
 where we use the symmetry property of $R_u(k)$. Writing this in matrix form gives
 \begin{align*}
@@ -337,9 +337,12 @@ g_0(0) \\ g_0(1) \\ \vdots \\ g_0(n)
 \end{array}\right]
 \end{align*}
 This can be rewritten as
-$$\hat{\mathbf{R}}_{yu} = \hat{\mathbf{R}}_u\mathbf{\theta}$$
-The matrix $\hat{\mathbf{R}}_u$ is a symmetric Toeplitz matrix. When working with a finite number of samples we replace all of the values in the vectors and matrix with their estimated values to get
-$$\mathbf{\theta} = \hat{\mathbf{R}}_u^{-1}\hat{\mathbf{R}}_{yu}$$
+$$\mathbf{R}_{yu} = \mathbf{R}_u\mathbf{\theta}$$
+The matrix $\mathbf{R}_u$ is a symmetric Toeplitz matrix. When working with a finite number of samples we replace all of the values in the vectors and matrix with their estimated values to get
+\begin{align*}
+\hat{\mathbf{R}}_{yu} = \hat{\mathbf{R}}_u\mathbf{\theta} \\
+\mathbf{\theta} = \hat{\mathbf{R}}_u^{-1}\hat{\mathbf{R}}_{yu}
+\end{align*}
 This works even when the noise is not white. However, if the noise is white then $\hat{\mathbf{R}}_u$ is a diagonal matrix. Furthermore, if the noise has a variance $\sigma=1$ then $\hat{\mathbf{R}}_u=I$.
 
 Notice that $\hat{\mathbf{R}}_u$ only depends on the input sequence $\{u(t)\}$. The invertibility of $\hat{\mathbf{R}}_u$ is a property of $\{u(t)\}$ and when it is possible is referred to as the ``persistence of excitation''. It is the responsibility of the engineer to create the input signal $\{u(t)\}$ such that $\hat{\mathbf{R}}_u$ is invertible.

@@ -14,9 +14,25 @@
    sodipodi:version="0.32"
    inkscape:version="0.46"
    sodipodi:docname="03poleMapSZ.svg"
-   inkscape:output_extension="org.inkscape.output.svg.inkscape">
+   inkscape:output_extension="org.inkscape.output.svg.inkscape"
+   inkscape:export-filename="/home/thomas/school/mae283/lectures/images/03poleMapSZ.png"
+   inkscape:export-xdpi="150"
+   inkscape:export-ydpi="150">
   <defs
      id="defs4643">
+    <marker
+       inkscape:stockid="Arrow1Mend"
+       orient="auto"
+       refY="0.0"
+       refX="0.0"
+       id="Arrow1Mend"
+       style="overflow:visible;">
+      <path
+         id="path3359"
+         d="M 0.0,0.0 L 5.0,-5.0 L -12.5,0.0 L 5.0,5.0 L 0.0,0.0 z "
+         style="fill-rule:evenodd;stroke:#000000;stroke-width:1.0pt;marker-start:none;"
+         transform="scale(0.4) rotate(180) translate(10,0)" />
+    </marker>
     <marker
        inkscape:stockid="Arrow1Lstart"
        orient="auto"
@@ -61,9 +77,9 @@
      objecttolerance="10"
      inkscape:pageopacity="0.0"
      inkscape:pageshadow="2"
-     inkscape:zoom="0.98994949"
-     inkscape:cx="380.84525"
-     inkscape:cy="744.88189"
+     inkscape:zoom="1.4"
+     inkscape:cx="388.60129"
+     inkscape:cy="643.58613"
      inkscape:document-units="px"
      inkscape:current-layer="layer1"
      showgrid="false"
@@ -142,8 +158,9 @@
          x="521.23871"
          y="237.16908">z-plane</tspan></text>
     <path
-       style="fill:none;fill-rule:evenodd;stroke:#000000;stroke-width:1px;stroke-linecap:butt;stroke-linejoin:miter;stroke-opacity:1;marker-end:url(#Arrow1Lend)"
-       d="M 532.35039,343.2351 C 529.27933,339.12219 524.27192,335.15662 519.21841,330.10311 C 509.52577,320.41047 498.96399,311.0917 485.88337,305.85945 C 466.39079,298.06242 442.27802,291.68356 422.24376,287.67671 C 401.24005,283.47596 380.51615,281.57131 359.61431,278.58533 C 339.02059,275.64337 321.38886,277.57518 301.02546,277.57518 C 289.35347,277.57518 278.25712,278.97412 267.69042,281.61579 C 254.53074,284.90571 241.8022,287.76734 228.29448,289.69701 C 215.84211,291.47592 201.74342,297.05517 192.93914,305.85945 C 188.48174,310.31684 181.85135,312.90662 177.78685,316.97113 C 173.46222,321.29576 166.3203,322.19933 160.61425,325.05235 C 159.26738,325.72578 157.92051,326.39922 156.57364,327.07266 C 153.38839,328.66528 150.25688,329.40946 147.48227,330.10311"
-       id="path5723" />
+       style="fill:none;fill-rule:evenodd;stroke:#000000;stroke-width:1px;stroke-linecap:butt;stroke-linejoin:miter;stroke-opacity:1;marker-end:url(#Arrow1Mend)"
+       d="M 536.42857,346.64789 C 406.19048,253.43204 275.95238,263.89505 145.71429,338.07647"
+       id="path2563"
+       sodipodi:nodetypes="cc" />
   </g>
 </svg>
