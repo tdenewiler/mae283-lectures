@@ -126,7 +126,7 @@
 \lectureseries[\course]{\course}
 
 \auth[R.A. de Callafon]{Lecturer: \lecAuth\\ Scribe: \scribe}
-\date{September 24, 2009}
+\date{October 6, 2009}
 
 \setaddress
 
@@ -134,7 +134,106 @@
 \setcounter{lecture}{3}
 \setcounter{chapter}{3}
 
-\lecture{??}
+\lecture{Overview of Discrete Time Systems}
+
+\section{Stationary Stochastic Signals}
+This lecture closely follows Chapter 2 of Ljung, specifically \S2.1-2.3, which deal with stationary stochastic signals. These systems can be modeled as in Figure ??, where $u(t)$ is deterministic, $v(t)=0$ is noise. When $v(t)=0$ it implies that $y(t)$ is noise-free -- this is a boring topic to study. The system is more interesting when $v(t)\neq 0$, and then $y(t)$ is a sum of deterministic and stochastic signals. This means that the output can be found as $y(t)=w(t)+v(t)$, where $w(t)=G_0(q)u(t)$ is unknown. Recall that $G_0(q)$ is not a function but is a time-shift operator. Typically, we assume that the noise has zero-mean such that
+$$E\{v(t)\}=0 \Rightarrow E\{y(t)\}=w(t)$$
+This is referred to as the ``time-varying'' or ``non-stationary'' mean value.
+
+The expectation operator yields the average of the stochastic portion of the output. What we want to find is a linear operator that will give the average of the deterministic part as well. For that we use the extended expectation operator.
+$$\bar{E}\{y(t)\} = \lim_{N\to\infty}\frac{1}{N}\sum_{t=1}^NE\{y(t)\}$$
+When the expectation operator is used it takes the stochastic portion of the output and makes it deterministic, giving just a scalar value. The extended expectation operator averages the output, $y(t)$, over time to give a scalar as well.
+
+The time-shifted input, $w(t)=G_0(q)u(t)$, is deterministic with
+$$\bar{E}\{w(t)\} = \lim_{N\to\infty}\frac{1}{N}\sum_{t=1}^NE\{w(t)\}$$
+and we typically assume $\bar{E}\{w(t)\}=0$.
+
+\begin{example}
+Given a deterministic signal, $u(t)$, as shown in Figure ?? we can say that
+$$lim_{N\to\infty}\frac{1}{N}\sum_{t=1}^NE\{u(t)\} = 0$$
+This is shown as a block diagram in Figure ?? and makes it clear that $\lim_{N\to\infty}\frac{1}{N}\sum_{t=1}^Nw(t)=0$ since $u(t)=0$ and the system is linear.
+\end{example}
+
+\begin{definition}{Extended Expectation Operator}
+$$\bar{E}\{y(t)\}\lim_{N\to\infty}\frac{1}{N}\sum_{t=1}^NE\{y(t)\}$$
+Typically, we assume that $E\{y(t)\}=-$ if $\bar{E}\{u(t)\}=0$ and $G_0(q)$ is BIBO stable. If the system is not BIBO stable then we get Brownian motion resulting in random walk.
+\end{definition}
+
+\begin{definition}{Quasi-stationary Signal}
+
+Some process $u(t)$ is quasi-stationary if there exists some $c_1, c_2 \in\mathbb{R}$ such that
+\begin{itemize}
+\item $\bar{E}\{u(t)\} < c_1, ~\forall t$
+\item $\bar{E}\{u(t)u(t-\tau)\} = R_u(\tau) < c_2, ~\forall \tau$
+\end{itemize}
+The first inequality means that the mean of the process must be bounded. The second inequality means that $u(t)$ correlated with itself and time-shifted a small amount should also be bounded and is known as the ``auto-covariance'' function.
+\end{definition}
+
+\begin{definition}{Covariance and Spectral Functions}
+
+These are formal definitions and cannot actually be computed because they require an infinite number of samples. Later we will learn how to estimate their values.
+\begin{itemize}
+\item Auto-covariance function
+
+$R_y(\tau) \triangleq \bar{E}\{y(t)y(t-\tau)\}, |\tau|\in\mathbb{N}$
+\item Cross-covariance function
+
+$R_{yu}(\tau) \triangleq \bar{E}\{y(t)u(t-\tau)\}, |\tau|\in\mathbb{N}$
+\item Auto-spectral density function
+
+$\phi_u(\w) \triangleq \sum_{\tau=-\infty}^\infty R_y(\tau)e^{-j\w\tau}$
+This is the discrete-time Fourier transform (DTFT) of the auto-covariance function.
+\item Cross-spectral density function
+
+$\phi_{yu}(\w) \triangleq \sum_{\tau=-\infty}^\infty R_yu(\tau)e^{-j\w\tau}$
+This is the DTFT of the cross-covariance function.
+\end{itemize}
+Note that $\w\in\mathbb{R}$ and $|\tau|\in\mathbb{N}$. To get from the spectral density functions to the covariance functions use the inverse Fourier transform: $R_y(\tau) = \frac{1}{2\pi}\int_{\w=-\pi}^\pi R_y(\tau)e^{j\w\tau}d\w$.
+\end{definition}
+
+\section{White Noise}
+White noise, $e(t)$, is a zero-mean signal and is satisfied by the following properties:
+\begin{itemize}
+\item $\bar{E}\{e(t)\}=0$
+\item $\bar{E}\{e(t)e(t-\tau)\} = R_e(\tau) = \begin{cases} \lambda>0, & \tau=0 \\ 0, & |\tau|\neq 0 \end{cases}$
+
+The case when $\tau=0$ is known as the variance of the signal.
+\item $\phi_e(\w) = \sum_{\tau=-\infty}^\infty \lambda\delta_d(t)e^{-j\w t} = \lambda e^{-j\w 0} = \lambda$
+
+We only need to evaluate the $\delta$-function at time $t=0$.
+\item $\bar{E}\{e^2(t)\} = R_e(0) = \lambda = \frac{1}{2\pi}\int_{\w=-\pi}^\pi\phi_u(\w)e^{j\w\tau}d\w = \frac{1}{2\pi} \int_{\w=-\pi}^\pi\phi_u(\w)d\w$
+
+where the exponential goes to one because $\tau=0$. This can be thought of as the surface under the auto-spectral density function between $[-\pi,\pi]$ and is equal to the variance of the signal. See Figure ??.
+\end{itemize}
+
+\section{Uncorrelated Signals}
+Consider two signals $u(t)$ and $v(t)$ that are not necessarily input and output. We say that $u\perp y$ or ``u is uncorrelated with y'' if $R_{yu}(\tau)=0 ~\forall \tau$.
+
+\subsection{Application}
+Consider the system $y(t)=G_0(q)u(t)+v(t)$. The cross-correlation function is found as
+\begin{align*}
+\bar{E}\{y(t)u(t-\tau)\} &= \bar{E}\{G_0(q)u(t)u(t-\tau)\} + \bar{E}\{v(t)u(t-\tau)\} \\
+&= \bar{E}\{G_0(q)u(t)u(t-\tau)\} \\
+&\Rightarrow R_{yu}(\tau) = G_0(q)R_u(\tau)
+\end{align*}
+The term $\bar{E}\{v(t)u(t-\tau)\} = 0$ based on the assumption that since $u(t)$ is a designed and deterministic signal then it is highly unlikely that the input and the noise are correlated.
+
+\section{Effects of Dynamics/Filtering}
+\subsection{Cross-covariance Function}
+Let $\{u(t)\}$ be white noise, $y(t)=G_0(q)u(t)+v(t)$, $u\perp v$ and $G_0(q)=\sum_{k=0}^\infty g(k)q^{-k}$. Note that $\{u(t)\}$ is white but known. How do we find $R_{yu}(\tau)$?
+
+Start with
+\begin{align*}
+R_{yu}(\tau) &= G_0(q)R_u(\tau) \\
+R_u(\tau) &= \begin{cases} \lambda, & \tau=0 \\ 0, & \tau\neq 0 \end{cases} = \lambda\delta_d(\tau)
+\end{align*}
+Substituting the second equation into the first is equivalent to getting the impulse response of the system as described by the coefficients $g(k)$ so that
+$$R_{yu}(\tau) = \lambda g(\tau)$$
+
+\begin{example}
+Let $G_0(q)$ be a mass-spring-damper system with low amounts of damping. Given an impulse as input the output signal will oscillate at some frequency while dying down due to the damping. See Figure ??.
+\end{example}
 
 
 \end{document}
