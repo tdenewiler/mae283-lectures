@@ -123,19 +123,19 @@ which is similar in form to an output error (OE) model in the time domain.
 
 The conclusion is that in frequency domain curve-fitting only OE models can be used which means that it is only a least squares problem if
 $$G(e^{j\w},\theta) = \frac{B(e^{j\w},\theta)}{F(e^{j\w},\theta)}$$
-if $F(e^{j\w},\theta) = 1$ resulting in $G(e^{j\w},\theta)$ has to be an FIR model.
+if $F(e^{j\w},\theta) = 1$ giving the result that $G(e^{j\w},\theta)$ has to be an FIR model.
 
 Fitting in the frequency domain must always be performed using an OE model and thus always requires non-linear optimization. However, it can provide a nice visual confirmation of whether the model is a good fit as opposed to least squares in the time domain which does not give any visual confirmation.
 
 \section{Iterative Linear Techniques}
 The algorithm we will get at the end of this section is known as the Sanathanan and Koerner iteration. We want to minimize the output error using
 $$E(\w,\theta) = \hat{G}\ejw - \frac{B(e^{j\w},\theta)}{F(e^{j\w},\theta)}$$
-using non-linear optimization. First we get the equation error as
+using non-linear optimization. First, we get the equation error as
 \begin{align*}
 \tilde{E}(\w,\theta) &= F(e^{j\w},\theta)E(\w,\theta) \\
 &= F(e^{j\w},\theta)\cdot\tilde{G}\ejw - B(e^{j\w},\theta)
 \end{align*}
-Using the property that $F(e^{j\w},\theta$ is monic we get
+Using the property that $F(e^{j\w},\theta)$ is monic we get
 \begin{align*}
 F(e^{j\w},\theta) &= 1 + f_1e^{-j\w} + f_2e^{-2j\w} + \ldots \\
 \tilde{E}(\w,\theta) &= \hat{G}\ejw - \vp^T(\w)\theta \\
@@ -144,7 +144,7 @@ F(e^{j\w},\theta) &= 1 + f_1e^{-j\w} + f_2e^{-2j\w} + \ldots \\
 \end{align*}
 If
 \begin{align*}
-\hat{\theta} &= \argmin_\theta \fN\sumk\tilde{E}(\w_k,\theta)\tilde{E}(\w_k,\theta) \\
+\hat{\theta} &= \argmin_\theta \fN\sumk\tilde{E}(\w_k,\theta)\tilde{E}^T(\w_k,\theta) \\
 &= \left[\fN\sumk\vp(\w)\vp^T(\w)\right]^{-1}\left[\fN\sumk\vp(\w)\hat{G}\ejw\right]
 \end{align*}
 with
@@ -159,7 +159,7 @@ However,
 \end{align*}
 Note that $F(e^{j\w},\theta)$ is an implicit weighting function.
 
-This is similar to ARX where the implicit weighting function brings out the high-frequency response. In Figure \ref{fig:17poles} the response increases at the poles of the system.
+This is similar to ARX where the implicit weighting function brings out the high-frequency response. In Figure \ref{fig:17poles} we see that the response increases at the poles of the system.
 
 The conclusion is that fitting frequency data using least squares (minimizing the equation error) leads to a fit with an implicit high-frequency emphasis.
 
