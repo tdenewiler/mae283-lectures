@@ -20,7 +20,7 @@
 This lecture closely follows Chapter 2 of Ljung. We will use $u(t), t \in \mathbb{R}$ to represent the input signal. To convert from continuous time to discrete time we can use a delta function where the delta function, $\delta (t)$, in continuous time is defined as
 \begin{align*}
 \tint \delta(t-t_0)dt &= \int_{t=-\infty-\epsilon}^{\infty+\epsilon} \delta(t-t_0)dt = 1 \\
-\tint \delta(t-t_0)f(t)dt &= \int_{t=-\infty-\epsilon}^{\infty+\epsilon} \delta(t-t_0)f(t)dt = f(t)
+\tint \delta(t-t_0)f(t)dt &= \int_{t=-\infty-\epsilon}^{\infty+\epsilon} \delta(t-t_0)f(t)dt = f(t).
 \end{align*}
 The main idea is that when we multiply $\delta(t_0) \cdot f(t)$ we get the value of $f(t)$ at $t=t_0$, as seen in Figure \ref{fig:02contDeltaFn}.
 \begin{figure}[ht!]
@@ -31,9 +31,9 @@ The main idea is that when we multiply $\delta(t_0) \cdot f(t)$ we get the value
 \end{figure}
 
 \subsection{Discrete Time}
-We define the discrete-time delta function, $\delta_d(k), k \in \mathbb{Z}$, as
+We define the discrete time delta function, $\delta_d(k), k \in \mathbb{Z}$, as
 $$\sum_{k=-\infty}^\infty \delta_d(k-t_0)f(t) = f(t)$$
-An example of the discrete-time delta function can be seen in Figure \ref{fig:02discDeltaFn}, where the function is zero everywhere except at $t=k$.
+An example of the discrete time delta function can be seen in Figure \ref{fig:02discDeltaFn}, where the function is zero everywhere except at $t=k$.
 \begin{figure}[ht!]
 	\centering
 	\includegraphics[width=.5\textwidth]{images/02discDeltaFn}
@@ -47,9 +47,9 @@ The sampled signal, $u_s(t), t \in \mathbb{R}$, is defined as
 &u_s(t) = \sum_{k=-\infty}^\infty u(t)\delta(t-k\dt) \\
 &\int_{t=k\dt-\epsilon}^{k\dt+\epsilon} u_s(t)dt = u(k\dt)
 \end{align*}
-where $u(k\dt)$ is the sampled signal, $\dt$ is the sample time and $t=k\dt$, as seen in Figure \ref{fig:02samplingDeltaFn}. This lets us keep track of the information we gain or lose from the original signal. We also define the sampled signal as
-$$u_d(k) = u(k\dt) = \int_{t=k\dt-\epsilon}^{k\dt+\epsilon} u_s(t)dt.$$
-This will be useful later in comparing the Fourier transforms of discrete and continuous signals.
+where $u(k\dt)$ is the sampled signal, $\dt$ is the sample time and $t=k\dt$, as seen in Figure \ref{fig:02samplingDeltaFn}. This allows us to keep track of the information we gain or lose from the original signal. The sampled signal is defined as
+$$u_d(k) = u(k\dt) = \int_{t=k\dt-\epsilon}^{k\dt+\epsilon} u_s(t)dt$$
+and will be useful later in comparing the Fourier transforms of discrete and continuous signals.
 \begin{figure}[ht!]
 	\centering
 	\includegraphics[width=.5\textwidth]{images/02samplingDeltaFn}
@@ -58,7 +58,7 @@ This will be useful later in comparing the Fourier transforms of discrete and co
 \end{figure}
 
 \section{Fourier Transform}
-The Fourier transform involves taking a signal and decomposing it into a sum of sines and cosines. We can use Euler's formula to convert from the time to the frequency domain
+The Fourier transform involves taking a signal and decomposing it into a sum of sines and cosines. We can use Euler's formula to convert from the time domain to the frequency domain with
 $$e^{j\w t} = \cos\w t + j\sin\w t.$$
 Then we can write the Fourier and inverse Fourier transforms as
 \begin{align*}
@@ -75,14 +75,14 @@ U(\w) &= \tint \cos(\wo t)e^{-j\w t}dt \\
 &\text{use }\tint \sin(\w t)\cos(\wo t)dt = 0, ~ \forall \w \\
 &= \tint \cos(\w t)\cos(\wo t)dt \\
 &= \begin{cases} 0, & \text{if } \w \neq \wo \\ \infty, & \text{if } \w = \wo \end{cases} \\
-&\Rightarrow U(\w) = \frac{1}{2} \left[\delta(\w-\wo) + \delta(\w+\wo)\right]
+&\Rightarrow U(\w) = \tfrac{1}{2} \left[\delta(\w-\wo) + \delta(\w+\wo)\right]
 \end{align*}
-If we want to we can go back to the time domain using the inverse Fourier transform
+In order to move from the frequency domain back to the time domain apply the inverse Fourier transform,
 \begin{align*}
 u(t) &= \fint U(\w)e^{j\w t}dt \\
-&= \fint \frac{1}{2} \left[\delta(\w-\wo) + \delta(\w+\wo)\right] e^{j\w t}dt \\
-&= \frac{1}{2}\left(e^{j\wo t} + e^{-j\wo t}\right) \\
-&= \frac{1}{2}\left(2\cos\wo t\right) \\
+&= \fint \tfrac{1}{2} \left[\delta(\w-\wo) + \delta(\w+\wo)\right] e^{j\w t}dt \\
+&= \tfrac{1}{2}\left(e^{j\wo t} + e^{-j\wo t}\right) \\
+&= \tfrac{1}{2}\left(2\cos\wo t\right) \\
 &= \cos\wo t
 \end{align*}
 which is exactly what we started with, up to a scale factor of $\frac{1}{2\pi}$ that was left out of the expression for the inverse Fourier transform.
@@ -97,15 +97,15 @@ and
 U_s(\w) &= \tint u_s(t)\emjwt dt \\
 &= \tint \sum_{k=-\infty}^\infty u(t)\delta(t-k\dt)\emjwt dt \\
 &= \sum_{k=-\infty}^\infty u(k\dt) e^{-j\w k\dt} \\
-&= \sum_{k=-\infty}^\infty u_d(k) e^{-j\w k\dt}
+&= \sum_{k=-\infty}^\infty u_d(k) e^{-j\w k\dt}.
 \end{align*}
 This shows that an infinite sum of sampled signals is a continuous function. Also, since we know that $e^{-j\w k\dt} = \cos(\w k\dt) - j\sin(\w k\dt)$, then we can say that $e^{-j\w k\dt}$ has periodicity with $\w_s = \frac{2\pi}{\dt}$, where $\w_s$ is known as the sampling frequency and has units of $rad/s$. This lets us write
 \begin{align*}
 U_s(\w) &= U_s(\w+n\w_s) \text{, where } \w_s = \frac{2\pi}{\dt} \text{, } n\in\mathbb{Z} \\
 \Rightarrow U_s(\w) &= U_s(\w+\frac{2\pi}{\dt}) \text{, } n=1 \\
-U_s(\w) &= -\overline{U_s(\w)}
+U_s(\w) &= -\overline{U_s(\w)}.
 \end{align*}
-$\mathbb{Z}$ is the set of natural numbers and $\overline{(\cdot)}$ represents the complex conjugate of $(\cdot)$. Remember that $U_s(\w)$ is the Fourier transform of $u_s(t)$. Using the properties of the Fourier transform it is only necessary to know a small segment of the function, the rest can be automatically duplicated as shown in Figure \ref{fig:02sin}, where knowledge of the function in the range $[0,\frac{2\pi}{\dt}]$ is sufficient to recreate the entire function shown.
+$\mathbb{Z}$ is the set of natural numbers and $\overline{(\cdot)}$ represents the complex conjugate of $(\cdot)$. Remember that $U_s(\w)$ is the Fourier transform of $u_s(t)$. Using the properties of the Fourier transform it is only necessary to know a small segment of the function, the rest can be automatically duplicated as shown in Figure \ref{fig:02sin}, where knowledge of the function in the range $[0,\frac{2\pi}{\dt}]$ is sufficient to recreate the entire function.
 \begin{figure}[ht!]
 	\centering
 	\includegraphics[width=.5\textwidth]{images/02sin}
@@ -115,7 +115,7 @@ $\mathbb{Z}$ is the set of natural numbers and $\overline{(\cdot)}$ represents t
 
 The result of looking at $\text{Re}\{U_s(\w)\}$ is that the signal, after going through a Fourier transform, is periodic over the range $[0, \frac{2\pi}{\dt}]$ and that the complex conjugate of the signal is the same as the original signal. Thus, it is sufficient to compute the Fourier transform \textit{only} over the range $[0, \frac{\pi}{\dt}]$. This sampling frequency is known as the Nyquist frequency, $\w_N = \frac{\w_s}{2} = \frac{\pi}{2}$, and has units of $rad/s$.
 
-One of the drawbacks of sampling a continuous-time signal is that information about higher frequencies is lost. This can be seen by looking at a sinusoidal function. If $f(t) = \sin(\w t)$ and samples are taken at $\w_N = \frac{\w t}{2}$, then $f(t)$ will look like $f(t) = 0$ when sampling. That is how information is lost. Figure \ref{fig:02lowSampleRate} shows that if the signal is a sine wave that is only sampled at the points indicated the captured signal will look like a line with zero slope and zero magnitude.
+One of the drawbacks of sampling a continuous-time signal is that information about higher frequencies is lost which can be seen by looking at a sinusoidal function. If $f(t) = \sin(\w t)$ and samples are taken at $\w_N = \frac{\w t}{2}$, then $f(t)$ will look like $f(t) = 0$ when sampling. Figure \ref{fig:02lowSampleRate} shows that if the signal is a sine wave that is only sampled at the points indicated the captured signal will look like a line with zero slope and zero magnitude.
 \begin{figure}[ht!]
 	\centering
 	\includegraphics[width=.5\textwidth]{images/02lowSampleRate}
@@ -169,7 +169,7 @@ Some useful properties of Fourier transforms are
 \begin{itemize}
 \item $U_\infty(\w) = U_\infty(\w + n\cdot \frac{2\pi}{\dt})$
 \item $\overline{U_\infty(-\w)} = U_\infty(\w)$
-\item If $u_d(k) = u_d(-k)$ then the $\sin$'s cancel out leaving $U_\infty(\w)\in\mathbb{R}$. This is known as a ``symmetric discrete-time signal around $0$''.
+\item If $u_d(k) = u_d(-k)$ then the $\sin$'s cancel out leaving $U_\infty(\w)\in\mathbb{R}$. This is known as a ``symmetric discrete time signal around $0$''.
 \item If $u_d(k) = -u_d(-k)$ then the $\cos$'s cancel out and $\text{Re}\lbrace U_\infty(\w)\rbrace = 0$.
 \item If $u(t)$ and thus $u_d(k)$ is periodic with period $T=N\dt$, then $U_\infty(\w) = \frac{2\pi}{T}U_N(\w) \sum_{l=-\infty}^\infty \delta(\w-l\frac{2\pi}{T})$.
 \end{itemize}
