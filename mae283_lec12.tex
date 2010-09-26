@@ -177,27 +177,22 @@ For the last condition we \textit{must} have $G_0(q)=\frac{B(q,\theta)}{A(q,\the
 Table \ref{tab:models} shows some properties of models when using parameterization and optimization.
 
 \begin{table}[ht!]
-	\small
-	\centering
-	\begin{tabular}{@{\extracolsep{\fill}} | c | c | c |}
-		\hline
-		Model & Name & Optimization \\
-		\hline\hline
-		$G_\theta=\frac{B_\theta}{A_\theta}, H_\theta=\frac{1}{A_\theta}$ & ARX & Linear, has least squares solution. \\
-		\hline
-		$G_\theta=B_\theta, H_\theta=1$ & FIR (ARX with $A_\theta=1$) & Linear, has least squares solution. \\
-		\hline
-		$G_\theta=\frac{B_\theta}{A_\theta}, H_\theta=\frac{C_\theta}{A_\theta}$ & ARMAX & Non-linear in $\theta$. \\
-		\hline
-		$G_\theta=\frac{B_\theta}{F_\theta}, H_\theta=1$ & OE (Output Error) & Non-linear. \\
-		\hline
-		$G_\theta=\frac{B_\theta}{F_\theta}, H_\theta=\frac{C_\theta}{D_\theta}$ & BJ (Box-Jenkins) & Non-linear. \\
-		\hline
-		$G_\theta=\frac{B_\theta}{F_\theta A_\theta}, H_\theta=\frac{C_\theta}{D_\theta A_\theta}$ & PEM (Prediction Error Model) & Non-linear. \\
-		\hline
-	\end{tabular}
-	\caption{Properties of common models.}
-	\label{tab:models}
+\caption{Properties of common models.}
+\small
+\centering
+\begin{tabular}{@{}llr@{}}
+\toprule
+Model & Name & Optimization \\
+\midrule
+$G_\theta=\frac{B_\theta}{A_\theta}, H_\theta=\frac{1}{A_\theta}$ & ARX & Linear, has least squares solution. \\
+$G_\theta=B_\theta, H_\theta=1$ & FIR (ARX with $A_\theta=1$) & Linear, has least squares solution. \\
+$G_\theta=\frac{B_\theta}{A_\theta}, H_\theta=\frac{C_\theta}{A_\theta}$ & ARMAX & Non-linear in $\theta$. \\
+$G_\theta=\frac{B_\theta}{F_\theta}, H_\theta=1$ & OE (Output Error) & Non-linear. \\
+$G_\theta=\frac{B_\theta}{F_\theta}, H_\theta=\frac{C_\theta}{D_\theta}$ & BJ (Box-Jenkins) & Non-linear. \\
+$G_\theta=\frac{B_\theta}{F_\theta A_\theta}, H_\theta=\frac{C_\theta}{D_\theta A_\theta}$ & PEM (Prediction Error Model) & Non-linear. \\
+\bottomrule
+\end{tabular}
+\label{tab:models}
 \end{table}
 
 The OE and BJ models are special cases of the PEM model. In \textsc{Matlab} calling \texttt{OE} or \texttt{BJ} will just run \texttt{PEM} and do the non-linear optimization for us.
@@ -223,7 +218,7 @@ The prediction error is found to be
 &= \frac{A_\theta}{C_\theta}\left[y-\frac{B_\theta}{A_\theta}u\right] \\
 &= \frac{1}{C_\theta}\underbrace{\left[A_\theta y-B_\theta u\right]}_{y-\vp^T\theta}
 \end{align*}
-This expression is called pseudo-linear. It is not actually linear because of the $\frac{1}{C_\theta}$ term out front.
+This expression is called pseudo-linear since it is not actually linear because of the $\frac{1}{C_\theta}$ term out front.
 
 \subsection{OE Model}
 The OE model is given by
