@@ -78,11 +78,11 @@ From (\ref{eq:autocov}) we have
 $$R_u(\tau) = \bar{E}\{u(t)u(t-\tau)\} = \lim_{N\to\infty}\frac{1}{N}\sum_{t=1}^N E\{u(t)u(t-\tau)\}$$
 A proposed form of the estimate is
 $$\hat{R}_u^N(\tau) = \frac{1}{N}\sum_{t=1}^Nu(t)u(t-\tau)$$
-The idea is that we will leave out the estimator operation because we do not know what it is. We hope that taking enough samples and averaging them will lead to a good estimate of the true covariance.
+The idea is that we will leave out the expectation operation because we do not know what it is. We hope that taking enough samples and averaging them will lead to a good estimate of the true covariance.
 
 Looking at the expected value of this proposed covariance estimate, we would like it to have the property
 $$\lim_{N\to\infty} E\{\ruhat\} = R_u(\tau) \text{ w.p. } 1$$
-If that is the case then it is called a ``consistent'' estimate. The result is actually
+If that is the case then it is called a \textit{consistent} estimate. The result is actually
 \begin{align}
 \label{eq:autocovest}
 E\{\ruhat\} = \frac{N-|\tau|}{N}R_u(\tau)
