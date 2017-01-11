@@ -1,6 +1,4 @@
-%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%
-
-\mainmatter
+\mainmatter%
 \setcounter{page}{1}
 
 \lectureseries[\course]{\course}
@@ -8,7 +6,7 @@
 \auth[\lecAuth]{Lecturer: \lecAuth\\ Scribe: \scribe}
 \date{September 29, 2009}
 
-\setaddress
+\setaddress%
 
 % the following hack starts the lecture numbering at 2
 \setcounter{lecture}{1}
@@ -17,28 +15,30 @@
 \lecture{Signals and Fourier Transforms}
 
 \section{Sampling of Signals}
-This lecture closely follows Chapter 2 of Ljung. We will use $u(t), t \in \mathbb{R}$ to represent the input signal. To convert from continuous time to discrete time we can use a delta function where the delta function, $\delta (t)$, in continuous time is defined as
+This lecture closely follows Chapter 2 of Ljung.
+We will use $u(t), t \in \mathbb{R}$ to represent the input signal.
+To convert from continuous time to discrete time we can use a delta function where the delta function, $\delta (t)$, in continuous time is defined as
 \begin{align*}
 \tint \delta(t-t_0)dt &= \int_{t=-\infty-\epsilon}^{\infty+\epsilon} \delta(t-t_0)dt = 1 \\
 \tint \delta(t-t_0)f(t)dt &= \int_{t=-\infty-\epsilon}^{\infty+\epsilon} \delta(t-t_0)f(t)dt = f(t).
 \end{align*}
-The main idea is that when we multiply $\delta(t_0) \cdot f(t)$ we get the value of $f(t)$ at $t=t_0$, as seen in Figure \ref{fig:02contDeltaFn}.
+The main idea is that when we multiply $\delta(t_0) \cdot f(t)$ we get the value of $f(t)$ at $t=t_0$, as seen in Figure~\ref{fig:02contDeltaFn}.
 \begin{figure}[ht!]
-	\centering
-	\includegraphics[width=.5\textwidth]{images/02contDeltaFn}
-	\caption{Continuous-time $\delta$-function.}
-	\label{fig:02contDeltaFn}
+\centering
+\includegraphics[width=.5\textwidth]{images/02contDeltaFn}
+\caption{Continuous-time $\delta$-function.}
+\label{fig:02contDeltaFn}
 \end{figure}
 
 \subsection{Discrete Time}
 We define the discrete time delta function, $\delta_d(k), k \in \mathbb{Z}$, as
 $$\sum_{k=-\infty}^\infty \delta_d(k-t_0)f(t) = f(t)$$
-An example of the discrete time delta function can be seen in Figure \ref{fig:02discDeltaFn}, where the function is zero everywhere except at $t=k$.
+An example of the discrete time delta function can be seen in Figure~\ref{fig:02discDeltaFn}, where the function is zero everywhere except at $t=k$.
 \begin{figure}[ht!]
-	\centering
-	\includegraphics[width=.5\textwidth]{images/02discDeltaFn}
-	\caption{Discrete-time $\delta$-function.}
-	\label{fig:02discDeltaFn}
+\centering
+\includegraphics[width=.5\textwidth]{images/02discDeltaFn}
+\caption{Discrete-time $\delta$-function.}
+\label{fig:02discDeltaFn}
 \end{figure}
 
 \subsection{Sampling, Continuous Time}
@@ -47,18 +47,21 @@ The sampled signal, $u_s(t), t \in \mathbb{R}$, is defined as
 &u_s(t) = \sum_{k=-\infty}^\infty u(t)\delta(t-k\dt) \\
 &\int_{t=k\dt-\epsilon}^{k\dt+\epsilon} u_s(t)dt = u(k\dt)
 \end{align*}
-where $u(k\dt)$ is the sampled signal, $\dt$ is the sample time and $t=k\dt$, as seen in Figure \ref{fig:02samplingDeltaFn}. This allows us to keep track of the information we gain or lose from the original signal. The sampled signal is defined as
+where $u(k\dt)$ is the sampled signal, $\dt$ is the sample time and $t=k\dt$, as seen in Figure~\ref{fig:02samplingDeltaFn}.
+This allows us to keep track of the information we gain or lose from the original signal.
+The sampled signal is defined as
 $$u_d(k) = u(k\dt) = \int_{t=k\dt-\epsilon}^{k\dt+\epsilon} u_s(t)dt$$
 and will be useful later in comparing the Fourier transforms of discrete and continuous signals.
 \begin{figure}[ht!]
-	\centering
-	\includegraphics[width=.5\textwidth]{images/02samplingDeltaFn}
-	\caption{Multiple $\delta$-functions used to sample a continuous signal.}
-	\label{fig:02samplingDeltaFn}
+\centering
+\includegraphics[width=.5\textwidth]{images/02samplingDeltaFn}
+\caption{Multiple $\delta$-functions used to sample a continuous signal.}
+\label{fig:02samplingDeltaFn}
 \end{figure}
 
 \section{Fourier Transform}
-The Fourier transform involves taking a signal and decomposing it into a sum of sines and cosines. We can use Euler's formula to convert from the time domain to the frequency domain with
+The Fourier transform involves taking a signal and decomposing it into a sum of sines and cosines.
+We can use Euler's formula to convert from the time domain to the frequency domain with
 $$e^{j\w t} = \cos\w t + j\sin\w t.$$
 Then we can write the Fourier and inverse Fourier transforms as
 \begin{align*}
@@ -72,7 +75,7 @@ Given a signal $u(t)=\cos\wo t$ the Fourier transform is found as
 U(\w) &= \tint \cos(\wo t)e^{-j\w t}dt \\
 &= \tint \left(\cos(\wo t)\cos(\w t) + j\sin(-\w t)\cos(\wo t)\right)dt \\
 &= \tint \left(\cos(\w t)\cos(\wo t) - j\sin(\w t)\cos(\wo t)\right)dt \\
-&\text{use }\tint \sin(\w t)\cos(\wo t)dt = 0, ~ \forall \w \\
+&\text{use }\tint \sin(\w t)\cos(\wo t)dt = 0,~\forall \w \\
 &= \tint \cos(\w t)\cos(\wo t)dt \\
 &= \begin{cases} 0, & \text{if } \w \neq \wo \\ \infty, & \text{if } \w = \wo \end{cases} \\
 &\Rightarrow U(\w) = \tfrac{1}{2} \left[\delta(\w-\wo) + \delta(\w+\wo)\right]
@@ -90,7 +93,8 @@ $\lozenge$
 \end{example}
 
 \subsection{Effect of Sampling on Fourier Transform}
-Notice from Figure \ref{fig:02samplingDeltaFn} that $u_s(t) = 0$ almost everywhere, with the exceptions being that $u_s(t) = \infty$ at $t=k\dt$. Then we have, with $t\in\mathbb{R}$ and $\w\in\mathbb{R}$,
+Notice from Figure~\ref{fig:02samplingDeltaFn} that $u_s(t) = 0$ almost everywhere, with the exceptions being that $u_s(t) = \infty$ at $t=k\dt$.
+Then we have, with $t\in\mathbb{R}$ and $\w\in\mathbb{R}$,
 $$u_s(t) = \sum_{k=-\infty}^\infty u(t)\delta(t-k\dt)$$
 and
 \begin{align*}
@@ -99,56 +103,68 @@ U_s(\w) &= \tint u_s(t)\emjwt dt \\
 &= \sum_{k=-\infty}^\infty u(k\dt) e^{-j\w k\dt} \\
 &= \sum_{k=-\infty}^\infty u_d(k) e^{-j\w k\dt}.
 \end{align*}
-This shows that an infinite sum of sampled signals is a continuous function. Also, since we know that $e^{-j\w k\dt} = \cos(\w k\dt) - j\sin(\w k\dt)$, then we can say that $e^{-j\w k\dt}$ has periodicity with $\w_s = \frac{2\pi}{\dt}$, where $\w_s$ is known as the sampling frequency and has units of $rad/s$. This lets us write
+This shows that an infinite sum of sampled signals is a continuous function.
+Also, since we know that $e^{-j\w k\dt} = \cos(\w k\dt) - j\sin(\w k\dt)$, then we can say that $e^{-j\w k\dt}$ has periodicity with $\w_s = \frac{2\pi}{\dt}$, where $\w_s$ is known as the sampling frequency and has units of $rad/s$.
+This lets us write
 \begin{align*}
 U_s(\w) &= U_s(\w+n\w_s) \text{, where } \w_s = \frac{2\pi}{\dt} \text{, } n\in\mathbb{Z} \\
 \Rightarrow U_s(\w) &= U_s(\w+\frac{2\pi}{\dt}) \text{, } n=1 \\
 U_s(\w) &= -\overline{U_s(\w)}.
 \end{align*}
-$\mathbb{Z}$ is the set of natural numbers and $\overline{(\cdot)}$ represents the complex conjugate of $(\cdot)$. Remember that $U_s(\w)$ is the Fourier transform of $u_s(t)$. Using the properties of the Fourier transform it is only necessary to know a small segment of the function, the rest can be automatically duplicated as shown in Figure \ref{fig:02sin}, where knowledge of the function in the range $[0,\frac{2\pi}{\dt}]$ is sufficient to recreate the entire function.
+$\mathbb{Z}$ is the set of natural numbers and $\overline{(\cdot)}$ represents the complex conjugate of $(\cdot)$.
+Remember that $U_s(\w)$ is the Fourier transform of $u_s(t)$.
+Using the properties of the Fourier transform it is only necessary to know a small segment of the function, the rest can be automatically duplicated as shown in Figure~\ref{fig:02sin}, where knowledge of the function in the range $[0,\frac{2\pi}{\dt}]$ is sufficient to recreate the entire function.
 \begin{figure}[ht!]
-	\centering
-	\includegraphics[width=.5\textwidth]{images/02sin}
-	\caption{Illustration of using Fourier transform rules to automatically fill in function.}
-	\label{fig:02sin}
+\centering
+\includegraphics[width=.5\textwidth]{images/02sin}
+\caption{Illustration of using Fourier transform rules to automatically fill in function.}
+\label{fig:02sin}
 \end{figure}
 
-The result of looking at $\text{Re}\{U_s(\w)\}$ is that the signal, after going through a Fourier transform, is periodic over the range $[0, \frac{2\pi}{\dt}]$ and that the complex conjugate of the signal is the same as the original signal. Thus, it is sufficient to compute the Fourier transform \textit{only} over the range $[0, \frac{\pi}{\dt}]$. This sampling frequency is known as the Nyquist frequency, $\w_N = \frac{\w_s}{2} = \frac{\pi}{2}$, and has units of $rad/s$.
+The result of looking at $\text{Re}\{U_s(\w)\}$ is that the signal, after going through a Fourier transform, is periodic over the range $[0, \frac{2\pi}{\dt}]$ and that the complex conjugate of the signal is the same as the original signal.
+Thus, it is sufficient to compute the Fourier transform \textit{only} over the range $[0, \frac{\pi}{\dt}]$.
+This sampling frequency is known as the Nyquist frequency, $\w_N = \frac{\w_s}{2} = \frac{\pi}{2}$, and has units of $rad/s$.
 
-One of the drawbacks of sampling a continuous-time signal is that information about higher frequencies is lost which can be seen by looking at a sinusoidal function. If $f(t) = \sin(\w t)$ and samples are taken at $\w_N = \frac{\w t}{2}$, then $f(t)$ will look like $f(t) = 0$ when sampling. Figure \ref{fig:02lowSampleRate} shows that if the signal is a sine wave that is only sampled at the points indicated the captured signal will look like a line with zero slope and zero magnitude.
+One of the drawbacks of sampling a continuous-time signal is that information about higher frequencies is lost which can be seen by looking at a sinusoidal function.
+If $f(t) = \sin(\w t)$ and samples are taken at $\w_N = \frac{\w t}{2}$, then $f(t)$ will look like $f(t) = 0$ when sampling.
+Figure~\ref{fig:02lowSampleRate} shows that if the signal is a sine wave that is only sampled at the points indicated the captured signal will look like a line with zero slope and zero magnitude.
 \begin{figure}[ht!]
-	\centering
-	\includegraphics[width=.5\textwidth]{images/02lowSampleRate}
-	\caption{Sampling of a sine wave at a low sampling rate.}
-	\label{fig:02lowSampleRate}
+\centering
+\includegraphics[width=.5\textwidth]{images/02lowSampleRate}
+\caption{Sampling of a sine wave at a low sampling rate.}
+\label{fig:02lowSampleRate}
 \end{figure}
 
 \subsection{Relation between Original and Sampled Signal}
 Given
 $$U_s(\w) = \w_s \sum_{k=-\infty}^\infty U(\w-k\w_s), \w_s = \frac{2\pi}{\dt}$$
-where $U(\w-k\w_s)$ is the original signal shifted by $\w_s$, we can see how high frequency information is lost as shown in Figure \ref{fig:02freqResp}. The sampled signal has a higher magnitude than the original signal throughout most of the range.
+where $U(\w-k\w_s)$ is the original signal shifted by $\w_s$, we can see how high frequency information is lost as shown in Figure~\ref{fig:02freqResp}.
+The sampled signal has a higher magnitude than the original signal throughout most of the range.
 \begin{figure}[ht!]
-	\centering
-	\includegraphics[width=.5\textwidth]{images/02freqResp}
-	\caption{Sampling of a sine wave at a low sampling rate.}
-	\label{fig:02freqResp}
+\centering
+\includegraphics[width=.5\textwidth]{images/02freqResp}
+\caption{Sampling of a sine wave at a low sampling rate.}
+\label{fig:02freqResp}
 \end{figure}
 
 \subsection{Aliasing}
-After a Fourier transform is applied low frequencies are about the same but high frequencies appear to have a larger magnitude compared to the original signal. This is due to shifting by $\w_s$ and is called aliasing, as seen in Figure \ref{fig:02aliasingSines}.
+After a Fourier transform is applied low frequencies are about the same but high frequencies appear to have a larger magnitude compared to the original signal.
+This is due to shifting by $\w_s$ and is called aliasing, as seen in Figure~\ref{fig:02aliasingSines}.
 \begin{figure}[ht!]
-	\centering
-	\includegraphics[width=.5\textwidth]{images/02aliasingSines}
-	\caption{Effects of aliasing with original and sampled signal.}
-	\label{fig:02aliasingSines}
+\centering
+\includegraphics[width=.5\textwidth]{images/02aliasingSines}
+\caption{Effects of aliasing with original and sampled signal.}
+\label{fig:02aliasingSines}
 \end{figure}
 
-To remove artifacts due to aliasing we need to sample at $\w_s = 2\cdot\w_N$. If it is not possible to sample at $\w_s = 2\cdot\w_N$ because of hardware limitations or some other factor then an anit-aliasing filter is needed. For example, if $\w_N = 100 Hz$, then the anti-aliasing filter should use a cut-off of $< 50 Hz$, which will act as a low-pass filter in order to remove the artifacts associated with high frequencies.
+To remove artifacts due to aliasing we need to sample at $\w_s = 2\cdot\w_N$.
+If it is not possible to sample at $\w_s = 2\cdot\w_N$ because of hardware limitations or some other factor then an anit-aliasing filter is needed.
+For example, if $\w_N = 100 Hz$, then the anti-aliasing filter should use a cut-off of $< 50 Hz$, which will act as a low-pass filter in order to remove the artifacts associated with high frequencies.
 \begin{figure}[ht!]
-	\centering
-	\includegraphics[width=.4\textwidth]{images/02aafilter}
-	\caption{Block diagram of estimator with anti-aliasing filter.}
-	\label{fig:02aafilter}
+\centering
+\includegraphics[width=.4\textwidth]{images/02aafilter}
+\caption{Block diagram of estimator with anti-aliasing filter.}
+\label{fig:02aafilter}
 \end{figure}
 
 \subsection{Discrete-Time Fourier Transform (DTFT)}
@@ -158,7 +174,8 @@ U_\infty(\w) &= \tint u_s(t)\emjwt dt \\
 &= \sum_{k=-\infty}^\infty u(k\dt) e^{-j\w k\dt} \\
 &= \sum_{k=-\infty}^\infty u_d(k) e^{-j\w k\dt}
 \end{align*}
-where $u_d(k)$ represents the discrete time samples used to compute the continuous-time Fourier transform, $U_\infty(\w)$. Note that we only need to evaluate $\w\in[0, \frac{\pi}{\dt}]$.
+where $u_d(k)$ represents the discrete time samples used to compute the continuous-time Fourier transform, $U_\infty(\w)$.
+Note that we only need to evaluate $\w\in[0, \frac{\pi}{\dt}]$.
 
 \subsection{Finite Time Fourier Transform (FTFT)}
 A FTFT is defined, for $\w\in\mathbb{R}$, by
@@ -169,11 +186,14 @@ Some useful properties of Fourier transforms are
 \begin{itemize}
 \item $U_\infty(\w) = U_\infty(\w + n\cdot \frac{2\pi}{\dt})$
 \item $\overline{U_\infty(-\w)} = U_\infty(\w)$
-\item If $u_d(k) = u_d(-k)$ then the $\sin$'s cancel out leaving $U_\infty(\w)\in\mathbb{R}$. This is known as a ``symmetric discrete time signal around $0$''.
+\item If $u_d(k) = u_d(-k)$ then the $\sin$'s cancel out leaving $U_\infty(\w)\in\mathbb{R}$.
+  This is known as a ``symmetric discrete time signal around $0$''.
 \item If $u_d(k) = -u_d(-k)$ then the $\cos$'s cancel out and $\text{Re}\lbrace U_\infty(\w)\rbrace = 0$.
 \item If $u(t)$ and thus $u_d(k)$ is periodic with period $T=N\dt$, then $U_\infty(\w) = \frac{2\pi}{T}U_N(\w) \sum_{l=-\infty}^\infty \delta(\w-l\frac{2\pi}{T})$.
 \end{itemize}
-When the signal is periodic there are several other important properties. The finite time DTFT multiplied by an infinite sum of delta functions results in spikes at the points where there is a sinusoid in the signal. Recall that $U_\infty(\w)=0$ almost everywhere except at those frequencies that are multiples of $l\cdot \frac{2\pi}{T}$.
+When the signal is periodic there are several other important properties.
+The finite time DTFT multiplied by an infinite sum of delta functions results in spikes at the points where there is a sinusoid in the signal.
+Recall that $U_\infty(\w)=0$ almost everywhere except at those frequencies that are multiples of $l\cdot \frac{2\pi}{T}$.
 
 Then the sampled version of the finite time DTFT is
 $$\int_{\w=l\cdot \frac{2\pi}{T}-\epsilon}^{l\cdot \frac{2\pi}{T}+\epsilon} U_\infty(\w)d\w
@@ -189,10 +209,13 @@ These are the functions used to compute Fourier transforms in \textsc{Matlab} us
 
 \subsection{Measurement Resolution and Implied Periodicity}
 \label{sec:impliedperiodicity}
-The resolution in the time domain is $\dt$, with units of $s$. The resolution in the frequency domain is $\frac{2\pi}{T}$, with units in $rad/s$. Note that $T=N\cdot\dt$. The resolution in the frequency domain is a function of the number of samples \textit{and} the sampling time. This makes sense because  we need to sample signals longer in order to capture the low-frequency portions of the signal.
+The resolution in the time domain is $\dt$, with units of $s$.
+The resolution in the frequency domain is $\frac{2\pi}{T}$, with units in $rad/s$.
+Note that $T=N\cdot\dt$.
+The resolution in the frequency domain is a function of the number of samples \textit{and} the sampling time.
+This makes sense because  we need to sample signals longer in order to capture the low-frequency portions of the signal.
 
-$N$ points in the time domain (which only have $\text{Re}$ parts and no $\text{Im}$ parts) results in $\frac{N}{2}$ points in the frequency domain. Those $\frac{N}{2}$ points in the frequency domain are in the range $[0,\frac{\pi}{\dt}]$, and each of those points has a real and an imaginary part.
+$N$ points in the time domain (which only have $\text{Re}$ parts and no $\text{Im}$ parts) results in $\frac{N}{2}$ points in the frequency domain.
+Those $\frac{N}{2}$ points in the frequency domain are in the range $[0,\frac{\pi}{\dt}]$, and each of those points has a real and an imaginary part.
 
 An important point to notice is that once a signal is sampled to generate $U_N(\w)$ at $U_N(\frac{2\pi}{T}\cdot l)$ there is an implicit assumption made that the original signal, $u(t)$, was periodic!
-
-%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%
