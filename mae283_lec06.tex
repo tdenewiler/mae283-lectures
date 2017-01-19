@@ -33,7 +33,7 @@ This means that the more samples taken the closer the discrete-time representati
 However, since $\Phi_u(\w)$ is a function of $\delta(\w-\w_k)$ the only information that matters is at $\w_k$.
 This property has several important consequences:
 \begin{itemize}
-\item Data compression -- $n$ points in the frequency domain represent $N>>n$ points in the time domain.% chktex 8
+\item Data compression --- $n$ points in the frequency domain represent $N>>n$ points in the time domain.
 \item For periodic signals, information at $N$ time domain points is fully represented by $n$ points in the frequency domain.
 However, this does not work for $\{u(t)\} =$ white noise.
 \end{itemize}
@@ -60,16 +60,13 @@ $\hat{\Phi}^N(\w) = \mathcal{F}\{\hat{R}_u^N(\tau)\}$ only converges weakly to t
 The good news is that, if in addition to the quasi-stationary constraint, the function $\sum_{\tau=0}^\infty|\tau R_s(\tau)|<\infty$ is bounded, then
 \begin{itemize}
 \item $\lim_{N\to\infty}E\{\hat{\Phi}_s(\w)\} = \Phi_s(\w)$.
-
       For this to work $R_s(\tau)$ needs to go to zero faster than $\tau$.
       See Figure~\ref{fig:06autoCovDecay}.
       This happens automatically if $s(t)=L(q)e(t)$, where $L(q)$ is a BIBO filter and $e(t)$ is white noise.
-\item $\lim_{N\to\infty}E\{[\hat{\Phi}_s^N(\w)-\Phi_s(\w)]^2\} = \Phi_s^2(\w)$.% chktex 3
-
+\item $\lim_{N\to\infty}E\{{[\hat{\Phi}_s^N(\w)-\Phi_s(\w)]}^2\} = \Phi_s^2(\w)$.
       The squared term represents the variance, $\sigma$, of the signal and $\sigma$ never goes to zero.
       This is more bad news.
 \item $\lim_{N\to\infty}E\{[\hat{\Phi}_s^N(\w_1)-\Phi_s(\w_1)][\hat{\Phi}_s^N(\w_2)-\Phi_s(\w_2)]\} = 0$.
-
       This means that the variance beteween neighboring points goes to zero.
       This can be used in a way that makes it good news.
 \end{itemize}
@@ -173,7 +170,7 @@ $w_\gamma(\tau) = 1$, with $1<|\tau|\leq\gamma$.
 See Figure~\ref{fig:06rectWin}.
 
 \subsubsection{Bartlett Window}
-$1-\frac{\tau}{\gamma} \Leftrightarrow \frac{1}{\gamma}\left(\frac{\sin\gamma\w}{\sin\w}\right)^2$, with the time domain on the left and the frequency domain on the right.% chktex 3
+$1-\frac{\tau}{\gamma} \Leftrightarrow \frac{1}{\gamma}{\left(\frac{\sin\gamma\w}{\sin\w}\right)}^2$, with the time domain on the left and the frequency domain on the right.
 See Figure~\ref{fig:06bartlettWin}.
 
 \subsubsection{Hamming/Hann Window}

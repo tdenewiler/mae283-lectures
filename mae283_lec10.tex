@@ -172,7 +172,7 @@ D &= g(0)
 where \textsc{Matlab} notation has been used to denote first column and first row.
 
 \subsection{Kung's Algorithm}
-Kung basically came up with a smart choice for the decomposition $H=H_1H_2$ by using singular value decomposition (SVD).
+Kung basically came up with a smart choice for the decomposition $H=H_1 H_2$ by using singular value decomposition (SVD).
 This yields
 $$\underbrace{H}_{N\times N} = H_1H_2 = \underbrace{U}_{N\times N} \underbrace{\Sigma}_{N\times N} \underbrace{V^T}_{N\times N} = \left[\begin{array}{c c} U_1 & U_2 \end{array}\right] \left[\begin{array}{c c} \Sigma_1 & 0 \\ 0 & \Sigma_2 \end{array}\right] \left[\begin{array}{c} V_1^T \\ V_2^T \end{array}\right]$$
 where $\Sigma_1$ is $n\times~n$ and $\Sigma_2$ is $N-n\times~N-n$ and $\text{rank} (H)=n$.
