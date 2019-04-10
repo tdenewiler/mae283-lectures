@@ -1,7 +1,10 @@
 *.aux
+*.bak
+*.bbl
+*.blg
 *.log
 *.out
 *.pdf
-*.swp
 *.swo
+*.swp
 *~
