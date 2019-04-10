@@ -1,2 +1,3 @@
+PyYAML>=3.12
 statick
 statick-tex
