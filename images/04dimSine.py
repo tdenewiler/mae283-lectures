@@ -5,7 +5,9 @@ from math import pi, sin
 import numpy as np
 import matplotlib.pyplot as plt  # pylint: disable=import-error
 
-class PlotSine(object):  # pylint: disable=useless-object-inheritance, too-few-public-methods
+# pylint: disable=useless-object-inheritance
+# pylint: disable=too-few-public-methods
+class PlotSine(object):
     """Plot sine wave."""
 
     def __init__(self):
