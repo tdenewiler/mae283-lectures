@@ -7,3 +7,5 @@ global:
         regex: "Do not use @ in LaTeX macro names.+"
       - tools: [lacheck]
         regex: "Could not open .+"
+      - tools: [lacheck]
+        regex: "Old style class defined"
