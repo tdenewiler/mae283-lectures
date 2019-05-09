@@ -5,7 +5,6 @@ from math import pi, sin
 import numpy as np
 import matplotlib.pyplot as plt  # pylint: disable=import-error
 
-# pylint: disable=old-style-class
 # pylint: disable=too-few-public-methods
 class PlotSine():
     """Plot sine wave."""
