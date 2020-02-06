@@ -94,18 +94,18 @@ The only term left to calculate is $R_y(0)$.
 \end{align*}
 Now we find
 
-  \begin{equation*}
+\begin{equation*}
 P_\theta = \lambda\cdot \left[\begin{array}{c c} 1 & 0 \\ 0 & \frac{b_1^2+\lambda}{1-a_1^2} \end{array}\right]
-  \end{equation*}
+\end{equation*}
 
-  Since this is a diagonal matrix it means that the covariance of the parameters is uncorrelated, see Figure~\ref{fig:15ellipsoid}.
+Since this is a diagonal matrix it means that the covariance of the parameters is uncorrelated, see Figure~\ref{fig:15ellipsoid}.
 Notice that we will get an ellipsoid when looking at the covariance and that if there is correlation the ellipsoid will be tilted (whatever tilted means in higher dimensions).
 
 \begin{figure}[ht!]
-	\centering
-	\includegraphics[width=.25\textwidth]{images/15ellipsoid}
-	\caption{Ellipsoid from covariance values.}%
-	\label{fig:15ellipsoid}
+\centering
+\includegraphics[width=.25\textwidth]{images/15ellipsoid}
+\caption{Ellipsoid from covariance values.}%
+\label{fig:15ellipsoid}
 \end{figure}
 
 Now we can find the covariance of the parameters using $P_\theta^{-1}$ as
@@ -157,7 +157,8 @@ T(q,\theta) = \left[\begin{array}{c c} G(q,\theta) & H(q,\theta) \end{array}\rig
 \end{equation*}
 
 and look at $\cov\{T (e^{i\w})\}$.
-We already know $\cov\{\thetan\}$, so what is the variance of the entire model? We will estimate the model with a Taylor series expansion such that
+We already know $\cov\{\thetan\}$, so what is the variance of the entire model?
+We will estimate the model with a Taylor series expansion such that
 
 \begin{equation*}
 \hat{T} (e^{i\w},\theta) \approx~T^\ast(e^{i\w}) + \left.\ptheta~T (e^{i\w},\theta)\right|_{\theta=\theta^\ast} (\hat{\theta}-\theta^\ast)
@@ -217,7 +218,8 @@ $\lozenge$
 \end{figure}
 
 \subsection{Designing Input Signals}
-Knowing this, what would a good input signal look like? Or, what would be a good $\Phi_u(\w)$ so that the variance on $\hat{G}$ is equal over all frequencies.
+Knowing this, what would a good input signal look like?
+Or, what would be a good $\Phi_u(\w)$ so that the variance on $\hat{G}$ is equal over all frequencies.
 
 We could try white noise plus the noise spectrum where $\Phi_u(\w)=\lambda+\Phi_v(\w)$.
 Mostly, we want to generate more data where more noise occurs in order to get a better noise model.
@@ -228,7 +230,8 @@ We could also try
 \Phi_u(\w) = \frac{\lambda+\Phi_v(\w)}{|G_0(e^{i\w})|^2}
 \end{equation*}
 
-Why would we want to divide by the size of the transfer function here? We would lose any smaller resonant modes or oscillations at frequencies away from the dominant mode.
+Why would we want to divide by the size of the transfer function here?
+We would lose any smaller resonant modes or oscillations at frequencies away from the dominant mode.
 Typically, we do not want to excite the resonant modes much at all.
 
 Note that this is normally an iterative process where we guess a model, run an experiment to identify a better estimate of the model, design the new experiment input from the better model, get a better model from the new experiment, etc.
@@ -256,7 +259,8 @@ This is called the uncertainty model.
 
 \subsection{Small Gain Theorem}%
 \label{sec:15sgt}
-Using Figure~\ref{fig:15bd} how do we check the stability of the model? We can use the small gain theorem.
+Using Figure~\ref{fig:15bd} how do we check the stability of the model?
+We can use the small gain theorem.
 From Figures~\ref{fig:15sgtbd} and~\ref{fig:15sgt} we see that
 \begin{align*}
 ||\Delta M||_\infty &< 1 \\
@@ -278,7 +282,8 @@ for stability.
 \label{fig:15sgtbd}
 \end{figure}
 
-We want to make the uncertainty, $\Delta$, small around the bandwidth of the control poiont. We can handle more uncertainty away from the control point.
+We want to make the uncertainty, $\Delta$, small around the bandwidth of the control poiont.
+We can handle more uncertainty away from the control point.
 
 \begin{figure}[ht!]
 \centering
