@@ -43,7 +43,11 @@ and the parameter contains
 b_0 & b_1 & \cdots & b_n & a_1 & a_2 & \cdots & a_n \end{array}\right]^T
 \end{align}
 The model given by
-$$y(t) = \varphi(t)\theta + e(t,\theta)$$
+
+\begin{equation*}
+y(t) = \varphi(t)\theta + e(t,\theta)
+\end{equation*}
+
 can be accumulated over $N$ samples and written in matrix form as
 \begin{align*}
 \underbrace{\left[\begin{array}{c} y(1) \\ y(2) \\ \vdots \\ y(N) \end{array}\right]}_{\mathbf{y}} &= \underbrace{\left[\begin{array}{c} \varphi^T(1) \\ \varphi^T(2) \\ \vdots \\ \varphi^T(N) \end{array}\right]}_{\mathbf{\varphi}^T} \theta
@@ -53,7 +57,11 @@ can be accumulated over $N$ samples and written in matrix form as
 \end{align*}
 This uses an orthogonal projection to make $\hat{\theta}$ as small as possible.
 Rearranging to get the parameter estimate yields
-$$\thn = {\left(\tfrac{1}{N}\mathbf{\varphi\varphi}^T\right)}^{-1} \left(\tfrac{1}{N}\mathbf{\varphi y}\right)$$
+
+\begin{equation*}
+\thn = {\left(\tfrac{1}{N}\mathbf{\varphi\varphi}^T\right)}^{-1} \left(\tfrac{1}{N}\mathbf{\varphi y}\right)
+\end{equation*}
+
 Note that this is an ordinal equation and is not the best way to compute the least square estimate from a numerical methods standpoint.
 
 \section{Applications}
@@ -83,9 +91,17 @@ The ARX model has shared poles between $G(q,\theta)$ and $H(q,\theta)$ and the n
 
 \subsection{Linear Regression and Noise}
 If we look at a system with white noise such as
-$$\mathcal{S}: y(t) = \varphi^T(t)\theta_0 + e(t)$$
+
+\begin{equation*}
+\mathcal{S}: y(t) = \varphi^T(t)\theta_0 + e(t)
+\end{equation*}
+
 where $\{e(t)\}=$ white noise and the parameter $\theta_0$ is unknown we can re-write this as
-$$y(t) = G_0(q)u(t) + v(t)$$
+
+\begin{equation*}
+y(t) = G_0(q)u(t) + v(t)
+\end{equation*}
+
 where $v(t)=H_0(q)e(t)$.
 How do we find the transfer functions of this system? First, note that $G(q,\theta_0)=G_0(q)$.
 Next we need to find the regressor, $\varphi(t)$.
@@ -125,12 +141,20 @@ Conclusion: If $\{u(t),y(t)\} + \{x(t)\}$ is available then the estimation of $A
 \section{Properties of Least Squares Estimate}
 Some important properties of the least squares estimate, $\thn$, are given below.
 
-\subsection{Relation to the Covariance Functions}
+\subsection{Relation to the Covariance Functions}%
 \label{sec:lsecovfns}
-$$\thn = {(\tfrac{1}{N}\mathbf{\varphi\varphi}^T)}^{-1}(\tfrac{1}{N}\mathbf{\varphi y}) \triangleq \underbrace{R^{-1}(N)}_{p\times p} \underbrace{f(N)}_{p\times 1}$$
+
+\begin{equation*}
+\thn = {(\tfrac{1}{N}\mathbf{\varphi\varphi}^T)}^{-1}(\tfrac{1}{N}\mathbf{\varphi y}) \triangleq \underbrace{R^{-1}(N)}_{p\times p} \underbrace{f(N)}_{p\times 1}
+\end{equation*}
+
 Looking more closely at $R(N)$ we can see that it is a $p\times p$ matrix built from elements of (\ref{eq:regressor}).
-$$R(N) = \frac{1}{N}\left[\begin{array}{c c c} \varphi(1) & \cdots & \varphi(N) \end{array}\right]
-\left[\begin{array}{c} \varphi^T(1) \\ \vdots \\ \varphi^T(N) \end{array}\right]$$
+
+\begin{equation*}
+R(N) = \frac{1}{N}\left[\begin{array}{c c c} \varphi(1) & \cdots & \varphi(N) \end{array}\right]
+\left[\begin{array}{c} \varphi^T(1) \\ \vdots \\ \varphi^T(N) \end{array}\right]
+\end{equation*}
+
 Calculating a few of the elements of $R (N)$ gives
 \begin{align*}
 R{(N)}_{1,1} &= \frac{1}{N}\sum_{t=1}^N u(t)u(t) = \hat{R}_u^N(0) \\
@@ -189,7 +213,7 @@ f(N) = \left[\begin{array}{c}
 \end{align*}
 Conclusion: the least squares estimate for the parameter is filled with auto-/cross-covariance function estimates.
 
-\subsection{Invertibility of $R(N)$}
+\subsection{Invertibility of $R(N)$}%
 \label{sec:upersistent}
 For an FIR model we only have the $\mathbf{R}_u$ block as all the rest of the terms in $R(N)=0$.
 Then, for FIR, $\mathbf{R}_u$ must have $\{u(t)\}$ be a persistently exciting signal to ensure the invertibility of $\mathbf{R}_u$.
@@ -197,20 +221,36 @@ Then, for FIR, $\mathbf{R}_u$ must have $\{u(t)\}$ be a persistently exciting si
 When we are not looking at an FIR model we know that $\mathbf{R}_u$ is invertible and must use the matrix inversion lemma to determine if $R(N)$ is invertible.
 \begin{definition}
 The matrix inversion lemma states that
-$$\det\left(\left[\begin{array}{c c}A&B\\C&D\end{array}\right]\right) = \det(A) \cdot \det(D-CA^{-1}B)$$
+
+\begin{equation*}
+\det\left(\left[\begin{array}{c c}A&B\\C&D\end{array}\right]\right) = \det(A) \cdot \det(D-CA^{-1}B)
+\end{equation*}
+
 \end{definition}
 For $R (N)$ to be invertible it must be true that $\det(\mathbf{R}_y-\mathbf{R}_{yu}^T\mathbf{R}_u^{-1}\mathbf{R}_{yu})\neq~0$.
 Note that $\mathbf{R}_y$ is usually perturbed by noise.
 However, we stil need to have $\{u (t)\}$ be a persistently exciting signal.
 
-\subsection{Consistency of the Parameter Estimation}
+\subsection{Consistency of the Parameter Estimation}%
 \label{sec:peconsistency}
 What happens in
-$$\lim_{N\to\infty} \thn=\theta_0 \text{~w.p.~} 1$$
+
+\begin{equation*}
+\lim_{N\to\infty} \thn=\theta_0 \text{~w.p.~} 1
+\end{equation*}
+
 Is this a true statement? If we use the model
-$$\mathcal{M}: y (t) = \varphi^T (t)\theta+e (t,\theta)$$
+
+\begin{equation*}
+\mathcal{M}: y (t) = \varphi^T (t)\theta+e (t,\theta)
+\end{equation*}
+
 and assume that the system is
-$$\mathcal{S}: y (t) = \varphi^T (t)\theta_0 + v (t)$$
+
+\begin{equation*}
+\mathcal{S}: y (t) = \varphi^T (t)\theta_0 + v (t)
+\end{equation*}
+
 where the assumption means that $\theta$ and $\theta_0$ have the same size, $\{v (t)\}$ is not necessarily white noise, $E\{v (t)\} = 0$ and $u\perp~v$, then
 \begin{align}
 \label{eq:thn}
@@ -220,20 +260,36 @@ where the assumption means that $\theta$ and $\theta_0$ have the same size, $\{v
 &= \theta_0 + R^{-1}(N)\cdot \frac{1}{N}\sum_{t=1}^N\varphi(t)v(t)
 \end{align}
 This leads to
-$$\lim_{N\to\infty} E\{\thn\} = \theta_0 + \lim_{N\to\infty}R^{-1}(N)\frac{1}{N}\sum_{t=1}^N\varphi(t)v(t)$$
+
+\begin{equation*}
+\lim_{N\to\infty} E\{\thn\} = \theta_0 + \lim_{N\to\infty}R^{-1}(N)\frac{1}{N}\sum_{t=1}^N\varphi(t)v(t)
+\end{equation*}
+
 We want the last term to go to zero so that
-$$\lim_{N\to\infty} E\{\thn\} = 0$$
+
+\begin{equation*}
+\lim_{N\to\infty} E\{\thn\} = 0
+\end{equation*}
+
 That happens when
-$$\lim_{N\to\infty} R^{-1}(N)R_{\varphi v}(0) = 0$$
+
+\begin{equation*}
+\lim_{N\to\infty} R^{-1}(N)R_{\varphi v}(0) = 0
+\end{equation*}
+
 Recall that $\varphi(t)$ is given by (\ref{eq:regressor}) and $u\perp v$.
 Then we have that
-$$R_{\varphi v}(0) = \left[\begin{array}{c} R_{uv}(0) \\ R_{uv}(-1) \\ \vdots \\ R_{uv}(-n_b) \\ \midrule \\ R_{yv}(-1) \\ \vdots \\ R_{yv}(-n_a) \end{array}\right]$$
+
+\begin{equation*}
+R_{\varphi v}(0) = \left[\begin{array}{c} R_{uv}(0) \\ R_{uv}(-1) \\ \vdots \\ R_{uv}(-n_b) \\ \midrule \\ R_{yv}(-1) \\ \vdots \\ R_{yv}(-n_a) \end{array}\right]
+\end{equation*}
+
 The first $n_b$ terms in the upper block are zero because of $u\perp~v$.
 The last $n_a$ terms in the lower block are zero if and only if $\{v (t)\}$ is white noise.
 
 Conclusion: For $\mathcal{S}: y (t) = \varphi^T (t)\theta_0 + v (t)$ it must be true that $\{v (t)\}$ is white noise in order to avoid bias in the least squares estimation of the parameter.
 
-\subsection{Careful with the White Noise Assumption}
+\subsection{Careful with the White Noise Assumption}%
 \label{sec:carefulwhitenoise}
 Given a system and model such that
 \begin{align*}
@@ -241,9 +297,17 @@ Given a system and model such that
 \mathcal{M}: y(t) &+ \varphi^T(t)\theta + e(t,\theta)
 \end{align*}
 where $\{e(t)\}$ is white noise we get
-$$\thn = \min_\theta \frac{1}{N}\sum_{t=1}^N e^2(t,\theta)$$
+
+\begin{equation*}
+\thn = \min_\theta \frac{1}{N}\sum_{t=1}^N e^2(t,\theta)
+\end{equation*}
+
 What happens when
-$$\lim_{N\to\infty} E\{\thn\}$$
+
+\begin{equation*}
+\lim_{N\to\infty} E\{\thn\}
+\end{equation*}
+
 Does it go to the real parameter, $\theta_0$?
 
 We can re-write this as
@@ -256,6 +320,13 @@ v(t) &= A(q)e(t)
 The last equality shows that the noise is actually colored by the filter, $A(q)$ and so $\{v(t)\}$ is \textit{not} white noise.
 The noise we actually measure is $\{v(t)\}$ and not $\{e(t)\}$.
 The only time that we can say that we have white noise in this situation is when
-$$\mathcal{S}: y(t) = G_0(q)u(t) + H_0(q)e(t)$$
+
+\begin{equation*}
+\mathcal{S}: y(t) = G_0(q)u(t) + H_0(q)e(t)
+\end{equation*}
+
 with
-$$H_0(q) = \frac{1}{A(q)}$$
+
+\begin{equation*}
+H_0(q) = \frac{1}{A(q)}
+\end{equation*}

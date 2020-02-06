@@ -17,7 +17,11 @@
 \section{Approximate Modeling Review}
 An approximate model is generated when $\mathcal{S}\notin\mathcal{M}$.
 This gives a best available approximation of the parameters as
-$$\theta^\ast = \argmin_\theta \bar{V}(\theta) = \argmin_\theta\bar{E}\{\est\} \text{ w.p. } 1$$
+
+\begin{equation*}
+\theta^\ast = \argmin_\theta \bar{V}(\theta) = \argmin_\theta\bar{E}\{\est\} \text{~w.p.~} 1
+\end{equation*}
+
 We can only compute $\tast$ by hand for small models.
 However, Parceval's theorem shows that
 \begin{align*}
@@ -40,18 +44,31 @@ If we know the bias forumla from the frequency domain then why not directly fit 
 How do we obtain frequency domain data for $\hat{G}(e^{j\w})$ using the signals $\{u(t),y(t)\}$? Use either the empirical transfer function estimate (ETFE) or spectral analysis (SPA) as discussed in Lecture~\ref{lec:7}.
 \begin{itemize}
 \item ETFE\@:
-$$\hat{\hat{G}}^N(e^{j\w}) = \frac{Y_N(\w)}{U_N(\w)}$$
+  \begin{equation*}
+\hat{\hat{G}}^N(e^{j\w}) = \frac{Y_N(\w)}{U_N(\w)}
+  \end{equation*}
 \item Spectral analysis:
-$$\hat{G}^N(e^{j\w}) = \frac{\int Y_N(\xi)W(\w-\xi)d\xi}{\int U_N(\xi)W(\w-\xi)d\xi}$$
+  \begin{equation*}
+\hat{G}^N(e^{j\w}) = \frac{\int Y_N(\xi)W(\w-\xi)d\xi}{\int U_N(\xi)W(\w-\xi)d\xi}
+  \end{equation*}
 \end{itemize}
 Properties of the ETFE include
 \begin{itemize}
-\item $$\lim_{N\to\infty}E\left\lbrace \hat{\hat{G}}(e^{j\w})\right\rbrace = G_0(e^{j\w})$$
-\item $$\lim_{N\to\infty}E\left\lbrace {(\hat{\hat{G}}^N-G_0)}^2\right\rbrace = \left|\hat{\hat{G}}(e^{j\w})\right|^2$$
+\item
+  \begin{equation*}
+    \lim_{N\to\infty}E\left\lbrace \hat{\hat{G}}(e^{j\w})\right\rbrace = G_0(e^{j\w})
+  \end{equation*}
+\item
+  \begin{equation*}
+    \lim_{N\to\infty}E\left\lbrace {(\hat{\hat{G}}^N-G_0)}^2\right\rbrace = \left|\hat{\hat{G}}(e^{j\w})\right|^2
+  \end{equation*}
 \end{itemize}
 Properties of SPA include
 \begin{itemize}
-\item $$\lim_{N\to\infty}E\left\lbrace {(\hat{G}^N-G_0)}^2\right\rbrace = 0$$
+\item
+  \begin{equation*}
+    \lim_{N\to\infty}E\left\lbrace {(\hat{G}^N-G_0)}^2\right\rbrace = 0
+  \end{equation*}
 \item There is no bias in the estimate, $\var\to0$.
 \end{itemize}
 The procedure involves estimating the covariance such that
@@ -62,22 +79,38 @@ The procedure involves estimating the covariance such that
 \end{align*}
 where $W(\w) = \mathcal{F}\{W(\tau)\}$.
 Then we have that
-$$\hat{G}_{\text{spa}}\ejw = \frac{\hat{\Phi}_{yu}(\w)}{\hat{\Phi}_u(\w)}$$
+
+\begin{equation*}
+\hat{G}_{\text{spa}}\ejw = \frac{\hat{\Phi}_{yu}(\w)}{\hat{\Phi}_u(\w)}
+\end{equation*}
+
 Note that this is \textit{not} a model!
 
 \section{Frequency Domain Identification}
 Starting with $\hat{G}\ejw$ we get a frequency domain representation of the data of $G_0\ejw$.
 From here, how do we get a model $P(e^{j\w},\theta)$? A more formal way of stating this is that
-$$\Omega = \left\lbrace \w~|~\w=\w_k, \w_k=\frac{k\cdot 2\pi}{T} \right\rbrace$$
+
+\begin{equation*}
+\Omega = \left\lbrace \w~|~\w=\w_k, \w_k=\frac{k\cdot 2\pi}{T} \right\rbrace
+\end{equation*}
+
 is a frequency grid where $T=N\cdot\Delta T$.
 This means that the longer measurements are recorded the finer the resolution of the frequency grid.
 
 Now, define the additive error as
-$$E_a(\w,\theta) \triangleq |\hat{G}\ejw-P(e^{j\w},\theta)|, \qquad \w\in\Omega$$
+
+\begin{equation*}
+E_a(\w,\theta) \triangleq |\hat{G}\ejw-P(e^{j\w},\theta)|, \qquad \w\in\Omega
+\end{equation*}
+
 We could also use element-wise multiplication to get weighted errors in the multivariable case.
 The element-wise multiplication is known as a Schur product and the \textsc{Matlab} notation is `\texttt{.*}'.
 This gives
-$$E_s(\w,\theta) = (\hat{G}\ejw-P(e^{j\w},\theta)).*S(\w)$$
+
+\begin{equation*}
+E_s(\w,\theta) = (\hat{G}\ejw-P(e^{j\w},\theta)).*S(\w)
+\end{equation*}
+
 Either method gives $E(\w)$.
 This lets us formulate a least squares problem in the frequency domain such that
 \begin{align}
@@ -100,16 +133,34 @@ P(e^{j\w},\theta) &\stackrel{\text{z-transform}}{=} \sumk b_\theta z^{-k} \stack
 \end{align*}
 with $\hat{G}$ from ETFE or SPA\@.
 This leads to
-$$\min_\theta|E(\theta)|_2^2$$
+
+\begin{equation*}
+\min_\theta|E(\theta)|_2^2
+\end{equation*}
+
 and can be solved using least squares, projection or $\tfrac{\partial}{\partial\theta}(\cdot)=0$ to get
-$$\sumk\vp(\w_k)E(\w_k,\theta) = \sumk\vp(\w_k)\hat{G}(e^{j\w_k}) - \sumk\vp(\w_k)\vp^T(\w_k)\theta$$
-The inner product of the regressor and the error is then eliminated yielding
-$$\thn = {\left[\fN\sumk\vp(\w_k)\vp^T(\w_k)\right]}^{-1}\left[\fN\sumk\vp(\w_k)\hat{G}(e^{j\w_k})\right]$$
+
+\begin{equation*}
+\sumk\vp(\w_k)E(\w_k,\theta) = \sumk\vp(\w_k)\hat{G}(e^{j\w_k}) - \sumk\vp(\w_k)\vp^T(\w_k)\theta
+\end{equation*}
+
+\begin{equation*}
+e inner product of the regressor and the error is then eliminated yieldi
+\end{equation*}
+
+\begin{equation*}
+\thn = {\left[\fN\sumk\vp(\w_k)\vp^T(\w_k)\right]}^{-1}\left[\fN\sumk\vp(\w_k)\hat{G}(e^{j\w_k})\right]
+\end{equation*}
+
 This is a least squares solution for an FIR model.
 
 We can see that $\vp(\w_k)\in\mathbb{C}$, $\hat{G}(e^{j\w_k})\in\mathbb{C}$ so $\thn\in\mathbb{C}$.
 To avoid $\thn\in\mathbb{C}$ we can split the error into real and imaginary components such that
-$$E(\w,\theta) = \left[\text{Re}\{E(\w,\theta)\} \qquad \text{Im}\{E(\w,\theta)\}\right]$$
+
+\begin{equation*}
+E(\w,\theta) = \left[\text{Re}\{E(\w,\theta)\} \qquad \text{Im}\{E(\w,\theta)\}\right]
+\end{equation*}
+
 and do that for both $\vp(\w)$ and $\hat{G}\ejw$ as well.
 
 The conclusion is that the same type of least squares solution is possible but the complex numbers need to be split up into real and imaginary parts to ensure that $\thn\in\mathbb{R}$.
@@ -118,7 +169,10 @@ However, a least squares solution using frequency domain data is only possible i
 \section{Comparison with Time Domain}
 In the time domain both FIR and ARX models yielded a least squares solution.
 To compare the time domain and the frequency domain representations we can look at the system
-$$\mathcal{S}: y(t) = G_0(q)u(t) + v(t)$$
+
+\begin{equation*}
+\mathcal{S}: y(t) = G_0(q)u(t) + v(t)
+\end{equation*}
 
 The error of a time domain model for this system is
 \begin{align*}
@@ -133,11 +187,19 @@ while the frequency domain gives
 \Rightarrow \frac{\hat{\Phi}_{yu}(\w)}{\hat{\Phi}_u(\w)} &= G_0\ejw + \frac{\hat{\Phi}_{uv}(\w)}{\hat{\Phi}_u(\w)}
 \end{align*}
 Notice that there is no noise model in the frequency domain!
-$$E(\w,\theta) = \hat{G}\ejw - \tilde{G}\ejw$$
+
+\begin{equation*}
+E(\w,\theta) = \hat{G}\ejw - \tilde{G}\ejw
+\end{equation*}
+
 which is similar in form to an output error (OE) model in the time domain.
 
 The conclusion is that in frequency domain curve-fitting only OE models can be used which means that it is only a least squares problem if for
-$$G(e^{j\w},\theta) = \frac{B(e^{j\w},\theta)}{F(e^{j\w},\theta)}$$
+
+\begin{equation*}
+G(e^{j\w},\theta) = \frac{B(e^{j\w},\theta)}{F(e^{j\w},\theta)}
+\end{equation*}
+
 we have $F(e^{j\w},\theta) = 1$ giving the result that $G(e^{j\w},\theta)$ has to be an FIR model.
 
 Fitting in the frequency domain must always be performed using an OE model and thus always requires non-linear optimization.
@@ -146,7 +208,11 @@ However, it can provide a nice visual confirmation of whether the model is a goo
 \section{Iterative Linear Techniques}
 The algorithm we will get at the end of this section is known as the Sanathanan and Koerner iteration.
 We want to minimize the output error using
-$$E(\w,\theta) = \hat{G}\ejw - \frac{B(e^{j\w},\theta)}{F(e^{j\w},\theta)}$$
+
+\begin{equation*}
+E(\w,\theta) = \hat{G}\ejw - \frac{B(e^{j\w},\theta)}{F(e^{j\w},\theta)}
+\end{equation*}
+
 using non-linear optimization.
 First, we get the equation error as
 \begin{align*}
@@ -185,7 +251,7 @@ The conclusion is that fitting frequency data using least squares (minimizing th
 \begin{figure}[ht!]
 \centering
 \includegraphics[width=.4\textwidth]{images/17poles}
-\caption{Implicit high-frequency weighting.}
+\caption{Implicit high-frequency weighting.}%
 \label{fig:17poles}
 \end{figure}
 
@@ -208,14 +274,18 @@ Ideally, in the frequency domain we would create a weighting function of $\tfrac
 &= \argmin_\theta\tilde{E}_w(\w)
 \end{align*}
 where
-$$\tilde{E}_w(\w) = \frac{1}{F(e^{j\w},\theta)}\tilde{E}(\w,\theta)$$
-$\lozenge$
+
+  \begin{equation*}
+\tilde{E}_w(\w) = \frac{1}{F(e^{j\w},\theta)}\tilde{E}(\w,\theta)
+  \end{equation*}
+
+  $\lozenge$
 \end{example}
 
 \begin{figure}[ht!]
 \centering
 \includegraphics[width=.4\textwidth]{images/17model}
-\caption{High order system and model response.}
+\caption{High order system and model response.}%
 \label{fig:17model}
 \end{figure}
 

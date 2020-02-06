@@ -20,7 +20,11 @@ The midterm will cover all the handouts and all the material (Chap.1, Chap. 2, C
 
 \section{2006-2d/2007-1d}% chktex 8
 For the unweighted parameter estimate $\hat{\theta}_N$ is given by
-$$\hat{\theta}_N = {\left[\frac{1}{N}\sum_{t=1}^N\vp(t)\vp^T(t)\right]}^{-1}\left[\frac{1}{N}\sum_{t=1}^N\vp(t)y(t)\right]$$
+
+\begin{equation*}
+\hat{\theta}_N = {\left[\frac{1}{N}\sum_{t=1}^N\vp(t)\vp^T(t)\right]}^{-1}\left[\frac{1}{N}\sum_{t=1}^N\vp(t)y(t)\right]
+\end{equation*}
+
 To prove that the cross-correlation function $\hat{R}_{\epsilon u}^N(\tau)$ between prediction error $\epsilon(t,\hat{\theta}_N)$ and input $u(t)$ satisfies $\hat{R}_{\epsilon u}^N(\tau)=0$ for $\tau=0,1,\ldots,n$ we have to know that
 \begin{itemize}
 \item $u\perp e$
@@ -44,29 +48,44 @@ See Figure~\ref{fig:mt062d1}.
 \begin{figure}[ht!]
 \centering
 \includegraphics[width=.5\textwidth]{images/mt062d2}
-\caption{Projection of output $y(t)$ onto space of $\vp^T(t)\theta$ with $\theta$ varying. Shows projection error.}
+\caption{Projection of output $y(t)$ onto space of $\vp^T(t)\theta$ with $\theta$ varying. Shows projection error.}%
 \label{fig:mt062d2}
 \end{figure}
 
 \begin{figure}[ht!]
 \centering
 \includegraphics[width=.5\textwidth]{images/mt062d1}
-\caption{Cross-correlation function between noise error and input, prediction error and input.}
+\caption{Cross-correlation function between noise error and input, prediction error and input.}%
 \label{fig:mt062d1}
 \end{figure}
 
 We can also see this from the equation
-$$\sum\vp(t)y(t) = \sum\vp(t)\vp^T(t)\underbrace{\theta}_{LS} + \underbrace{\sum\vp(t)\epsilon(t)}_{=0, \vp\perp\epsilon}$$
+
+\begin{equation*}
+\sum\vp(t)y(t) = \sum\vp(t)\vp^T(t)\underbrace{\theta}_{LS} + \underbrace{\sum\vp(t)\epsilon(t)}_{=0, \vp\perp\epsilon}
+\end{equation*}
 
 \section{2006-2e/2007-1e}% chktex 8
 As long as $\{u(t)\}$ is white and
-$$G_0(q)=\frac{B_0(q)}{A_0(q)}$$
+
+\begin{equation*}
+G_0(q)=\frac{B_0(q)}{A_0(q)}
+\end{equation*}
+
 then
-$$\lim_{N\to\infty}\thn(k)=g_0(k)$$
+
+\begin{equation*}
+\lim_{N\to\infty}\thn(k)=g_0(k)
+\end{equation*}
+
 To show that this happens look at \S\ref{sec:peconsistency}.
 The parameter $\theta$ contains the impulse response coefficients so this estimate would go to $g_0(k)$.
 Remember that we must be looking at an FIR model where the noise filter is
-$$H_0(q)=\frac{1}{A(q)}$$
+
+\begin{equation*}
+H_0(q)=\frac{1}{A(q)}
+\end{equation*}
+
 See \S\ref{sec:carefulwhitenoise} for more details on how the filter will cause the measured noise, $v(t)$, to be colored even if the actual noise, $e(t)$, is white for any other model than FIR\@.
 If the noise is colored then the terms in the lower block matrix of $R_{\vp v}(0)$ will not zero.
 

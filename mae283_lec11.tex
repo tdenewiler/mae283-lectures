@@ -19,24 +19,32 @@ Note that most of the information in this lecture is not in Ljung but can be fou
 
 The Ho-Kalman and Kung algorithms start with the impulse response coefficients, $\{g_0(k)\}$.
 They get the state space matrices $\{A,B,C,D\}$ from an SVD of a Hankel matrix, $H$, containing $\{g_0(k)\}$ with $H=H_1H_2=\mathcal{OC}$.
-Then $\text{rank}(H)\text{rank}(A)=n$ is the order of the system.
+Then $\text{rank} (H)\text{rank} (A)=n$ is the order of the system.
 
-The general realization algorithm (GRA) starts with input and output data, $\{u(t),y(t)\}$, to estimate $\{g_0(k)\}$ then uses Kung's algorithm to get $\{A,B,C,D\}$.
-The $\{g_0(k)\}$ estimation requires dedicated experiments to ensure that $\{u(t)\}$ is persistently exciting enough to excite all modes of the system.
+The general realization algorithm (GRA) starts with input and output data, $\{u (t),y (t)\}$, to estimate $\{g_0(k)\}$ then uses Kung's algorithm to get $\{A,B,C,D\}$.
+The $\{g_0(k)\}$ estimation requires dedicated experiments to ensure that $\{u (t)\}$ is persistently exciting enough to excite all modes of the system.
 The possible inputs include
 \begin{itemize}
 \item impulse input
 \item white noise or broadband excitation
-\item $\hat{G}_{\text{spec}}(\w) = \frac{\hat{\Phi}_{yu}(\w)}{\hat{\Phi_u(\w)}}~\underrightarrow{\mathcal{F}^{-1}}~g_0(k)$
+\item $\hat{G}_{\text{spec}} (\w) = \frac{\hat{\Phi}_{yu} (\w)}{\hat{\Phi_u (\w)}}~\underrightarrow{\mathcal{F}^{-1}}~g_0(k)$
 \end{itemize}
 If one of the frequencies used is bad or too low then the estimate will be bad.
 The best option is to use broadband exicitation.
 
 \subsection{Realization Directly on I/O Data}
 For the system
-$$\mathcal{S}: y(t) = G_0(q)u(t)+v(t)$$
+
+\begin{equation*}
+\mathcal{S}: y(t) = G_0(q)u(t)+v(t)
+\end{equation*}
+
 with
-$$G_0(q)=\sumk g_0(k)q^{-k}$$
+
+\begin{equation*}
+G_0(q)=\sumk g_0(k)q^{-k}
+\end{equation*}
+
 we get the output at successive time steps to be
 \begin{align*}
 y(N) &= G_(0)u(N) + g_0(1)u(N-1) + \cdots + v(N) \\
@@ -132,7 +140,11 @@ g(2)+g(1)+g(0) & g(2)+g(1)+g(0) & \cdots \\
 \end{array}\right]
 \end{align*}
 Recall that
-$$y(t)=\sumk g_0(k)u(t-k)$$
+
+\begin{equation*}
+y(t)=\sumk g_0(k)u(t-k)
+\end{equation*}
+
 Then
 \begin{align*}
 y(0) &= g(0) \\
@@ -170,7 +182,7 @@ These reasons make using the inverse a poor choice, especially compared to using
 \begin{figure}[ht!]
 \centering
 \includegraphics[width=.5\textwidth]{images/11filter}
-\caption{Effect of filtering step response to get IR coefficients.}
+\caption{Effect of filtering step response to get IR coefficients.}%
 \label{fig:11filter}
 \end{figure}
 
@@ -193,7 +205,11 @@ In this case we see that $H_u^\perp$ can sometimes even be pre-computed because 
 Those input signals will not always be known beforehand though.
 
 Right-multiplying (\ref{eq:hy}) by this matrix yields
-$$H_y H_u^\perp = H\overline{T}_u H_u^\perp + H_v H_u^\perp = Q$$
+
+\begin{equation*}
+H_y H_u^\perp = H\overline{T}_u H_u^\perp + H_v H_u^\perp = Q
+\end{equation*}
+
 The left hand side has $\text{rank}(H_y H_u^\perp)\leq n$.
 $\overline{T}_u$ is full rank and the engineer can design an experiment to make sure that $\text{rank}(H_u^\perp)>n$.
 Then a realization can be done on $Q$.
@@ -212,7 +228,7 @@ However, the results are usually satisfactory.
 \begin{figure}[ht!]
 \centering
 \includegraphics[width=.6\textwidth]{images/11realization}
-\caption{Summary of realization methods.}
+\caption{Summary of realization methods.}%
 \label{fig:11realization}
 \end{figure}
 
@@ -220,7 +236,11 @@ However, the results are usually satisfactory.
 This section corresponds to Chapter 3 of Ljung and is also referred to as prediction error minimization.
 These methods will help bring back some sense of optimality when going straight from I/O data to $\{A,B,C,D\}$.
 We will again be using the system
-$$\mathcal{S}: y(t) = G_0(q)u(t)+v(t)$$
+
+\begin{equation*}
+\mathcal{S}: y(t) = G_0(q)u(t)+v(t)
+\end{equation*}
+
 where $v(t) = H_0(q)e(t)$.
 We would like to predict the output given previous samples, $y(t|t-1)\triangleq y(t)$.
 The idea of prediction error is $\epsilon(t)=y(t)-y(t|t-1)$ where the noise term is driving the error.
@@ -242,7 +262,11 @@ The issue can be seen to be that we need to predict the noise, $v(t|t-1)$.
 \end{itemize}
 This means we are again assuming that the noise is white.
 The idea that $H_0(q)$ is monic means that
-$$H_0(q)=\sumk h_0(k)q^{-k}$$
+
+\begin{equation*}
+H_0(q)=\sumk h_0(k)q^{-k}
+\end{equation*}
+
 with $h_0(0)=1$.
 This normalizes $H_0(q)$.
 We could instead normalize the error such that $e(t)=1$ and then we would be looking for gains in $H_0(q)$.
@@ -251,10 +275,18 @@ The monic assumption also implies that $D=I$ and that $H_0^{-1}(q)$ is monic as 
 \subsection{Noise Prediction}
 To determine $v(t|t-1)$ we start by looking at the noise term, $v(t)=H_0(q)e(t)$.
 Since $H_0(q)$ is monic we can write
-$$H_0(q) = 1 + \sum_{k=1}^\infty h_0(k)q^{-k}$$
+
+\begin{equation*}
+H_0(q) = 1 + \sum_{k=1}^\infty h_0(k)q^{-k}
+\end{equation*}
+
 becasue we know that $H_0(0) = 1$.
 Then we have
-$$v(t) = e(t) + \sum_{k=1}^\infty h_0(k)e(t-k)$$
+
+\begin{equation*}
+v(t) = e(t) + \sum_{k=1}^\infty h_0(k)e(t-k)
+\end{equation*}
+
 To predict the error based on past samples we have
 \begin{align*}
 v(t|t-1) &= \sum_{k=1}^\infty h_0(k)e(t-k) \\
@@ -267,8 +299,12 @@ The best prediction of the noise is then
 \boxed{v(t|t-1) = [1-H_0^{-1}(q)]v(t)}
 \end{align}
 where the filter
-$$H_0^{-1}(q) = 1+\sum_{k=1}^\infty \tilde{h}_0(k)q^{-k}$$
-The term $(1-H_0^{-1}(q)$ always has a one time step delay because $H_0^{-1}(q)$ is monic and is a time shift operator.
+
+\begin{equation*}
+H_0^{-1}(q) = 1+\sum_{k=1}^\infty \tilde{h}_0(k)q^{-k}
+\end{equation*}
+
+The term $1-H_0^{-1}(q)$ always has a one time step delay because $H_0^{-1}(q)$ is monic and is a time shift operator.
 So despite the term $v(t)$ we are still only using past noise samples.
 
 \subsection{Output Prediction}

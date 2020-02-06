@@ -12,7 +12,7 @@
 \setcounter{lecture}{6}
 \setcounter{chapter}{6}
 
-\lecture{Spectral Analysis and Least Squares}
+\lecture{Spectral Analysis and Least Squares}%
 \label{lec:7}
 
 \section{Spectral Analysis Review}
@@ -22,7 +22,7 @@ Up to this point we have worked on estimating the impulse response and the frequ
 \begin{figure}[ht!]
 \centering
 \includegraphics[width=1\textwidth]{images/07overview}
-\caption{Overview of parameter estimation.}
+\caption{Overview of parameter estimation.}%
 \label{fig:07overview}
 \end{figure}
 
@@ -34,7 +34,11 @@ Spectral analysis consists of
 \end{align*}
 Additional averaging is needed to bring the variance to zero when using $\phiyuhat$.
 The new estimate with averaging included is
-$$\phiyuhh = \frac{\int_{\xi=-\pi}^\pi \phiyuhat w(\w-\xi)d\xi}{\int_{\xi=-\pi}^\pi w(\xi)d\xi}$$
+
+\begin{equation*}
+\phiyuhh = \frac{\int_{\xi=-\pi}^\pi \phiyuhat w(\w-\xi)d\xi}{\int_{\xi=-\pi}^\pi w(\xi)d\xi}
+\end{equation*}
+
 This is called the spectral estimate or spectral analysis.
 
 How is all of this used? Starting with the system $y(t)=G_0(q)u(t)+v(t)$, with $v(t)=H_0(q)e(t)$ and $\{e(t)\}$ is white noise.
@@ -45,7 +49,11 @@ This gives
 \Rightarrow G_0(e^{j\w}) &= \frac{\Phi_{yu}(\w)}{\Phi_u(\w)} = \Phi_{yu}(\w)\Phi_u^{-1}(\w)
 \end{align*}
 The next step is to get a crude estimate of the transfer function using
-$$\hat{G}(e^{j\w}) = \frac{\phiyuhat}{\phiuhat} = \frac{Y_N(\w)U_N^*(\w)}{U_N(\w)U_N^*(\w)} = \frac{Y_N(\w)}{U_N(\w)}$$
+
+\begin{equation*}
+\hat{G}(e^{j\w}) = \frac{\phiyuhat}{\phiuhat} = \frac{Y_N(\w)U_N^*(\w)}{U_N(\w)U_N^*(\w)} = \frac{Y_N(\w)}{U_N(\w)}
+\end{equation*}
+
 This is just dividing the transfer function of the output by the transfer function of the input.
 It is referred to as the empirical transfer function estimate (ETFE).
 Note that the means $\to 0$ but $\sigma>0$.
@@ -79,7 +87,11 @@ That comes later.
 There will always be a trade-off between the amount of averaging done to reduce the variance and bias.
 See Figure~\ref{fig:07msd} to see an example of a mass-spring-damper system and its frequency repsonse to a pulse input, $F(t)$.
 Note that the transfer function estimate is based on
-$$\hat{\hat{G}}(e^{j\w}) = \frac{\int\hat{\Phi}_{Fx}^N(\xi)w(\w-\xi)d\xi}{\int \hat{\Phi}_F^N(\xi)w(\w-\xi)d\xi}$$
+
+\begin{equation*}
+\hat{\hat{G}}(e^{j\w}) = \frac{\int\hat{\Phi}_{Fx}^N(\xi)w(\w-\xi)d\xi}{\int \hat{\Phi}_F^N(\xi)w(\w-\xi)d\xi}
+\end{equation*}
+
 Here, $w(\xi)$ is a window or a weighting function.
 It will decrease the variance but it will also smooth out any real spikes in the frequency response.
 The smoothing feature leads to bias in the estimate.
@@ -94,7 +106,7 @@ An example of the results that can be expected when using a very wide window is 
 \subfloat[Frequency response with variance.]{%
 \label{fig:07freqResp}\includegraphics[width=0.4\textwidth]{images/07freqResp}
 } \hfill
-\caption{Frequency response of a mass spring damper system.}
+\caption{Frequency response of a mass spring damper system.}%
 \label{fig:07msd}
 \end{figure}
 
@@ -106,7 +118,7 @@ An example of the results that can be expected when using a very wide window is 
 \subfloat[Small variance, large bias.]{%
 \label{fig:07smallSigma}\includegraphics[width=0.4\textwidth]{images/07smallSigma}
 } \hfill
-\caption{Trade-off between variance and bias when averaging the spectrum.}
+\caption{Trade-off between variance and bias when averaging the spectrum.}%
 \label{fig:07tradeoff}
 \end{figure}
 
@@ -116,8 +128,13 @@ Now that we have a method to get a nice estimate of the transfer function of the
 The transfer function of the noise shapes the spectrum of the noise signal.
 We are still using $v(t) = H_0(q)e(t)$, where $\{e(t)\}$ is white noise with unit variance.
 We know that
-$$\Phi_v(\w) = |H_0(e^{j\w})|^2$$
-How do we find the estimate $\hat{\Phi}_v(\w)$? One way would be to measure the output of the system with no inputs, or $\{u(t)\}=0 \Rightarrow y(t) = v(t) \Rightarrow \Phi_y(\w) = \Phi_v(\w)$.
+
+\begin{equation*}
+\Phi_v(\w) = |H_0(e^{j\w})|^2
+\end{equation*}
+
+How do we find the estimate $\hat{\Phi}_v(\w)$?
+One way would be to measure the output of the system with no inputs, or $\{u(t)\}=0 \Rightarrow y(t) = v(t) \Rightarrow \Phi_y(\w) = \Phi_v(\w)$.
 If $\{u(t)\}=0$ is not feasible then
 \begin{align*}
 \Phi_y(\w) &= |G_0(e^{j\w})|^2\Phi_u(\w) + \Phi_v(\w) \\
@@ -145,7 +162,11 @@ If we assume that $H_0(q)$ and $H_0^{-1}(q)$ are both stable and bounded then we
 \begin{example}
 Figure~\ref{fig:07spectrum} shows an example of the spectrum of the noise signal.
 Then we have that
-$$\Phi_v(\w) = |H_0(e^{j\w})|^2$$
+
+\begin{equation*}
+\Phi_v(\w) = |H_0(e^{j\w})|^2
+\end{equation*}
+
 Figure~\ref{fig:07magphase}\subref{fig:07mag} shows the magnitude of the square root of the spectrum and Figure~\ref{fig:07magphase}\subref{fig:07phase} shows the phase for the stable and unstable versions of the signal.
 This means that using $\sqrt{\Phi_v(\w)}$ lets the engineer choose a phase that yields a unique filter, $H_0(e^{j\w})$.
 $\lozenge$
@@ -154,7 +175,7 @@ $\lozenge$
 \begin{figure}[ht!]
 \centering
 \includegraphics[width=.5\textwidth]{images/07spectrum}
-\caption{Spectrum of the noise, $v(t)$.}
+\caption{Spectrum of the noise, $v(t)$.}%
 \label{fig:07spectrum}
 \end{figure}
 
@@ -166,7 +187,7 @@ $\lozenge$
 \subfloat[Phase of the spectrum.]{%
 \label{fig:07phase}\includegraphics[width=0.4\textwidth]{images/07phase}
 } \hfill
-\caption{Magnitude and phase of the spectrum.}
+\caption{Magnitude and phase of the spectrum.}%
 \label{fig:07magphase}
 \end{figure}
 
@@ -176,7 +197,11 @@ This corresponds to Chapter 7.3 of Ljung.
 \subsection{Linear Regression Model}
 When looking at discrete-time systems we can represent them as linear regression models (see \S\ref{sec:linearregression} for more details).
 The linear regression model looks like
-$$y(t) = \varphi^T(t)\theta = \theta\varphi^T(t)$$
+
+\begin{equation*}
+y(t) = \varphi^T(t)\theta = \theta\varphi^T(t)
+\end{equation*}
+
 where
 \begin{align*}
 \phi^T(t) &= \left[\begin{array}{c c c c c c c}
@@ -187,17 +212,29 @@ b_0 & b_1 & \cdots & b_n & a_1 & a_2 & \cdots & a_n \end{array}\right]^T
 This representation can easily be extended to non-linear systems even though it will still be linear in its parameter $\theta$.
 
 The system is given by
-$$\mathcal{S}: y(t) = \varphi^T(t)\theta_0$$
+
+\begin{equation*}
+\mathcal{S}: y(t) = \varphi^T(t)\theta_0
+\end{equation*}
+
 where $\theta_0$ is the ``real'' parameter.
 The model is
-$$\mathcal{M}: y(t) = \varphi^T(t)\theta + e(t,\theta)$$
+
+\begin{equation*}
+\mathcal{M}: y(t) = \varphi^T(t)\theta + e(t,\theta)
+\end{equation*}
+
 where $\theta$ is not necessarily $\theta_0$ but $\varphi(t)$ is the same between the system and the model.
 Notice that the model has an additional error term for when $\theta\neq\theta_0$.
 Note that $\varphi(t)$ is the set of all past inputs and outputs and $\theta$ contains the unknown parameters.
 
 \subsection{Least Squares}
 The objective of least squares is to find an estimate of the parameters such that
-$$\hat{\theta} = \min_\theta\vectornorm{e(t,\theta)}_2^2 = \min_\theta e(t,\theta)e^T(t,\theta)$$
+
+\begin{equation*}
+\hat{\theta} = \min_\theta\vectornorm{e(t,\theta)}_2^2 = \min_\theta e(t,\theta)e^T(t,\theta)
+\end{equation*}
+
 There are two ways to find a solution for the minimum: quadratic programming with equality constraints and minimizing a quadratic function that is linear in $\theta$.
 They both have unique minimums that can be explicityly computed.
 One method is to take the derivative and set it to zero and then solve.
@@ -212,9 +249,16 @@ e(3,\theta) &= y(3) - \varphi^T(3)\theta \\
 &\vdots
 \end{align*}
 Writing this out in matrix form gives
-$$\underbrace{\mathbf{e}_N}_{N\times 1} = \underbrace{\mathbf{\Phi}}_{N\times p}\underbrace{\theta}_{p\times 1} - \underbrace{\mathbf{y}}_{N\times 1}$$
+
+\begin{equation*}
+\underbrace{\mathbf{e}_N}_{N\times 1} = \underbrace{\mathbf{\Phi}}_{N\times p}\underbrace{\theta}_{p\times 1} - \underbrace{\mathbf{y}}_{N\times 1}
+\end{equation*}
+
 This leads to an estimation of the parameters as
-$$\hat{\theta} = \min_\theta ||e(t,\theta)||_2^2 = \min_\theta \mathbf{e}_N^T\mathbf{e}_N$$
+
+\begin{equation*}
+\hat{\theta} = \min_\theta ||e(t,\theta)||_2^2 = \min_\theta \mathbf{e}_N^T\mathbf{e}_N
+\end{equation*}
 
 A geometric interpretation of this can be seen in Figure~\ref{fig:07ls}.
 What we are attempting to do is project $\mathbf{e}$ orthogonally onto the parameter plane to get $\hat{\mathbf{y}}$.
@@ -228,7 +272,7 @@ This leads to
 \begin{figure}[ht!]
 \centering
 \includegraphics[width=.4\textwidth]{images/07ls}
-\caption{Least squares projection.}
+\caption{Least squares projection.}%
 \label{fig:07ls}
 \end{figure}
 
