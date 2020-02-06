@@ -9,7 +9,7 @@ during Fall quarter 2009 and taught by Prof de Callafon.
 
 You can compile using
 
-```
+```shell
 pdflatex mae283_lectures.tex
 bibtex mae283_lectures.aux
 pdflatex mae283_lectures.tex
