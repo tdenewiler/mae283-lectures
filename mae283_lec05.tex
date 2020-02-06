@@ -42,7 +42,11 @@ Cross-spectral density function
 \subsection{Applications}
 Suppose a system is given by $y(t) = G_0(q)u(t)+w(t)$ and assume that $u\perp v$.
 Then
-$$R_{yu}(\tau) = g_0(k)$$
+
+\begin{equation*}
+R_{yu}(\tau) = g_0(k)
+\end{equation*}
+
 if the sequence of inputs $\{u(t)\}$ is white noise with unit variance and says that we can get the impulse response, or Markov, parameters from the cross-covariance of the input and output.
 We can also find the other values in (\ref{eq:autocov} -~\ref{eq:xspec}) as
 \begin{align*}
@@ -61,7 +65,10 @@ Any Fourier transform is real when the signal is symmetric.
 The cross-covariance function is \textit{not} symmetric, $R_{yu}(\tau)\neq R_{yu}(-\tau)$.
 
 The cross-spectral density function is complex-valued in general,
-$$\Phi_{yu}(\w) = \mathcal{F}\{R_{yu}(\tau)\}\in\mathbb{C} \rightarrow \Phi_{yu}(\w)\in\mathbb{C} = G_0(e^{j\w})\in\mathbb{C} \cdot \Phi_u(\w)\in\mathbb{R}$$
+
+\begin{equation*}
+\Phi_{yu}(\w) = \mathcal{F}\{R_{yu}(\tau)\}\in\mathbb{C} \rightarrow \Phi_{yu}(\w)\in\mathbb{C} = G_0(e^{j\w})\in\mathbb{C} \cdot \Phi_u(\w)\in\mathbb{R}
+\end{equation*}
 
 Let $y(t) = G_0(q)u(t)+v(t)$, where $\{u(t)\}$ is white noise and $u\perp v$.
 This defines a causal system.
@@ -84,14 +91,26 @@ Therefore, we need to find estimates for $R_{yu}(\tau)$ and $R_u(\tau)$ to find 
 
 \subsection{Estimation of Covariance Functions}
 From (\ref{eq:autocov}) we have
-$$R_u(\tau) = \bar{E}\{u(t)u(t-\tau)\} = \lim_{N\to\infty}\frac{1}{N}\sum_{t=1}^N E\{u(t)u(t-\tau)\}$$
+
+\begin{equation*}
+R_u(\tau) = \bar{E}\{u(t)u(t-\tau)\} = \lim_{N\to\infty}\frac{1}{N}\sum_{t=1}^N E\{u(t)u(t-\tau)\}
+\end{equation*}
+
 A proposed form of the estimate is
-$$\hat{R}_u^N(\tau) = \frac{1}{N}\sum_{t=1}^N u(t)u(t-\tau)$$
+
+\begin{equation*}
+\hat{R}_u^N(\tau) = \frac{1}{N}\sum_{t=1}^N u(t)u(t-\tau)
+\end{equation*}
+
 The idea is that we will leave out the expectation operation because we do not know what it is.
 We hope that taking enough samples and averaging them will lead to a good estimate of the true covariance.
 
 Looking at the expected value of this proposed covariance estimate, we would like it to have the property
-$$\lim_{N\to\infty} E\{\ruhat\} = R_u(\tau) \text{ w.p. } 1$$
+
+\begin{equation*}
+\lim_{N\to\infty} E\{\ruhat\} = R_u(\tau) \text{~w.p.~} 1
+\end{equation*}
+
 If that is the case then it is called a \textit{consistent} estimate.
 The result is actually
 \begin{align}
@@ -104,7 +123,11 @@ Also, the estimate gets better as more data is sampled.
 
 \subsection{Unbiased Estimate of $R_u(\tau)$}
 To get an unbiased estimate of $R_u(\tau)$ we use
-$$\hat{\hat{R}}_u^N(\tau) = \frac{1}{N-|\tau|}\sum_{t=1}^N u(t)u(t-\tau)$$
+
+\begin{equation*}
+\hat{\hat{R}}_u^N(\tau) = \frac{1}{N-|\tau|}\sum_{t=1}^N u(t)u(t-\tau)
+\end{equation*}
+
 We can only sum samples over $N-|\tau|$.
 In the end, we will use the biased estimate anyway! Later we will look at the math to show why.
 It is mostly because over a smaller number of samples we do not trust the estimate that much and we want to capture that information.
@@ -114,14 +137,14 @@ In \textsc{Matlab} the function \texttt{xcorr} can be used to find the covarianc
 \begin{figure}[ht!]
 \centering
 \includegraphics[width=.6\textwidth]{images/05timeShift}
-\caption{Effect of time-shifting a signal.}
+\caption{Effect of time-shifting a signal.}%
 \label{fig:05timeShift}
 \end{figure}
 
 \begin{figure}[ht!]
 \centering
 \includegraphics[width=.3\textwidth]{images/05triWindow}
-\caption{Triangular window from weighting factor.}
+\caption{Triangular window from weighting factor.}%
 \label{fig:05triWindow}
 \end{figure}
 
@@ -145,7 +168,7 @@ See Figure~\ref{fig:05estDist}.
 \begin{figure}[ht!]
 \centering
 \includegraphics[width=.4\textwidth]{images/05estDist}
-\caption{Distributions of estimators as $N\to\infty$.}
+\caption{Distributions of estimators as $N\to\infty$.}%
 \label{fig:05estDist}
 \end{figure}
 
@@ -178,7 +201,11 @@ E\{R_{yu}(\tau)\} &= \frac{N-|\tau|}{N}R_{yu}(\tau) \sim \mathcal{O}\left(\frac{
 \end{align*}
 The last equality implies that there is no variance in the estimate when an infinite number of samples are available.
 It is a stronger statement than
-$$\lim_{N\to\infty}E\{\ryuhat\} = R_{yu}(\tau)$$
+
+\begin{equation*}
+\lim_{N\to\infty}E\{\ryuhat\} = R_{yu}(\tau)
+\end{equation*}
+
 which has a variance that could be large.
 In \textsc{Matlab} the cross-covariance between two signals can be found using \texttt{xcorr (u, y, \'unbiased\')}, where the order is input then output.
 We can also find the cross-covariance using fast Fourier transforms by using
@@ -206,7 +233,7 @@ If $v(t)=0$ then $\ryuhat=\hat{g}_0(\tau)$ is \textit{still} an estimate because
 \begin{figure}[ht!]
 \centering
 \includegraphics[width=.5\textwidth]{images/05xcov}
-\caption{Estimated covariance when the input is not a perfect $\delta$-function.}
+\caption{Estimated covariance when the input is not a perfect $\delta$-function.}%
 \label{fig:05xcov}
 \end{figure}
 
@@ -216,7 +243,11 @@ This means that $G_0(q)$ is the finite impulse response (FIR) because we are onl
 
 When $\{u(t)\}$ is white noise how do we estimate the parameters $g_0(k)$? We cannot use $\hat{g}_0(k) = \hat{R}_{yu}^N(k)$ because $R_u(\tau)\neq \delta_d(\tau)$, where $\delta_d(\tau)$ is a $\delta$-function.
 However, we can use
-$$R_{yu}(\tau) = G_0(q)R_u(\tau) = \sum_{k=0}^n g_0(k)R_u(\tau-k)$$
+
+\begin{equation*}
+R_{yu}(\tau) = G_0(q)R_u(\tau) = \sum_{k=0}^n g_0(k)R_u(\tau-k)
+\end{equation*}
+
 Solving for the first few values of $k$ gives
 \begin{align*}
 R_{yu}(0) &= g_0(0)R_u(0) + g_0(1)R_u(-1) + g_0(2)R_u(-2) + \cdots + g_0(n)R_u(-n) \\
@@ -242,7 +273,11 @@ g_0(0) \\ g_0(1) \\ g_0(2) \\ \vdots \\ g_0(n)
 \end{array}\right]
 \end{align*}
 This can be rewritten as
-$$\mathbf{R}_{yu} = \mathbf{R}_u\mathbf{\theta}$$
+
+\begin{equation*}
+\mathbf{R}_{yu} = \mathbf{R}_u\mathbf{\theta}
+\end{equation*}
+
 The matrix $\mathbf{R}_u$ is a symmetric Toeplitz matrix.
 When working with a finite number of samples we replace all of the values in the vectors and matrix with their estimated values and rearrange to get
 \begin{align*}

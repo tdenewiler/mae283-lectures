@@ -16,7 +16,11 @@
 
 \section{Review of Parameter Estimate Variance}
 In Lecture 14 we looked at the variance of parameter estimates when $\mathcal{S}\in\mathcal{M}$ and found that $\text{cov}\{\sqrt{N}\thetan\} \sim \mathcal{N}(0,P_\theta)$ as $N\to\infty$, where $P_\theta = \lambda\bar{E}\{\psi(t,\theta_0)\psi^T(t,\theta_0)\}$ and
-$$\psi(t,\theta_0) = -\left.\ptheta\epsilon(t,\theta)\right|_{\theta=\theta_0}$$
+
+\begin{equation*}
+\psi(t,\theta_0) = -\left.\ptheta\epsilon(t,\theta)\right|_{\theta=\theta_0}
+\end{equation*}
+
 This shows how the variance changes relative to the sensitivity of the estimate with respect to the parameters and the model.
 This can be estimated via
 \begin{align*}
@@ -35,10 +39,14 @@ Typically these estimates are found iteratively and can only be found directly w
 \end{align*}
 Recall that for IV there is no sense of the derivative being set to zero so we do not know if we are at a minimum and there is no sense of optimality.
 
-\begin{example}
+\begin{example}%
 \label{ex:15arx}
 The system is given by
-$$\mathcal{S}: y(t) = b_1u(t-1)-a_1y(t-1)+e(t)$$
+
+\begin{equation*}
+\mathcal{S}: y(t) = b_1u(t-1)-a_1y(t-1)+e(t)
+\end{equation*}
+
 where $u(t)\perp e(t)$, $\{e(t)\}$ is white noise with variance $\lambda$ and $\{u(t)\}$ is white noise with variance $1$.
 The model is given using ARX such that
 \begin{align*}
@@ -85,14 +93,18 @@ The only term left to calculate is $R_y(0)$.
 &\Rightarrow R_y(0) = \frac{b_1^2+\lambda}{1-a_1^2}
 \end{align*}
 Now we find
-$$P_\theta = \lambda\cdot \left[\begin{array}{c c} 1 & 0 \\ 0 & \frac{b_1^2+\lambda}{1-a_1^2} \end{array}\right]$$
-Since this is a diagonal matrix it means that the covariance of the parameters is uncorrelated, see Figure~\ref{fig:15ellipsoid}.
+
+  \begin{equation*}
+P_\theta = \lambda\cdot \left[\begin{array}{c c} 1 & 0 \\ 0 & \frac{b_1^2+\lambda}{1-a_1^2} \end{array}\right]
+  \end{equation*}
+
+  Since this is a diagonal matrix it means that the covariance of the parameters is uncorrelated, see Figure~\ref{fig:15ellipsoid}.
 Notice that we will get an ellipsoid when looking at the covariance and that if there is correlation the ellipsoid will be tilted (whatever tilted means in higher dimensions).
 
 \begin{figure}[ht!]
 	\centering
 	\includegraphics[width=.25\textwidth]{images/15ellipsoid}
-	\caption{Ellipsoid from covariance values.}
+	\caption{Ellipsoid from covariance values.}%
 	\label{fig:15ellipsoid}
 \end{figure}
 
@@ -117,28 +129,40 @@ $\lozenge$
 \subfloat[$\cov\{\hat{a}\}$.]{%
 \label{fig:15cova}\includegraphics[width=0.25\textwidth]{images/15cova}
 }
-\caption{Covariance of the parameter estimates.}
+\caption{Covariance of the parameter estimates.}%
 \label{fig:15cov}
 \end{figure}
 
 \section{Variance of Transfer Function Estimates}
 We have seen so far that
-$$\cov\{\thetan\}\sim\mathcal{N}(0,P_\theta), \qquad P_\theta = \lambda{\left[\bar{E}\{\psi(t,\theta)\psi^T(t,\theta)\}\right]}^{-1}$$
+
+\begin{equation*}
+\cov\{\thetan\}\sim\mathcal{N}(0,P_\theta), \qquad P_\theta = \lambda{\left[\bar{E}\{\psi(t,\theta)\psi^T(t,\theta)\}\right]}^{-1}
+\end{equation*}
+
 We are also interested in what happens to $\cov\{G_{\thetan}(e^{i\w})\}$ and $\cov\{H_{\thetan}(e^{i\w})\}$.
 Using the system identification toolbox in \textsc{Matlab} we can plot the Bode response and get error bars such as those shown in Figure~\ref{fig:15bode1}.
 
 \begin{figure}[ht!]
 \centering
 \includegraphics[width=.25\textwidth]{images/15bode1}
-\caption{Sample Bode plot with error bars.}
+\caption{Sample Bode plot with error bars.}%
 \label{fig:15bode1}
 \end{figure}
 
 The main idea here is that we want to set up the transfer functions as
-$$T(q,\theta) = \left[\begin{array}{c c} G(q,\theta) & H(q,\theta) \end{array}\right]$$
+
+\begin{equation*}
+T(q,\theta) = \left[\begin{array}{c c} G(q,\theta) & H(q,\theta) \end{array}\right]
+\end{equation*}
+
 and look at $\cov\{T (e^{i\w})\}$.
 We already know $\cov\{\thetan\}$, so what is the variance of the entire model? We will estimate the model with a Taylor series expansion such that
-$$\hat{T} (e^{i\w},\theta) \approx~T^\ast(e^{i\w}) + \left.\ptheta~T (e^{i\w},\theta)\right|_{\theta=\theta^\ast} (\hat{\theta}-\theta^\ast)$$
+
+\begin{equation*}
+\hat{T} (e^{i\w},\theta) \approx~T^\ast(e^{i\w}) + \left.\ptheta~T (e^{i\w},\theta)\right|_{\theta=\theta^\ast} (\hat{\theta}-\theta^\ast)
+\end{equation*}
+
 The Ljung textbook has some worked examples using different models to highlight this idea.
 
 \section{Transfer Function Variance}
@@ -148,7 +172,11 @@ We now have
 &P(\w) = \left.\ptheta T(e^{i\w},\theta)\right|_{\theta=\theta^\ast} P_\theta {\left[\left.\ptheta T(e^{i\w},\theta)\right|_{\theta=\theta^\ast}\right]}^T
 \end{align*}
 Another interesting result from Ljung is that for the system
-$$\mathcal{S}: y(t) = G_0(q)u(t)+v(t), \qquad v(t) = H_0(q)e(t)$$
+
+\begin{equation*}
+\mathcal{S}: y(t) = G_0(q)u(t)+v(t), \qquad v(t) = H_0(q)e(t)
+\end{equation*}
+
 we look at what happens as both $N\to\infty$ and $n\to\infty$ but $n<N$ (where $n$ is the model order).
 Then we see that
 \begin{align*}
@@ -177,14 +205,14 @@ $\lozenge$
 \subfloat[Bode plot with variances.]{%
 \label{fig:15tfvar}\includegraphics[width=0.25\textwidth]{images/15tfvar}
 }
-\caption{Bode plots.}
+\caption{Bode plots.}%
 \label{fig:15tf}
 \end{figure}
 
 \begin{figure}[ht!]
 \centering
 \includegraphics[width=.15\textwidth]{images/15phi}
-\caption{Spectrum of white-noise input.}
+\caption{Spectrum of white-noise input.}%
 \label{fig:15phi}
 \end{figure}
 
@@ -195,7 +223,11 @@ We could try white noise plus the noise spectrum where $\Phi_u(\w)=\lambda+\Phi_
 Mostly, we want to generate more data where more noise occurs in order to get a better noise model.
 
 We could also try
-$$\Phi_u(\w) = \frac{\lambda+\Phi_v(\w)}{|G_0(e^{i\w})|^2}$$
+
+\begin{equation*}
+\Phi_u(\w) = \frac{\lambda+\Phi_v(\w)}{|G_0(e^{i\w})|^2}
+\end{equation*}
+
 Why would we want to divide by the size of the transfer function here? We would lose any smaller resonant modes or oscillations at frequencies away from the dominant mode.
 Typically, we do not want to excite the resonant modes much at all.
 
@@ -203,19 +235,26 @@ Note that this is normally an iterative process where we guess a model, run an e
 
 \section{Another Use of Model Variance}
 We can use
-$$\hat{G}(e^{i\w}) + \var\{\hat{G}(e^{i\w})\}$$
+
+\begin{equation*}
+\hat{G}(e^{i\w}) + \var\{\hat{G}(e^{i\w})\}
+\end{equation*}
+
 Instead of only a nominal model, we can estimate a set (or family) of models.
 This is called the uncertainty model.
-$$\mathcal{G} = \left\lbrace G~|~\hat{G}+\Delta,~\Delta=3\cdot\sqrt{\var\{\hat{G}\}}\right\rbrace$$
+
+\begin{equation*}
+\mathcal{G} = \left\lbrace G~|~\hat{G}+\Delta,~\Delta=3\cdot\sqrt{\var\{\hat{G}\}}\right\rbrace
+\end{equation*}
 
 \begin{figure}[ht!]
 \centering
 \includegraphics[width=.3\textwidth]{images/15bd}
-\caption{Block diagram of feedback system with reference point.}
+\caption{Block diagram of feedback system with reference point.}%
 \label{fig:15bd}
 \end{figure}
 
-\subsection{Small Gain Theorem}
+\subsection{Small Gain Theorem}%
 \label{sec:15sgt}
 Using Figure~\ref{fig:15bd} how do we check the stability of the model? We can use the small gain theorem.
 From Figures~\ref{fig:15sgtbd} and~\ref{fig:15sgt} we see that
@@ -225,13 +264,17 @@ From Figures~\ref{fig:15sgtbd} and~\ref{fig:15sgt} we see that
 \Rightarrow ||M||_\infty &< \frac{1}{||\Delta||_\infty}
 \end{align*}
 In Figure~\ref{fig:15bd} we can check
-$$\left|\left|\frac{C}{1+GC}\Delta\right|\right|_\infty < 1$$
+
+\begin{equation*}
+\left|\left|\frac{C}{1+GC}\Delta\right|\right|_\infty < 1
+\end{equation*}
+
 for stability.
 
 \begin{figure}[ht!]
 \centering
 \includegraphics[width=.1\textwidth]{images/15sgtbd}
-\caption{Block diagram for small gain theorem.}
+\caption{Block diagram for small gain theorem.}%
 \label{fig:15sgtbd}
 \end{figure}
 
@@ -245,6 +288,6 @@ We want to make the uncertainty, $\Delta$, small around the bandwidth of the con
 \subfloat[Combined transfer function response.]{%
 \label{fig:15sgt2}\includegraphics[width=0.25\textwidth]{images/15sgt2}
 }
-\caption{Transfer functions for small gain theorem.}
+\caption{Transfer functions for small gain theorem.}%
 \label{fig:15sgt}
 \end{figure}

@@ -16,7 +16,11 @@
 
 \section{Why Use Frequency Domain?}
 Recall that the cross-spectral density function is defined as
-$$\Phi_{yu}(\w) = \mathcal{F}\{R_{yu}(\tau)\}$$
+
+\begin{equation*}
+\Phi_{yu}(\w) = \mathcal{F}\{R_{yu}(\tau)\}
+\end{equation*}
+
 No information is lost when moving from the time domain to the frequency domain because this is a unitary transformation.
 
 \begin{example}
@@ -24,8 +28,12 @@ Apply the input $u(t) = \sum_{k=1}^n Ak\sin(\w_k t+\phi_k)$, where $\phi_k\in\ma
 What does the spectrum of the signal look like?
 
 There are $n$ $\delta$-functions with amplitude $\frac{Ak}{2\pi}$ such that
-$$\Phi_u(\w) = \sum_{k=1}^n \frac{Ak}{2\pi}\delta(\w-\w_k)$$
-$\lozenge$
+
+\begin{equation*}
+\Phi_u(\w) = \sum_{k=1}^n \frac{Ak}{2\pi}\delta(\w-\w_k)
+\end{equation*}
+
+ $\lozenge$
 \end{example}
 
 Following that, what happens to the frequency resolution of $\Phi_u(l\cdot\Delta\w)$ as $\lim_{N\to\infty}T = N\dt$? The frequency resolution goes to zero, $\Delta\w\to 0$.
@@ -49,7 +57,11 @@ Knowing
 \hat{\Phi}_s^N(\w) &= \mathcal{F}\{\hat{R}_S^N(\tau)\} = S_N(\w)S_N^*(\w) = |S_N(\w)|^2
 \end{align*}
 then the following result holds
-$$\lim_{N\to\infty} \fint E\{|S_N(\w)|^2\}\Psi(\w)d\w = \fint \Phi_s(\w)\Psi(\w)d\w$$
+
+\begin{equation*}
+\lim_{N\to\infty} \fint E\{|S_N(\w)|^2\}\Psi(\w)d\w = \fint \Phi_s(\w)\Psi(\w)d\w
+\end{equation*}
+
 where $\Psi(\w)$ is sufficiently smooth.
 \end{lemma}
 The expected value converges weakly to the spectrum.
@@ -74,11 +86,11 @@ The good news is that, if in addition to the quasi-stationary constraint, the fu
 \begin{figure}[ht!]
 \centering
 \includegraphics[width=.4\textwidth]{images/06autoCovDecay}
-\caption{Rate of decay of auto-covariance function and $\tau$.}
+\caption{Rate of decay of auto-covariance function and $\tau$.}%
 \label{fig:06autoCovDecay}
 \end{figure}
 
-\begin{example}
+\begin{example}%
 \label{ex:sSpectrum}
 Try this in \textsc{Matlab}.
 Let $s(t)=L(q)e(t)$, have $\{e(t)\}$ be white noise and $L(q)$ be a second-order Butterworth filter (see Figure~\ref{fig:06butterworthFilter}).
@@ -97,7 +109,7 @@ $\lozenge$
 \begin{figure}[ht!]
 \centering
 \includegraphics[width=.4\textwidth]{images/06butterworthFilter}
-\caption{Second-order Butterworth filter.}
+\caption{Second-order Butterworth filter.}%
 \label{fig:06butterworthFilter}
 \end{figure}
 
@@ -111,18 +123,26 @@ However, since the variance betweeen neighboring points goes to zero we have tha
 \begin{figure}[ht!]
 \centering
 \includegraphics[width=.5\textwidth]{images/06freqResp}
-\caption{Frequency response with variance.}
+\caption{Frequency response with variance.}%
 \label{fig:06freqResp}
 \end{figure}
 
 To reduce the variance we can take the average of the spectrum over a small range.
 By doing that over the entire spectrum of the signal the effect is that we are multiplying the spectrum by a window function called $w(\w)$, which can also be thought of as a weighting function.
 The result of using a rectangular window of width $\xi$ is
-$$\hat{\hat{\Phi}}_s^N(\w) = \frac{1}{2\pi}\int_{\w=-\pi}^\pi \Phi_s^N(\xi)w(\xi-\w)d\xi$$
+
+\begin{equation*}
+\hat{\hat{\Phi}}_s^N(\w) = \frac{1}{2\pi}\int_{\w=-\pi}^\pi \Phi_s^N(\xi)w(\xi-\w)d\xi
+\end{equation*}
+
 When $w(\w)$ is not a simple rectangular window with range $[0,1]$ this estimate must be normalized by dividing the right hand side by $\frac{1}{2\pi}\int_{\w=-\pi}^\pi w(\w)d\w$.
 
 \begin{theorem}
-$$\lim_{N\to\infty}\hat{\hat{\Phi}}_s^N(\w) = \Phi_s(\w) \text{ w.p. } 1$$
+
+\begin{equation*}
+\lim_{N\to\infty}\hat{\hat{\Phi}}_s^N(\w) = \Phi_s(\w) \text{~w.p.~} 1
+\end{equation*}
+
 provided $w(\w)$ is sufficiently smooth.
 \end{theorem}
 The expression $\text{w.p. } 1$ means that $\sigma\to 0$.
@@ -132,10 +152,18 @@ The term $\hat{\hat{\Phi}}_s^N(\w)$ is called the spectral estimate, spectral an
 Spectral analysis is the convolution of the crude estimate $\hat{\Phi}_s^N(\w)$ with $w(\w)$ so that we get $\hat{\hat{\Phi}}_s^N(\w) \to \Phi_s(\w) \text{ w.p. } 1$.
 Recall that $\hat{\Phi}_s^N(\w) = \mathcal{F}\{R_s(\tau)\} = |S_N(\w)|^2$.
 This gives
-$$\hat{\hat{\Phi}}_s^N(\w) = \mathcal{F}\{R_s(\tau)\} * \mathcal{F}\{w(\tau)\} = \mathcal{F}\{R_s(\tau)\} * w(\w)$$
+
+\begin{equation*}
+\hat{\hat{\Phi}}_s^N(\w) = \mathcal{F}\{R_s(\tau)\} * \mathcal{F}\{w(\tau)\} = \mathcal{F}\{R_s(\tau)\} * w(\w)
+\end{equation*}
+
 where the $*$ symbol represents the convolution operator.
 Taking the inverse Fourier transform yields
-$$\mathcal{F}^{-1}\{\hat{\hat{\Phi}}_s^N(\w)\} = \hat{\hat{R}}_s^N(\tau) = \hat{R}_s^N(\tau)\cdot w(\tau)$$
+
+\begin{equation*}
+\mathcal{F}^{-1}\{\hat{\hat{\Phi}}_s^N(\w)\} = \hat{\hat{R}}_s^N(\tau) = \hat{R}_s^N(\tau)\cdot w(\tau)
+\end{equation*}
+
 since the inverse Fourier transform of convolution is multiplication.
 This is referred to as ``windowed estimation'', where $w(\tau)$ is the ``time window'' and $w(\w)$ is the ``frequency window''.
 Note that using $w(\w)$ being a $\delta$-function would result in no change to the variance because $\mathcal{F}^{-1}\{\delta(\w)\} = 1$.
@@ -154,7 +182,7 @@ See Figure~\ref{fig:06windowfilter}.
 \includegraphics[width=0.4\textwidth]{images/06timeWin}
 }
 \hfill
-\caption{The same window filter in the \protect\subref{fig:06freqWin} frequency domain and the \protect\subref{fig:06timeWin} time domain.}
+\caption{The same window filter in the \protect\subref{fig:06freqWin} frequency domain and the \protect\subref{fig:06timeWin} time domain.}%
 \label{fig:06windowfilter}
 \end{figure}
 
@@ -188,7 +216,7 @@ See Figure~\ref{fig:06hammingWin}.
 \subfloat[Hamming/Hann window filter.]{%
 \label{fig:06hammingWin}\includegraphics[width=0.4\textwidth]{images/06hammingWin}
 }
-\caption{Different shapes of window filters.}
+\caption{Different shapes of window filters.}%
 \label{fig:06filterShapes}
 \end{figure}
 
@@ -198,7 +226,11 @@ The first step is to split the data with $N$ points into $k\cdot N_0$ points as 
 Assume $k=8$ for the next steps.
 Second, compute $\hat{\Phi}_s^{N_0}(\w)$ for each period $k$, $\hat{\Phi}_s^{N_0} = |S_{N_0}(\w)|^2$.
 Third, calculate
-$$\hat{\hat{\Phi}}_s^N(\w) = \sum_{k=1}^8 \hat{\Phi}_s^{N_0}(\w)$$
+
+\begin{equation*}
+\hat{\hat{\Phi}}_s^N(\w) = \sum_{k=1}^8 \hat{\Phi}_s^{N_0}(\w)
+\end{equation*}
+
 Then, instead of working with $\bar{E}\{s(t)s(t-\tau)\}$ use
 \begin{align*}
 \frac{1}{N}\sum_{t=1}^N s(t)w(t)s(t-\tau)w(t-\tau) =
@@ -209,6 +241,6 @@ The Welsh method is similar to the Bartlett window when setting $\gamma=N_0$ in 
 \begin{figure}[ht!]
 \centering
 \includegraphics[width=.5\textwidth]{images/06welsh}
-\caption{Welsh window method.}
+\caption{Welsh window method.}%
 \label{fig:06welsh}
 \end{figure}

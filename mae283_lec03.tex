@@ -19,7 +19,11 @@ Most of the work done for this course will be in discrete time as a consequence 
 
 \subsection{Continuous Time}
 Continuous time systems are described by
-$$y(t) = \tauint g(\tau)u(t-\tau)d\tau$$
+
+\begin{equation*}
+y(t) = \tauint g(\tau)u(t-\tau)d\tau
+\end{equation*}
+
 where $g(\tau)=\mathcal{L}^{-1}\lbrace G(s)\rbrace$ and $y(s)=G(s)u(s)$.
 Note that multiplication in the Laplacian domain is equivalent to convolution in the time domain.
 
@@ -38,12 +42,16 @@ where $g_d(l)=\int_{\tau=(l-1)\dt}^{l\dt}g(\tau)d\tau$.
 The second equality is due to our ability to consider $u(k\dt -\tau)$ to be constant.
 Note that the expressions $qu(k) = u(k+1)$ and $q^{-1}u(k)=u(k-1)$ are not multiplication operations but instead are time-shift operators.
 All of this results in
-$$y(k) = \sum_{l-0}^\infty g_k(l)q^{-l}u(k) = G(q)u(k)$$
+
+\begin{equation*}
+y(k) = \sum_{l-0}^\infty g_k(l)q^{-l}u(k) = G(q)u(k)
+\end{equation*}
+
 which shows that the output is a linear combination of \textit{all} past inputs.
 \begin{figure}[ht!]
 \centering
 \includegraphics[width=.5\textwidth]{images/03zoh}
-\caption{Input modeled as a zero-order hold (ZOH) signal.}
+\caption{Input modeled as a zero-order hold (ZOH) signal.}%
 \label{fig:03zoh}
 \end{figure}
 
@@ -73,33 +81,56 @@ u(k) = \begin{cases} 1, & k=0 \\ 0, & k\neq 0 \end{cases}
 \end{align}
 
 Then the outputs are
-$$y(0)=g_0,~y(1)=g_1,~y(2)=g_2,~\ldots,~y(n)=g_n$$
+
+\begin{equation*}
+y(0)=g_0,~y(1)=g_1,~y(2)=g_2,~\ldots,~y(n)=g_n
+\end{equation*}
+
 This shows that the outputs to impulses are exactly the coefficients used to describe the system.
 $\lozenge$
 \end{example}
 
-\subsection{BIBO Stability}
+\subsection{BIBO Stability}%
 \label{sec:bibostability}
 BIBO is bounded input bounded output and is achieved when the Markov parameters satisfy the relationship
-$$\sum_{k=0}^\infty |g_k| < \infty \Rightarrow \lim_{N\to \infty} g_N \to 0$$
+
+\begin{equation*}
+\sum_{k=0}^\infty |g_k| < \infty \Rightarrow \lim_{N\to \infty} g_N \to 0
+\end{equation*}
+
 There is a stronger statement for strict BIBO stability that can be made when
-$$\sum_{k=0}^\infty k|g_k| < \infty$$
+
+\begin{equation*}
+\sum_{k=0}^\infty k|g_k| < \infty
+\end{equation*}
+
 To have strict BIBO stability the individual Markov parameters must have $g_k=k^{-d}$, $d=1$ for the product $k|g_k|\to 0$ or $g_k=\lambda$ where $|\lambda|<1$.
 The second case is the one encountered most often in this course.
 
 \subsection{Transfer Function Representation}
 The dynamics of the system are described by $g_k$ above, but there are an infinite number of those parameters.
 In this course we will restrict the systems studied to those described by two polynomials.
-$$\sum_{k=0}^\infty g_k q^{-k} = q^{-l} \frac{b_0 + b_1 q^{-1} + \cdots + b_n q^{-n}}{1+a_1 q^{-1} + \cdots + a_n q^{-n}}$$
+
+\begin{equation*}
+\sum_{k=0}^\infty g_k q^{-k} = q^{-l} \frac{b_0 + b_1 q^{-1} + \cdots + b_n q^{-n}}{1+a_1 q^{-1} + \cdots + a_n q^{-n}}
+\end{equation*}
+
 where $l$ is the amount of delay in the system.
 Determining those coefficients is done by applying an impulse input to the system and measuring the output.
 However, it is not clear that $g_k$ can be described by a finite set of coefficients.
 
 The delay is described by $y(k) = G(q)u(k)$ and
-$$y(k) + a_1 y(k-1)+\cdots + a_n y(k-n) = b_0 u(k-l)+b_1 u(k-1-l) + \cdots + b_n u(k-n-l)$$
+
+\begin{equation*}
+y(k) + a_1 y(k-1)+\cdots + a_n y(k-n) = b_0 u(k-l)+b_1 u(k-1-l) + \cdots + b_n u(k-n-l)
+\end{equation*}
+
 This form is much easier to use for computation of the $a_i$ and $b_i$ coefficients.
 It is also possible to write the output as
-$$y(k) = b_0 u(k-1) + b_1 u(k-1-l) + \cdots + b_n u(k-n-l) - a_1 y(k-1) - \cdots - a_n y(k-n)$$
+
+\begin{equation*}
+y(k) = b_0 u(k-1) + b_1 u(k-1-l) + \cdots + b_n u(k-n-l) - a_1 y(k-1) - \cdots - a_n y(k-n)
+\end{equation*}
 
 If $a_i=0$, $i=0,1,2,\ldots,n$ then the sum of Markov parameters is finite and $g_0=b_0,~g_1=b_1,~g_2=b_2,~\ldots,~g_n=b_n$.
 This means that the memory of the system is finite where the memory of the system is embedded in the $a_i$ coefficients.
@@ -130,7 +161,7 @@ $\lozenge$
 \begin{figure}[ht!]
 \centering
 \includegraphics[width=.5\textwidth]{images/03markovParams}
-\caption{Markov parameters. Points are for $0<a_1<1$ and the line is for $|a_1|<1, a_1<0$.}
+\caption{Markov parameters. Points are for $0<a_1<1$ and the line is for $|a_1|<1, a_1<0$.}%
 \label{fig:03markovParams}
 \end{figure}
 
@@ -164,10 +195,14 @@ y(3) &= Cx(3) + Du(3) = CA^2B \\
 \Rightarrow g_k &= \begin{cases} D, & k=0 \\ CA^{k-1}B, & k\neq 0 \end{cases}
 \end{align*}
 
-\subsection{Linear Regression Representation}
+\subsection{Linear Regression Representation}%
 \label{sec:linearregression}
 Let the system description be
-$$y(t)=\phi^T(t)\theta = \theta^T\phi(t)$$
+
+\begin{equation*}
+y(t)=\phi^T(t)\theta = \theta^T\phi(t)
+\end{equation*}
+
 where $\phi(t)$ is the regressor and $\theta$ is the parameter.
 Typically, $\phi(t)$ contains past inputs and outputs.
 \begin{align*}
@@ -177,7 +212,11 @@ u(k) & u(k-1) & \cdots & u(k-n) & -y(k-1) & -y(k-2) & \cdots & -y(k-n) \end{arra
 b_0 & b_1 & \cdots & b_n & a_1 & a_2 & \cdots & a_n \end{array}\right]^T
 \end{align*}
 Writing out the product gives
-$$y(k) = G(q)u(k), \qquad G(q) = \frac{b_0+b_1 q^{-1}+\cdots+b_n q^{-n}}{1+a_1 q^{-1}+\cdots+a_n q^{-n}}$$
+
+\begin{equation*}
+y(k) = G(q)u(k), \qquad G(q) = \frac{b_0+b_1 q^{-1}+\cdots+b_n q^{-n}}{1+a_1 q^{-1}+\cdots+a_n q^{-n}}
+\end{equation*}
+
 Linear regression makes it easy to modify elements of $\phi(t)$ to make the system description non-linear.
 Possibilities include squaring some of the elements or multiplying two elements to get a new element.
 
@@ -191,7 +230,7 @@ Figure~\ref{fig:03poleMapSZ} shows that the continuous time poles must be $\text
 \begin{figure}[ht!]
 \centering
 \includegraphics[width=.6\textwidth]{images/03poleMapSZ}
-\caption{Mapping of poles from the S-plane to the z-plane.}
+\caption{Mapping of poles from the S-plane to the z-plane.}%
 \label{fig:03poleMapSZ}
 \end{figure}
 
@@ -206,24 +245,38 @@ where $z\triangleq e^{s\dt} \Rightarrow g(s) = \sum_{k=-\infty}^\infty g(k\dt)z^
 
 \subsection{z-Transform}
 The z-transform can be derived from the $\mathcal{L}$-transform or it can be defined as
-$$y(z) = \sum_{k=-\infty}^\infty y(k\dt)z^{-k},~z=e^{s\dt}$$
-$$z\lbrace qu(k)\rbrace = \sum_{k=-\infty}^\infty u((k+1)\dt)z^{-k} = z\cdot u(z)$$
+
+\begin{equation*}
+y(z) = \sum_{k=-\infty}^\infty y(k\dt)z^{-k},~z=e^{s\dt}
+\end{equation*}
+
+\begin{equation*}
+z\lbrace qu(k)\rbrace = \sum_{k=-\infty}^\infty u((k+1)\dt)z^{-k} = z\cdot u(z)
+\end{equation*}
+
 In this way the time-shift operation becomes multiplication and we also get
-$$z\lbrace q^{-1}u(k)\rbrace = z^{-1}\cdot u(z)$$
+
+\begin{equation*}
+z\lbrace q^{-1}u(k)\rbrace = z^{-1}\cdot u(z)
+\end{equation*}
 
 \subsection{Discrete Time Transfer Function}
 $G(q)|_{z=q} = G(z)$
 
 \subsection{z-Transform and System Poles}
 $z=e^{s\dt}$ also holds for poles $S$ of a continuous time system converted to discrete time using the ZOH input signal.
-$$z_i=e^{S_i\dt}, \qquad S_i = a_i+jb_i \Rightarrow z_i = e^{a_i\dt} \cdot e^{jb_i\dt}$$
+
+\begin{equation*}
+z_i=e^{S_i\dt}, \qquad S_i = a_i+jb_i \Rightarrow z_i = e^{a_i\dt} \cdot e^{jb_i\dt}
+\end{equation*}
+
 For stability $|z_i|<1$, $|z_i|=\left| e^{a_i\dt}\right|$.
 See Figure~\ref{fig:03poleMapSZ} for pole ranges.
 For very small $\dt$ the poles become ill-conditioned as seen in Figure~\ref{fig:03poleMapSZsmallT}.
 \begin{figure}[ht!]
 \centering
 \includegraphics[width=.6\textwidth]{images/03poleMapSZsmallT}
-\caption{Mapping of poles from the S-plane to the z-plane when $\dt$ is small.}
+\caption{Mapping of poles from the S-plane to the z-plane when $\dt$ is small.}%
 \label{fig:03poleMapSZsmallT}
 \end{figure}
 

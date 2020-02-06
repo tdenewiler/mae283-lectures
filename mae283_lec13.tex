@@ -25,7 +25,7 @@ In Table~\ref{tab:models} of Lecture 12 we looked at different model strutures t
 We saw that conventional least squares is equivalent to using PEM+ARX\@.
 The structural parameters for these models were given as $n_a$, $n_b$, $n_c$, $n_d$, $n_f$ and $n_k$.
 
-\section{Convergence \& Consistency for PEM Model}
+\section{Convergence \& Consistency for PEM Model}%
 \label{sec:13convergence}
 This section corresponds to Chapter 8 in Ljung.
 See Figure~\ref{fig:13overview} to see how models are typically used and validated.
@@ -39,7 +39,7 @@ If they are white it means that we have extracted all of the useful information 
 \begin{figure}[ht!]
 \centering
 \includegraphics[width=.5\textwidth]{images/13overview}
-\caption{Overview of identifying parameter estimates.}
+\caption{Overview of identifying parameter estimates.}%
 \label{fig:13overview}
 \end{figure}
 
@@ -48,7 +48,7 @@ A model converges if $\lim_{N\to\infty}\hat{\theta}^N = \theta_0$ w.p. $1$.
 We will use the steps in Figure~\ref{fig:13overview} to look at these properties of models.
 First we have to make some assumptions.
 
-\subsection{Assumptions on Data}
+\subsection{Assumptions on Data}%
 \label{sec:14data}
 This section will address the assumptions on the data collected, namely $\{u(t),y(t)\}$.
 Recall from \S\ref{sec:upersistent} that for a least squares estimate the input signal must be persistently exciting so that $R^{-1}(N)$ will exist.
@@ -59,7 +59,11 @@ u(t) &= \sumk d_3(k)R(t-k) + \sumk d_4(k)e(t-k)
 \end{align*}
 $\{R(t)\}$ is a bounded, deterministic signal and $\{e(t)\}$ is an independent, random variable with variance $E\{e(t)\} = 0$, covariance $E\{e^2(t)\}<C_2<\infty$ and fourth moment $E\{e^4(t)\}<C_4<\infty$.
 The result of looking at the input and output signals in this fashion is that a family of transfer functions describes the data where
-$$\sumk d_i(k)q^{-k}, \qquad i=1,2,3,\ldots$$
+
+\begin{equation*}
+\sumk d_i(k)q^{-k}, \qquad i=1,2,3,\ldots
+\end{equation*}
+
 are all BIBO stable (see \S\ref{sec:bibostability}).
 We also need to assume that $\{u(t)\}$ and $\{y(t)\}$ are jointly quasi-stationary (see \S\ref{def:quasistationary}) so that we can still find the spectral densities and covariance functions because the variance properties don't change over time.
 This generality lets us examine systems like open-loop controllers such as shown in Figure~\ref{fig:13openloop}.
@@ -74,7 +78,7 @@ For feedback controllers with a reference point like that in Figure~\ref{fig:13f
 \subfloat[Feedback.]{%
 \label{fig:13feedback}\includegraphics[width=0.4\textwidth]{images/13feedback}
 } \hfill
-\caption{Block diagrams for open-loop and feedback controllers.}
+\caption{Block diagrams for open-loop and feedback controllers.}%
 \label{fig:13blocks}
 \end{figure}
 
@@ -82,16 +86,28 @@ For feedback controllers with a reference point like that in Figure~\ref{fig:13f
 This section will address the assumptions that need to be made about the system so that a model can be generated.
 Remember that the model does not need to capture all of the information about the system it just needs to be a simplified version of the system that can be used to describe the important parameters of the system.
 To that end we will assume that there exists parameters $\theta$ such that
-$$\mathcal{S}=\mathcal{M}(\theta_0)$$
+
+\begin{equation*}
+\mathcal{S}=\mathcal{M}(\theta_0)
+\end{equation*}
+
 and we will refer to this as $\mathcal{S}\in\mathcal{M}$.
 
 \subsection{Assumptions on Optimization}
 This section will address the assumptions about optimizing the model so that the parameters estimated more closely reflect the actual system behavior.
 We will assume that the noise is Gaussian such that
-$$e(t)\sim\mathcal{N}(0,\lambda), \qquad E\{e^2(t)\}=\lambda$$
+
+\begin{equation*}
+e(t)\sim\mathcal{N}(0,\lambda), \qquad E\{e^2(t)\}=\lambda
+\end{equation*}
+
 We don't \textit{have} to make this assumption but it makes some of the following derivations easier to compute.
 With this assumption we get that
-$$\thetan = \arg\min_\theta \onen\sumt \epsilon{(t,\theta)}^2$$
+
+\begin{equation*}
+\thetan = \arg\min_\theta \onen\sumt \epsilon{(t,\theta)}^2
+\end{equation*}
+
 will be the maximum likelihood estimate, e.g., $\thetan$ will have the smallest variance.
 In addition we will also sometimes use the assumptions that
 \begin{align}
@@ -106,7 +122,11 @@ In addition we will also sometimes use the assumptions that
 All of these expressions are $2$-norm minimizations.
 Notice that if $\epsilon$ is a scalar then $\Lambda$ is a scalar and can be moved outside of the trace and we get back to the previous definitions.
 However, if we look at the case where $\epsilon$ is two variables then we have
-$$\underbrace{\epsilon(t,\theta)}_{1\times2}\underbrace{\Lambda}_{2\times2}\underbrace{\epsilon^T(t,\theta)}_{2\times1}\Rightarrow1\times1$$
+
+\begin{equation*}
+\underbrace{\epsilon(t,\theta)}_{1\times2}\underbrace{\Lambda}_{2\times2}\underbrace{\epsilon^T(t,\theta)}_{2\times1}\Rightarrow1\times1
+\end{equation*}
+
 This still results in a scalar value but $\Lambda$ can be seen to be a scaling matrix that, for example, can normalize measurements made when one is in feet and the other is in miles.
 
 \section{Filtering the Prediction Error}
@@ -116,7 +136,7 @@ Then, we can use the filter $F(q)$ to make the prediction error be as close as p
 \begin{figure}[ht!]
 \centering
 \includegraphics[width=.5\textwidth]{images/13errorfilter}
-\caption{Example of prediction error filter in block diagram.}
+\caption{Example of prediction error filter in block diagram.}%
 \label{fig:13errorfilter}
 \end{figure}
 
@@ -124,10 +144,14 @@ Another reason to filter the prediction error is in the case where $\mathcal{S}\
 
 Now, with these assumptions we can look at what happens to the estimated parameter as more and more data is collected.
 
-\section{Convergence Result}
+\section{Convergence Result}%
 \label{sec:convergence}
 Let
-$$\thetan = \arg\min_\theta V_N(\theta,Z^N) = \onen\sumt\epsilon^2(t,\theta)$$
+
+\begin{equation*}
+\thetan = \arg\min_\theta V_N(\theta,Z^N) = \onen\sumt\epsilon^2(t,\theta)
+\end{equation*}
+
 where $\theta$ is the parameter and $Z^N$ is the input and output data.
 Let $\mathcal{M}$ be a model set with a parameter set $\Theta$ that is uniformly stable and let $Z^\infty$ satisfy the assumptions mentioned in \S\ref{sec:13convergence}.
 Then
@@ -137,13 +161,25 @@ Then
 \end{align}
 where $\bar{V}(\theta)=\bar{E}\{\epsilon^2(t,\theta)\}$.
 Note that the variance of the parameter estimate is then
-$$\lim_{N\to\infty}\onen\sumt\epsilon^2(t,\theta) = R_\epsilon(\tau=0) = E\{\epsilon^2(t,\theta)\}$$
+
+\begin{equation*}
+\lim_{N\to\infty}\onen\sumt\epsilon^2(t,\theta) = R_\epsilon(\tau=0) = E\{\epsilon^2(t,\theta)\}
+\end{equation*}
+
 (\ref{eq:13convergence}) means that the stochastic variable $V_N(\theta,Z^N)$ converges to $\bar{V}(\theta)$ and that $\bar{V}(\theta)$ does not depend on the data as $N\to\infty$.
 
 We then have that if
-$$\thetan = \arg\min_\theta V_N(\theta,Z^N)$$
+
+\begin{equation*}
+\thetan = \arg\min_\theta V_N(\theta,Z^N)
+\end{equation*}
+
 then
-$$\lim_{N\to\infty}\thetan = \theta^\ast \text{ w.p. } 1$$
+
+\begin{equation*}
+\lim_{N\to\infty}\thetan = \theta^\ast \text{~w.p.~} 1
+\end{equation*}
+
 where $\theta^\ast = \arg\min_\theta \bar{V}(\theta)$ and $\bar{V}(\theta) = E\{\epsilon^2(t,\theta)\}$.
 Again, as $N\to\infty$ we have that $\hat{\theta}$ is independent of the data.
 
@@ -155,11 +191,11 @@ See Figure~\ref{fig:13bias}.
 \begin{figure}[ht!]
 \centering
 \includegraphics[width=.4\textwidth]{images/13bias}
-\caption{Biased parameter estimate.}
+\caption{Biased parameter estimate.}%
 \label{fig:13bias}
 \end{figure}
 
-\begin{example}
+\begin{example}%
 \label{ex:convergence}
 Let the system and model be stable with the system described by
 \begin{align*}
@@ -171,22 +207,38 @@ The model that fits this best (see Table~\ref{tab:models}) is the ARMAX model gi
 G_\theta(q) = \frac{bq^{-1}}{1+aq^{-1}}, \qquad H_\theta(q)=\frac{1+cq^{-1}}{1+aq^{-1}}
 \end{align*}
 and the parameter is
-$$\theta=\left[\begin{array}{c c c} a & b & c \end{array}\right]$$
-We also have that $n_a=1$, $n_b=1$, $n_c=1$ and $n_k=1$ so we would call \texttt{theta = armax([y u],[1 1 1 1])} in \textsc{Matlab}.
+
+\begin{equation*}
+\theta=\left[\begin{array}{c c c} a & b & c \end{array}\right]
+\end{equation*}
+
+We also have that $n_a=1$, $n_b=1$, $n_c=1$ and $n_k=1$ so we would call \texttt{theta = armax ([y u],[1 1 1 1])} in \textsc{Matlab}.
 For this example we are using $u (t)$ as white noise with unit variance.
 
 We know from earlier in this lecture that
-$$\lim_{N\to\infty}\thetan= \theta_0 \text{ w.p. } 1$$
+
+\begin{equation*}
+\lim_{N\to\infty}\thetan= \theta_0 \text{~w.p.~} 1
+\end{equation*}
+
 But, ARMAX requires non-linear optimization and it is possible to get stuck in a local minima when searching for the parameter estimate.
 However, if we use an ARX model then we get
 \begin{align*}
 G_\theta(q) = \frac{bq^{-1}}{1+aq^{-1}}, \qquad H_\theta(q)=\frac{1}{1+aq^{-1}}
 \end{align*}
 and
-$$\theta=\left[\begin{array}{c c} a & b \end{array}\right]$$
+
+\begin{equation*}
+\theta=\left[\begin{array}{c c} a & b \end{array}\right]
+\end{equation*}
+
 This means we can use linear solvers and will be estimating a lower-dimensional parameter and will not get to $\theta_0$.
 But,
-$$\lim_{N\to\infty}\thetan= \theta^\ast\text{ w.p. } 1$$
+
+\begin{equation*}
+\lim_{N\to\infty}\thetan= \theta^\ast\text{~w.p.~} 1
+\end{equation*}
+
 What is $\theta^\ast$? Does it converge to the the true parameter, $\theta_0$?
 
 We can re-write the system as
@@ -200,7 +252,11 @@ Now, we have the system and model as
 \mathcal{M}: y (t) &= \vp^T (t)\theta+\epsilon(t,\theta), \qquad \theta=\left[\begin{array}{c c} b & a\end{array}\right]^T
 \end{align*}
 The parameter estimate is
-$$\hat{\theta} = \arg\min_\theta\onen\sumt\epsilon^2(t,\theta)$$
+
+\begin{equation*}
+\hat{\theta} = \arg\min_\theta\onen\sumt\epsilon^2(t,\theta)
+\end{equation*}
+
 For the least squares estimate to work we need
 \begin{itemize}
 \item $u(t)\perp v(t)$
@@ -238,7 +294,11 @@ R_y(1) &= c_0-a_0R_y(0) = c_0-a_0R_0
 \end{align*}
 Note that $R_{yu}(1)$ is the first impulse response coefficient and $R_{ye}(0)=1$ because $H_0$ is monic.
 This lets us solve for $\bar{V}(\theta)$ as
-$$\bar{V}(\theta) = (1+a^2-2aa_0)R_0+2ac_0 + b^2 - 2bb_0$$
+
+\begin{equation*}
+\bar{V}(\theta) = (1+a^2-2aa_0)R_0+2ac_0 + b^2 - 2bb_0
+\end{equation*}
+
 We want to minimize this with respect to both $a$ and $b$ and use
 \begin{align*}
 \left.\frac{\partial\bar{V}(\theta)}{\partial a}\right|_{a=a^\ast} &= 0 \Rightarrow 2(a^\ast-a_0)R_0+2c_0=0 \\
@@ -257,9 +317,17 @@ All of this yields the relation
 The real pole, $a_0$, is being biased by the noise, $c_0$.
 
 If we substitute $a_0$ and $b_0$ into $\theta$ then we get
-$$\left.\bar{V}(\theta)\right|_{\theta=\theta_0} = 1+c_0^2 > 1+c_0^2-\frac{c_0^2}{R_0^2}$$
+
+\begin{equation*}
+\left.\bar{V}(\theta)\right|_{\theta=\theta_0} = 1+c_0^2 > 1+c_0^2-\frac{c_0^2}{R_0^2}
+\end{equation*}
+
 where
-$$\theta_0 = \left[\begin{array}{c c} b_0 & a_0 \end{array}\right]^T$$
+
+\begin{equation*}
+\theta_0 = \left[\begin{array}{c c} b_0 & a_0 \end{array}\right]^T
+\end{equation*}
+
 so the biased estimate is better at minimizing the prediction error but might not be so good to use for controlling the system.
 $\lozenge$
 \end{example}% chktex 16

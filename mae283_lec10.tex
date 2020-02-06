@@ -12,7 +12,7 @@
 \setcounter{lecture}{9}
 \setcounter{chapter}{9}
 
-\lecture{Instrumental Variable Methods}
+\lecture{Instrumental Variable Methods}%
 \label{lec:IV}
 
 \section{Least Squares Review}
@@ -50,7 +50,11 @@ Another way of stating this assumption is that $G_0(q)$ and $H_0(q)$ must have t
 
 \section{Instrumental Variable Method}
 Typically the regressor is given by
-$$\vp^T(t) = \left[\begin{array}{c c c c c c c} u(t) & u(t-1) & \cdots & u(t-n_b) & -y(t-1) & \cdots & -y(t-n_a) \end{array}\right]$$
+
+\begin{equation*}
+\vp^T(t) = \left[\begin{array}{c c c c c c c} u(t) & u(t-1) & \cdots & u(t-n_b) & -y(t-1) & \cdots & -y(t-n_a) \end{array}\right]
+\end{equation*}
+
 The main idea of IV methods is to choose a different regressor vector that will yield different properties.
 We will use the notation $\xi(t)$ to denote the instrumental variable and use it to estimate the parameters, $\thiv$.
 This gives models and estimates for least squares and IV as
@@ -71,18 +75,30 @@ This gives models and estimates for least squares and IV as
 \subsection{Possible Choices for $\xi(t)$}
 We could try several different choices for $\xi(t)$.
 One is to extend the past inputs used so that $\xi(t)$ is $p\times 1$ such that
-$$\xi^T(t) = \left[\begin{array}{c c c c c c} u(t) & u(t-1) & \cdots & u(t-n_b) & u(t-n_b-1) & \cdots \end{array}\right]$$
+
+\begin{equation*}
+\xi^T(t) = \left[\begin{array}{c c c c c c} u(t) & u(t-1) & \cdots & u(t-n_b) & u(t-n_b-1) & \cdots \end{array}\right]
+\end{equation*}
+
 This is called the ``normal'' instrumental variable.
 
 Another choice is to use estimates of the output such that
-$$\xi^T (t) = \left[\begin{array}{c c c c c c c} u(t) & u(t-1) & \cdots & u(t-n_b) & -\hat{y}(t-1) & \cdots & -\hat{y}(t-n_a) \end{array}\right]$$
+
+\begin{equation*}
+\xi^T (t) = \left[\begin{array}{c c c c c c c} u(t) & u(t-1) & \cdots & u(t-n_b) & -\hat{y}(t-1) & \cdots & -\hat{y}(t-n_a) \end{array}\right]
+\end{equation*}
+
 where $\hat{y} (t)=F (q) u (t)$.
 This IV is uncorrelated with the noise because $u\perp~e$.
 A good choice for the filter when estimating outputs is the real system, $G_0(q)$.
 We could start with an estimate of the real system, $\hat{G} (q)$.
 
 \subsection{Properties of IV}
-$$\lim_{N\to\infty}E\{\thiv\} = \theta_0$$
+
+\begin{equation*}
+\lim_{N\to\infty}E\{\thiv\} = \theta_0
+\end{equation*}
+
 provided $\mathcal{S}\in\mathcal{M}$ and $u (t)\perp~e (t)$.
 The nice property is that it removes the constraint that $\{e (t)\}$ must be white noise.
 
@@ -127,7 +143,11 @@ It is similar to Kung's, which will be discussed later in this lecture.
 The difference is that Ho-Kalman is deterministic while Kung allows for noise.
 
 If we assume that we have measurements of the impulse response coefficients, $g_0(k), G_0(q)=\sumk g_0(k)q^{-k}$, then
-$$g_0(k) = \begin{cases} D, & k=0 \\ CA^{k-1}B, & k\neq0 \end{cases}$$
+
+\begin{equation*}
+g_0(k) = \begin{cases} D, & k=0 \\ CA^{k-1}B, & k\neq0 \end{cases}
+\end{equation*}
+
 We would like to find $\{A,B,C,D\}$ from $g_0(k)$.
 The first step is to find the dimension of $A=n$, where $n$ is the number of states in the state space model.
 Use the impulse response coefficients to build a Hankel matrix where
@@ -151,7 +171,10 @@ $\lozenge$
 \end{example}
 
 We know that
-$$\text{rank}(H)=n<N~\exists~H_1, H_2 \text{ s.t. } \underbrace{H}_{N\times N} = \underbrace{H_1}_{N\times n} \underbrace{H_2}_{n\times N}$$
+
+\begin{equation*}
+\text{rank}(H)=n<N~\exists~H_1, H_2 \text{~s.t.~} \underbrace{H}_{N\times N} = \underbrace{H_1}_{N\times n} \underbrace{H_2}_{n\times N}
+\end{equation*}
 
 Now, create another Hankel matrix that is one time step later than $H$ such that
 \begin{align*}
@@ -174,10 +197,18 @@ where \textsc{Matlab} notation has been used to denote first column and first ro
 \subsection{Kung's Algorithm}
 Kung basically came up with a smart choice for the decomposition $H=H_1 H_2$ by using singular value decomposition (SVD).
 This yields
-$$\underbrace{H}_{N\times N} = H_1H_2 = \underbrace{U}_{N\times N} \underbrace{\Sigma}_{N\times N} \underbrace{V^T}_{N\times N} = \left[\begin{array}{c c} U_1 & U_2 \end{array}\right] \left[\begin{array}{c c} \Sigma_1 & 0 \\ 0 & \Sigma_2 \end{array}\right] \left[\begin{array}{c} V_1^T \\ V_2^T \end{array}\right]$$
+
+\begin{equation*}
+\underbrace{H}_{N\times N} = H_1H_2 = \underbrace{U}_{N\times N} \underbrace{\Sigma}_{N\times N} \underbrace{V^T}_{N\times N} = \left[\begin{array}{c c} U_1 & U_2 \end{array}\right] \left[\begin{array}{c c} \Sigma_1 & 0 \\ 0 & \Sigma_2 \end{array}\right] \left[\begin{array}{c} V_1^T \\ V_2^T \end{array}\right]
+\end{equation*}
+
 where $\Sigma_1$ is $n\times~n$ and $\Sigma_2$ is $N-n\times~N-n$ and $\text{rank} (H)=n$.
 For zero noise and no errors $\Sigma_2=0$ and
-$$H = U_1 \Sigma~V_1^T$$
+
+\begin{equation*}
+H = U_1 \Sigma~V_1^T
+\end{equation*}
+
 This gives
 \begin{align*}
 H_1 &= U_1\Sigma_1^{1/2} \\
@@ -199,7 +230,11 @@ Then $n$ can be set appropriately.
 \subsection{Finding $D$.}
 Ideally, $D$ is the first impulse response, $D=g(0)$.
 When there is noise Kung says to take $\hat{A}$ and $\hat{B}$ to reconstruct a state estimate $\hat{x}(t)$ such that
-$$\hat{x}(t+1) = \hat{A}x(t)+\hat{B}u(t)$$
+
+\begin{equation*}
+\hat{x}(t+1) = \hat{A}x(t)+\hat{B}u(t)
+\end{equation*}
+
 Then set up a standard least squares problem
 \begin{align*}
 \underbrace{\left[\begin{array}{c} \hat{x}(t+1) \\ y(t) \end{array}\right]}_{y^T(t)}
@@ -211,6 +246,10 @@ This gives a better estimate for $D$ when noise is present.
 \subsection{Getting Impulse Response Coefficients}
 To get $\{g_0(k)\}$ we can use white noise as input and look at $R_{yu}(\tau)=g_0(\tau)$.
 If we can't use white noise as input then
-$$y(t) = \vp^T(t)\theta+\epsilon(t,\theta)$$
+
+\begin{equation*}
+y(t) = \vp^T(t)\theta+\epsilon(t,\theta)
+\end{equation*}
+
 with $\vp^T(t) = \left[\begin{array}{c c c c c} u(t) & u(t-1) & u(t-2) & \cdots & u(t-N) \end{array}\right]$.
 For a finite impulse response (FIR) model then we can look at the cross-spectral density function $\Phi_{yu} (\w)$ and do $R_{yu} (\tau) = \mathcal{F}^{-1}\{\Phi_{yu} (\w)\}$.% chktex 16

@@ -23,14 +23,30 @@ They are also known as online parameter estimation techniques.
 
 \section{Newton-Raphson}
 This is a quick derivation of the Newton-Raphson method where we are looking for a solution to the equation $f(\theta)=0$ which is given by
-$$\hat{\theta} = \argsol_\theta f(\theta) = 0$$
+
+\begin{equation*}
+\hat{\theta} = \argsol_\theta f(\theta) = 0
+\end{equation*}
+
 Figure~\ref{fig:18nr} shows an example function where we would be looking for the root of the function.
 This is similar to the Instrumental Variable (IV) method we saw in Lecture~\ref{lec:IV} where the solution we obtained was given by
-$$\hat{\theta}_{IV} = \argsol_\theta f(\theta,Z^N) = 0$$
+
+\begin{equation*}
+\hat{\theta}_{IV} = \argsol_\theta f(\theta,Z^N) = 0
+\end{equation*}
+
 In the IV method $f$ is linearly parameterized in $\theta$ so it is easy to compute a solution such that
-$$\hat{\theta}_{IV} = {[R(N)]}^{-1}[f(N)]$$
+
+\begin{equation*}
+\hat{\theta}_{IV} = {[R(N)]}^{-1}[f(N)]
+\end{equation*}
+
 The Newton-Raphson algorithm is developed by looking at
-$$f(\theta_i), \qquad \left.f^\prime(\theta)\right|_{\theta=\theta_i}$$
+
+\begin{equation*}
+f(\theta_i), \qquad \left.f^\prime(\theta)\right|_{\theta=\theta_i}
+\end{equation*}
+
 This gives an update formula as
 \begin{align*}
 \theta_{i+1}: f(\theta_i) + (\theta_{i+1}-\theta_i)\left.f^\prime(\theta)\right|_{\theta=\theta_i} = 0
@@ -47,7 +63,7 @@ where $\alpha(\theta_i)$ is such that $|f(\theta_{i+1})|<|f(\theta_i)|$ and $\al
 \begin{figure}[ht!]
 \centering
 \includegraphics[width=.4\textwidth]{images/18nr}
-\caption{Finding zero with Newton-Raphson method.}
+\caption{Finding zero with Newton-Raphson method.}%
 \label{fig:18nr}
 \end{figure}
 
@@ -61,7 +77,7 @@ Note that we are looking for a minimum so we want $f^{\prime\prime}(\theta)>0$ a
 \begin{figure}[ht!]
 \centering
 \includegraphics[width=.6\textwidth]{images/18min}
-\caption{Finding minimum with Newton-Raphson method.}
+\caption{Finding minimum with Newton-Raphson method.}%
 \label{fig:18min}
 \end{figure}
 
@@ -86,7 +102,11 @@ V_N(\theta) &= \fN\sumt\est \\
 \ett &= H_\theta^{-1}(Y(t)-G_\theta u(t))
 \end{align*}
 and using an ARX model
-$$\ett = A_\theta y(t)-B_\theta u(t)$$
+
+\begin{equation*}
+\ett = A_\theta y(t)-B_\theta u(t)
+\end{equation*}
+
 a more general update equation is given by
 \begin{align*}
 \boxed{\hat{\theta}_N^{i+1} = \hat{\theta}_N^i + \alpha(\hat{\theta}_N^i)\cdot F(\hat{\theta}_N^i)}
@@ -102,10 +122,18 @@ Note that the Newton-Raphson converges quickly but requires knowledge of the sec
 
 \section{General Gradient Method}
 Define
-$$\psi(t,\theta) = \frac{\partial}{\partial\theta}\ett = -\frac{\partial}{\partial\theta}\hat{y}(t~|~t-1,\theta)$$
+
+\begin{equation*}
+\psi(t,\theta) = \frac{\partial}{\partial\theta}\ett = -\frac{\partial}{\partial\theta}\hat{y}(t~|~t-1,\theta)
+\end{equation*}
+
 where $\hat{y}$ is the one-step ahead predictor and $\theta,\phi\in\mathbb{R}^{p\times1}$.
 This leads to
-$$G_N(\theta) = \frac{\partial}{\partial\theta}V_N(\theta) = \fN\sumt\psi(t,\theta)\ett$$
+
+\begin{equation*}
+G_N(\theta) = \frac{\partial}{\partial\theta}V_N(\theta) = \fN\sumt\psi(t,\theta)\ett
+\end{equation*}
+
 Now we can see that the gradient is the auto-correlation of $\psi$ and $\eps$, $R_{\psi\eps}(0)$, and at the local minimum we have $R_{\psi\eps}(0)=0$.
 Next we set up matrices with these values such that
 \begin{align*}
@@ -135,9 +163,17 @@ where the term $\eta I_{d\times d}$ is known as a regularization.
 The motivation for ignoring the last term but adding a constant is
 \begin{itemize}
 \item Avoids the computation of
-$$\frac{\partial}{\partial\theta}\psi(t,\theta) = \frac{\partial^2}{\partial\theta^2}\ett$$
+
+  \begin{equation*}
+\frac{\partial}{\partial\theta}\psi(t,\theta) = \frac{\partial^2}{\partial\theta^2}\ett
+  \end{equation*}
+
 \item It is close to the minimum
-$$\fN\sumt\frac{\partial}{\partial\theta}\psi(t,\theta)\ett \approx 0$$
+
+  \begin{equation*}
+\fN\sumt\frac{\partial}{\partial\theta}\psi(t,\theta)\ett \approx 0
+  \end{equation*}
+
 \item $H_N(\theta)$ in (\ref{eq:18hn}) might not be invertible but $H_N(\theta)$ in (\ref{eq:18hnalt}) will always be positive definite and the inverse will exist.
 \end{itemize}
 This form of the udpate equation is known as the damped Gauss-Newton method and the algorithm is given by
@@ -152,21 +188,36 @@ Recall that in least squares we had
 \frac{\partial}{\partial\theta}\ett &= \psi(t,\theta) = \vp(t)
 \end{align*}
 The estimate does not depend on $\theta$! The iteration is
-$$\theta_{i+1} = \theta_i + \alpha(\theta_i){\left[\Phi^T\Phi\right]}^{-1}\left[\Phi^T\mathcal{E}\right]$$
+
+\begin{equation*}
+\theta_{i+1} = \theta_i + \alpha(\theta_i){\left[\Phi^T\Phi\right]}^{-1}\left[\Phi^T\mathcal{E}\right]
+\end{equation*}
+
 We can set $\theta_i=0$ and $\alpha(\theta_i)=1$ because we are free to choose the starting point and step-size function.
 This gives
-$$\theta_{i+1} = {\left[\Phi^T\Phi\right]}^{-1}\left[\Phi^T\mathcal{E}\right]$$
+
+\begin{equation*}
+\theta_{i+1} = {\left[\Phi^T\Phi\right]}^{-1}\left[\Phi^T\mathcal{E}\right]
+\end{equation*}
 
 \subsection{Effect of Regularization Parameter}
 Recall that $\eta$ is the regularization parameter in the general Gauss-Newton method and that
-$$\theta_{i+1} = \theta_i+\alpha(\theta_i){\left[\Phi_\theta^T\Phi_\theta + \eta I\right]}^{-1}\left[\Phi_\theta\mathcal{E}_\theta\right]$$
+
+\begin{equation*}
+\theta_{i+1} = \theta_i+\alpha(\theta_i){\left[\Phi_\theta^T\Phi_\theta + \eta I\right]}^{-1}\left[\Phi_\theta\mathcal{E}_\theta\right]
+\end{equation*}
+
 We can see that there are two extremes such that
 \begin{itemize}
 \item $\eta=0$ results in pure Gauss-Newton method.
 \item $\eta=1$ results in pure gradient method.
 \end{itemize}
 To get a simpler and more efficient result we can use the matrix inversion lemma to get
-$${\left[\Lambda+\Psi^T W\Psi\right]}^{-1} = \Lambda^{-1} - \Lambda^{-1}\Psi^T{\left[\Psi\Lambda^{-1}\Psi^T + W^{-1}\right]}^{-1}\Psi\Lambda^{-1}$$
+
+\begin{equation*}
+{\left[\Lambda+\Psi^T W\Psi\right]}^{-1} = \Lambda^{-1} - \Lambda^{-1}\Psi^T{\left[\Psi\Lambda^{-1}\Psi^T + W^{-1}\right]}^{-1}\Psi\Lambda^{-1}
+\end{equation*}
+
 Using $\Lambda=\eta I$ and $W=I$ gives
 \begin{align*}
 H_N^{-1} &= {\left[\eta I + \Psi^T\Psi\right]}^{-1} \\
@@ -188,15 +239,26 @@ We could use the matrix inversion lemma to get a scalar for the inverse again, w
 This is a very easy value to compute numerically.
 The adaptation gain is also called the regularized adaptation gain.
 It can also be written as
-$$\frac{\gamma}{1+\Psi^T\gamma\Psi} = \frac{\gamma}{1+\gamma\Psi^T\Psi}$$
+
+\begin{equation*}
+\frac{\gamma}{1+\Psi^T\gamma\Psi} = \frac{\gamma}{1+\gamma\Psi^T\Psi}
+\end{equation*}
+
 This gain automatically adjusts for poor or good data.
 
 \section{Conclusions}
 In iterative parameter search using the regularized (damped) Gauss-Newton algorithm we have
-$$\theta_{i+1} = \theta_i + \frac{\gamma(\theta_i)}{1+\Psi_{\theta_i}\gamma(\theta_i)\Psi_{\theta_i}^T}\cdot \Psi_{\theta_i}^T\mathcal{E}_{\theta_i}$$
+
+\begin{equation*}
+\theta_{i+1} = \theta_i + \frac{\gamma(\theta_i)}{1+\Psi_{\theta_i}\gamma(\theta_i)\Psi_{\theta_i}^T}\cdot \Psi_{\theta_i}^T\mathcal{E}_{\theta_i}
+\end{equation*}
+
 which is a simple gain adjusted gradient method.
 We only need to compute
-$$\Psi(t) = \frac{\partial}{\partial\theta}\ett$$
+
+\begin{equation*}
+\Psi(t) = \frac{\partial}{\partial\theta}\ett
+\end{equation*}
 
 $\Psi(t)$ is an $\mathbb{R}^{d\times1}$ signal and depends on the chosen model structure.
 

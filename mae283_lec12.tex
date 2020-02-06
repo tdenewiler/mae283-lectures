@@ -18,16 +18,27 @@
 There are three places where errors can occur: noise, output and prediction.
 
 \subsection{Noise Error}
-$$v(t|t-1) = (H_0(q)-1)e(t) = (H_0(q)-1)H_0^{-1}(q)v(t) = (H_0^{-1}(q)-1)v(t)$$
+
+\begin{equation*}
+v(t|t-1) = (H_0(q)-1)e(t) = (H_0(q)-1)H_0^{-1}(q)v(t) = (H_0^{-1}(q)-1)v(t)
+\end{equation*}
+
 Note that there is always at least a one step time delay due to the time shift operator so we are not actually trying to predict $v(t|t-1)$ using $v(t)$.
 
 \subsection{Output Error}
-$$y(t|t-1) = H_0^{-1}(q)G_0(q)u(t) + [1-H_0^{-1}(q)]y(t)$$
+
+\begin{equation*}
+y(t|t-1) = H_0^{-1}(q)G_0(q)u(t) + [1-H_0^{-1}(q)]y(t)
+\end{equation*}
+
 Note that there is always at least a one step time delay due to the time shift operator so we are not actually trying to predict $y(t|t-1)$ using $y(t)$.
 Also, notice that the output $y(t)$ is influenced by the input $u(t)$.
 
 \subsection{Prediction Error}
-$$\epsilon(t) = y(t) - y(t|t-1) = H_0^{-1}(q)(y(t)-G_0(q)u(t))$$
+
+\begin{equation*}
+\epsilon(t) = y(t) - y(t|t-1) = H_0^{-1}(q)(y(t)-G_0(q)u(t))
+\end{equation*}
 
 \begin{example}
 Given $v(t) = H_0(q)e(t)$ where $H_0(q) = \frac{1}{1+a_1q^{-1}+a_2q^{-2}}$ and $\{e(t)\}$ is white noise we find that
@@ -74,10 +85,14 @@ v(t) &= \left[\underbrace{\sum_{l=0}^{k-1}h_0(l)q^{-l}}_{\tilde{H}_0(q)} + \unde
 \end{align*}
 Note that there are $k$-step time delays in the summation.
 
-\section{General Formulation of Predictor}
+\section{General Formulation of Predictor}%
 \label{sec:generalpredictor}
 Now we are looking at
-$$y(t|t-1) = \underbrace{H_0^{-1}(q)G_0(q)}_{W_u(q)}u(t) + [\underbrace{1-H_0^{-1}(q)}_{W_y(q)}]y(t)$$
+
+\begin{equation*}
+y(t|t-1) = \underbrace{H_0^{-1}(q)G_0(q)}_{W_u(q)}u(t) + [\underbrace{1-H_0^{-1}(q)}_{W_y(q)}]y(t)
+\end{equation*}
+
 We can draw this system as a block diagram containing two filters.
 It is easier to see what is going on with the block diagrams instead of looking at the equations.
 See Figure~\ref{fig:12block1}.
@@ -85,7 +100,7 @@ See Figure~\ref{fig:12block1}.
 \begin{figure}[ht!]
 \centering
 \includegraphics[width=.6\textwidth]{images/12block1}
-\caption{System block diagram.}
+\caption{System block diagram.}%
 \label{fig:12block1}
 \end{figure}
 
@@ -95,16 +110,23 @@ W_u(q) &= H_0^{-1}(q)G_0(q) \\
 W_y(q) &= 1-H_0^{-1}(q)
 \end{align*}
 with $G_0(q)$ and $H_0(q)$ representing perfect models of the system? We can re-draw the block diagram as in Figure~\ref{fig:12block2} to see more clearly that the prediction error is
-$$\epsilon(t)=e(t)$$
+
+\begin{equation*}
+\epsilon(t)=e(t)
+\end{equation*}
+
 meaning that the prediction error is white noise.
 This is the best that we can do even when we know the perfect models for the system due to the stochastic nature of the noise.
 Now we can look at the formulas to see
-$$\epsilon(t) = H_0^{-1}(q)[G_0(q)u(t) + H_0(q)e(t) - G_0(q)u(t)] = e(t)$$
+
+\begin{equation*}
+\epsilon(t) = H_0^{-1}(q)[G_0(q)u(t) + H_0(q)e(t) - G_0(q)u(t)] = e(t)
+\end{equation*}
 
 \begin{figure}[ht!]
 \centering
 \includegraphics[width=.6\textwidth]{images/12block2}
-\caption{System block diagram.}
+\caption{System block diagram.}%
 \label{fig:12block2}
 \end{figure}
 
@@ -136,7 +158,7 @@ $\lozenge$
 \begin{figure}[ht!]
 \centering
 \includegraphics[width=.6\textwidth]{images/12block3}
-\caption{System block diagram of an observer.}
+\caption{System block diagram of an observer.}%
 \label{fig:12block3}
 \end{figure}
 
@@ -210,7 +232,7 @@ $G_\theta=\frac{B_\theta}{F_\theta}, H_\theta=1$ & OE (Output Error) & Non-linea
 $G_\theta=\frac{B_\theta}{F_\theta}, H_\theta=\frac{C_\theta}{D_\theta}$ & BJ (Box-Jenkins) & Non-linear. \\
 $G_\theta=\frac{B_\theta}{F_\theta A_\theta}, H_\theta=\frac{C_\theta}{D_\theta A_\theta}$ & PEM (Prediction Error Model) & Non-linear. \\
 \bottomrule
-\end{tabular}
+\end{tabular}%
 \label{tab:models}
 \end{table}
 
@@ -247,7 +269,10 @@ The OE model is given by
 G_\theta = \frac{B_\theta}{A_\theta}, \qquad H_\theta = \frac{C_\theta}{A_\theta}
 \end{align*}
 The prediction error is found to be
-$$\epsilon(t,\theta) = y(t)-G_\theta u(t) = y(t)-\frac{B_\theta}{F_\theta}u(t)$$
+
+\begin{equation*}
+\epsilon(t,\theta) = y(t)-G_\theta u(t) = y(t)-\frac{B_\theta}{F_\theta}u(t)
+\end{equation*}
 
 \begin{example}
 Consider a $2$nd order continuous time system with no feedthrough component described by
@@ -257,7 +282,11 @@ y &= Cx
 \end{align*}
 This gives $D=0$, $A=2\times 2$, $B=2\times 1$ and $C=1\times 2$.
 If we use a zero-order hold (ZOH) input as $\{u(t)\}$ and decide to use the ARX model with linear optimization then what should $k$, $n_a$ and $n_b$ be set to? We want
-$$G_\theta(q) = \frac{b_1q^{-1}+b_2q^{-2}}{1+a_1q^{-1}+a_2q^{-2}}$$
+
+\begin{equation*}
+G_\theta(q) = \frac{b_1q^{-1}+b_2q^{-2}}{1+a_1q^{-1}+a_2q^{-2}}
+\end{equation*}
+
 This leads to $k=1$ in order to have $D=0$, $n_a=2$ and $n_b=2$.
 This can then be used in \textsc{Matlab} by calling \texttt{ARX ([y u],[na nb nk])}.
 
@@ -269,7 +298,11 @@ $\lozenge$
 \begin{example}
 Let $n_a=2$, $n_b=3$ and $k=1$.
 Then we get
-$$G_\theta(q) = \frac{b_1q^{-1}+b_2q^{-2}+b_3q^{-3}}{1+a_1q^{-1}+a_2q^{-2}} = \frac{b_1q^2+b_2q+b_3}{q^3+a_1q^2+a_2q}$$
+
+\begin{equation*}
+G_\theta(q) = \frac{b_1q^{-1}+b_2q^{-2}+b_3q^{-3}}{1+a_1q^{-1}+a_2q^{-2}} = \frac{b_1q^2+b_2q+b_3}{q^3+a_1q^2+a_2q}
+\end{equation*}
+
 For $n_a=2$ it means that we are missing a pole, $a_3$.
 We need to have $n_a=3$ to get all of the information.
 $\lozenge$

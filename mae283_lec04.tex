@@ -22,54 +22,73 @@ The system is more interesting when $v(t)\neq 0$ and then $y(t)$ is a sum of det
 This means that the output can be found as $y(t)=w(t)+v(t)$, where $w(t)=G_0(q)u(t)$ is unknown.
 Recall that $G_0(q)$ is not a function but is a time-shift operator so that $w(t)$ is not a product of two terms.
 Typically, we assume that the noise has zero-mean such that
-$$E\{v(t)\}=0 \Rightarrow E\{y(t)\}=w(t)$$
+
+\begin{equation*}
+E\{v(t)\}=0 \Rightarrow E\{y(t)\}=w(t)
+\end{equation*}
+
 This is referred to as the ``time-varying'' or ``non-stationary'' mean value.
 \begin{figure}[ht!]
 \centering
 \includegraphics[width=.3\textwidth]{images/04system}
-\caption{Block diagram of system with input, output and noise signals.}
+\caption{Block diagram of system with input, output and noise signals.}%
 \label{fig:04system}
 \end{figure}
 
 The expectation operator yields the average of the stochastic portion of the output.
 What we want to find is a linear operator that will give the average of the deterministic part as well.
 For that we use the extended expectation operator.
-$$\bar{E}\{y(t)\} = \lim_{N\to\infty}\frac{1}{N}\sum_{t=1}^N E\{y(t)\}$$
+
+\begin{equation*}
+\bar{E}\{y(t)\} = \lim_{N\to\infty}\frac{1}{N}\sum_{t=1}^N E\{y(t)\}
+\end{equation*}
+
 When the expectation operator is used it takes the stochastic portion of the output and makes it deterministic, giving just a scalar value.
 The extended expectation operator averages the output, $y(t)$, over time to give a scalar as well.
 
 The time-shifted input, $w(t)=G_0(q)u(t)$, is deterministic with
-$$\bar{E}\{w(t)\} = \lim_{N\to\infty}\frac{1}{N}\sum_{t=1}^N E\{w(t)\}$$
+
+\begin{equation*}
+\bar{E}\{w(t)\} = \lim_{N\to\infty}\frac{1}{N}\sum_{t=1}^N E\{w(t)\}
+\end{equation*}
+
 and we typically assume $\bar{E}\{w(t)\}=0$.
 
 \begin{example}
 Given a deterministic signal, $u(t)$, as shown in Figure~\ref{fig:04inputSignal} we can say that
-$$\lim_{N\to\infty}\frac{1}{N}\sum_{t=1}^N E\{u(t)\} = 0$$
+
+\begin{equation*}
+\lim_{N\to\infty}\frac{1}{N}\sum_{t=1}^N E\{u(t)\} = 0
+\end{equation*}
+
 This is shown as a block diagram in Figure~\ref{fig:04detSignal} and makes it clear that $\lim_{N\to\infty}\frac{1}{N}\sum_{t=1}^N w(t)=0$ since $u(t)=0$ and the system is linear.
 $\lozenge$
 \end{example}
 \begin{figure}[ht!]
 \centering
 \includegraphics[width=.5\textwidth]{images/04inputSignal}
-\caption{Example of an input signal that tends to have zero-mean over long enough time periods.}
+\caption{Example of an input signal that tends to have zero-mean over long enough time periods.}%
 \label{fig:04inputSignal}
 \end{figure}
 
 \begin{figure}[ht!]
 \centering
 \includegraphics[width=.3\textwidth]{images/04detSignal}
-\caption{Block diagram of system with deterministic, zero-mean input signal.}
+\caption{Block diagram of system with deterministic, zero-mean input signal.}%
 \label{fig:04detSignal}
 \end{figure}
 
 \begin{definition}{Extended Expectation Operator}
-$$\bar{E}\{y(t)\}=\lim_{N\to\infty}\frac{1}{N}\sum_{t=1}^N E\{y(t)\}$$
+
+\begin{equation*}
+\bar{E}\{y(t)\}=\lim_{N\to\infty}\frac{1}{N}\sum_{t=1}^N E\{y(t)\}
+\end{equation*}
+
 Typically, we assume that $E\{y(t)\}=0$ if $\bar{E}\{u(t)\}=0$ and $G_0(q)$ is BIBO stable.
 If the system is not BIBO stable then we get Brownian motion resulting in random walk.
 \end{definition}
 
-\begin{definition}{Quasi-stationary Signal}
-
+\begin{definition}{Quasi-stationary Signal}%
 \label{def:quasistationary}
 A process $u(t)$ is quasi-stationary if there exists some $c_1, c_2 \in\mathbb{R}$ such that
 \begin{itemize}
@@ -98,7 +117,11 @@ This is the DTFT of the cross-covariance function.
 \end{itemize}
 Note that $\w\in\mathbb{R}$ and $|\tau|\in\mathbb{N}$.
 To get from the spectral density functions to the covariance functions use the inverse Fourier transform:
-$$R_y(\tau) = \frac{1}{2\pi}\int_{\w=-\pi}^\pi \Phi_y(\w)e^{j\w\tau}d\w$$
+
+\begin{equation*}
+R_y(\tau) = \frac{1}{2\pi}\int_{\w=-\pi}^\pi \Phi_y(\w)e^{j\w\tau}d\w
+\end{equation*}
+
 \end{definition}
 
 \section{White Noise}
@@ -118,7 +141,7 @@ This can be thought of as the surface under the auto-spectral density function b
 \begin{figure}[ht!]
 \centering
 \includegraphics[width=.4\textwidth]{images/04deltaFn}
-\caption{A delta function at $t=0$ with magnitude of $\lambda$.}
+\caption{A delta function at $t=0$ with magnitude of $\lambda$.}%
 \label{fig:04deltaFn}
 \end{figure}
 
@@ -148,7 +171,10 @@ R_{yu}(\tau) &= G_0(q)R_u(\tau) \\
 R_u(\tau) &= \begin{cases} \lambda, & \tau=0 \\ 0, & \tau\neq 0 \end{cases} = \lambda\delta_d(\tau)
 \end{align*}
 Substituting the second equation into the first is equivalent to getting the impulse response of the system as described by the coefficients $g(k)$ so that
-$$R_{yu}(\tau) = \lambda g(\tau)$$
+
+\begin{equation*}
+R_{yu}(\tau) = \lambda g(\tau)
+\end{equation*}
 
 \begin{example}
 Let $G_0(q)$ be a mass-spring-damper system with low amounts of damping.
@@ -159,7 +185,7 @@ $\lozenge$
 \begin{figure}[ht!]
 \centering
 \includegraphics[width=.5\textwidth]{images/04dimSine}
-\caption{A diminishing sine wave representing the impulse response in a mass-spring-damper system with low amounts of damping.}
+\caption{A diminishing sine wave representing the impulse response in a mass-spring-damper system with low amounts of damping.}%
 \label{fig:04dimSine}
 \end{figure}
 
@@ -183,14 +209,18 @@ $\lozenge$
 \begin{figure}[ht!]
 \centering
 \includegraphics[width=.7\textwidth]{images/04filteredNoise}
-\caption{Effect of filtering white noise.}
+\caption{Effect of filtering white noise.}%
 \label{fig:04filteredNoise}
 \end{figure}
 
 \subsection{Cross-spectral Density Function}
 \begin{example}
 How do we find $\Phi_{yu}(\w)$?
-$$\Phi_{yu}(\w) = \mathcal{F}\{R_{yu}(\tau)\} = \lambda G_0(e^{j\w})$$
+
+\begin{equation*}
+\Phi_{yu}(\w) = \mathcal{F}\{R_{yu}(\tau)\} = \lambda G_0(e^{j\w})
+\end{equation*}
+
 The Fourier transform of an implulse response yields the transfer function.
 This allows us to back out the Markov parameters.
 $\lozenge$
@@ -231,7 +261,11 @@ Y_N(\w) &= G_0(e^{j\w})U_N(\w) + R_N(\w)
 The first two equalities are discrete Fourier transforms.
 $Y_N(\w)$ and $U_N(\w)$ are finite Fourier transforms and $R_N(\w)$ is an infinite Fourier transform.
 This leads to
-$$|R_N(\w)| \leq 2\cdot C_w\cdot \frac{C_g}{\sqrt{N}}$$
+
+\begin{equation*}
+|R_N(\w)| \leq 2\cdot C_w\cdot \frac{C_g}{\sqrt{N}}
+\end{equation*}
+
 where $|u(t)|<C_w~\forall t$, $C_g=\sum_{k=0}^\infty k|g_k|<\infty$ if the system is BIBO stable.
 \end{theorem}
 Note that $R_N(\w)$ is the noise due to the inital and end conditions that can be bounded.

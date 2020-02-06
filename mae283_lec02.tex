@@ -26,18 +26,22 @@ The main idea is that when we multiply $\delta(t_0) \cdot f(t)$ we get the value
 \begin{figure}[ht!]
 \centering
 \includegraphics[width=.5\textwidth]{images/02contDeltaFn}
-\caption{Continuous-time $\delta$-function.}
+\caption{Continuous-time $\delta$-function.}%
 \label{fig:02contDeltaFn}
 \end{figure}
 
 \subsection{Discrete Time}
 We define the discrete time delta function, $\delta_d(k), k \in \mathbb{Z}$, as
-$$\sum_{k=-\infty}^\infty \delta_d(k-t_0)f(t) = f(t)$$
+
+\begin{equation*}
+\sum_{k=-\infty}^\infty \delta_d(k-t_0)f(t) = f(t)
+\end{equation*}
+
 An example of the discrete time delta function can be seen in Figure~\ref{fig:02discDeltaFn}, where the function is zero everywhere except at $t=k$.
 \begin{figure}[ht!]
 \centering
 \includegraphics[width=.5\textwidth]{images/02discDeltaFn}
-\caption{Discrete-time $\delta$-function.}
+\caption{Discrete-time $\delta$-function.}%
 \label{fig:02discDeltaFn}
 \end{figure}
 
@@ -50,19 +54,27 @@ The sampled signal, $u_s(t), t \in \mathbb{R}$, is defined as
 where $u(k\dt)$ is the sampled signal, $\dt$ is the sample time and $t=k\dt$, as seen in Figure~\ref{fig:02samplingDeltaFn}.
 This allows us to keep track of the information we gain or lose from the original signal.
 The sampled signal is defined as
-$$u_d(k) = u(k\dt) = \int_{t=k\dt-\epsilon}^{k\dt+\epsilon} u_s(t)dt$$
+
+\begin{equation*}
+u_d(k) = u(k\dt) = \int_{t=k\dt-\epsilon}^{k\dt+\epsilon} u_s(t)dt
+\end{equation*}
+
 and will be useful later in comparing the Fourier transforms of discrete and continuous signals.
 \begin{figure}[ht!]
 \centering
 \includegraphics[width=.5\textwidth]{images/02samplingDeltaFn}
-\caption{Multiple $\delta$-functions used to sample a continuous signal.}
+\caption{Multiple $\delta$-functions used to sample a continuous signal.}%
 \label{fig:02samplingDeltaFn}
 \end{figure}
 
 \section{Fourier Transform}
 The Fourier transform involves taking a signal and decomposing it into a sum of sines and cosines.
 We can use Euler's formula to convert from the time domain to the frequency domain with
-$$e^{j\w t} = \cos\w t + j\sin\w t.$$
+
+\begin{equation*}
+e^{j\w t} = \cos\w t + j\sin\w t.
+\end{equation*}
+
 Then we can write the Fourier and inverse Fourier transforms as
 \begin{align*}
 U(\w) &= \tint u(t)e^{-j\w t}dt \\
@@ -95,7 +107,11 @@ $\lozenge$
 \subsection{Effect of Sampling on Fourier Transform}
 Notice from Figure~\ref{fig:02samplingDeltaFn} that $u_s(t) = 0$ almost everywhere, with the exceptions being that $u_s(t) = \infty$ at $t=k\dt$.
 Then we have, with $t\in\mathbb{R}$ and $\w\in\mathbb{R}$,
-$$u_s(t) = \sum_{k=-\infty}^\infty u(t)\delta(t-k\dt)$$
+
+\begin{equation*}
+u_s(t) = \sum_{k=-\infty}^\infty u(t)\delta(t-k\dt)
+\end{equation*}
+
 and
 \begin{align*}
 U_s(\w) &= \tint u_s(t)\emjwt dt \\
@@ -117,7 +133,7 @@ Using the properties of the Fourier transform it is only necessary to know a sma
 \begin{figure}[ht!]
 \centering
 \includegraphics[width=.5\textwidth]{images/02sin}
-\caption{Illustration of using Fourier transform rules to automatically fill in function.}
+\caption{Illustration of using Fourier transform rules to automatically fill in function.}%
 \label{fig:02sin}
 \end{figure}
 
@@ -131,19 +147,23 @@ Figure~\ref{fig:02lowSampleRate} shows that if the signal is a sine wave that is
 \begin{figure}[ht!]
 \centering
 \includegraphics[width=.5\textwidth]{images/02lowSampleRate}
-\caption{Sampling of a sine wave at a low sampling rate.}
+\caption{Sampling of a sine wave at a low sampling rate.}%
 \label{fig:02lowSampleRate}
 \end{figure}
 
 \subsection{Relation between Original and Sampled Signal}
 Given
-$$U_s(\w) = \w_s \sum_{k=-\infty}^\infty U(\w-k\w_s), \w_s = \frac{2\pi}{\dt}$$
+
+\begin{equation*}
+U_s(\w) = \w_s \sum_{k=-\infty}^\infty U(\w-k\w_s), \w_s = \frac{2\pi}{\dt}
+\end{equation*}
+
 where $U(\w-k\w_s)$ is the original signal shifted by $\w_s$, we can see how high frequency information is lost as shown in Figure~\ref{fig:02freqResp}.
 The sampled signal has a higher magnitude than the original signal throughout most of the range.
 \begin{figure}[ht!]
 \centering
 \includegraphics[width=.5\textwidth]{images/02freqResp}
-\caption{Sampling of a sine wave at a low sampling rate.}
+\caption{Sampling of a sine wave at a low sampling rate.}%
 \label{fig:02freqResp}
 \end{figure}
 
@@ -153,7 +173,7 @@ This is due to shifting by $\w_s$ and is called aliasing, as seen in Figure~\ref
 \begin{figure}[ht!]
 \centering
 \includegraphics[width=.5\textwidth]{images/02aliasingSines}
-\caption{Effects of aliasing with original and sampled signal.}
+\caption{Effects of aliasing with original and sampled signal.}%
 \label{fig:02aliasingSines}
 \end{figure}
 
@@ -163,7 +183,7 @@ For example, if $\w_N = 100 Hz$, then the anti-aliasing filter should use a cut-
 \begin{figure}[ht!]
 \centering
 \includegraphics[width=.4\textwidth]{images/02aafilter}
-\caption{Block diagram of estimator with anti-aliasing filter.}
+\caption{Block diagram of estimator with anti-aliasing filter.}%
 \label{fig:02aafilter}
 \end{figure}
 
@@ -179,7 +199,10 @@ Note that we only need to evaluate $\w\in[0, \frac{\pi}{\dt}]$.
 
 \subsection{Finite Time Fourier Transform (FTFT)}
 A FTFT is defined, for $\w\in\mathbb{R}$, by
-$$U_N(\w) = \sum_{k=0}^{N-1} u_d(k) e^{-j\w k\dt}.$$
+
+\begin{equation*}
+U_N(\w) = \sum_{k=0}^{N-1} u_d(k) e^{-j\w k\dt}.
+\end{equation*}
 
 \subsection{Properties of Fourier Transforms}
 Some useful properties of Fourier transforms are
@@ -196,18 +219,30 @@ The finite time DTFT multiplied by an infinite sum of delta functions results in
 Recall that $U_\infty(\w)=0$ almost everywhere except at those frequencies that are multiples of $l\cdot \frac{2\pi}{T}$.
 
 Then the sampled version of the finite time DTFT is
-$$\int_{\w=l\cdot \frac{2\pi}{T}-\epsilon}^{l\cdot \frac{2\pi}{T}+\epsilon} U_\infty(\w)d\w
-= \frac{2\pi}{T}U_N(l\cdot \frac{2\pi}{T})$$
+
+\begin{equation*}
+\int_{\w=l\cdot \frac{2\pi}{T}-\epsilon}^{l\cdot \frac{2\pi}{T}+\epsilon} U_\infty(\w)d\w
+= \frac{2\pi}{T}U_N(l\cdot \frac{2\pi}{T})
+\end{equation*}
+
 This shows that we only need to compute the finite time DTFT for the range $\w\in[0,\frac{\pi}{T}]$, and even then we only need to compute at the discrete frequencies of $l\cdot\frac{2\pi}{T}$ on that range.
 
 \subsection{Discrete Fourier Transform (DFT)}
 The discrete, or ``sampled'', Fourier transform is defined as
-$$U_N(l) = \sum_{k=0}^{N-1} u_d(k) e^{-jl\frac{2\pi}{T}k\dt}$$
+
+\begin{equation*}
+U_N(l) = \sum_{k=0}^{N-1} u_d(k) e^{-jl\frac{2\pi}{T}k\dt}
+\end{equation*}
+
 and we can go the other direction using
-$$u_d(k\dt) = \frac{1}{T} \sum_{l=0}^{N-1} U_N(l) e^{jl\frac{2\pi}{T}k\dt}$$
+
+\begin{equation*}
+u_d(k\dt) = \frac{1}{T} \sum_{l=0}^{N-1} U_N(l) e^{jl\frac{2\pi}{T}k\dt}
+\end{equation*}
+
 These are the functions used to compute Fourier transforms in \textsc{Matlab} using the \texttt{fft} command.
 
-\subsection{Measurement Resolution and Implied Periodicity}
+\subsection{Measurement Resolution and Implied Periodicity}%
 \label{sec:impliedperiodicity}
 The resolution in the time domain is $\dt$, with units of $s$.
 The resolution in the frequency domain is $\frac{2\pi}{T}$, with units in $rad/s$.

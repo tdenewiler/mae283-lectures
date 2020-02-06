@@ -30,7 +30,11 @@ we get the least squares estimate as
 These properties were all found in Lecture 8.
 
 The expected value of the estimated parameter converges to the true parameter.
-$$E\{\thn\} = \theta_0$$
+
+\begin{equation*}
+E\{\thn\} = \theta_0
+\end{equation*}
+
 provided the noise, $\{e(t)\}$, is white.
 This is for the system
 \begin{align}
@@ -43,7 +47,11 @@ $R(N)$ and $f(N)$ are a collection of the auto-/cross-covariance functions.
 The invertibility of $R(N)$ is equivalent to $\{u(t)\}$ being a persistently exciting signal.
 
 \section{Variance Properties of Least Squares Estimate}
-$$\text{cov}\{\thn\} = E\{(\thn-\theta_0){(\thn-\theta_0)}^T\}$$
+
+\begin{equation*}
+\text{cov}\{\thn\} = E\{(\thn-\theta_0){(\thn-\theta_0)}^T\}
+\end{equation*}
+
 Converting the system in (\ref{eq:09sys}) to matrix form gives
 \begin{align*}
 \mathcal{S}: Y_N &= \Phi_N\theta_0+E_N \\
@@ -59,12 +67,24 @@ Then the covariance is found as
 \end{align*}
 where $\lambda = \frac{1}{N}E_N E_N^T$ is a scalar that can be moved outside the expectation operator.
 This shows that
-$$\text{cov}\{\thn\} \sim \tfrac{1}{N}\lambda R^{-1}(N)$$
+
+\begin{equation*}
+\text{cov}\{\thn\} \sim \tfrac{1}{N}\lambda R^{-1}(N)
+\end{equation*}
+
 Hence we have that
-$$\lim_{N\to\infty}\text{cov}\{\thn\} = 0$$
+
+\begin{equation*}
+\lim_{N\to\infty}\text{cov}\{\thn\} = 0
+\end{equation*}
+
 which makes $\thn$ a good estimator.
 The conclusion is
-$$\lim_{N\to\infty}\thn = \theta_0 \text{ w.p. } 1$$
+
+\begin{equation*}
+\lim_{N\to\infty}\thn = \theta_0 \text{~w.p.~} 1
+\end{equation*}
+
 provided $u\perp e$, $\{e(t)\}$ is white noise $\Leftrightarrow \Phi\perp e$, $\mathcal{S}\in\mathcal{M} \Leftrightarrow \dim\theta = \dim\theta_0$ and that the regressor $\Phi(t)$ is known.
 When $\Phi(t)$ is known it means that the linearities and non-linearities of the system are known.
 
@@ -82,19 +102,27 @@ In other words, these extensions are methods used to overcome the limitations of
 
 \subsection{Weighted Least Squares Estimate}
 Starting with the model from (\ref{eq:09model}) and the estimate from (\ref{eq:lse}) we can add a weighting function such that
-$$\thn = \min_\theta \frac{1}{N}\sum_{t=1}^N e_w^2(t)$$
+
+\begin{equation*}
+\thn = \min_\theta \frac{1}{N}\sum_{t=1}^N e_w^2(t)
+\end{equation*}
+
 where $e_w(t)=w(t)e(t)$.
 This can be useful for weighting recent data more than past data (Figure~\ref{fig:09wRecent}) or for removing data that could be unreliable data (Figure~\ref{fig:09bad}).
 The latter case allows us to ignore unreliable data that would result in determining a model that does not capture the dynamics of the actual system.
 The way to solve the weighted least squares problem is to find
-$$\underbrace{w(t)y(t)}_{y_w(t)} = \underbrace{w(t)\varphi^T(t)}_{\varphi_w^T(t)}\theta + \underbrace{w(t)e(t)}_{e_w(t)}$$
+
+\begin{equation*}
+\underbrace{w(t)y(t)}_{y_w(t)} = \underbrace{w(t)\varphi^T(t)}_{\varphi_w^T(t)}\theta + \underbrace{w(t)e(t)}_{e_w(t)}
+\end{equation*}
+
 and then use the standard tools.
 Note that this method can be used recursively.
 
 \begin{figure}[ht!]
 \centering
 \includegraphics[width=.25\textwidth]{images/09wRecent}
-\caption{A weighting function to build an estimate using recent data more than past data.}
+\caption{A weighting function to build an estimate using recent data more than past data.}%
 \label{fig:09wRecent}
 \end{figure}
 
@@ -106,20 +134,24 @@ Note that this method can be used recursively.
 \subfloat[Weighting function.]{%
 \label{fig:09wBad}\includegraphics[width=0.3\textwidth]{images/09wBad}
 } \hfill
-\caption{Weighting function for unreliable data.}
+\caption{Weighting function for unreliable data.}%
 \label{fig:09bad}
 \end{figure}
 
 \subsection{Total Least Squares Estimate}
 For this method we use a different model
-$$\mathcal{M}: y(t) = {(\varphi(t)+e_2(t,\theta))}^T\theta+e_1(t,\theta)$$
+
+\begin{equation*}
+\mathcal{M}: y(t) = {(\varphi(t)+e_2(t,\theta))}^T\theta+e_1(t,\theta)
+\end{equation*}
+
 This method minimizes the error on \textit{both} the input and the output, not just the output like the standard least squares estimate.
 See Figure~\ref{fig:09totalLS}.
 
 \begin{figure}[ht!]
 \centering
 \includegraphics[width=.3\textwidth]{images/09totalLS}
-\caption{Total least squares estimate uses inputs and outputs.}
+\caption{Total least squares estimate uses inputs and outputs.}%
 \label{fig:09totalLS}
 \end{figure}
 
@@ -137,7 +169,11 @@ G(q,\theta) &= \frac{b_0+b_1q^{-1}+\cdots+b_{n_b}q^{-n_b}}{1+a_1q^{-1}+\cdots+a_
 \end{align*}
 Then we look at the frequency response of the system to get $G(q,\theta)$.
 Taking the z-transform gives
-$$G(q,\theta) \xrightarrow{q=z} G(z,\theta) \xrightarrow{z=e^{j\w}} G(e^{j\w},\theta)$$
+
+\begin{equation*}
+G(q,\theta) \xrightarrow{q=z} G(z,\theta) \xrightarrow{z=e^{j\w}} G(e^{j\w},\theta)
+\end{equation*}
+
 If we substitute $q=1$ we get the DC-gain as
 \begin{align}
 \label{eq:constraint}
@@ -153,10 +189,18 @@ We can turn (\ref{eq:constraint}) into a linear constraint such that
 \end{align*}
 where the second equation equals zero because $w(\theta)=0$ and the last equation shows the linear constraint as being $A\theta=b$.
 This results in the constrained least squares estimate being
-$$\thn = \min_\theta\frac{1}{N}\sum_{t=1}^N\epsilon(t,\theta)$$
+
+\begin{equation*}
+\thn = \min_\theta\frac{1}{N}\sum_{t=1}^N\epsilon(t,\theta)
+\end{equation*}
+
 subject to $A\theta=b$.
 Next we find that
-$$\hat{\theta}_N = \min_{\theta,\lambda}\left[\underbrace{\frac{1}{N}\sum_{t=1}^N\epsilon(t,\theta)}_{V(\theta)} +\lambda w(\theta)\right]$$
+
+\begin{equation*}
+\hat{\theta}_N = \min_{\theta,\lambda}\left[\underbrace{\frac{1}{N}\sum_{t=1}^N\epsilon(t,\theta)}_{V(\theta)} +\lambda w(\theta)\right]
+\end{equation*}
+
 where $\lambda$ is called a constraint variable.
 To minimize this equation we must have
 \begin{align*}
@@ -182,9 +226,17 @@ $\lozenge$
 \subsection{Left Inverse}
 Consider the least squares problem in matrix form such that $Y=X\theta+E$.
 Writing this in matrix notation gives
-$$\thn = \min_\theta E^T E = {[X^T X]}^{-1}[X^T Y]$$
+
+\begin{equation*}
+\thn = \min_\theta E^T E = {[X^T X]}^{-1}[X^T Y]
+\end{equation*}
+
 What does ${[X^T X]}^{-1}X^T$ represent? Looking at the dimensions of the matrices shows that
-$$\underbrace{Y}_{N\times1} = \underbrace{X}_{N\times p} \underbrace{\theta}_{p\times1} + \underbrace{E}_{N\times1}$$
+
+\begin{equation*}
+\underbrace{Y}_{N\times1} = \underbrace{X}_{N\times p} \underbrace{\theta}_{p\times1} + \underbrace{E}_{N\times1}
+\end{equation*}
+
 Since $X$ is not square we cannot take the inverse of it.
 However, we \textit{can} use
 \begin{align}
@@ -197,9 +249,16 @@ In \textsc{Matlab} the command for the left-inverse of $X$ times $Y$ is done usi
 
 \subsection{Condition Number}
 It can be seen that the left-inverse, ${[X^T X]}^{-1}X^T$, is dependent on the condition number of $X$ such that
-$$\kappa(X^T X) = \kappa{(X)}^2$$
+
+\begin{equation*}
+\kappa(X^T X) = \kappa{(X)}^2
+\end{equation*}
+
 Singular values can be used to find the condition number of a matrix where
-$$X\rightarrow \bar{\sigma}(X), \underline{\sigma}(X), \kappa(X)=\frac{\bar{\sigma}(X)}{\underline{\sigma}(X)}$$
+
+\begin{equation*}
+X\rightarrow \bar{\sigma}(X), \underline{\sigma}(X), \kappa(X)=\frac{\bar{\sigma}(X)}{\underline{\sigma}(X)}
+\end{equation*}
 
 \subsection{Proper Calculation of Least Squares}
 This leads to the real way that a least squares estimate is found.
