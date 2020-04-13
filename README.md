@@ -1,8 +1,6 @@
 # MAE 283 Lectures
 
-| Service | Status |
-| ------- | ------ |
-| Linters | ![Unit Tests](https://github.com/tdenewiler/mae283-lectures/workflows/Unit%20Tests/badge.svg) |
+![Unit Tests](https://github.com/tdenewiler/mae283-lectures/workflows/Unit%20Tests/badge.svg)
 
 This repository contains lecture notes completed for [MAE 283](http://mechatronics.ucsd.edu/mae283a/) at UC San Diego
 during Fall quarter 2009 and taught by Prof de Callafon.
