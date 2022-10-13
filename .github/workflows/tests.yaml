@@ -22,6 +22,7 @@ jobs:
 
       - name: Install tools
         run: |
+          python -m pip install --upgrade numpy
           python -m pip install --upgrade statick-tex
           sudo apt-get update
           sudo apt-get install chktex
