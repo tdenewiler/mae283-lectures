@@ -28,5 +28,5 @@ python3 -m venv venv
 . venv/bin/activate
 pip install -r requirements.txt
 mkdir statick_output
-statick . statick_output --user-paths statick_config --profile tex-profile.yaml --config tex-config.yaml
+statick . --user-paths statick_config --profile tex-profile.yaml --config tex-config.yaml
 ```
