@@ -23,7 +23,10 @@ do not exist in this repository.
 To run Statick locally, do the following:
 
 ```shell
-apt install chktex lacheck
+apt install chktex lacheck python3-venv
+python3 -m venv venv
+. venv/bin/activate
 pip install -r requirements.txt
-statick . --user-paths statick_config --profile tex-profile.yaml --config tex-config.yaml
+mkdir statick_output
+statick . statick_output --user-paths statick_config --profile tex-profile.yaml --config tex-config.yaml
 ```
