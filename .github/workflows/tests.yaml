@@ -43,5 +43,5 @@ jobs:
       - name: Upload PDF file
         uses: actions/upload-artifact@v5
         with:
-          name: PDF
+          name: mae283_lectures.pdf
           path: mae283_lectures.pdf
