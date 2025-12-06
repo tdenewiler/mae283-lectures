@@ -1,0 +1,23 @@
+levels:
+  tex:
+    discovery:
+      tex:
+    reporting:
+      print_to_console:
+    tool:
+      # Disabling flags that do not add aesthetic value.
+      # See https://tex.stackexchange.com/questions/529937/why-should-i-enclose-the-previous-parenthesis-with
+      chktex:
+        flags: "-n 3 -n 44"
+      lacheck:
+        flags: ""
+
+  tex_with_pylint:
+    inherits_from:
+      - "tex"
+    discovery:
+      - python
+      - tex
+    tool:
+      pylint:
+        flags: "--good-names=f,i,j,k,x,y,z,ex,_"

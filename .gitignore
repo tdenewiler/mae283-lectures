@@ -2,6 +2,9 @@
 *.bak
 *.bbl
 *.blg
+*.fdb_latexmk
+*.fls
+*.gz
 *.log
 *.out
 *.pdf
